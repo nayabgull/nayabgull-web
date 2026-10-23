@@ -73,6 +73,8 @@ jobs:
       - uses: gitleaks/gitleaks-action@ff98106e4c7b2bc287b24eaf42907196329070c7 # v2.3.9
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Findings are printed in the log; the SARIF artifact upload needs Actions storage.
+          GITLEAKS_ENABLE_UPLOAD_ARTIFACT: "false"
 
   deps:
     runs-on: ubuntu-latest
@@ -109,8 +111,21 @@ jobs:
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
       - uses: ./.github/actions/setup
+      # Next.js warns when .next/cache is missing, and the build gate allows no warnings.
+      - uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: .next/cache
+          key: next-cache-${{ hashFiles('pnpm-lock.yaml') }}-${{ github.sha }}
+          restore-keys: |
+            next-cache-${{ hashFiles('pnpm-lock.yaml') }}-
+            next-cache-
       - name: Build (fails on any warning)
         run: pnpm build:strict
+      - uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        if: always()
+        with:
+          path: .next/cache
+          key: next-cache-${{ hashFiles('pnpm-lock.yaml') }}-${{ github.sha }}
 
   bundle:
     needs: build
