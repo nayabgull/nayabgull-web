@@ -151,7 +151,7 @@ jobs:
           nohup pnpm start --port 3001 > ../base-server.log 2>&1 &
           cd "$GITHUB_WORKSPACE"
           node scripts/wait-for-url.ts http://localhost:3001
-          AUDIT_BASE_URL=http://localhost:3001 node scripts/check-bundle.ts --measure-only --out bundle-base.json
+          AUDIT_BASE_URL=http://localhost:3001 node scripts/check-bundle.ts --measure-only --next-dir ../base/.next --out bundle-base.json
       - uses: ./.github/actions/serve
       - name: First-load JS budget and growth vs main
         run: |
