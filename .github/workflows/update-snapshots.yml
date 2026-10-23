@@ -1,12 +1,14 @@
 name: Update visual snapshots
 
 # Visual baselines are created only on Linux (never on a Mac), in the same Playwright container as CI.
-# Run it on a branch (Actions → Update visual snapshots → Run workflow → pick the branch).
-# It commits the baselines to snapshots/<branch without its prefix> and opens a PR into that branch,
+# Start it by adding the `update-snapshots` label to a PR (works before this file is on main), or with
+# Run workflow once it is on main. It commits the baselines to snapshots/<branch without its prefix> and opens a PR into that branch,
 # so every image is reviewed in the PR's "Files changed" before it is merged. No artifact upload:
 # Actions artifact storage is full.
 on:
   workflow_dispatch:
+  pull_request:
+    types: [labeled]
 
 permissions:
   contents: write # push the snapshots branch
@@ -14,6 +16,11 @@ permissions:
 
 jobs:
   snapshots:
+    # Only the update-snapshots label, and never for fork PRs (their token cannot push).
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.label.name == 'update-snapshots' &&
+      github.event.pull_request.head.repo.full_name == github.repository)
     runs-on: ubuntu-latest
     container: mcr.microsoft.com/playwright:v1.64.1-noble
     env:
@@ -21,9 +28,12 @@ jobs:
       HOME: /root
       CI: "true"
       NEXT_TELEMETRY_DISABLED: "1"
-      BASE_BRANCH: ${{ github.ref_name }}
+      # The PR's head branch (label trigger) or the branch picked in Run workflow.
+      BASE_BRANCH: ${{ github.head_ref || github.ref_name }}
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+        with:
+          ref: ${{ github.head_ref || github.ref }}
       - uses: ./.github/actions/setup
       - uses: ./.github/actions/serve
       - name: Regenerate baselines
