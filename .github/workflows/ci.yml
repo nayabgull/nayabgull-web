@@ -23,52 +23,61 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
       - uses: ./.github/actions/setup
       - run: pnpm lint
 
   format:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
       - uses: ./.github/actions/setup
       - run: pnpm format:check
 
   typecheck:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
       - uses: ./.github/actions/setup
       - run: pnpm typecheck
 
   commitlint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
         with:
           fetch-depth: 0
       - uses: ./.github/actions/setup
       - name: Lint PR commits
         if: github.event_name == 'pull_request'
-        run: pnpm exec commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
+        env:
+          FROM: ${{ github.event.pull_request.base.sha }}
+          TO: ${{ github.event.pull_request.head.sha }}
+        run: pnpm exec commitlint --from "$FROM" --to "$TO" --verbose
       - name: Lint pushed commits
         if: github.event_name == 'push'
-        run: pnpm exec commitlint --from ${{ github.event.before }} --to ${{ github.sha }} --verbose
+        env:
+          FROM: ${{ github.event.before }}
+          TO: ${{ github.sha }}
+        run: pnpm exec commitlint --from "$FROM" --to "$TO" --verbose
 
   secrets:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read # gitleaks-action lists the PR's commits
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
         with:
           fetch-depth: 0
-      - uses: gitleaks/gitleaks-action@v2
+      - uses: gitleaks/gitleaks-action@ff98106e4c7b2bc287b24eaf42907196329070c7 # v2.3.9
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   deps:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
       - uses: ./.github/actions/setup
       - name: Vulnerabilities (high and above)
         run: pnpm audit --audit-level=high
@@ -79,7 +88,7 @@ jobs:
     runs-on: ubuntu-latest
     container: semgrep/semgrep
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
       - name: Semgrep OSS (replaces CodeQL while the repo is private)
         run: >-
           semgrep scan --error --metrics=off
@@ -89,45 +98,34 @@ jobs:
   unit:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
       - uses: ./.github/actions/setup
       - run: pnpm test
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: coverage
-          path: coverage/
 
   # ── Stage 3 · Build ─────────────────────────────────────────────────
   build:
     needs: unit
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
       - uses: ./.github/actions/setup
       - name: Build (fails on any warning)
         run: pnpm build:strict
-      - uses: actions/upload-artifact@v4
-        with:
-          name: next-build
-          path: |
-            .next/
-            !.next/cache/
-          include-hidden-files: true
-          retention-days: 3
 
   bundle:
     needs: build
     runs-on: ubuntu-latest
     container: mcr.microsoft.com/playwright:v1.64.1-noble
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
       - uses: ./.github/actions/setup
       - name: Measure main as the baseline
         if: github.event_name == 'pull_request'
+        env:
+          BASE_REF: ${{ github.base_ref }}
         run: |
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
-          git fetch --depth=1 origin "${{ github.base_ref }}"
+          git fetch --depth=1 origin "$BASE_REF"
           git worktree add ../base FETCH_HEAD
           cd ../base
           pnpm install --frozen-lockfile
@@ -151,67 +149,45 @@ jobs:
     runs-on: ubuntu-latest
     container: mcr.microsoft.com/playwright:v1.64.1-noble
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
       - uses: ./.github/actions/setup
       - uses: ./.github/actions/serve
       - run: BASE_URL=http://localhost:3000 pnpm test:e2e
-      - uses: actions/upload-artifact@v4
-        if: failure()
-        with:
-          name: e2e-report
-          path: playwright-report/
 
   responsive:
     needs: build
     runs-on: ubuntu-latest
     container: mcr.microsoft.com/playwright:v1.64.1-noble
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
       - uses: ./.github/actions/setup
       - uses: ./.github/actions/serve
       - run: BASE_URL=http://localhost:3000 pnpm test:responsive
-      - uses: actions/upload-artifact@v4
-        if: failure()
-        with:
-          name: responsive-report
-          path: |
-            playwright-report/
-            test-results/
 
   a11y:
     needs: build
     runs-on: ubuntu-latest
     container: mcr.microsoft.com/playwright:v1.64.1-noble
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
       - uses: ./.github/actions/setup
       - uses: ./.github/actions/serve
       - run: BASE_URL=http://localhost:3000 pnpm test:a11y
-      - uses: actions/upload-artifact@v4
-        if: failure()
-        with:
-          name: a11y-report
-          path: playwright-report/
 
   lighthouse:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
       - uses: ./.github/actions/setup
       - uses: ./.github/actions/serve
       - run: pnpm lhci
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: lighthouse
-          path: reports/lighthouse/
 
   seo-audit:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
       - uses: ./.github/actions/setup
       - uses: ./.github/actions/serve
       - run: pnpm audit:seo
@@ -220,7 +196,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
       - uses: ./.github/actions/setup
       - uses: ./.github/actions/serve
       - run: pnpm audit:content
@@ -229,7 +205,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
       - uses: ./.github/actions/setup
       - uses: ./.github/actions/serve
       - run: pnpm audit:cannibalization
@@ -238,7 +214,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
       - uses: ./.github/actions/setup
       - uses: ./.github/actions/serve
       - run: pnpm audit:links
@@ -247,7 +223,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
       - uses: ./.github/actions/setup
       - uses: ./.github/actions/serve
       - run: pnpm audit:structured-data
@@ -294,7 +270,7 @@ jobs:
           else
             echo "ready=true" >> "$GITHUB_OUTPUT"
           fi
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
         if: steps.secrets.outputs.ready == 'true'
       - uses: ./.github/actions/setup
         if: steps.secrets.outputs.ready == 'true'

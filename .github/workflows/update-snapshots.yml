@@ -1,6 +1,7 @@
 name: Update visual snapshots
 
 # Visual baselines are created only on Linux (never on a Mac), here or in a Claude Code cloud session.
+# Needs free Actions artifact storage to hand over the images.
 # This workflow never commits: download the artifact, review every image, then commit it yourself.
 on:
   workflow_dispatch:
@@ -16,12 +17,11 @@ jobs:
       CI: "true"
       NEXT_TELEMETRY_DISABLED: "1"
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
       - uses: ./.github/actions/setup
-      - run: pnpm build
       - name: Regenerate baselines
         run: pnpm test:responsive --update-snapshots=all
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: responsive-snapshots
           path: tests/responsive/__snapshots__/

@@ -1,12 +1,11 @@
-name: Serve build
-description: Restores the .next build from the build job and starts `pnpm start` on port 3000
+name: Build and serve
+description: Builds the app and starts `pnpm start` on port 3000 (no artifacts, so it works without Actions storage)
 runs:
   using: composite
   steps:
-    - uses: actions/download-artifact@v5
-      with:
-        name: next-build
-        path: .next
+    - name: Build
+      shell: bash
+      run: pnpm build
     - name: Start production server
       shell: bash
       run: |

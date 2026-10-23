@@ -22,14 +22,11 @@ jobs:
       matrix:
         check: [lhci, "audit:seo", "audit:content", "audit:links"]
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
       - uses: ./.github/actions/setup
-      - run: pnpm ${{ matrix.check }}
-      - uses: actions/upload-artifact@v4
-        if: always() && matrix.check == 'lhci'
-        with:
-          name: nightly-lighthouse
-          path: reports/lighthouse/
+      - env:
+          CHECK: ${{ matrix.check }}
+        run: pnpm "$CHECK"
 
   report:
     needs: audit
@@ -41,8 +38,9 @@ jobs:
       - name: Open an issue
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
-          gh issue create --repo "${{ github.repository }}" \
+          gh issue create --repo "$REPO" \
             --title "Nightly production audit failed ($(date -u +%Y-%m-%d))" \
             --body "One or more nightly checks failed against https://nayabgull.com. Details: $RUN_URL"
