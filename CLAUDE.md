@@ -139,3 +139,4 @@ A task is done only when **all** of these are true:
 - Before large changes, show a short plan and wait for approval.
 - Ask before changing the stack, deleting files, adding paid services or changing any rule in `docs/rules/`.
 - When unsure about a fact (versions, Google guidance), check the official docs instead of guessing.
+- After every push, give clickable links to the PR checks page and the GitHub Actions run, plus a table `job · status · link to its log` for every CI job.

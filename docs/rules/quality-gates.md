@@ -26,7 +26,7 @@ Runs on every pull request and on every push to `main`. Node 24.22.1+, pnpm with
 | | `sast` | Semgrep OSS (`p/ci`, `p/typescript`, `p/react`, `p/nextjs`, `p/secrets`) reports any finding |
 | 2 · Unit | `unit` | Any failing test; coverage below **90%** for `lib/**`, **80%** overall |
 | 3 · Build | `build` | `pnpm build` fails or prints a warning about missing metadata/images |
-| | `bundle` | First-load JS > **120 KB** (gzip) on any route; any route grows > **10 KB** vs `main` |
+| | `bundle` | Per route (gzip): framework chunks (react-dom, Next.js runtime, Turbopack runtime) > **135 KB**; app-owned first-load JS > **30 KB**; total first-load JS > **165 KB**; total grows > **10 KB** vs `main` |
 | 4 · Preview checks (against the Vercel preview URL or `pnpm start`) | `e2e` | Any Playwright test fails in Chromium, Firefox or WebKit |
 | | `responsive` | Horizontal overflow, overlapping elements, clipped text or a visual diff > **0.1%** at any viewport in `frontend.md` |
 | | `a11y` | **Any** axe-core violation (all impact levels) on any route, light and dark theme |
@@ -85,3 +85,5 @@ Content saved in Payload never goes through a PR, so the **same rules run inside
 - **2026-10-23:** `deps` checks licences with `license-checker-rseidelsohn` and an allow-list instead of `dependency-review-action`, for the same reason (approved by Nayab 2026-10-23).
 - **2026-10-23:** `cannibalization` also fails when a secondary keyword is targeted on more than one page (approved by Nayab 2026-10-23).
 - **2026-10-23:** On macOS 12, `pnpm verify` reports the Playwright stages (bundle, e2e, responsive, a11y, lighthouse) as SKIPPED, never as passed. Playwright 1.64 has no browsers for macOS 12. Those stages run in full in GitHub CI and Claude Code cloud. Visual baselines are created only on Linux (approved by Nayab 2026-10-23).
+- **2026-10-23:** `bundle` budget split into framework ≤ 135 KB, app-owned ≤ 30 KB and total ≤ 165 KB first-load JS per route (gzip), growth vs `main` ≤ 10 KB unchanged (approved by Nayab 2026-10-23). Reason: the original 120 KB total predates Next.js 16. Measured on a bare Next.js 16.4.2 + React 19.3 page (one `<h1>`, no client components): 131.7 KB gzip (react-dom 70.1, Next.js runtime 48.4, React core 5.9, Turbopack runtime 3.8, route chunk 3.4). Framework chunks are the `rootMainFiles` in `.next/build-manifest.json`; the 135 KB cap fails the check when a dependency update grows them past it. Lighthouse budgets are unchanged.
+- **2026-10-23:** `deps`: pnpm override `@puppeteer/browsers` → 3.2.6 (approved by Nayab 2026-10-23). Reason: `extract-zip` ≤ 2.0.1 (GHSA-jmr9-qjv8-65gv, GHSA-7pqw-9j4j-h8q3, high) has no patched release on npm; `@puppeteer/browsers` 3 no longer uses it. `pnpm lhci` verified end-to-end (mobile + desktop) with the override.
