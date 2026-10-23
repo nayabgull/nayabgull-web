@@ -1,25 +1,23 @@
 import { spawn } from "node:child_process";
 
+import { findBuildWarnings } from "../lib/build/build-warnings.ts";
+
 /**
  * Runs `next build` and fails when the build fails or prints any warning
  * (missing metadataBase, image problems, deprecated config and so on).
+ * The one accepted line is listed in lib/build/build-warnings.ts.
  */
-const WARNING = /⚠|\bwarn(ing)?\b/i;
-
 const child = spawn("next", ["build"], { stdio: ["inherit", "pipe", "pipe"], shell: false });
-const warnings: string[] = [];
-
-function scan(chunk: Buffer, write: (text: string) => void): void {
-  const text = chunk.toString();
-  write(text);
-  for (const line of text.split("\n")) if (WARNING.test(line)) warnings.push(line.trim());
-}
+// The whole log is scanned at the end so a line split across two chunks is still one line.
+let log = "";
 
 child.stdout.on("data", (chunk: Buffer) => {
-  scan(chunk, (t) => process.stdout.write(t));
+  log += chunk.toString();
+  process.stdout.write(chunk);
 });
 child.stderr.on("data", (chunk: Buffer) => {
-  scan(chunk, (t) => process.stderr.write(t));
+  log += chunk.toString();
+  process.stderr.write(chunk);
 });
 
 child.on("close", (code) => {
@@ -28,6 +26,7 @@ child.on("close", (code) => {
     process.exitCode = code ?? 1;
     return;
   }
+  const warnings = findBuildWarnings(log);
   if (warnings.length > 0) {
     console.error(`\nBuild printed ${warnings.length} warning(s); the build gate allows none:`);
     for (const line of warnings) console.error(`  ✗ ${line}`);
