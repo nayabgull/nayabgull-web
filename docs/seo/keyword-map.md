@@ -57,7 +57,7 @@ Rules: one primary keyword per page; a keyword appears as a target on one page o
 | 2 | /services/laravel-development | laravel development company | 100–1K · Low · $82 | laravel development services, php development company, hire dedicated php developer |
 | 2 | /services/ecommerce-development | ecommerce development company | 100–1K · Low · $71 | hire woocommerce developers ($88), woocommerce development services, ecommerce website development services |
 | 2 | /services/mobile-app-development | mobile app development agency | 1K–10K · Low · $82 | mobile app creation service (10K–100K), app development agency, react native development companies |
-| 2 | /services/website-maintenance | website maintenance company | 100–1K · Low · $62 | website migration service, website speed optimization service, wordpress support services, managed wordpress hosting services |
+| 2 | /services/website-maintenance | website maintenance company | 100–1K · Low · $62 | website migration service, wordpress support services, managed wordpress hosting services |
 | 2 | /services/api-integration-web-scraping | api integration company | 10–100 · Low · $50 | web scraping as a service, data scraping companies, api integration services |
 | 2 | /services/small-business-website-design | small business website design services | 100–1K · Low · $33 | small company website design (1K–10K), website redesign company, website redesign agency, affordable web design for small business |
 

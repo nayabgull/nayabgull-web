@@ -306,7 +306,6 @@ export const KEYWORDS: readonly KeywordEntry[] = [
     primary: "website maintenance company",
     secondary: [
       "website migration service",
-      "website speed optimization service",
       "wordpress support services",
       "managed wordpress hosting services",
     ],
