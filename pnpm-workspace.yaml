@@ -6,3 +6,6 @@ allowBuilds:
 overrides:
   tmp@<0.2.6: 0.2.7
   basic-ftp@<6.2.1: 6.2.3
+  # extract-zip <=2.0.1 (GHSA-jmr9-qjv8-65gv, GHSA-7pqw-9j4j-h8q3) has no patched release;
+  # @puppeteer/browsers 3 drops extract-zip (approved by Nayab 2026-10-23).
+  "@puppeteer/browsers": 3.2.6
