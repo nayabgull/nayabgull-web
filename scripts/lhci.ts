@@ -5,7 +5,10 @@ const failed = ["mobile", "desktop"].filter((preset) => {
   console.log(`\n▶ Lighthouse CI (${preset})`);
   const result = spawnSync("lhci", ["autorun", "--config=lighthouserc.cjs"], {
     stdio: "inherit",
-    env: { ...process.env, LHCI_PRESET: preset },
+    env: {
+      ...process.env, // Not LHCI_*: lhci reads every LHCI_<option> variable as a CLI flag.
+      LIGHTHOUSE_FORM_FACTOR: preset,
+    },
   });
   return result.status !== 0;
 });

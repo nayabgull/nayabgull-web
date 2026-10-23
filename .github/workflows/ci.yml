@@ -131,6 +131,9 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     container: mcr.microsoft.com/playwright:v1.64.1-noble
+    env:
+      # Firefox refuses to start when $HOME is not owned by the container user (root).
+      HOME: /root
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
       - uses: ./.github/actions/setup
@@ -163,6 +166,9 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     container: mcr.microsoft.com/playwright:v1.64.1-noble
+    env:
+      # Firefox refuses to start when $HOME is not owned by the container user (root).
+      HOME: /root
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
       - uses: ./.github/actions/setup
@@ -173,6 +179,9 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     container: mcr.microsoft.com/playwright:v1.64.1-noble
+    env:
+      # Firefox refuses to start when $HOME is not owned by the container user (root).
+      HOME: /root
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
       - uses: ./.github/actions/setup
@@ -183,6 +192,9 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     container: mcr.microsoft.com/playwright:v1.64.1-noble
+    env:
+      # Firefox refuses to start when $HOME is not owned by the container user (root).
+      HOME: /root
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
       - uses: ./.github/actions/setup

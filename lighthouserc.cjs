@@ -33,8 +33,8 @@ function weight(maxBytes) {
   };
 }
 
-// LHCI_PRESET selects the form factor: "mobile" (default) or "desktop". scripts/lhci.ts runs both.
-const preset = process.env.LHCI_PRESET === "desktop" ? "desktop" : "mobile";
+// LIGHTHOUSE_FORM_FACTOR selects the form factor: "mobile" (default) or "desktop". scripts/lhci.ts runs both.
+const preset = process.env.LIGHTHOUSE_FORM_FACTOR === "desktop" ? "desktop" : "mobile";
 const minPerformance = preset === "desktop" ? 0.98 : 0.95;
 const outputDir = `reports/lighthouse/${preset}`;
 
