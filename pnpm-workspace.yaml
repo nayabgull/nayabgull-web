@@ -1,3 +1,8 @@
 allowBuilds:
   sharp: false
   unrs-resolver: false
+
+# Security overrides for transitive dev dependencies (pnpm audit --audit-level=high).
+overrides:
+  tmp@<0.2.6: 0.2.7
+  basic-ftp@<6.2.1: 6.2.3

@@ -22,7 +22,8 @@ Runs on every pull request and on every push to `main`. Node 24.22.1+, pnpm with
 | | `typecheck` | Any `tsc` error |
 | | `commitlint` | A commit message breaks conventional-commit format |
 | | `secrets` | gitleaks finds a secret |
-| | `deps` | `pnpm audit --audit-level=high` finds an issue; dependency-review flags a bad licence or vulnerability |
+| | `deps` | `pnpm audit --audit-level=high` finds an issue; a dependency's licence is not on the allow-list in `scripts/check-licenses.ts` |
+| | `sast` | Semgrep OSS (`p/ci`, `p/typescript`, `p/react`, `p/nextjs`, `p/secrets`) reports any finding |
 | 2 · Unit | `unit` | Any failing test; coverage below **90%** for `lib/**`, **80%** overall |
 | 3 · Build | `build` | `pnpm build` fails or prints a warning about missing metadata/images |
 | | `bundle` | First-load JS > **120 KB** (gzip) on any route; any route grows > **10 KB** vs `main` |
@@ -32,7 +33,7 @@ Runs on every pull request and on every push to `main`. Node 24.22.1+, pnpm with
 | | `lighthouse` | Any budget below is missed (median of 3 runs) |
 | | `seo-audit` | Any rule in `seo.md` fails on any URL |
 | | `content-audit` | Any rule in `content.md` fails on any page |
-| | `cannibalization` | Two pages share a primary keyword, or a page has none registered |
+| | `cannibalization` | Two pages share a primary keyword, a keyword (primary or secondary) is targeted on more than one page, `lib/seo/keywords.ts` differs from `docs/seo/keyword-map.md`, or a page has none registered |
 | | `links` | Any broken internal or external link |
 | | `structured-data` | Any JSON-LD block fails schema validation |
 | 5 · Deploy | `deploy` | Runs only on `main` after all jobs pass; then post-deploy smoke test; on failure → Vercel instant rollback |
@@ -54,7 +55,7 @@ Runs on every pull request and on every push to `main`. Node 24.22.1+, pnpm with
 ### Scheduled jobs
 
 - **Nightly** (`nightly.yml`): Lighthouse + SEO audit + content audit + link check against **production**; opens a GitHub issue on any failure.
-- **Weekly**: Dependabot / Renovate PRs (grouped), CodeQL scan.
+- **Weekly**: Dependabot PRs (grouped). Dependabot alerts and security updates are on. Static analysis runs on every PR in the `sast` job.
 
 ## 3. Branch protection on `main`
 
@@ -77,3 +78,10 @@ Content saved in Payload never goes through a PR, so the **same rules run inside
 - If a gate fails, fix the cause. Never mute the check.
 - Never add `// @ts-ignore`, `eslint-disable`, `test.skip`, `.only`, Lighthouse `warn` instead of `error`, or `continue-on-error` in workflows.
 - A threshold changes only after Nayab approves it in chat; record the reason in this file.
+
+## 6. Approved changes log
+
+- **2026-10-23:** CodeQL replaced by Semgrep OSS while the repo is private (approved by Nayab 2026-10-23). Reason: CodeQL and dependency-review need GitHub Advanced Security on private repos.
+- **2026-10-23:** `deps` checks licences with `license-checker-rseidelsohn` and an allow-list instead of `dependency-review-action`, for the same reason (approved by Nayab 2026-10-23).
+- **2026-10-23:** `cannibalization` also fails when a secondary keyword is targeted on more than one page (approved by Nayab 2026-10-23).
+- **2026-10-23:** On macOS 12, `pnpm verify` reports the Playwright stages (bundle, e2e, responsive, a11y, lighthouse) as SKIPPED, never as passed. Playwright 1.64 has no browsers for macOS 12. Those stages run in full in GitHub CI and Claude Code cloud. Visual baselines are created only on Linux (approved by Nayab 2026-10-23).

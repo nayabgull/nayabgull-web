@@ -2,11 +2,35 @@
   "name": "nayabgull-web",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.21.0",
+  "engines": {
+    "node": ">=24.22.1"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:strict": "node scripts/check-build-log.ts",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint . --max-warnings=0",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --coverage",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test tests/e2e",
+    "test:responsive": "playwright test tests/responsive",
+    "test:a11y": "playwright test tests/a11y",
+    "audit:seo": "node scripts/audit-seo.ts",
+    "audit:content": "node scripts/audit-content.ts",
+    "audit:cannibalization": "node scripts/check-cannibalization.ts",
+    "audit:structured-data": "node scripts/audit-structured-data.ts",
+    "audit:links": "node scripts/audit-links.ts",
+    "audit:licenses": "node scripts/check-licenses.ts",
+    "bundle": "node scripts/check-bundle.ts",
+    "lhci": "node scripts/lhci.ts",
+    "verify": "node scripts/verify.ts",
+    "prepare": "husky"
   },
   "dependencies": {
     "next": "16.4.2",
@@ -14,14 +38,35 @@
     "react-dom": "19.3.0"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "@commitlint/cli": "^21.2.4",
+    "@commitlint/config-conventional": "^21.2.4",
+    "@commitlint/types": "^21.2.3",
+    "@lhci/cli": "^0.15.1",
+    "@playwright/test": "^1.64.1",
     "@tailwindcss/turbopack": "^4",
-    "@types/node": "^20",
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.3",
+    "@types/node": "^24.19.2",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^6.1.2",
+    "@vitest/coverage-v8": "^5.0.5",
+    "cheerio": "^1.2.0",
     "eslint": "^9.39.5",
     "eslint-config-next": "16.4.2",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "husky": "^9.1.7",
+    "jsdom": "^30.1.3",
+    "license-checker-rseidelsohn": "^5.0.1",
+    "linkinator": "^8.1.0",
+    "lint-staged": "^17.6.0",
+    "prettier": "^3.9.10",
+    "prettier-plugin-tailwindcss": "^0.8.1",
     "tailwindcss": "^4",
-    "typescript": "^5"
-  },
-  "packageManager": "pnpm@11.21.0"
+    "typescript": "^5",
+    "typescript-eslint": "^8.72.0",
+    "vitest": "^5.0.5"
+  }
 }
