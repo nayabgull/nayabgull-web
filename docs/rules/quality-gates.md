@@ -22,17 +22,18 @@ Runs on every pull request and on every push to `main`. Node 24.22.1+, pnpm with
 | | `typecheck` | Any `tsc` error |
 | | `commitlint` | A commit message breaks conventional-commit format |
 | | `secrets` | gitleaks finds a secret |
-| | `deps` | `pnpm audit --audit-level=high` finds an issue; dependency-review flags a bad licence or vulnerability |
+| | `deps` | `pnpm audit --audit-level=high` finds an issue; a dependency's licence is not on the allow-list in `scripts/check-licenses.ts` |
+| | `sast` | Semgrep OSS (`p/ci`, `p/typescript`, `p/react`, `p/nextjs`, `p/secrets`) reports any finding |
 | 2 · Unit | `unit` | Any failing test; coverage below **90%** for `lib/**`, **80%** overall |
 | 3 · Build | `build` | `pnpm build` fails or prints a warning about missing metadata/images |
-| | `bundle` | First-load JS > **120 KB** (gzip) on any route; any route grows > **10 KB** vs `main` |
+| | `bundle` | Per route (gzip): framework chunks (react-dom, Next.js runtime, Turbopack runtime) > **135 KB**; app-owned first-load JS > **30 KB**; total first-load JS > **165 KB**; total grows > **10 KB** vs `main` |
 | 4 · Preview checks (against the Vercel preview URL or `pnpm start`) | `e2e` | Any Playwright test fails in Chromium, Firefox or WebKit |
 | | `responsive` | Horizontal overflow, overlapping elements, clipped text or a visual diff > **0.1%** at any viewport in `frontend.md` |
 | | `a11y` | **Any** axe-core violation (all impact levels) on any route, light and dark theme |
 | | `lighthouse` | Any budget below is missed (median of 3 runs) |
 | | `seo-audit` | Any rule in `seo.md` fails on any URL |
 | | `content-audit` | Any rule in `content.md` fails on any page |
-| | `cannibalization` | Two pages share a primary keyword, or a page has none registered |
+| | `cannibalization` | Two pages share a primary keyword, a keyword (primary or secondary) is targeted on more than one page, `lib/seo/keywords.ts` differs from `docs/seo/keyword-map.md`, or a page has none registered |
 | | `links` | Any broken internal or external link |
 | | `structured-data` | Any JSON-LD block fails schema validation |
 | 5 · Deploy | `deploy` | Runs only on `main` after all jobs pass; then post-deploy smoke test; on failure → Vercel instant rollback |
@@ -54,7 +55,7 @@ Runs on every pull request and on every push to `main`. Node 24.22.1+, pnpm with
 ### Scheduled jobs
 
 - **Nightly** (`nightly.yml`): Lighthouse + SEO audit + content audit + link check against **production**; opens a GitHub issue on any failure.
-- **Weekly**: Dependabot / Renovate PRs (grouped), CodeQL scan.
+- **Weekly**: Dependabot PRs (grouped). Dependabot alerts and security updates are on. Static analysis runs on every PR in the `sast` job.
 
 ## 3. Branch protection on `main`
 
@@ -77,3 +78,16 @@ Content saved in Payload never goes through a PR, so the **same rules run inside
 - If a gate fails, fix the cause. Never mute the check.
 - Never add `// @ts-ignore`, `eslint-disable`, `test.skip`, `.only`, Lighthouse `warn` instead of `error`, or `continue-on-error` in workflows.
 - A threshold changes only after Nayab approves it in chat; record the reason in this file.
+
+## 6. Approved changes log
+
+- **2026-10-23:** CodeQL replaced by Semgrep OSS while the repo is private (approved by Nayab 2026-10-23). Reason: CodeQL and dependency-review need GitHub Advanced Security on private repos.
+- **2026-10-23:** `deps` checks licences with `license-checker-rseidelsohn` and an allow-list instead of `dependency-review-action`, for the same reason (approved by Nayab 2026-10-23).
+- **2026-10-23:** `cannibalization` also fails when a secondary keyword is targeted on more than one page (approved by Nayab 2026-10-23).
+- **2026-10-23:** On macOS 12, `pnpm verify` reports the Playwright stages (bundle, e2e, responsive, a11y, lighthouse) as SKIPPED, never as passed. Playwright 1.64 has no browsers for macOS 12. Those stages run in full in GitHub CI and Claude Code cloud. Visual baselines are created only on Linux (approved by Nayab 2026-10-23).
+- **2026-10-23:** `bundle` budget split into framework ≤ 135 KB, app-owned ≤ 30 KB and total ≤ 165 KB first-load JS per route (gzip), growth vs `main` ≤ 10 KB unchanged (approved by Nayab 2026-10-23). Reason: the original 120 KB total predates Next.js 16. Measured on a bare Next.js 16.4.2 + React 19.3 page (one `<h1>`, no client components): 131.7 KB gzip (react-dom 70.1, Next.js runtime 48.4, React core 5.9, Turbopack runtime 3.8, route chunk 3.4). Framework chunks are the `rootMainFiles` in `.next/build-manifest.json`; the 135 KB cap fails the check when a dependency update grows them past it. Lighthouse budgets are unchanged.
+- **2026-10-23:** `deps`: pnpm override `@puppeteer/browsers` → 3.2.6 (approved by Nayab 2026-10-23). Reason: `extract-zip` ≤ 2.0.1 (GHSA-jmr9-qjv8-65gv, GHSA-7pqw-9j4j-h8q3, high) has no patched release on npm; `@puppeteer/browsers` 3 no longer uses it. `pnpm lhci` verified end-to-end (mobile + desktop) with the override.
+- **2026-10-23:** `@puppeteer/browsers` 3.2.6 declares `proxy-agent >=8.0.1` as an **optional** peer, while `@lhci/cli` installs 6.5.0, so `pnpm peers check` reports one unmet optional peer. Accepted (approved by Nayab 2026-10-23): it is only used to download browsers through a proxy, which Lighthouse CI never does, and no gate checks peers.
+- **2026-10-23:** Visual baselines are generated by `update-snapshots.yml` in the CI Playwright container when the `update-snapshots` label is added to a PR; it commits them to `snapshots/<branch>` and opens a review PR instead of uploading an artifact (approved by Nayab 2026-10-23).
+- **2026-10-23:** `build` accepts exactly one Next.js line: `⚠ No build cache found. Please configure build caching for faster rebuilds. Read more: https://nextjs.org/docs/messages/no-cache` (whole-line match in `lib/build/build-warnings.ts`; every other warning still fails). Reason: GitHub Actions caches are scoped per PR ref, so the first build of every new PR (for example the snapshots PR) has no `.next/cache`; the warning is about CI caching speed, not code quality. The `.next/cache` restore/save steps stay (approved by Nayab 2026-10-23).
+- **2026-10-24:** `deps`: pnpm override `chromium-bidi` → 157.0.8090-0 (approved by Nayab 2026-10-24). Reason: advisory GHSA-mrhx-c7xc-m3w5 (high, zod < 4.6.6) on the path `@lhci/cli 0.15.1 → lighthouse 12.6.1 → puppeteer-core 24.43.1 → chromium-bidi 14.0.0 → zod 3.25.76`; zod 3 has no patched release and chromium-bidi 14 requires zod ^3. chromium-bidi 157.0.8090-0 is the version puppeteer-core 25 uses and depends on zod ^4.6.5 (resolves to a patched 4.x). `@lhci/cli` 0.15.1 is the latest release and still ships lighthouse 12, so it cannot be upgraded instead. Lighthouse talks to Chrome over CDP, not WebDriver BiDi; CI `lighthouse` (mobile + desktop) is the proof. Remove when @lhci/cli ships lighthouse 13.

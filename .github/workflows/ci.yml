@@ -1,0 +1,319 @@
+name: CI
+
+# Every job here is a required status check (docs/rules/quality-gates.md). Never add continue-on-error.
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+
+env:
+  CI: "true"
+  NEXT_TELEMETRY_DISABLED: "1"
+  AUDIT_BASE_URL: http://localhost:3000
+
+jobs:
+  # ── Stage 1 · Static ────────────────────────────────────────────────
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+      - uses: ./.github/actions/setup
+      - run: pnpm lint
+
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+      - uses: ./.github/actions/setup
+      - run: pnpm format:check
+
+  typecheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+      - uses: ./.github/actions/setup
+      - run: pnpm typecheck
+
+  commitlint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+        with:
+          fetch-depth: 0
+      - uses: ./.github/actions/setup
+      - name: Lint PR commits
+        if: github.event_name == 'pull_request'
+        env:
+          FROM: ${{ github.event.pull_request.base.sha }}
+          TO: ${{ github.event.pull_request.head.sha }}
+        run: pnpm exec commitlint --from "$FROM" --to "$TO" --verbose
+      - name: Lint pushed commits
+        if: github.event_name == 'push'
+        env:
+          FROM: ${{ github.event.before }}
+          TO: ${{ github.sha }}
+        run: pnpm exec commitlint --from "$FROM" --to "$TO" --verbose
+
+  secrets:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read # gitleaks-action lists the PR's commits
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@ff98106e4c7b2bc287b24eaf42907196329070c7 # v2.3.9
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Findings are printed in the log; the SARIF artifact upload needs Actions storage.
+          GITLEAKS_ENABLE_UPLOAD_ARTIFACT: "false"
+
+  deps:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+      - uses: ./.github/actions/setup
+      - name: Vulnerabilities (high and above)
+        run: pnpm audit --audit-level=high
+      - name: Licence allow-list (replaces dependency-review while the repo is private)
+        run: pnpm audit:licenses
+
+  sast:
+    runs-on: ubuntu-latest
+    container: semgrep/semgrep
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+      - name: Semgrep OSS (replaces CodeQL while the repo is private)
+        run: >-
+          semgrep scan --error --metrics=off
+          --config=p/ci --config=p/typescript --config=p/react --config=p/nextjs --config=p/secrets
+
+  # ── Stage 2 · Unit ──────────────────────────────────────────────────
+  unit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+      - uses: ./.github/actions/setup
+      - run: pnpm test
+
+  # ── Stage 3 · Build ─────────────────────────────────────────────────
+  build:
+    needs: unit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+      - uses: ./.github/actions/setup
+      # Next.js warns when .next/cache is missing, and the build gate allows no warnings.
+      - uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: .next/cache
+          key: next-cache-${{ hashFiles('pnpm-lock.yaml') }}-${{ github.sha }}
+          restore-keys: |
+            next-cache-${{ hashFiles('pnpm-lock.yaml') }}-
+            next-cache-
+      - name: Build (fails on any warning)
+        run: pnpm build:strict
+      - uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        if: always()
+        with:
+          path: .next/cache
+          key: next-cache-${{ hashFiles('pnpm-lock.yaml') }}-${{ github.sha }}
+
+  bundle:
+    needs: build
+    runs-on: ubuntu-latest
+    container: mcr.microsoft.com/playwright:v1.64.1-noble
+    env:
+      # Firefox refuses to start when $HOME is not owned by the container user (root).
+      HOME: /root
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+      - uses: ./.github/actions/setup
+      - name: Measure main as the baseline
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git fetch --depth=1 origin "$BASE_REF"
+          git worktree add ../base FETCH_HEAD
+          cd ../base
+          pnpm install --frozen-lockfile
+          pnpm build
+          nohup pnpm start --port 3001 > ../base-server.log 2>&1 &
+          cd "$GITHUB_WORKSPACE"
+          node scripts/wait-for-url.ts http://localhost:3001
+          AUDIT_BASE_URL=http://localhost:3001 node scripts/check-bundle.ts --measure-only --next-dir ../base/.next --out bundle-base.json
+      - uses: ./.github/actions/serve
+      - name: First-load JS budget and growth vs main
+        run: |
+          if [ -f bundle-base.json ]; then
+            node scripts/check-bundle.ts --baseline bundle-base.json --out bundle-pr.json
+          else
+            node scripts/check-bundle.ts --out bundle-pr.json
+          fi
+
+  # ── Stage 4 · Preview checks (production build served with pnpm start) ──
+  e2e:
+    needs: build
+    runs-on: ubuntu-latest
+    container: mcr.microsoft.com/playwright:v1.64.1-noble
+    env:
+      # Firefox refuses to start when $HOME is not owned by the container user (root).
+      HOME: /root
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+      - uses: ./.github/actions/setup
+      - uses: ./.github/actions/serve
+      - run: BASE_URL=http://localhost:3000 pnpm test:e2e
+
+  responsive:
+    needs: build
+    runs-on: ubuntu-latest
+    container: mcr.microsoft.com/playwright:v1.64.1-noble
+    env:
+      # Firefox refuses to start when $HOME is not owned by the container user (root).
+      HOME: /root
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+      - uses: ./.github/actions/setup
+      - uses: ./.github/actions/serve
+      - run: BASE_URL=http://localhost:3000 pnpm test:responsive
+
+  a11y:
+    needs: build
+    runs-on: ubuntu-latest
+    container: mcr.microsoft.com/playwright:v1.64.1-noble
+    env:
+      # Firefox refuses to start when $HOME is not owned by the container user (root).
+      HOME: /root
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+      - uses: ./.github/actions/setup
+      - uses: ./.github/actions/serve
+      - run: BASE_URL=http://localhost:3000 pnpm test:a11y
+
+  lighthouse:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+      - uses: ./.github/actions/setup
+      - uses: ./.github/actions/serve
+      - run: pnpm lhci
+
+  seo-audit:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+      - uses: ./.github/actions/setup
+      - uses: ./.github/actions/serve
+      - run: pnpm audit:seo
+
+  content-audit:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+      - uses: ./.github/actions/setup
+      - uses: ./.github/actions/serve
+      - run: pnpm audit:content
+
+  cannibalization:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+      - uses: ./.github/actions/setup
+      - uses: ./.github/actions/serve
+      - run: pnpm audit:cannibalization
+
+  links:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+      - uses: ./.github/actions/setup
+      - uses: ./.github/actions/serve
+      - run: pnpm audit:links
+
+  structured-data:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+      - uses: ./.github/actions/setup
+      - uses: ./.github/actions/serve
+      - run: pnpm audit:structured-data
+
+  # ── Stage 5 · Deploy (main only, after every gate) ───────────────────
+  deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs:
+      [
+        lint,
+        format,
+        typecheck,
+        commitlint,
+        secrets,
+        deps,
+        sast,
+        unit,
+        build,
+        bundle,
+        e2e,
+        responsive,
+        a11y,
+        lighthouse,
+        seo-audit,
+        content-audit,
+        cannibalization,
+        links,
+        structured-data,
+      ]
+    runs-on: ubuntu-latest
+    environment: production
+    env:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      VERCEL: pnpm dlx vercel@65.2.0
+    steps:
+      - name: Check Vercel secrets
+        id: secrets
+        run: |
+          if [ -z "$VERCEL_TOKEN" ] || [ -z "$VERCEL_ORG_ID" ] || [ -z "$VERCEL_PROJECT_ID" ]; then
+            echo "::notice::Deploy skipped: VERCEL_TOKEN, VERCEL_ORG_ID and VERCEL_PROJECT_ID are not set yet."
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+        if: steps.secrets.outputs.ready == 'true'
+      - uses: ./.github/actions/setup
+        if: steps.secrets.outputs.ready == 'true'
+      - name: Build and deploy to production
+        if: steps.secrets.outputs.ready == 'true'
+        run: |
+          $VERCEL pull --yes --environment=production --token="$VERCEL_TOKEN"
+          $VERCEL build --prod --token="$VERCEL_TOKEN"
+          $VERCEL deploy --prebuilt --prod --token="$VERCEL_TOKEN"
+      - name: Install Chromium for the smoke test
+        if: steps.secrets.outputs.ready == 'true'
+        run: pnpm exec playwright install --with-deps chromium
+      - name: Post-deploy smoke test
+        id: smoke
+        if: steps.secrets.outputs.ready == 'true'
+        run: BASE_URL=https://nayabgull.com pnpm test:e2e --project=chromium
+      - name: Roll back on smoke-test failure
+        if: failure() && steps.smoke.conclusion == 'failure'
+        run: $VERCEL rollback --yes --token="$VERCEL_TOKEN"

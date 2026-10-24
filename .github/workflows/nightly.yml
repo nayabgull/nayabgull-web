@@ -1,0 +1,46 @@
+name: Nightly production audit
+
+# Re-checks production every night and opens an issue on any failure (quality-gates.md, "Scheduled jobs").
+# Runs only once the site is live: set the repository variable PRODUCTION_LIVE=true at launch.
+on:
+  schedule:
+    - cron: "0 6 * * *" # 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  AUDIT_BASE_URL: https://nayabgull.com
+
+jobs:
+  audit:
+    if: vars.PRODUCTION_LIVE == 'true'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        check: [lhci, "audit:seo", "audit:content", "audit:links"]
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+      - uses: ./.github/actions/setup
+      - env:
+          CHECK: ${{ matrix.check }}
+        run: pnpm "$CHECK"
+
+  report:
+    needs: audit
+    if: failure()
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Open an issue
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          gh issue create --repo "$REPO" \
+            --title "Nightly production audit failed ($(date -u +%Y-%m-%d))" \
+            --body "One or more nightly checks failed against https://nayabgull.com. Details: $RUN_URL"

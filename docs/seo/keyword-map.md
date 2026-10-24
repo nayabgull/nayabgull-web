@@ -9,8 +9,8 @@ Rules: one primary keyword per page; a keyword appears as a target on one page o
 
 | Page | URL | Primary | Volume · Comp · Bid | Secondary |
 | --- | --- | --- | --- | --- |
-| Home | / | web development agency | 1K–10K · Low · $41 | web development company, custom web development company, ai automation agency (link only), gohighlevel expert (link only) |
-| About | /about | nayab gull (brand) | — | full stack developer, freelance web developer |
+| Home | / | web development agency | 1K–10K · Low · $41 | web development company, custom web development company |
+| About | /about | nayab gull (brand) | — | — |
 | Pricing | /pricing | website development cost | 100–1K · Low · $23 | cost of web design, website design pricing, web app development cost |
 | Hire | /hire-full-stack-developer | hire full stack developer | 100–1K · Low · $51 | hire web developer, hire website developer, website designers for hire (1K–10K), hire freelance web developer, freelance web developer, hire frontend developer |
 
@@ -57,7 +57,7 @@ Rules: one primary keyword per page; a keyword appears as a target on one page o
 | 2 | /services/laravel-development | laravel development company | 100–1K · Low · $82 | laravel development services, php development company, hire dedicated php developer |
 | 2 | /services/ecommerce-development | ecommerce development company | 100–1K · Low · $71 | hire woocommerce developers ($88), woocommerce development services, ecommerce website development services |
 | 2 | /services/mobile-app-development | mobile app development agency | 1K–10K · Low · $82 | mobile app creation service (10K–100K), app development agency, react native development companies |
-| 2 | /services/website-maintenance | website maintenance company | 100–1K · Low · $62 | website migration service, website speed optimization service, wordpress support services, managed wordpress hosting services |
+| 2 | /services/website-maintenance | website maintenance company | 100–1K · Low · $62 | website migration service, wordpress support services, managed wordpress hosting services |
 | 2 | /services/api-integration-web-scraping | api integration company | 10–100 · Low · $50 | web scraping as a service, data scraping companies, api integration services |
 | 2 | /services/small-business-website-design | small business website design services | 100–1K · Low · $33 | small company website design (1K–10K), website redesign company, website redesign agency, affordable web design for small business |
 
@@ -76,7 +76,7 @@ Rules: one primary keyword per page; a keyword appears as a target on one page o
 | --- | --- | --- |
 | GoHighLevel | /gohighlevel-agency | GoHighLevel review, A2P 10DLC setup, GHL workflow examples, GHL vs HubSpot, GHL API guide |
 | AI automation | /ai-automation-agency | best AI automation companies for small business, n8n vs Make vs Zapier, AI receptionist guide, workflow automation examples |
-| Cost | service pages | cost to develop an app (1K–10K), website development cost, custom software development cost, website maintenance cost, law firm website cost |
+| Cost | service pages | cost to develop an app (1K–10K), small business website cost breakdown, custom software development cost, website maintenance cost, law firm website cost |
 | Industries | /industries/* | law firm website must-haves, dental website checklist, roofing lead generation website, real estate IDX guide |
 | Dev | service pages | Next.js vs WordPress, headless Shopify, MVP development process, Shopify speed optimization |
 

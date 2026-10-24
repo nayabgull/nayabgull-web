@@ -1,0 +1,90 @@
+name: Update visual snapshots
+
+# Visual baselines are created only on Linux (never on a Mac), in the same Playwright container as CI.
+# Start it by adding the `update-snapshots` label to a PR (works before this file is on main), or with
+# Run workflow once it is on main. It commits the baselines to snapshots/<branch without its prefix> and opens a PR into that branch,
+# so every image is reviewed in the PR's "Files changed" before it is merged. No artifact upload:
+# Actions artifact storage is full.
+on:
+  workflow_dispatch:
+  pull_request:
+    types: [labeled]
+
+permissions:
+  contents: write # push the snapshots branch
+  pull-requests: write # open the review PR
+
+jobs:
+  snapshots:
+    # Only the update-snapshots label, and never for fork PRs (their token cannot push).
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.label.name == 'update-snapshots' &&
+      github.event.pull_request.head.repo.full_name == github.repository)
+    runs-on: ubuntu-latest
+    container: mcr.microsoft.com/playwright:v1.64.1-noble
+    env:
+      # Firefox refuses to start when $HOME is not owned by the container user (root).
+      HOME: /root
+      CI: "true"
+      NEXT_TELEMETRY_DISABLED: "1"
+      # The PR's head branch (label trigger) or the branch picked in Run workflow.
+      BASE_BRANCH: ${{ github.head_ref || github.ref_name }}
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+        with:
+          ref: ${{ github.head_ref || github.ref }}
+      - uses: ./.github/actions/setup
+      - uses: ./.github/actions/serve
+      - name: Regenerate baselines
+        run: BASE_URL=http://localhost:3000 pnpm test:responsive --update-snapshots=all
+      - name: Commit baselines to the snapshots branch
+        id: commit
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898299+github-actions[bot]@users.noreply.github.com"
+          SNAPSHOT_BRANCH="snapshots/${BASE_BRANCH#*/}"
+          echo "branch=$SNAPSHOT_BRANCH" >> "$GITHUB_OUTPUT"
+          git add tests/responsive/__snapshots__
+          if git diff --cached --quiet; then
+            echo "::notice::Baselines are unchanged; nothing to commit."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git checkout -b "$SNAPSHOT_BRANCH"
+          git commit -m "test: update responsive visual baselines (Linux, Playwright 1.64.1)"
+          # Plain push (never --force): if the branch already exists, merge or delete its PR first.
+          git push origin "HEAD:refs/heads/$SNAPSHOT_BRANCH"
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+      - name: Open the review PR
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          HEAD_BRANCH: ${{ steps.commit.outputs.branch }}
+          REPO: ${{ github.repository }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        # curl is not in the Playwright image, so call the API with Node's fetch.
+        run: |
+          node --input-type=module -e '
+            const { GITHUB_TOKEN, HEAD_BRANCH, BASE_BRANCH, REPO, RUN_URL } = process.env;
+            const response = await fetch(`https://api.github.com/repos/${REPO}/pulls`, {
+              method: "POST",
+              headers: {
+                authorization: `Bearer ${GITHUB_TOKEN}`,
+                accept: "application/vnd.github+json",
+              },
+              body: JSON.stringify({
+                title: `test: responsive visual baselines for ${BASE_BRANCH}`,
+                head: HEAD_BRANCH,
+                base: BASE_BRANCH,
+                body: `Linux baselines generated in mcr.microsoft.com/playwright:v1.64.1-noble (same container as CI) by ${RUN_URL}.\n\nReview every image in "Files changed" before merging.`,
+              }),
+            });
+            const pr = await response.json();
+            if (!response.ok) {
+              console.error(`::error::Could not open the PR (${response.status}): ${JSON.stringify(pr)}`);
+              process.exit(1);
+            }
+            console.log(`Opened ${pr.html_url}`);
+          '

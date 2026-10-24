@@ -1,0 +1,15 @@
+# Rule files are edited by hand only; Prettier must never rewrite them.
+CLAUDE.md
+docs/rules/
+docs/seo/
+
+pnpm-lock.yaml
+.next/
+out/
+build/
+coverage/
+reports/
+playwright-report/
+test-results/
+.lighthouseci/
+tests/**/*-snapshots/

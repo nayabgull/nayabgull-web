@@ -1,0 +1,17 @@
+name: Build and serve
+description: Builds the app and starts `pnpm start` on port 3000 (no artifacts, so it works without Actions storage)
+runs:
+  using: composite
+  steps:
+    - name: Build
+      shell: bash
+      run: pnpm build
+    - name: Start production server
+      shell: bash
+      run: |
+        nohup pnpm start --port 3000 > server.log 2>&1 &
+        # curl is not in the Playwright image, so wait with Node's fetch.
+        if node scripts/wait-for-url.ts http://localhost:3000; then exit 0; fi
+        cat server.log
+        echo "::error::pnpm start did not answer on port 3000"
+        exit 1
