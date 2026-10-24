@@ -140,3 +140,8 @@ A task is done only when **all** of these are true:
 - Ask before changing the stack, deleting files, adding paid services or changing any rule in `docs/rules/`.
 - When unsure about a fact (versions, Google guidance), check the official docs instead of guessing.
 - After every push, give clickable links to the PR checks page and the GitHub Actions run, plus a table `job · status · link to its log` for every CI job.
+- Work only when Nayab sends a message. Do not start any task on your own.
+- Do not create scheduled check-ins, reminders, polling loops or background watchers for yourself.
+- If a GitHub/PR notification arrives while idle, do not act on it — at most note it in one line and wait for Nayab.
+- The only exception: scheduled tasks that Nayab herself created and asked for. Run those exactly as scheduled, nothing more.
+- When you need Nayab (merge, approve, decide), say so once and stop.
