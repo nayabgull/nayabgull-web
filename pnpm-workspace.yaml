@@ -9,3 +9,7 @@ overrides:
   # extract-zip <=2.0.1 (GHSA-jmr9-qjv8-65gv, GHSA-7pqw-9j4j-h8q3) has no patched release;
   # @puppeteer/browsers 3 drops extract-zip (approved by Nayab 2026-10-23).
   "@puppeteer/browsers": 3.2.6
+  # zod <4.6.6 (GHSA-mrhx-c7xc-m3w5, high) has no patched 3.x release; chromium-bidi 157 (the version
+  # puppeteer-core 25 uses) depends on zod 4. Remove when @lhci/cli ships lighthouse 13
+  # (approved by Nayab 2026-10-24).
+  "chromium-bidi": 157.0.8090-0
