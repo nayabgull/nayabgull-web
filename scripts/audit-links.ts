@@ -1,6 +1,6 @@
 import { LinkChecker, LinkState } from "linkinator";
 
-import { sitePath } from "../lib/seo/site.ts";
+import { SITE_URL, sitePath } from "../lib/seo/site.ts";
 
 import type { PageResult } from "./lib/site.ts";
 import { BASE_URL, run } from "./lib/site.ts";
@@ -24,6 +24,17 @@ await run("Link check", async () => {
     retryErrorsCount: 2,
     timeout: 20_000,
     concurrency: 10,
+    // Canonical, og:image and other absolute links point at the production origin. Check those paths
+    // against the build under test instead, so a page is never "fine" only because production is.
+    urlRewriteExpressions:
+      BASE_URL === SITE_URL
+        ? []
+        : [
+            {
+              pattern: new RegExp(`^${SITE_URL.replace(/\./g, "\\.")}(?=/|$)`),
+              replacement: BASE_URL,
+            },
+          ],
   });
 
   const byParent = new Map<string, PageResult>();

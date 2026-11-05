@@ -215,6 +215,10 @@
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-card);
+  }
+
+  /* Real blur only where something scrolls or glows behind the card (hero card); it costs paint time. */
+  .glass-blur {
     -webkit-backdrop-filter: blur(14px) saturate(140%);
     backdrop-filter: blur(14px) saturate(140%);
   }
@@ -252,8 +256,18 @@
   }
 
   .dot-live {
+    position: relative;
     background: var(--color-lime);
-    box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-lime) 60%, transparent);
+  }
+
+  /* Pulse ring: scales and fades (transform/opacity only). */
+  .dot-live::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: var(--color-lime);
+    opacity: 0;
   }
 
   .theme-icon-sun {
@@ -318,7 +332,7 @@
     animation: shine-sweep 7s ease-in-out 1.5s infinite;
   }
 
-  .dot-live {
+  .dot-live::after {
     animation: pulse-live 2s ease-out infinite;
   }
 
@@ -373,10 +387,12 @@
 
 @keyframes pulse-live {
   0% {
-    box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-lime) 60%, transparent);
+    opacity: 0.6;
+    transform: scale(1);
   }
   100% {
-    box-shadow: 0 0 0 10px transparent;
+    opacity: 0;
+    transform: scale(3);
   }
 }
 
