@@ -17,6 +17,11 @@ env:
   CI: "true"
   NEXT_TELEMETRY_DISABLED: "1"
   AUDIT_BASE_URL: http://localhost:3000
+  # Obvious placeholders so the build and the preview checks run with no database and no secrets.
+  # lib/env.ts rejects them on Vercel production. Never put real values in this file.
+  DATABASE_URI: postgres://ci-placeholder:ci-placeholder@localhost:5432/ci-placeholder
+  DATABASE_URI_DIRECT: postgres://ci-placeholder:ci-placeholder@localhost:5432/ci-placeholder
+  PAYLOAD_SECRET: placeholder-placeholder-placeholder
 
 jobs:
   # ── Stage 1 · Static ────────────────────────────────────────────────
