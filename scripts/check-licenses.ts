@@ -1,6 +1,6 @@
 import { execFileSync } from "node:child_process";
 
-/** Permissive licences plus MPL-2.0 (file-level copyleft, used by axe-core and lightningcss). */
+/** Permissive licences, MPL-2.0 (file-level copyleft, used by axe-core and lightningcss) and WTFPL (truncate-utf8-bytes, via Payload). */
 const ALLOWED = [
   "MIT",
   "MIT-0",
@@ -17,6 +17,7 @@ const ALLOWED = [
   "Python-2.0",
   "Unlicense",
   "MPL-2.0",
+  "WTFPL",
 ];
 
 try {
