@@ -1,4 +1,5 @@
 allowBuilds:
+  esbuild: false
   sharp: false
   unrs-resolver: false
 
@@ -13,3 +14,10 @@ overrides:
   # puppeteer-core 25 uses) depends on zod 4. Remove when @lhci/cli ships lighthouse 13
   # (approved by Nayab 2026-10-24).
   "chromium-bidi": 157.0.8090-0
+  # Added with Payload CMS (pending Nayab's approval, same practice as the entries above).
+  # dompurify <3.4.17 (GHSA-cg2g-xh64-v4q7 critical, GHSA-mrv2-3pqr-j5jr high) comes in through
+  # @payloadcms/ui > monaco-editor; 3.4.17 is the patched release.
+  dompurify@<3.4.17: 3.4.17
+  # happy-dom <=21.0.3 (GHSA-834v-8h66-3h79, GHSA-c8p4-j97h-3vg8, high) comes in through
+  # @lexical/headless and vitest; 21.0.4 is the patched release.
+  happy-dom@<21.0.4: 21.0.4

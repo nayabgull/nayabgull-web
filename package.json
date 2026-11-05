@@ -30,12 +30,25 @@
     "bundle": "node scripts/check-bundle.ts",
     "lhci": "node scripts/lhci.ts",
     "verify": "node scripts/verify.ts",
-    "prepare": "husky"
+    "prepare": "husky",
+    "payload": "payload",
+    "db:migrate:create": "PAYLOAD_DB_DIRECT=1 payload migrate:create",
+    "db:migrate": "PAYLOAD_DB_DIRECT=1 payload migrate",
+    "db:migrate:status": "PAYLOAD_DB_DIRECT=1 payload migrate:status",
+    "generate:types": "payload generate:types",
+    "generate:importmap": "payload generate:importmap"
   },
   "dependencies": {
+    "@payloadcms/db-postgres": "3.93.0",
+    "@payloadcms/next": "3.93.0",
+    "@payloadcms/richtext-lexical": "3.93.0",
+    "graphql": "^16.14.2",
     "next": "16.4.2",
+    "payload": "3.93.0",
     "react": "19.3.0",
-    "react-dom": "19.3.0"
+    "react-dom": "19.3.0",
+    "sharp": "0.35.5",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.14.0",
