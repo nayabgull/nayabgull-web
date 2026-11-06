@@ -5,10 +5,13 @@ import type { HomeContent } from "@/content/home.ts";
 
 import { AutomationFlow } from "./AutomationFlow.tsx";
 
-/** The H1 is the LCP element: plain text, no animation, no image. */
+/** The H1 is the LCP element: plain text, no animation, no image. Only the hero has the grid background. */
 export function Hero({ hero, flow }: Pick<HomeContent, "hero" | "flow">) {
   return (
-    <section aria-labelledby="hero-heading" className="pt-6 pb-section sm:pt-14 lg:pt-12">
+    <section
+      aria-labelledby="hero-heading"
+      className="hero-bg pt-6 pb-20 sm:pt-14 lg:pt-12 lg:pb-24"
+    >
       <Container className="grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
         <div>
           <span className="badge-live inline-flex items-center gap-2 rounded-pill px-3 py-1 text-small font-semibold">
@@ -34,9 +37,14 @@ export function Hero({ hero, flow }: Pick<HomeContent, "hero" | "flow">) {
               {hero.secondaryCta.label}
             </ButtonLink>
           </div>
-          <p className="mt-6 flex max-w-2xl items-start gap-2 text-small font-medium">
-            <span className="mt-2 size-2 shrink-0 rounded-full bg-lime" aria-hidden="true" />
-            <span>{hero.proof}</span>
+          <p className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-small font-medium">
+            {hero.proof.map((fact, index) => (
+              <span key={fact} className="inline-flex items-center gap-2">
+                <span className="size-2 rounded-full bg-lime" aria-hidden="true" />
+                {fact}
+                {index === hero.proof.length - 1 ? "." : ""}
+              </span>
+            ))}
           </p>
         </div>
         <AutomationFlow flow={flow} />

@@ -34,7 +34,7 @@ export function About({ about }: { about: HomeContent["about"] }) {
     <Section id="about" labelledBy="about-heading">
       <GlassCard
         hover={false}
-        className="reveal grid grid-cols-1 gap-8 p-6 sm:p-10 md:grid-cols-[auto_1fr] md:items-center"
+        className="grid grid-cols-1 gap-8 p-6 sm:p-10 md:grid-cols-[auto_1fr] md:items-center"
       >
         <div className="flex flex-col items-start gap-3">
           <Avatar about={about} />

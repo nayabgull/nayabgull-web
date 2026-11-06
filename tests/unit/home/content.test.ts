@@ -19,7 +19,7 @@ describe("homepage content (content/home.ts)", () => {
     expect(title.indexOf(primary)).toBeLessThanOrEqual(title.length / 2);
     expect(headline.toLowerCase()).toContain(primary);
     expect(home.meta.description.toLowerCase()).toContain(primary);
-    expect(home.pillars.heading.toLowerCase()).toContain(primary);
+    expect(home.services.heading.toLowerCase()).toContain(primary);
   });
 
   it("keeps title and meta description within the SEO lengths", () => {
@@ -37,8 +37,27 @@ describe("homepage content (content/home.ts)", () => {
     expect(home.hero.secondaryCta.href).toBe("#services");
   });
 
-  it("has the sections the homepage checklist needs", () => {
-    expect(home.pillars.items).toHaveLength(3);
+  it("uses the agreed hero copy", () => {
+    expect(headline).toBe("The web development agency that turns your leads into booked calls");
+    expect(home.hero.lede).toBe(
+      "I build fast websites, set up GoHighLevel, and add AI that calls every new lead within 60 seconds.",
+    );
+    expect(home.hero.secondaryCta).toEqual({ label: "See services", href: "#services" });
+  });
+
+  it("has the sections of the agreed structure", () => {
+    expect(home.services.items.map((s) => s.title)).toEqual([
+      "Web Development",
+      "GoHighLevel",
+      "AI Automation",
+    ]);
+    expect(home.howItWorks.steps.map((s) => s.title)).toEqual([
+      "Website",
+      "GoHighLevel",
+      "AI call",
+      "Booked call",
+    ]);
+    expect(home.industries.heading).toBe("Websites and automation for these businesses");
     expect(home.industries.items.map((i) => i.id)).toEqual([
       "law",
       "dental",
@@ -46,8 +65,7 @@ describe("homepage content (content/home.ts)", () => {
       "roofing",
       "contractors",
     ]);
-    expect(home.process.steps.length).toBeGreaterThanOrEqual(4);
-    expect(home.process.steps.length).toBeLessThanOrEqual(5);
+    expect(home.process.steps).toHaveLength(4);
     expect(home.faq.items.length).toBeGreaterThanOrEqual(6);
     expect(home.faq.items.length).toBeLessThanOrEqual(8);
     expect(home.flow.steps.map((s) => s.title)).toEqual([
@@ -58,19 +76,20 @@ describe("homepage content (content/home.ts)", () => {
     ]);
   });
 
-  it("gives every industry its own pain point and outcome", () => {
-    const pains = new Set(home.industries.items.map((i) => i.pain));
-    const outcomes = new Set(home.industries.items.map((i) => i.outcome));
-    expect(pains.size).toBe(home.industries.items.length);
-    expect(outcomes.size).toBe(home.industries.items.length);
+  it("keeps WordPress and Shopify off the homepage (they get their own pages)", () => {
+    expect(JSON.stringify(home)).not.toMatch(/wordpress|shopify/i);
+  });
+
+  it("gives every industry its own line", () => {
+    const lines = new Set(home.industries.items.map((i) => i.line));
+    expect(lines.size).toBe(home.industries.items.length);
   });
 
   it("states only the confirmed proof facts", () => {
-    expect(home.proof.items.map((i) => i.value)).toEqual([
+    expect(home.hero.proof).toEqual([
       "5+ years",
-      "400+",
-      "US and UK",
-      "Upwork and Fiverr",
+      "400+ projects delivered",
+      "Clients in the US, UK and worldwide",
     ]);
   });
 

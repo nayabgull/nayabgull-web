@@ -11,12 +11,9 @@ export function Process({ process }: { process: HomeContent["process"] }) {
         heading={process.heading}
         intro={process.intro}
       />
-      <ol className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+      <ol className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {process.steps.map((step, index) => (
-          <li
-            key={step.title}
-            className="reveal relative rounded-lg border border-border bg-surface p-6"
-          >
+          <li key={step.title} className="relative rounded-lg border border-border bg-surface p-6">
             <div className="flex items-center justify-between gap-3">
               <span
                 aria-hidden="true"

@@ -6,15 +6,15 @@ import { STRATEGY_CALL_URL } from "@/content/home.ts";
 
 const NAV = [
   { label: "Services", href: "#services" },
+  { label: "How it works", href: "#how-it-works" },
   { label: "Industries", href: "#industries" },
-  { label: "Work", href: "#work" },
   { label: "Process", href: "#process" },
   { label: "FAQ", href: "#faq" },
 ] as const;
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-bg/75 backdrop-blur-lg">
+    <header className="sticky top-0 z-40 border-b border-border bg-bg">
       <a
         href="#main"
         className="btn-primary absolute top-2 left-4 z-50 inline-flex min-h-11 -translate-y-[200%] items-center rounded-pill px-5 font-semibold focus:translate-y-0"

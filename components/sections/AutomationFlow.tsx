@@ -11,7 +11,7 @@ const CHECK_CLASS = ["flow-check-1", "flow-check-2", "flow-check-3", "flow-check
 export function AutomationFlow({ flow }: { flow: HomeContent["flow"] }) {
   const last = flow.steps.length - 1;
   return (
-    <figure className="glass glass-blur mx-auto w-full max-w-md p-5 sm:p-7 lg:mx-0 lg:ml-auto">
+    <figure className="glass mx-auto w-full max-w-md p-5 sm:p-7 lg:mx-0 lg:ml-auto">
       <span className="shine" aria-hidden="true" />
       <div className="flex items-center justify-between gap-3">
         <span className="badge-live inline-flex items-center gap-2 rounded-pill px-3 py-1 text-small font-semibold">

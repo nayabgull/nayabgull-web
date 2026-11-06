@@ -18,7 +18,7 @@ export function FeaturedWork({ work }: { work: HomeContent["work"] }) {
         as="article"
         shine
         hover={false}
-        className="reveal mt-12 grid grid-cols-1 gap-10 p-6 sm:p-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center"
+        className="mt-12 grid grid-cols-1 gap-10 p-6 sm:p-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center"
         data-approved={study.approved}
       >
         <div className="min-w-0">

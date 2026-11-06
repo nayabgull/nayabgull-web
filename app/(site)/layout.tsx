@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Sora } from "next/font/google";
+import { Sora } from "next/font/google";
 
 import { SiteFooter } from "@/components/sections/SiteFooter.tsx";
 import { SiteHeader } from "@/components/sections/SiteHeader.tsx";
@@ -8,17 +8,12 @@ import { THEME_INIT_SCRIPT } from "@/lib/theme.ts";
 
 import "./globals.css";
 
-// Two families max (frontend.md §3): a geometric display face and a clean body face.
+// Headings only (frontend.md §3, max 2 families). Body text uses the system font stack from
+// globals.css, so the only font download is Sora, which keeps mobile LCP down.
 const sora = Sora({
   variable: "--font-sora",
   subsets: ["latin"],
   weight: ["600", "700"],
-  display: "swap",
-});
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
   display: "swap",
 });
 
@@ -40,7 +35,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     // data-theme is set before paint by THEME_INIT_SCRIPT, so React must not warn about it.
-    <html lang="en-US" className={`${sora.variable} ${inter.variable}`} suppressHydrationWarning>
+    <html lang="en-US" className={sora.variable} suppressHydrationWarning>
       <head>
         <script
           // Constant string from lib/theme.ts; no user input reaches it.

@@ -1,6 +1,7 @@
 import { Section } from "@/components/ui/Section.tsx";
 import { SectionHeader } from "@/components/ui/SectionHeader.tsx";
 import type { HomeContent } from "@/content/home.ts";
+import { faqParagraphs } from "@/lib/content/faq.ts";
 
 /**
  * Visible FAQ. Native <details>/<summary>: keyboard and screen-reader friendly with zero JS.
@@ -25,7 +26,11 @@ export function Faq({ faq }: { faq: HomeContent["faq"] }) {
                   </svg>
                 </span>
               </summary>
-              <p className="px-5 pb-5 text-text-muted sm:px-6">{item.answer}</p>
+              <div className="space-y-3 px-5 pb-5 text-text-muted sm:px-6">
+                {faqParagraphs(item.answer).map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
             </details>
           ))}
         </div>

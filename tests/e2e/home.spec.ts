@@ -17,7 +17,9 @@ test.describe("homepage smoke", () => {
     expect(response?.status()).toBe(200);
     await expect(page.locator("h1")).toHaveCount(1);
     await expect(page.locator("h1")).toBeVisible();
-    await expect(page.locator("h1")).toContainText("web development agency");
+    await expect(page.locator("h1")).toHaveText(
+      "The web development agency that turns your leads into booked calls",
+    );
     await expect(page).toHaveTitle(/\S/);
     expect(consoleErrors).toEqual([]);
     expect(failedRequests).toEqual([]);
@@ -47,7 +49,7 @@ test.describe("hero calls to action", () => {
 
   test("secondary CTA scrolls to the services section", async ({ page }) => {
     await page.goto("/");
-    await page.getByRole("link", { name: "See what I build" }).click();
+    await page.getByRole("link", { name: "See services" }).click();
     await expect(page).toHaveURL(/#services$/);
     await expect(page.locator("#services h2")).toBeInViewport();
   });
@@ -94,7 +96,7 @@ test.describe("FAQ", () => {
     expect(count).toBeLessThanOrEqual(8);
 
     const first = items.first();
-    const answer = first.locator("p");
+    const answer = first.locator("p").first();
     await expect(answer).toBeHidden();
     await first.locator("summary").click();
     await expect(answer).toBeVisible();
@@ -111,5 +113,30 @@ test.describe("FAQ", () => {
     };
     const faq = data["@graph"].find((node) => node["@type"] === "FAQPage");
     expect(faq?.mainEntity?.map((q) => q.name)).toEqual(questions.map((q) => q.trim()));
+  });
+});
+
+test.describe("page structure", () => {
+  test("sections appear in the agreed order", async ({ page }) => {
+    await page.goto("/");
+    const ids = await page
+      .locator("main > section[id]")
+      .evaluateAll((els) => els.map((el) => el.id));
+    expect(ids).toEqual([
+      "services",
+      "how-it-works",
+      "industries",
+      "process",
+      "work",
+      "about",
+      "faq",
+      "book",
+    ]);
+  });
+
+  test("only the hero carries the grid background", async ({ page }) => {
+    await page.goto("/");
+    await expect(page.locator(".hero-bg")).toHaveCount(1);
+    await expect(page.locator(".hero-bg h1")).toHaveCount(1);
   });
 });

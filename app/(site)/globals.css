@@ -39,7 +39,9 @@
   --color-on-lime: #13200a;
 
   --font-display: var(--font-sora), ui-sans-serif, system-ui, sans-serif;
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  /* Body text uses the system font (no download); Sora is for headings only. */
+  --font-sans:
+    ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 
   /* Fluid type: 280 px → 1440 px. */
   --text-display: clamp(2rem, 1.4rem + 2.6vw, 3.75rem);
@@ -146,32 +148,6 @@
     padding-right: env(safe-area-inset-right);
   }
 
-  /* Page atmosphere: radial glows + fine grid + noise. Fixed, full-bleed, never causes overflow. */
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    background:
-      radial-gradient(60rem 40rem at 85% -10%, var(--color-glow-1), transparent 60%),
-      radial-gradient(50rem 35rem at -10% 20%, var(--color-glow-3), transparent 60%),
-      radial-gradient(45rem 30rem at 50% 110%, var(--color-glow-2), transparent 60%),
-      linear-gradient(var(--color-grid) 1px, transparent 1px) 0 0 / 56px 56px,
-      linear-gradient(90deg, var(--color-grid) 1px, transparent 1px) 0 0 / 56px 56px;
-    mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
-  }
-
-  body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    opacity: 0.035;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  }
-
   h1,
   h2,
   h3 {
@@ -199,6 +175,27 @@
 }
 
 @layer components {
+  /* Hero atmosphere: radial glows + fine grid, only behind the hero. Every other section is clean. */
+  .hero-bg {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .hero-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(60rem 40rem at 85% -10%, var(--color-glow-1), transparent 60%),
+      radial-gradient(50rem 35rem at -10% 20%, var(--color-glow-3), transparent 60%),
+      radial-gradient(45rem 30rem at 50% 110%, var(--color-glow-2), transparent 60%),
+      linear-gradient(var(--color-grid) 1px, transparent 1px) 0 0 / 56px 56px,
+      linear-gradient(90deg, var(--color-grid) 1px, transparent 1px) 0 0 / 56px 56px;
+    mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
+  }
+
   /* Gradient text on key words. `color` keeps a solid, AA-contrast value for axe and forced colors. */
   .text-gradient {
     color: var(--color-accent);
@@ -215,12 +212,6 @@
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-card);
-  }
-
-  /* Real blur only where something scrolls or glows behind the card (hero card); it costs paint time. */
-  .glass-blur {
-    -webkit-backdrop-filter: blur(14px) saturate(140%);
-    backdrop-filter: blur(14px) saturate(140%);
   }
 
   /* Soft shine sweep: an empty, clipped layer, so no text is ever clipped. */
@@ -360,14 +351,6 @@
   .flow-booked {
     animation: flow-booked 8s ease-out infinite;
   }
-
-  @supports (animation-timeline: view()) {
-    .reveal {
-      animation: reveal linear both;
-      animation-timeline: view();
-      animation-range: entry 0% entry 35%;
-    }
-  }
 }
 
 @keyframes shine-sweep {
@@ -492,15 +475,5 @@
   100% {
     opacity: 0;
     transform: translateY(6px);
-  }
-}
-
-/* Transform only: content is never invisible, even when a screenshot or crawler never scrolls. */
-@keyframes reveal {
-  from {
-    transform: translateY(16px) scale(0.985);
-  }
-  to {
-    transform: none;
   }
 }

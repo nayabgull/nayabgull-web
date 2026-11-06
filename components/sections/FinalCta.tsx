@@ -9,7 +9,7 @@ export function FinalCta({ cta }: { cta: HomeContent["finalCta"] }) {
       <GlassCard
         shine
         hover={false}
-        className="reveal flex flex-col items-center px-6 py-14 text-center sm:px-12 sm:py-20"
+        className="flex flex-col items-center px-6 py-14 text-center sm:px-12 sm:py-20"
       >
         <h2 id="book-heading" className="max-w-3xl text-h2 leading-tight font-bold">
           {cta.heading}
