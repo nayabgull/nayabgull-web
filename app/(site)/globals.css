@@ -1,26 +1,479 @@
 @import "tailwindcss";
 
+/*
+ * Design tokens (frontend.md §4). Dark-first: :root holds the dark theme. The light theme applies when
+ * the visitor picks it (data-theme="light") or when no choice is stored and the system prefers light.
+ * Every text/background pair below meets WCAG 2.2 AA (4.5:1 body text, 3:1 large text and UI).
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: dark;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Dark values live in @theme so Tailwind utilities (bg-bg, text-ink…) read the same variables. */
+@theme {
+  --color-bg: #060c1f;
+  --color-bg-raised: #0b1430;
+  --color-surface: rgb(148 170 230 / 0.06);
+  --color-surface-strong: rgb(148 170 230 / 0.1);
+  --color-border: rgb(148 170 230 / 0.16);
+  --color-border-strong: rgb(148 170 230 / 0.3);
+  --color-text: #e9eef8;
+  --color-text-muted: #a7b3cc;
+  --color-grid: rgb(148 170 230 / 0.07);
+  --color-glow-1: rgb(34 211 238 / 0.16);
+  --color-glow-2: rgb(45 212 191 / 0.1);
+  --color-glow-3: rgb(99 102 241 / 0.12);
+  --color-shine: rgb(255 255 255 / 0.07);
+
+  /* Primary accent: cyan → teal. Solid value is used where a gradient cannot be (and by axe). */
+  --color-accent: #22d3ee;
+  --color-accent-from: #22d3ee;
+  --color-accent-to: #2dd4bf;
+  --color-on-accent: #03141c;
+  --color-focus: #67e8f9;
+
+  /* Secondary accent: lime, only for status and success. */
+  --color-lime: #a3e635;
+  --color-lime-soft: rgb(163 230 53 / 0.12);
+  --color-lime-text: #bef264;
+  --color-on-lime: #13200a;
+
+  --font-display: var(--font-sora), ui-sans-serif, system-ui, sans-serif;
+  /* Body text uses the system font (no download); Sora is for headings only. */
+  --font-sans:
+    ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* Fluid type: 280 px → 1440 px. */
+  --text-display: clamp(2rem, 1.4rem + 2.6vw, 3.75rem);
+  --text-h2: clamp(1.625rem, 1.25rem + 1.8vw, 2.75rem);
+  --text-h3: clamp(1.125rem, 1.05rem + 0.35vw, 1.375rem);
+  --text-lead: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+  --text-body: clamp(1rem, 0.97rem + 0.12vw, 1.0625rem);
+  --text-small: clamp(0.875rem, 0.86rem + 0.08vw, 0.9375rem);
+
+  --spacing-gutter: clamp(1rem, 0.6rem + 2vw, 2.5rem);
+  --spacing-section: clamp(4rem, 2.8rem + 5vw, 8rem);
+
+  --radius-sm: 0.625rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+  --radius-pill: 999px;
+
+  --shadow-card: 0 1px 0 rgb(255 255 255 / 0.04) inset, 0 24px 60px -24px rgb(0 0 0 / 0.6);
+  --container-site: 1440px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --color-bg: #f4f7fc;
+  --color-bg-raised: #ffffff;
+  --color-surface: rgb(255 255 255 / 0.72);
+  --color-surface-strong: rgb(255 255 255 / 0.92);
+  --color-border: rgb(15 30 70 / 0.12);
+  --color-border-strong: rgb(15 30 70 / 0.24);
+  --color-text: #0a1430;
+  --color-text-muted: #44516b;
+  --color-grid: rgb(15 30 70 / 0.06);
+  --color-glow-1: rgb(6 182 212 / 0.14);
+  --color-glow-2: rgb(20 184 166 / 0.1);
+  --color-glow-3: rgb(99 102 241 / 0.08);
+  --color-shine: rgb(255 255 255 / 0.6);
+
+  --color-accent: #0e7490;
+  --color-accent-from: #0e7490;
+  --color-accent-to: #0f766e;
+  --color-on-accent: #ffffff;
+  --color-focus: #0e7490;
+
+  --color-lime: #65a30d;
+  --color-lime-soft: rgb(101 163 13 / 0.12);
+  --color-lime-text: #3f6212;
+  --color-on-lime: #ffffff;
+
+  --shadow-card: 0 1px 0 rgb(255 255 255 / 0.8) inset, 0 24px 60px -28px rgb(15 30 70 / 0.25);
+}
+
+@media (prefers-color-scheme: light) {
+  /* Same values as above: no stored choice and the system prefers light. */
+  :root:not([data-theme="dark"]) {
+    color-scheme: light;
+
+    --color-bg: #f4f7fc;
+    --color-bg-raised: #ffffff;
+    --color-surface: rgb(255 255 255 / 0.72);
+    --color-surface-strong: rgb(255 255 255 / 0.92);
+    --color-border: rgb(15 30 70 / 0.12);
+    --color-border-strong: rgb(15 30 70 / 0.24);
+    --color-text: #0a1430;
+    --color-text-muted: #44516b;
+    --color-grid: rgb(15 30 70 / 0.06);
+    --color-glow-1: rgb(6 182 212 / 0.14);
+    --color-glow-2: rgb(20 184 166 / 0.1);
+    --color-glow-3: rgb(99 102 241 / 0.08);
+    --color-shine: rgb(255 255 255 / 0.6);
+
+    --color-accent: #0e7490;
+    --color-accent-from: #0e7490;
+    --color-accent-to: #0f766e;
+    --color-on-accent: #ffffff;
+    --color-focus: #0e7490;
+
+    --color-lime: #65a30d;
+    --color-lime-soft: rgb(101 163 13 / 0.12);
+    --color-lime-text: #3f6212;
+    --color-on-lime: #ffffff;
+
+    --shadow-card: 0 1px 0 rgb(255 255 255 / 0.8) inset, 0 24px 60px -28px rgb(15 30 70 / 0.25);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    scroll-padding-top: 5.5rem;
+  }
+
+  body {
+    min-height: 100dvh;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: 1.65;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  p,
+  li,
+  dd {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-on-accent);
+  }
+}
+
+@layer components {
+  /* Hero atmosphere: radial glows + fine grid, only behind the hero. Every other section is clean. */
+  .hero-bg {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .hero-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(60rem 40rem at 85% -10%, var(--color-glow-1), transparent 60%),
+      radial-gradient(50rem 35rem at -10% 20%, var(--color-glow-3), transparent 60%),
+      radial-gradient(45rem 30rem at 50% 110%, var(--color-glow-2), transparent 60%),
+      linear-gradient(var(--color-grid) 1px, transparent 1px) 0 0 / 56px 56px,
+      linear-gradient(90deg, var(--color-grid) 1px, transparent 1px) 0 0 / 56px 56px;
+    mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
+  }
+
+  /* Gradient text on key words. `color` keeps a solid, AA-contrast value for axe and forced colors. */
+  .text-gradient {
+    color: var(--color-accent);
+    background: linear-gradient(100deg, var(--color-accent-from), var(--color-accent-to));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .glass {
+    position: relative;
+    isolation: isolate;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+  }
+
+  /* Soft shine sweep: an empty, clipped layer, so no text is ever clipped. */
+  .shine {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    border-radius: inherit;
+    pointer-events: none;
+  }
+
+  .shine::after {
+    content: "";
+    position: absolute;
+    inset: -50% auto -50% 0;
+    width: 40%;
+    background: linear-gradient(100deg, transparent, var(--color-shine), transparent);
+    transform: translateX(-150%) skewX(-18deg);
+    opacity: 0;
+  }
+
+  .btn-primary {
+    color: var(--color-on-accent);
+    background: linear-gradient(100deg, var(--color-accent-from), var(--color-accent-to));
+    box-shadow: 0 10px 30px -12px var(--color-accent-from);
+  }
+
+  .badge-live {
+    color: var(--color-lime-text);
+    background: var(--color-lime-soft);
+    border: 1px solid color-mix(in srgb, var(--color-lime) 35%, transparent);
+  }
+
+  .dot-live {
+    position: relative;
+    background: var(--color-lime);
+  }
+
+  /* Pulse ring: scales and fades (transform/opacity only). */
+  .dot-live::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: var(--color-lime);
+    opacity: 0;
+  }
+
+  .theme-icon-sun {
+    display: none;
+  }
+
+  :root[data-theme="light"] .theme-icon-sun {
+    display: block;
+  }
+
+  :root[data-theme="light"] .theme-icon-moon {
+    display: none;
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) .theme-icon-sun {
+      display: block;
+    }
+
+    :root:not([data-theme="dark"]) .theme-icon-moon {
+      display: none;
+    }
+  }
+
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-item[open] .faq-chevron {
+    transform: rotate(180deg);
+  }
+}
+
+/* Hover effects only for real pointers (frontend.md §1). */
+@media (hover: hover) {
+  .btn-primary:hover {
+    filter: brightness(1.08);
+  }
+
+  .card-hover:hover {
+    border-color: var(--color-border-strong);
+    transform: translateY(-2px);
+  }
+}
+
+/*
+ * Motion: transform and opacity only, never on the H1 (the LCP element), and nothing at all under
+ * prefers-reduced-motion. Without animation every element shows its final state.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .card-hover {
+    transition:
+      transform 0.25s ease,
+      border-color 0.25s ease;
+  }
+
+  .shine::after {
+    animation: shine-sweep 7s ease-in-out 1.5s infinite;
+  }
+
+  .dot-live::after {
+    animation: pulse-live 2s ease-out infinite;
+  }
+
+  .flow-progress {
+    transform-origin: left;
+    animation: flow-progress 8s linear infinite;
+  }
+
+  .flow-check-1 {
+    animation: flow-check-1 8s ease-out infinite;
+  }
+
+  .flow-check-2 {
+    animation: flow-check-2 8s ease-out infinite;
+  }
+
+  .flow-check-3 {
+    animation: flow-check-3 8s ease-out infinite;
+  }
+
+  .flow-check-4 {
+    animation: flow-check-4 8s ease-out infinite;
+  }
+
+  .flow-booked {
+    animation: flow-booked 8s ease-out infinite;
+  }
+}
+
+@keyframes shine-sweep {
+  0% {
+    transform: translateX(-150%) skewX(-18deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  35%,
+  100% {
+    transform: translateX(350%) skewX(-18deg);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-live {
+  0% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(3);
+  }
+}
+
+@keyframes flow-progress {
+  0% {
+    transform: scaleX(0.02);
+  }
+  75%,
+  92% {
+    transform: scaleX(1);
+  }
+  100% {
+    transform: scaleX(0.02);
+  }
+}
+
+/* Each step's check appears in turn, holds, then the loop resets. */
+@keyframes flow-check-1 {
+  0%,
+  4% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  10%,
+  92% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+}
+
+@keyframes flow-check-2 {
+  0%,
+  24% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  30%,
+  92% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+}
+
+@keyframes flow-check-3 {
+  0%,
+  46% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  52%,
+  92% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+}
+
+@keyframes flow-check-4 {
+  0%,
+  68% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  75%,
+  92% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+}
+
+@keyframes flow-booked {
+  0%,
+  70% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  76%,
+  92% {
+    opacity: 1;
+    transform: none;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
 }

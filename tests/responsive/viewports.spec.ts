@@ -26,9 +26,9 @@ for (const route of ROUTES) {
 
           await expect(page).toHaveScreenshot(
             `${slug(route)}-${viewport.label}-${colorScheme}.png`,
-            {
-              fullPage: true,
-            },
+            // maxDiffPixelRatio (0.1%, playwright.config.ts) is the gate. The timeout only gives WebKit
+            // time to capture this tall page twice in a row (> 5 s at 1024 px and wider).
+            { fullPage: true, timeout: 30_000 },
           );
         });
       });

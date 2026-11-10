@@ -28,6 +28,10 @@ jobs:
       HOME: /root
       CI: "true"
       NEXT_TELEMETRY_DISABLED: "1"
+      # Same obvious placeholders as ci.yml: the build validates env (lib/env.ts) but needs no database.
+      DATABASE_URI: postgres://ci-placeholder:ci-placeholder@localhost:5432/ci-placeholder
+      DATABASE_URI_DIRECT: postgres://ci-placeholder:ci-placeholder@localhost:5432/ci-placeholder
+      PAYLOAD_SECRET: placeholder-placeholder-placeholder
       # The PR's head branch (label trigger) or the branch picked in Run workflow.
       BASE_BRANCH: ${{ github.head_ref || github.ref_name }}
     steps:
