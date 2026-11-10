@@ -7,6 +7,7 @@ const routes = [
   "/ai-automation-agency",
   "/industries/roofing-hvac-website-design",
   "/services/web-design-development",
+  "/hire-full-stack-developer",
 ];
 
 const MB = 1024 * 1024;

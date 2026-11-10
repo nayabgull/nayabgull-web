@@ -235,6 +235,11 @@ export const webDesignDevelopment: PageContent = {
           href: "/industries/roofing-hvac-website-design",
           text: "See how these ideas apply to one trade, page by page.",
         },
+        {
+          label: "Hire me for a web app or custom build",
+          href: "/hire-full-stack-developer",
+          text: "For projects that go beyond a marketing site.",
+        },
       ],
     },
   ],
