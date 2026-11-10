@@ -225,6 +225,24 @@ export const gohighlevelAgency: PageContent = {
       ],
       note: "These are starting prices in US dollars, not fixed quotes or guarantees. Your price depends on the scope we agree on in writing. Software subscriptions and usage fees go to the provider, not to me.",
     },
+    {
+      kind: "links",
+      id: "related",
+      eyebrow: "Related",
+      heading: "Where this setup fits",
+      items: [
+        {
+          label: "AI receptionists and chatbots",
+          href: "/ai-automation-agency",
+          text: "AI that answers calls and chats, then saves the notes to your CRM.",
+        },
+        {
+          label: "Websites for roofing and HVAC companies",
+          href: "/industries/roofing-hvac-website-design",
+          text: "A fast site with a photo quote form that feeds your pipeline.",
+        },
+      ],
+    },
   ],
 
   faq: {

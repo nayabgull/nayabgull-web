@@ -238,6 +238,11 @@ export const aiAutomationAgency: PageContent = {
           href: "/gohighlevel-agency",
           text: "Pipelines, texting and calendars that give your AI a place to work.",
         },
+        {
+          label: "Roofing and HVAC websites with AI call answering",
+          href: "/industries/roofing-hvac-website-design",
+          text: "How the AI receptionist works for a trade that gets storm calls at night.",
+        },
       ],
     },
   ],

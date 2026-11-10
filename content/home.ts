@@ -32,6 +32,8 @@ export interface Industry {
   name: string;
   /** One plain line: their problem and what I fix. */
   line: string;
+  /** Link to the industry page, once that page exists. */
+  link?: Link;
 }
 
 export interface ProcessStep {
@@ -201,6 +203,10 @@ export const home: HomeContent = {
         id: "roofing",
         name: "Roofing and HVAC",
         line: "Storm season floods your phone at night. I add a quote form that asks for photos and an AI receptionist that answers after hours.",
+        link: {
+          label: "Roofing and HVAC website design",
+          href: "/industries/roofing-hvac-website-design",
+        },
       },
       {
         id: "contractors",
