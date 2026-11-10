@@ -104,6 +104,46 @@ export function faqPage(items: readonly FaqInput[]): JsonLdNode {
   };
 }
 
+export interface OfferInput {
+  name: string;
+  /** Starting price in US dollars. The page shows it as "starts at", so it is a minimum, not a fixed price. */
+  from: number;
+}
+
+export interface ServiceInput {
+  name: string;
+  serviceType: string;
+  description: string;
+  /** Site-relative path of the page that sells the service. */
+  path: string;
+  /** Only prices that are visible on the page (seo.md §6). */
+  offers?: readonly OfferInput[];
+}
+
+export function service(input: ServiceInput): JsonLdNode {
+  const url = `${SITE_URL}${input.path}`;
+  const offers = (input.offers ?? []).map((offer) => ({
+    "@type": "Offer",
+    name: offer.name,
+    priceSpecification: {
+      "@type": "PriceSpecification",
+      minPrice: offer.from,
+      priceCurrency: "USD",
+    },
+  }));
+  return {
+    "@type": "Service",
+    "@id": `${url}#service`,
+    name: input.name,
+    serviceType: input.serviceType,
+    description: input.description,
+    url,
+    provider: { "@id": ORGANIZATION_ID },
+    areaServed: { "@type": "Country", name: "United States" },
+    ...(offers.length > 0 ? { offers } : {}),
+  };
+}
+
 export function graph(nodes: readonly JsonLdNode[]): JsonLdGraph {
   return { "@context": "https://schema.org", "@graph": [...nodes] };
 }
