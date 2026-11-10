@@ -24,7 +24,7 @@ Last updated: November 10, 2026
 
 ## Next step
 
-Build page 7 (`/about`) on a branch based on `feature/pricing`, open its PR, update this file, then continue with page 8. The launch-page PRs are stacked: each one is based on the branch before it, so merge them in order.
+Build page 8 (`/privacy-policy` and `/terms`) on a branch based on `feature/about`, open its PR, then update this file with the final status and the full "Waiting for Nayab" list.
 
 ## Waiting for Nayab
 
