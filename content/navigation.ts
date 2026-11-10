@@ -40,4 +40,11 @@ export const FOOTER_NAV: readonly FooterGroup[] = [
       { label: "About", href: "/about" },
     ],
   },
+  {
+    title: "Legal",
+    links: [
+      { label: "Privacy Policy", href: "/privacy-policy" },
+      { label: "Terms of Service", href: "/terms" },
+    ],
+  },
 ];
