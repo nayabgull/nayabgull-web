@@ -240,6 +240,11 @@ export const webDesignDevelopment: PageContent = {
           href: "/hire-full-stack-developer",
           text: "For projects that go beyond a marketing site.",
         },
+        {
+          label: "Website development cost, explained",
+          href: "/pricing",
+          text: "Starting prices and the six things that move a quote up or down.",
+        },
       ],
     },
   ],

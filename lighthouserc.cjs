@@ -8,6 +8,7 @@ const routes = [
   "/industries/roofing-hvac-website-design",
   "/services/web-design-development",
   "/hire-full-stack-developer",
+  "/pricing",
 ];
 
 const MB = 1024 * 1024;

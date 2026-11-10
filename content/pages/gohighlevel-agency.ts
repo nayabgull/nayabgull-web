@@ -246,6 +246,11 @@ export const gohighlevelAgency: PageContent = {
           href: "/services/web-design-development",
           text: "A new site that sends every form into your CRM from day one.",
         },
+        {
+          label: "Pricing for every service",
+          href: "/pricing",
+          text: "All five starting prices on one page, with what each includes.",
+        },
       ],
     },
   ],

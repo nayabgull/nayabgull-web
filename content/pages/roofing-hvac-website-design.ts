@@ -300,6 +300,11 @@ export const roofingHvacWebsiteDesign: PageContent = {
           href: "/services/web-design-development",
           text: "The full process, the tech and what every site includes.",
         },
+        {
+          label: "Full pricing page",
+          href: "/pricing",
+          text: "What changes the price, and which costs go to other companies.",
+        },
       ],
     },
   ],

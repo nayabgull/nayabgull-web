@@ -253,6 +253,11 @@ export const aiAutomationAgency: PageContent = {
           href: "/hire-full-stack-developer",
           text: "For custom code when off-the-shelf tools cannot do the job.",
         },
+        {
+          label: "Starting prices for websites, CRM and AI",
+          href: "/pricing",
+          text: "What each service starts at, and what you pay to other providers.",
+        },
       ],
     },
   ],
