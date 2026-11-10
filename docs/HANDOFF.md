@@ -24,7 +24,7 @@ Last updated: November 10, 2026
 
 ## Next step
 
-Build page 5 (`/hire-full-stack-developer`) on a branch based on `feature/web-design-development`, open its PR, update this file, then continue with page 6. The launch-page PRs are stacked: each one is based on the branch before it, so merge them in order.
+Build page 6 (`/pricing`) on a branch based on `feature/hire-full-stack-developer`, open its PR, update this file, then continue with page 7. The launch-page PRs are stacked: each one is based on the branch before it, so merge them in order.
 
 ## Waiting for Nayab
 
