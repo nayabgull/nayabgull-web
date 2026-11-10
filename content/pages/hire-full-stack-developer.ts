@@ -256,6 +256,11 @@ export const hireFullStackDeveloper: PageContent = {
           href: "/ai-automation-agency",
           text: "Automation for calls, chats and repeat tasks.",
         },
+        {
+          label: "Pricing and how quotes work",
+          href: "/pricing",
+          text: "Starting prices, third-party costs and the path to a fixed quote.",
+        },
       ],
     },
   ],

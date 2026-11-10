@@ -9,7 +9,7 @@ export const PRIMARY_NAV: readonly Link[] = [
   { label: "AI Automation", href: "/ai-automation-agency" },
   { label: "Web Design", href: "/services/web-design-development" },
   { label: "Industries", href: "/#industries" },
-  { label: "FAQ", href: "/#faq" },
+  { label: "Pricing", href: "/pricing" },
 ];
 
 export interface FooterGroup {
@@ -32,5 +32,9 @@ export const FOOTER_NAV: readonly FooterGroup[] = [
     links: [
       { label: "Roofing and HVAC websites", href: "/industries/roofing-hvac-website-design" },
     ],
+  },
+  {
+    title: "Company",
+    links: [{ label: "Pricing", href: "/pricing" }],
   },
 ];

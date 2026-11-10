@@ -171,7 +171,10 @@ export const home: HomeContent = {
         link: { label: "AI automation agency services", href: "/ai-automation-agency" },
       },
     ],
-    more: [{ label: "Hire me as your full stack developer", href: "/hire-full-stack-developer" }],
+    more: [
+      { label: "Hire me as your full stack developer", href: "/hire-full-stack-developer" },
+      { label: "Website and automation pricing", href: "/pricing" },
+    ],
   },
 
   howItWorks: {
