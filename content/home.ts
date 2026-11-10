@@ -69,10 +69,18 @@ export interface HomeContent {
     proof: readonly string[];
     primaryCta: Link;
     secondaryCta: Link;
+    /** Heading and one line above the quote form in the hero. */
+    form: { heading: string; text: string };
   };
-  flow: { label: string; caption: string; steps: readonly FlowStep[]; footer: string };
+  /** "What happens when a new lead comes in": the animated sequence after Services. */
+  flow: {
+    eyebrow: string;
+    heading: string;
+    intro: string;
+    steps: readonly FlowStep[];
+    footer: string;
+  };
   services: { eyebrow: string; heading: string; intro: string; items: readonly Service[] };
-  howItWorks: { eyebrow: string; heading: string; intro: string; steps: readonly FlowStep[] };
   industries: { eyebrow: string; heading: string; intro: string; items: readonly Industry[] };
   process: { eyebrow: string; heading: string; intro: string; steps: readonly ProcessStep[] };
   work: {
@@ -86,15 +94,23 @@ export interface HomeContent {
     eyebrow: string;
     heading: string;
     name: string;
-    initials: string;
     role: string;
     location: string;
-    /** TODO(nayab): set to "/images/nayab-gull.webp" once the photo is in public/images. */
-    photo: string | null;
     text: readonly string[];
   };
   faq: { eyebrow: string; heading: string; items: readonly Faq[] };
-  finalCta: { heading: string; text: string; cta: Link; note: string };
+  /** Closing section of every page: the quote form, then the primary CTA for people who prefer a call. */
+  quote: {
+    eyebrow: string;
+    heading: string;
+    text: string;
+    form: { heading: string; text: string };
+    callText: string;
+    cta: Link;
+    note: string;
+    /** Text link to the contact page, shown under the CTA. */
+    contact: { before: string; link: Link; after: string };
+  };
   /** TODO(nayab): hidden until you add real, approved quotes. The section renders nothing while empty. */
   testimonials: readonly Testimonial[];
 }
@@ -118,11 +134,18 @@ export const home: HomeContent = {
     proof: ["5+ years", "400+ projects delivered", "Clients in the US, UK and worldwide"],
     primaryCta: { label: "Book a free strategy call", href: STRATEGY_CALL_URL },
     secondaryCta: { label: "See services", href: "#services" },
+    // TODO(nayab): confirm the reply time you want to promise.
+    form: {
+      heading: "Get a free quote",
+      text: "Tell me what you need. I reply within one business day.",
+    },
   },
 
   flow: {
-    label: "Live automation",
-    caption: "What happens when a new lead fills in your form",
+    eyebrow: "How it works",
+    heading: "What happens when a new lead comes in",
+    intro:
+      "Every lead takes the same short path. Nobody waits on hold, and nobody gets forgotten. You only step in when the call is on your calendar.",
     steps: [
       { title: "New lead from website", detail: "A visitor sends your quote form." },
       { title: "Added to GoHighLevel", detail: "Contact saved, pipeline stage set." },
@@ -156,19 +179,6 @@ export const home: HomeContent = {
         title: "AI Automation",
         line: "AI that answers and calls your leads, day and night.",
       },
-    ],
-  },
-
-  howItWorks: {
-    eyebrow: "How it works",
-    heading: "From first click to booked call",
-    intro:
-      "Every lead takes the same short path. Nobody waits on hold, and nobody gets forgotten. You only step in when the call is on your calendar.",
-    steps: [
-      { title: "Website", detail: "A visitor fills in your form." },
-      { title: "GoHighLevel", detail: "The lead lands in your pipeline." },
-      { title: "AI call", detail: "AI calls them within 60 seconds." },
-      { title: "Booked call", detail: "The meeting is on your calendar." },
     ],
   },
 
@@ -260,10 +270,8 @@ export const home: HomeContent = {
     eyebrow: "About me",
     heading: "The developer behind the work",
     name: "Nayab Gull",
-    initials: "NG",
     role: "Full-stack developer",
     location: "Lahore, Pakistan",
-    photo: null,
     text: [
       "Hi, I'm Nayab. I'm a full-stack developer in Lahore, Pakistan, and most of my clients run businesses in the US.",
       "For more than five years, I have built websites, CRMs and automations for clients on Upwork, on Fiverr and through referrals. You work with me directly, from the first call to launch day.",
@@ -319,11 +327,22 @@ export const home: HomeContent = {
     ],
   },
 
-  finalCta: {
+  quote: {
+    eyebrow: "Get started",
     heading: "Ready to turn more leads into booked calls?",
-    text: "Book a free strategy call. We look at your site and your lead flow together, and you leave with a plan you can use.",
+    text: "Send the short form, and I will come back with a clear price and plan. It takes about a minute.",
+    form: {
+      heading: "Tell me about your project",
+      text: "No pressure and no obligation.",
+    },
+    callText: "Would you rather talk it through first?",
     cta: { label: "Book a free strategy call", href: STRATEGY_CALL_URL },
-    note: "No pressure and no obligation.",
+    note: "We look at your site and your lead flow together, and you leave with a plan you can use.",
+    contact: {
+      before: "You can find every way to reach me on the ",
+      link: { label: "contact page", href: "/contact" },
+      after: ".",
+    },
   },
 
   testimonials: [],
