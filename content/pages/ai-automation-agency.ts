@@ -243,6 +243,11 @@ export const aiAutomationAgency: PageContent = {
           href: "/industries/roofing-hvac-website-design",
           text: "How the AI receptionist works for a trade that gets storm calls at night.",
         },
+        {
+          label: "Custom website design",
+          href: "/services/web-design-development",
+          text: "A fast site with a chat widget and forms your AI can answer.",
+        },
       ],
     },
   ],

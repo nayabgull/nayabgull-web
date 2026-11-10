@@ -7,8 +7,8 @@ import type { Link } from "./home.ts";
 export const PRIMARY_NAV: readonly Link[] = [
   { label: "GoHighLevel", href: "/gohighlevel-agency" },
   { label: "AI Automation", href: "/ai-automation-agency" },
+  { label: "Web Design", href: "/services/web-design-development" },
   { label: "Industries", href: "/#industries" },
-  { label: "Process", href: "/#process" },
   { label: "FAQ", href: "/#faq" },
 ];
 
@@ -23,6 +23,7 @@ export const FOOTER_NAV: readonly FooterGroup[] = [
     links: [
       { label: "GoHighLevel agency", href: "/gohighlevel-agency" },
       { label: "AI automation agency", href: "/ai-automation-agency" },
+      { label: "Web design and development", href: "/services/web-design-development" },
     ],
   },
   {

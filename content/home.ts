@@ -149,6 +149,7 @@ export const home: HomeContent = {
         id: "web",
         title: "Web Development",
         line: "Fast, professional websites that bring in leads.",
+        link: { label: "Website design and development", href: "/services/web-design-development" },
       },
       {
         id: "ghl",
