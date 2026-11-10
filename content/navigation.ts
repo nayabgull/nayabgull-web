@@ -25,4 +25,10 @@ export const FOOTER_NAV: readonly FooterGroup[] = [
       { label: "AI automation agency", href: "/ai-automation-agency" },
     ],
   },
+  {
+    title: "Industries",
+    links: [
+      { label: "Roofing and HVAC websites", href: "/industries/roofing-hvac-website-design" },
+    ],
+  },
 ];

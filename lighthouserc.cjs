@@ -1,7 +1,12 @@
 // Budgets from docs/rules/quality-gates.md. Every assertion is "error" — never "warn".
 const base = (process.env.AUDIT_BASE_URL ?? "http://localhost:3000").replace(/\/$/, "");
 // Keep in sync with lib/seo/routes.ts (this CommonJS file cannot import TypeScript).
-const routes = ["/", "/gohighlevel-agency", "/ai-automation-agency"];
+const routes = [
+  "/",
+  "/gohighlevel-agency",
+  "/ai-automation-agency",
+  "/industries/roofing-hvac-website-design",
+];
 
 const MB = 1024 * 1024;
 
