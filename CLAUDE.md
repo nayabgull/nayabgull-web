@@ -145,3 +145,9 @@ A task is done only when **all** of these are true:
 - If a GitHub/PR notification arrives while idle, do not act on it — at most note it in one line and wait for Nayab.
 - The only exception: scheduled tasks that Nayab herself created and asked for. Run those exactly as scheduled, nothing more.
 - When you need Nayab (merge, approve, decide), say so once and stop.
+
+## 10. Session handoff (`docs/HANDOFF.md`)
+
+- At the start of every session, read `docs/HANDOFF.md` before anything else. It holds the current status, the next step and what is waiting for Nayab.
+- Before you stop, update `docs/HANDOFF.md` (status, next step, "Waiting for Nayab") and push it.
+- Keep it short and factual. Link PRs with full URLs. Never put secrets in it.
