@@ -8,8 +8,20 @@ Last updated: November 10, 2026
 ## Current status
 
 - Homepage is merged into `main` ([PR #9](https://github.com/nayabgull/nayabgull-web/pull/9)).
-- All launch pages are built. Nine PRs are open and waiting for review. Nothing is merged yet.
+- **Page work is paused (Nayab, November 10, 2026).** A redesign comes first: [PR #23](https://github.com/nayabgull/nayabgull-web/pull/23) on `feature/redesign` (from `main`) redesigns the homepage and adds `/contact`. It waits for Nayab's design approval. Do not merge it and do not touch other pages before that.
+- The nine earlier PRs below are still open and unmerged. Their pages use the old layout (heading left, content right). After the design is approved, each one gets the new design.
 - The eight page PRs are **stacked**: each one is based on the branch before it, so each diff shows one page. Merge them in order, #15 first.
+
+### Redesign (PR #23), in short
+
+- Sections: centered eyebrow, H2 and intro (max 60ch), content below in a centered grid. Container 1200px.
+- Hero: copy and CTAs left, quote form right (`components/forms/LeadForm.tsx`, Server Action in `app/(site)/actions.ts`, works without JavaScript).
+- Leads: Zod in `lib/leads/`, honeypot, optional Turnstile (loads on first focus), saved to the Payload collection `Leads`. Migration `migrations/20261110_113331_leads.ts` is generated, not run. Email hook: `lib/leads/notify.ts` (no service yet).
+- Lead flow section after Services (`LeadFlow.tsx`): CSS-only animation started by `components/ui/InView.tsx`. No Motion or GSAP loaded.
+- Sticky "Book a free call" in the header; sticky bottom bar on phones (`MobileCtaBar.tsx`).
+- About is text only (no photo, no initials avatar).
+
+### Earlier PRs
 
 | #   | Page                                      | Branch                              | PR                                                        | Status |
 | --- | ----------------------------------------- | ----------------------------------- | --------------------------------------------------------- | ------ |
@@ -40,13 +52,22 @@ Known red jobs, none caused by the page copy:
 
 ## Next step
 
-Wait for Nayab. After the PRs merge, the next work is:
+Wait for Nayab's answer on [PR #23](https://github.com/nayabgull/nayabgull-web/pull/23). Then:
 
-1. Visual snapshots for the new pages (`update-snapshots` label, one PR at a time or once at the end of the stack).
-2. The security-headers PR, so `seo-audit` can go green.
-3. Hub child pages (GoHighLevel workflows, API, custom CRM; AI chatbots, voice agents, n8n) and the `/industries` and `/services` hubs, then link the hubs down to them.
+1. Apply any design changes Nayab asks for.
+2. After approval: move the shared page template (`ContentPage` and its blocks on the stacked branches) to the new centered layout, end every page with the quote form section, and remove the initials avatar from `/about`.
+3. Snapshots (`update-snapshots` label), the security-headers PR, then the hub child pages.
 
 ## Waiting for Nayab
+
+**Redesign ([PR #23](https://github.com/nayabgull/nayabgull-web/pull/23))**
+
+- Approve the design or ask for changes.
+- Approve the proposed `/contact` keyword "contact nayab gull", or give another.
+- Send the email address for `/contact` (`CONTACT_EMAIL` in `content/contact.ts`). None is shown now.
+- Decide: once Turnstile keys are set, visitors with JavaScript off cannot send the form. Keep that rule or change it.
+- Confirm the reply time on the forms ("within one business day").
+- Run the Leads migration locally (`pnpm db:migrate`), and add Turnstile keys when ready.
 
 **Review and merge**
 
