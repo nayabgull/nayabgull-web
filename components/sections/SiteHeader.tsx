@@ -4,12 +4,13 @@ import { Logo } from "@/components/ui/Logo.tsx";
 import { ThemeToggle } from "@/components/ui/ThemeToggle.tsx";
 import { STRATEGY_CALL_URL } from "@/content/home.ts";
 
+// Hash links start with "/" so they also work from inner pages such as /contact.
 const NAV = [
-  { label: "Services", href: "#services" },
-  { label: "How it works", href: "#how-it-works" },
-  { label: "Industries", href: "#industries" },
-  { label: "Process", href: "#process" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Services", href: "/#services" },
+  { label: "How it works", href: "/#how-it-works" },
+  { label: "Industries", href: "/#industries" },
+  { label: "Process", href: "/#process" },
+  { label: "FAQ", href: "/#faq" },
 ] as const;
 
 export function SiteHeader() {
@@ -44,7 +45,7 @@ export function SiteHeader() {
             icon={null}
             className="hidden min-h-11! px-5! py-2! text-small min-[440px]:inline-flex"
           >
-            Book a call
+            Book a free call
           </ButtonLink>
         </div>
       </Container>

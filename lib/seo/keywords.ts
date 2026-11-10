@@ -25,6 +25,12 @@ export const KEYWORDS: readonly KeywordEntry[] = [
     secondary: [],
   },
   {
+    url: "/contact",
+    pageType: "contact",
+    primary: "contact nayab gull",
+    secondary: [],
+  },
+  {
     url: "/pricing",
     pageType: "pricing",
     primary: "website development cost",

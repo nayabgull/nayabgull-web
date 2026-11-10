@@ -76,6 +76,7 @@ export interface Config {
     industries: Industry;
     'case-studies': CaseStudy;
     redirects: Redirect;
+    leads: Lead;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -92,6 +93,7 @@ export interface Config {
     industries: IndustriesSelect<false> | IndustriesSelect<true>;
     'case-studies': CaseStudiesSelect<false> | CaseStudiesSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
+    leads: LeadsSelect<false> | LeadsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -497,6 +499,30 @@ export interface Redirect {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "leads".
+ */
+export interface Lead {
+  id: number;
+  name: string;
+  email: string;
+  phone?: string | null;
+  businessType: 'roofing' | 'hvac' | 'law-firm' | 'dental-medical' | 'real-estate' | 'contractor' | 'other';
+  service: 'website' | 'gohighlevel' | 'ai-automation' | 'full-system';
+  message?: string | null;
+  /**
+   * The page the form was sent from.
+   */
+  sourcePage?: string | null;
+  status: 'new' | 'contacted' | 'booked' | 'won' | 'lost';
+  /**
+   * Private notes. Never shown on the site.
+   */
+  notes?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -554,6 +580,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'redirects';
         value: number | Redirect;
+      } | null)
+    | ({
+        relationTo: 'leads';
+        value: number | Lead;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -808,6 +838,23 @@ export interface RedirectsSelect<T extends boolean = true> {
   from?: T;
   type?: T;
   to?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "leads_select".
+ */
+export interface LeadsSelect<T extends boolean = true> {
+  name?: T;
+  email?: T;
+  phone?: T;
+  businessType?: T;
+  service?: T;
+  message?: T;
+  sourcePage?: T;
+  status?: T;
+  notes?: T;
   updatedAt?: T;
   createdAt?: T;
 }

@@ -11,6 +11,7 @@ Rules: one primary keyword per page; a keyword appears as a target on one page o
 | --- | --- | --- | --- | --- |
 | Home | / | web development agency | 1K–10K · Low · $41 | web development company, custom web development company |
 | About | /about | nayab gull (brand) | — | — |
+| Contact | /contact | contact nayab gull (brand, proposed: needs Nayab's approval) | — | — |
 | Pricing | /pricing | website development cost | 100–1K · Low · $23 | cost of web design, website design pricing, web app development cost |
 | Hire | /hire-full-stack-developer | hire full stack developer | 100–1K · Low · $51 | hire web developer, hire website developer, website designers for hire (1K–10K), hire freelance web developer, freelance web developer, hire frontend developer |
 

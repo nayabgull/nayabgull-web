@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Sora } from "next/font/google";
 
+import { MobileCtaBar } from "@/components/sections/MobileCtaBar.tsx";
 import { SiteFooter } from "@/components/sections/SiteFooter.tsx";
 import { SiteHeader } from "@/components/sections/SiteHeader.tsx";
 import { BRAND, SITE_URL } from "@/lib/seo/site.ts";
@@ -48,6 +49,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           {children}
         </main>
         <SiteFooter />
+        <MobileCtaBar />
       </body>
     </html>
   );
