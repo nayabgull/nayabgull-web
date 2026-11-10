@@ -251,6 +251,11 @@ export const gohighlevelAgency: PageContent = {
           href: "/pricing",
           text: "All five starting prices on one page, with what each includes.",
         },
+        {
+          label: "About Nayab Gull",
+          href: "/about",
+          text: "Who sets up your account, and how I work with clients.",
+        },
       ],
     },
   ],

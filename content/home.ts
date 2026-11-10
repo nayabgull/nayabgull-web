@@ -103,6 +103,8 @@ export interface HomeContent {
     /** TODO(nayab): set to "/images/nayab-gull.webp" once the photo is in public/images. */
     photo: string | null;
     text: readonly string[];
+    /** Link to the About page (homepage only). */
+    link?: Link;
   };
   faq: { eyebrow: string; heading: string; items: readonly Faq[] };
   finalCta: { heading: string; text: string; cta: Link; note: string };
@@ -291,6 +293,7 @@ export const home: HomeContent = {
       "For more than five years, I have built websites, CRMs and automations for clients on Upwork, on Fiverr and through referrals. You work with me directly, from the first call to launch day.",
       "My goal is simple. When a lead reaches out, your business answers fast and books the call, even when you are busy on a job.",
     ],
+    link: { label: "More about Nayab Gull", href: "/about" },
   },
 
   faq: {

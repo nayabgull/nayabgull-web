@@ -8,8 +8,8 @@ export const PRIMARY_NAV: readonly Link[] = [
   { label: "GoHighLevel", href: "/gohighlevel-agency" },
   { label: "AI Automation", href: "/ai-automation-agency" },
   { label: "Web Design", href: "/services/web-design-development" },
-  { label: "Industries", href: "/#industries" },
   { label: "Pricing", href: "/pricing" },
+  { label: "About", href: "/about" },
 ];
 
 export interface FooterGroup {
@@ -35,6 +35,9 @@ export const FOOTER_NAV: readonly FooterGroup[] = [
   },
   {
     title: "Company",
-    links: [{ label: "Pricing", href: "/pricing" }],
+    links: [
+      { label: "Pricing", href: "/pricing" },
+      { label: "About", href: "/about" },
+    ],
   },
 ];

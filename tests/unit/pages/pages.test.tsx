@@ -74,11 +74,12 @@ describe.each(PAGES.filter((page) => !page.noindex))("rendered page $path", (con
     expect(validateJsonLd(page.jsonLd, entry?.pageType ?? "service")).toEqual([]);
   });
 
-  it("links only to pages that exist, at most 8 of them, with descriptive anchors", () => {
+  it("links to 3 to 8 pages that exist, with descriptive anchors", () => {
     const internal = page.links.filter((link) => link.href.startsWith("/"));
     const targets = new Set(internal.map((link) => sitePath(link.href)));
     targets.delete(content.path);
     expect([...targets].filter((target) => !KNOWN_ROUTES.has(target))).toEqual([]);
+    expect(targets.size).toBeGreaterThanOrEqual(3);
     expect(targets.size).toBeLessThanOrEqual(8);
     for (const link of page.links) {
       expect(["click here", "read more", "learn more", "here", "more"]).not.toContain(

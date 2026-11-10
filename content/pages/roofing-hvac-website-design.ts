@@ -305,6 +305,11 @@ export const roofingHvacWebsiteDesign: PageContent = {
           href: "/pricing",
           text: "What changes the price, and which costs go to other companies.",
         },
+        {
+          label: "Meet the developer",
+          href: "/about",
+          text: "Who builds your site, and the four rules I work by.",
+        },
       ],
     },
   ],

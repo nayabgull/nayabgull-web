@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { ArrowLink } from "@/components/ui/ArrowLink.tsx";
 import { GlassCard } from "@/components/ui/GlassCard.tsx";
 import { Section } from "@/components/ui/Section.tsx";
 import { SectionHeader } from "@/components/ui/SectionHeader.tsx";
@@ -50,6 +51,11 @@ export function About({ about }: { about: HomeContent["about"] }) {
               <p key={line}>{line}</p>
             ))}
           </div>
+          {about.link ? (
+            <ArrowLink href={about.link.href} className="mt-3">
+              {about.link.label}
+            </ArrowLink>
+          ) : null}
         </div>
       </GlassCard>
     </Section>
