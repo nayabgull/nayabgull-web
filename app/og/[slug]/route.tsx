@@ -12,7 +12,9 @@ export function generateStaticParams() {
   return PAGES.map((page) => ({ slug: ogSlug(page.path) }));
 }
 
-export async function GET(_request: Request, { params }: RouteContext<"/og/[slug]">) {
+// The params type is written out (not the generated RouteContext helper), so lint and typecheck do
+// not depend on `next typegen` having run first.
+export async function GET(_request: Request, { params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const page = PAGES.find((candidate) => ogSlug(candidate.path) === slug);
   if (!page) return new Response("Not found", { status: 404 });
