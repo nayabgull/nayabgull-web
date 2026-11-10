@@ -118,6 +118,7 @@ export const gohighlevelAgency: PageContent = {
         {
           title: "AI voice agent and chat",
           text: "An AI voice agent answers calls or phones new leads, asks your questions and books the visit. I build it with the platform's own AI tools or with Vapi.",
+          link: { label: "AI automation agency services", href: "/ai-automation-agency" },
         },
       ],
     },
