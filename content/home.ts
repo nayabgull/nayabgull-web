@@ -75,7 +75,14 @@ export interface HomeContent {
     secondaryCta: Link;
   };
   flow: { label: string; caption: string; steps: readonly FlowStep[]; footer: string };
-  services: { eyebrow: string; heading: string; intro: string; items: readonly Service[] };
+  services: {
+    eyebrow: string;
+    heading: string;
+    intro: string;
+    items: readonly Service[];
+    /** Links under the cards to pages that are not a single service (hire, pricing). */
+    more: readonly Link[];
+  };
   howItWorks: { eyebrow: string; heading: string; intro: string; steps: readonly FlowStep[] };
   industries: { eyebrow: string; heading: string; intro: string; items: readonly Industry[] };
   process: { eyebrow: string; heading: string; intro: string; steps: readonly ProcessStep[] };
@@ -164,6 +171,7 @@ export const home: HomeContent = {
         link: { label: "AI automation agency services", href: "/ai-automation-agency" },
       },
     ],
+    more: [{ label: "Hire me as your full stack developer", href: "/hire-full-stack-developer" }],
   },
 
   howItWorks: {

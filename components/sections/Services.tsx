@@ -40,6 +40,15 @@ export function Services({ services }: { services: HomeContent["services"] }) {
           );
         })}
       </ul>
+      {services.more.length > 0 ? (
+        <div className="mt-8 flex flex-col gap-x-8 sm:flex-row sm:flex-wrap">
+          {services.more.map((link) => (
+            <ArrowLink key={link.href} href={link.href}>
+              {link.label}
+            </ArrowLink>
+          ))}
+        </div>
+      ) : null}
     </Section>
   );
 }

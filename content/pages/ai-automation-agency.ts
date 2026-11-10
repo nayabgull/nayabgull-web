@@ -248,6 +248,11 @@ export const aiAutomationAgency: PageContent = {
           href: "/services/web-design-development",
           text: "A fast site with a chat widget and forms your AI can answer.",
         },
+        {
+          label: "Hire a full stack developer",
+          href: "/hire-full-stack-developer",
+          text: "For custom code when off-the-shelf tools cannot do the job.",
+        },
       ],
     },
   ],
