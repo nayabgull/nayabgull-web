@@ -158,6 +158,7 @@ export const home: HomeContent = {
         id: "ai",
         title: "AI Automation",
         line: "AI that answers and calls your leads, day and night.",
+        link: { label: "AI automation agency services", href: "/ai-automation-agency" },
       },
     ],
   },

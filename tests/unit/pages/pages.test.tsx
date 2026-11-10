@@ -106,7 +106,7 @@ describe.each(PAGES.filter((page) => !page.noindex))("rendered page $path", (con
   });
 
   it("shows only the approved starting prices, each one as a starting price", () => {
-    const amounts = JSON.stringify(content).match(/\$\d[\d,]*/g) ?? [];
+    const amounts = JSON.stringify(content).match(/\$\d+(?:,\d{3})*/g) ?? [];
     expect(amounts.filter((amount) => !APPROVED_PRICES.includes(amount))).toEqual([]);
     for (const block of content.blocks) {
       if (block.kind !== "prices") continue;
