@@ -24,7 +24,7 @@ Last updated: November 10, 2026
 
 ## Next step
 
-Build page 1 (`/gohighlevel-agency`), open its PR, update this file, then continue with page 2.
+Build page 2 (`/ai-automation-agency`) on a branch based on `feature/gohighlevel-agency`, open its PR, update this file, then continue with page 3. The launch-page PRs are stacked: each one is based on the branch before it, so merge them in order.
 
 ## Waiting for Nayab
 
