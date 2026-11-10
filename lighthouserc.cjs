@@ -9,6 +9,7 @@ const routes = [
   "/services/web-design-development",
   "/hire-full-stack-developer",
   "/pricing",
+  "/about",
 ];
 
 const MB = 1024 * 1024;

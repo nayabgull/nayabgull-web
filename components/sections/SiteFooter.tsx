@@ -25,7 +25,7 @@ export function SiteFooter() {
                       <Link
                         href={link.href}
                         prefetch={false}
-                        className="inline-flex min-h-11 items-center text-small text-text-muted underline-offset-4 hover:text-text hover:underline"
+                        className="inline-flex min-h-11 min-w-11 items-center text-small text-text-muted underline-offset-4 hover:text-text hover:underline"
                       >
                         {link.label}
                       </Link>

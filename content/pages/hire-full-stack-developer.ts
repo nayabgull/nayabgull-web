@@ -261,6 +261,11 @@ export const hireFullStackDeveloper: PageContent = {
           href: "/pricing",
           text: "Starting prices, third-party costs and the path to a fixed quote.",
         },
+        {
+          label: "More about me",
+          href: "/about",
+          text: "Where I am based, how I work and what I build for myself.",
+        },
       ],
     },
   ],
