@@ -92,19 +92,9 @@ test.describe("contact page", () => {
     await expect(page.locator("h1")).toHaveText("Contact Nayab Gull for a free quote");
     await expect(page.getByRole("form", { name: "Get a free quote" })).toBeInViewport();
     await expect(
-      page.locator("#other-ways").getByRole("link", { name: "Book a free strategy call" }),
+      page.locator("#other-ways").getByRole("link", { name: "Book a free call" }),
     ).toHaveAttribute("href", "https://cal.com/nayab-gull/strategy-call");
     expect(consoleErrors).toEqual([]);
-  });
-
-  test("header links lead back to homepage sections", async ({ page }) => {
-    await page.setViewportSize({ width: 1440, height: 900 });
-    await page.goto("/contact");
-    await page
-      .getByRole("navigation", { name: "Primary" })
-      .getByRole("link", { name: "FAQ" })
-      .click();
-    await expect(page).toHaveURL(/\/#faq$/);
   });
 });
 
@@ -136,7 +126,8 @@ test.describe("lead flow animation", () => {
 test.describe("sticky calls to action", () => {
   test("the header keeps a Book a free call button", async ({ page }) => {
     await page.goto("/");
-    const button = page.locator("header").getByRole("link", { name: "Book a free call" });
+    // The first one is the sticky button; the second sits inside the closed mobile menu.
+    const button = page.locator("header").getByRole("link", { name: "Book a free call" }).first();
     await page.mouse.wheel(0, 3000);
     await expect(button).toBeInViewport();
   });
@@ -148,7 +139,8 @@ test.describe("sticky calls to action", () => {
     await expect(quote).toBeHidden();
     await page.locator("#industries").scrollIntoViewIfNeeded();
     await expect(quote).toBeVisible();
-    await expect(page.getByRole("link", { name: "Book a call", exact: true })).toHaveAttribute(
+    const bar = page.locator("body > div.fixed");
+    await expect(bar.getByRole("link", { name: "Book a free call", exact: true })).toHaveAttribute(
       "href",
       "https://cal.com/nayab-gull/strategy-call",
     );

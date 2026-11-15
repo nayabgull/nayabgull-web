@@ -17,10 +17,10 @@ describe("layout sections", () => {
     render(<SiteHeader />);
     expect(screen.getByRole("link", { name: "Skip to content" })).toHaveAttribute("href", "#main");
     expect(screen.getByRole("navigation", { name: "Primary" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Book a free call" })).toHaveAttribute(
-      "href",
-      home.hero.primaryCta.href,
-    );
+    // Once in the sticky bar, once at the end of the mobile menu.
+    const calls = screen.getAllByRole("link", { name: "Book a free call" });
+    expect(calls).toHaveLength(2);
+    for (const call of calls) expect(call).toHaveAttribute("href", home.hero.primaryCta.href);
     expect(screen.getByRole("button", { name: /theme/ })).toBeInTheDocument();
   });
 

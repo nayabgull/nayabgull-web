@@ -1,11 +1,18 @@
 import type { MetadataRoute } from "next";
 
-import { SITE_URL } from "@/lib/seo/site.ts";
+import { CONTACT_UPDATED } from "@/content/contact.ts";
+import { PAGES } from "@/content/pages/index.ts";
+import { CONTACT_PATH } from "@/lib/seo/routes.ts";
+import { canonicalFor, SITE_URL } from "@/lib/seo/site.ts";
 
-/** Indexable public URLs only. /admin and /api never belong here. CMS pages join as their routes ship. */
+/** Indexable public URLs only. /admin, /api and noindex pages never belong here. */
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: SITE_URL, lastModified: new Date() },
-    { url: `${SITE_URL}/contact`, lastModified: new Date("2026-11-10") },
+    ...PAGES.filter((page) => !page.noindex).map((page) => ({
+      url: canonicalFor(page.path),
+      lastModified: new Date(page.updated),
+    })),
+    { url: canonicalFor(CONTACT_PATH), lastModified: new Date(CONTACT_UPDATED) },
   ];
 }

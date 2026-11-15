@@ -343,8 +343,18 @@
     }
   }
 
-  .faq-item summary::-webkit-details-marker {
+  .faq-item summary::-webkit-details-marker,
+  .disclosure summary::-webkit-details-marker {
     display: none;
+  }
+
+  /* A closed menu takes no space and has no tap targets, in every browser. */
+  .disclosure:not([open]) > :not(summary) {
+    display: none;
+  }
+
+  .disclosure[open] .disclosure-chevron {
+    transform: rotate(180deg);
   }
 
   .faq-item[open] .faq-chevron {

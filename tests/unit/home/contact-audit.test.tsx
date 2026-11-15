@@ -5,7 +5,12 @@ import { ContactPage } from "@/components/sections/ContactPage.tsx";
 import { contact, CONTACT_EMAIL } from "@/content/contact.ts";
 import { home } from "@/content/home.ts";
 import { auditContent } from "@/lib/content/audit-rules.ts";
-import { checkHeadings, checkMetaDescription, checkTitle } from "@/lib/seo/audit-rules.ts";
+import {
+  checkHeadings,
+  checkInternalLinks,
+  checkMetaDescription,
+  checkTitle,
+} from "@/lib/seo/audit-rules.ts";
 import { validateJsonLd } from "@/lib/seo/jsonld-validate.ts";
 import { keywordFor } from "@/lib/seo/keywords.ts";
 import { requiredSchemaTypes } from "@/lib/seo/page-types.ts";
@@ -45,6 +50,7 @@ describe("rendered contact page", () => {
     expect(checkTitle(page, entry)).toEqual([]);
     expect(checkMetaDescription(page, entry)).toEqual([]);
     expect(checkHeadings(page, entry)).toEqual([]);
+    expect(checkInternalLinks(page, "/contact")).toEqual([]);
     expect(page.paragraphs.filter((p) => !/[.!?]$/.test(p))).toEqual([]);
   });
 

@@ -1,3 +1,4 @@
+import { ArrowLink } from "@/components/ui/ArrowLink.tsx";
 import { Section } from "@/components/ui/Section.tsx";
 import { SectionHeader } from "@/components/ui/SectionHeader.tsx";
 import type { HomeContent } from "@/content/home.ts";
@@ -20,6 +21,11 @@ export function About({ about }: { about: HomeContent["about"] }) {
             <p key={line}>{line}</p>
           ))}
         </div>
+        {about.link ? (
+          <div className="mt-4 flex justify-center">
+            <ArrowLink href={about.link.href}>{about.link.label}</ArrowLink>
+          </div>
+        ) : null}
       </div>
     </Section>
   );

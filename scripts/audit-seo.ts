@@ -1,9 +1,10 @@
-import { auditSeoPage } from "../lib/seo/audit-rules.ts";
+import { auditNoindexPage, auditSeoPage } from "../lib/seo/audit-rules.ts";
 import type { Issue } from "../lib/seo/issue.ts";
 import { validateJsonLd } from "../lib/seo/jsonld-validate.ts";
 import { keywordFor } from "../lib/seo/keywords.ts";
 import { checkRobotsTxt, checkSecurityHeaders, parseSitemap } from "../lib/seo/site-rules.ts";
 import { snapshot } from "../lib/seo/snapshot.ts";
+import { NOINDEX_ROUTES } from "../tests/routes.ts";
 
 import type { PageResult } from "./lib/site.ts";
 import { discoverPaths, fetchOptional, fetchPath, run } from "./lib/site.ts";
@@ -57,7 +58,29 @@ async function auditPage(path: string): Promise<PageResult> {
   return { path, issues };
 }
 
+/** Legal pages: noindex on purpose, so only the rules that still apply are checked. */
+async function auditNoindex(path: string, sitemapPaths: readonly string[]): Promise<PageResult> {
+  const res = await fetchPath(path);
+  if (res.status !== 200) {
+    return {
+      path,
+      issues: [{ rule: "status-200", message: `Answered ${res.status}, expected 200.` }],
+    };
+  }
+  const issues = [
+    ...auditNoindexPage(snapshot(res.body), path, sitemapPaths),
+    ...checkSecurityHeaders(res.headers),
+  ];
+  return { path: `${path} (noindex)`, issues };
+}
+
 await run("SEO audit", async () => {
-  const paths = await discoverPaths();
-  return [await auditSite(), ...(await Promise.all(paths.map(auditPage)))];
+  const noindex = new Set(NOINDEX_ROUTES);
+  const sitemapPaths = parseSitemap(await fetchOptional("/sitemap.xml")).paths;
+  const paths = (await discoverPaths()).filter((path) => !noindex.has(path));
+  return [
+    await auditSite(),
+    ...(await Promise.all(paths.map(auditPage))),
+    ...(await Promise.all(NOINDEX_ROUTES.map((path) => auditNoindex(path, sitemapPaths)))),
+  ];
 });

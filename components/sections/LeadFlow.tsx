@@ -1,10 +1,26 @@
-import { CheckIcon, CodeIcon, FlowIcon, PhoneIcon } from "@/components/ui/icons.tsx";
+import {
+  ChatIcon,
+  CheckIcon,
+  CodeIcon,
+  FlowIcon,
+  PhoneIcon,
+  SparkIcon,
+} from "@/components/ui/icons.tsx";
 import { InView } from "@/components/ui/InView.tsx";
 import { Section } from "@/components/ui/Section.tsx";
 import { SectionHeader } from "@/components/ui/SectionHeader.tsx";
-import type { HomeContent } from "@/content/home.ts";
+import type { Flow, FlowStep } from "@/content/home.ts";
 
-const ICONS = [CodeIcon, FlowIcon, PhoneIcon, CheckIcon] as const;
+type IconName = NonNullable<FlowStep["icon"]>;
+const ICONS: Record<IconName, typeof CodeIcon> = {
+  code: CodeIcon,
+  flow: FlowIcon,
+  phone: PhoneIcon,
+  check: CheckIcon,
+  chat: ChatIcon,
+  spark: SparkIcon,
+};
+const DEFAULT_ICONS: readonly IconName[] = ["code", "flow", "phone", "check"];
 
 /**
  * "What happens when a new lead comes in": lead arrives → saved → AI calls in 60 seconds → call
@@ -12,12 +28,13 @@ const ICONS = [CodeIcon, FlowIcon, PhoneIcon, CheckIcon] as const;
  * while it stays there. Pure CSS, transform and opacity only (globals.css, ".flow-*"). With reduced
  * motion, or with JavaScript off, every step shows its finished state.
  */
-export function LeadFlow({ flow }: { flow: HomeContent["flow"] }) {
+export function LeadFlow({ flow, id = "how-it-works" }: { flow: Flow; id?: string }) {
   const last = flow.steps.length - 1;
+  const headingId = `${id}-heading`;
   return (
-    <Section id="how-it-works" labelledBy="flow-heading">
+    <Section id={id} labelledBy={headingId}>
       <SectionHeader
-        id="flow-heading"
+        id={headingId}
         eyebrow={flow.eyebrow}
         heading={flow.heading}
         intro={flow.intro}
@@ -25,7 +42,8 @@ export function LeadFlow({ flow }: { flow: HomeContent["flow"] }) {
       <InView className="flow glass mt-12 px-5 py-8 sm:px-8 sm:py-10">
         <ol className="grid lg:grid-cols-4">
           {flow.steps.map((step, index) => {
-            const Icon = ICONS[index] ?? CheckIcon;
+            const iconName = step.icon ?? DEFAULT_ICONS[index] ?? "check";
+            const Icon = ICONS[iconName];
             const done = index === last;
             return (
               <li
@@ -52,7 +70,7 @@ export function LeadFlow({ flow }: { flow: HomeContent["flow"] }) {
                         : "border-border-strong bg-bg-raised text-accent"
                     }`}
                   >
-                    <Icon className={`size-6 ${index === 2 ? "flow-phone" : ""}`} />
+                    <Icon className={`size-6 ${iconName === "phone" ? "flow-phone" : ""}`} />
                   </span>
                 </span>
                 <span className={`flow-text flow-text-${index + 1} min-w-0 lg:mt-5`}>

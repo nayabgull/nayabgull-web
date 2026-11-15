@@ -4,6 +4,7 @@ import { useActionState, useEffect, useId, useRef, useState } from "react";
 
 import { submitLeadAction } from "@/app/(site)/actions.ts";
 import { CheckIcon } from "@/components/ui/icons.tsx";
+import { CALL_CTA } from "@/content/home.ts";
 import { HONEYPOT_FIELD, IDLE_STATE, SOURCE_FIELD } from "@/lib/leads/fields.ts";
 import { BUSINESS_TYPES, SERVICES } from "@/lib/leads/options.ts";
 
@@ -122,6 +123,16 @@ export function LeadForm({ source, labelledBy, turnstileSiteKey }: LeadFormProps
       {turnstileSiteKey ? (
         <div className="sm:col-span-2">
           <Turnstile siteKey={turnstileSiteKey} active={touched} />
+          {/* The spam check cannot run without JavaScript, so say so and offer the call instead. */}
+          <noscript>
+            <p className="rounded-md bg-danger-soft p-3 font-medium">
+              The spam check on this form needs JavaScript. Please turn it on, or{" "}
+              <a href={CALL_CTA.href} rel="noopener" className="text-link">
+                book a free call
+              </a>{" "}
+              instead.
+            </p>
+          </noscript>
         </div>
       ) : null}
       <button

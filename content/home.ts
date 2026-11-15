@@ -13,16 +13,51 @@ export interface Link {
   href: string;
 }
 
+/** The one primary CTA of every page (content.md §5): a free call on Cal.com. */
+export const CALL_CTA: Link = { label: "Book a free call", href: STRATEGY_CALL_URL };
+
+/** Heading and one line above the quote form in every hero. */
+export const QUOTE_FORM = {
+  heading: "Get a free quote",
+  text: "Tell me what you need. I reply within one business day.",
+} as const;
+
 export interface Service {
   id: "web" | "ghl" | "ai";
   title: string;
   /** One line: what the client gets. */
   line: string;
+  /** Link to the page that covers this service, once that page exists. */
+  link?: Link;
 }
 
 export interface FlowStep {
   title: string;
   detail: string;
+  /** Icon for the step. Defaults by position: website, CRM, phone, booked. */
+  icon?: "code" | "flow" | "phone" | "check" | "chat" | "spark";
+}
+
+/** Heading, intro and steps of an animated "what happens to a lead" sequence. */
+export interface Flow {
+  eyebrow: string;
+  heading: string;
+  intro: string;
+  steps: readonly FlowStep[];
+  footer: string;
+}
+
+/** Closing section of every page: the quote form, then the primary CTA for people who prefer a call. */
+export interface Quote {
+  eyebrow: string;
+  heading: string;
+  text: string;
+  form: { heading: string; text: string };
+  callText: string;
+  cta: Link;
+  note: string;
+  /** Text link to the contact page, shown under the CTA. */
+  contact: { before: string; link: Link; after: string };
 }
 
 export interface Industry {
@@ -30,6 +65,8 @@ export interface Industry {
   name: string;
   /** One plain line: their problem and what I fix. */
   line: string;
+  /** Link to the industry page, once that page exists. */
+  link?: Link;
 }
 
 export interface ProcessStep {
@@ -73,14 +110,15 @@ export interface HomeContent {
     form: { heading: string; text: string };
   };
   /** "What happens when a new lead comes in": the animated sequence after Services. */
-  flow: {
+  flow: Flow;
+  services: {
     eyebrow: string;
     heading: string;
     intro: string;
-    steps: readonly FlowStep[];
-    footer: string;
+    items: readonly Service[];
+    /** Links under the cards to pages that are not a single service (hire, pricing). */
+    more: readonly Link[];
   };
-  services: { eyebrow: string; heading: string; intro: string; items: readonly Service[] };
   industries: { eyebrow: string; heading: string; intro: string; items: readonly Industry[] };
   process: { eyebrow: string; heading: string; intro: string; steps: readonly ProcessStep[] };
   work: {
@@ -97,20 +135,11 @@ export interface HomeContent {
     role: string;
     location: string;
     text: readonly string[];
+    /** Link to the About page (homepage only). */
+    link?: Link;
   };
   faq: { eyebrow: string; heading: string; items: readonly Faq[] };
-  /** Closing section of every page: the quote form, then the primary CTA for people who prefer a call. */
-  quote: {
-    eyebrow: string;
-    heading: string;
-    text: string;
-    form: { heading: string; text: string };
-    callText: string;
-    cta: Link;
-    note: string;
-    /** Text link to the contact page, shown under the CTA. */
-    contact: { before: string; link: Link; after: string };
-  };
+  quote: Quote;
   /** TODO(nayab): hidden until you add real, approved quotes. The section renders nothing while empty. */
   testimonials: readonly Testimonial[];
 }
@@ -130,15 +159,11 @@ export const home: HomeContent = {
       highlight: "web development agency",
       after: " that turns your leads into booked calls",
     },
-    lede: "I build fast websites, set up GoHighLevel, and add AI that calls every new lead within 60 seconds.",
+    lede: "I run a small web development agency for US businesses. I build fast websites, set up lead systems, and add AI that calls every new lead within 60 seconds.",
     proof: ["5+ years", "400+ projects delivered", "Clients in the US, UK and worldwide"],
-    primaryCta: { label: "Book a free strategy call", href: STRATEGY_CALL_URL },
+    primaryCta: CALL_CTA,
     secondaryCta: { label: "See services", href: "#services" },
-    // TODO(nayab): confirm the reply time you want to promise.
-    form: {
-      heading: "Get a free quote",
-      text: "Tell me what you need. I reply within one business day.",
-    },
+    form: QUOTE_FORM,
   },
 
   flow: {
@@ -168,17 +193,24 @@ export const home: HomeContent = {
         id: "web",
         title: "Web Development",
         line: "Fast, professional websites that bring in leads.",
+        link: { label: "Website design and development", href: "/services/web-design-development" },
       },
       {
         id: "ghl",
         title: "GoHighLevel",
         line: "CRM, pipelines, SMS and email follow-up set up for you.",
+        link: { label: "GoHighLevel agency services", href: "/gohighlevel-agency" },
       },
       {
         id: "ai",
         title: "AI Automation",
         line: "AI that answers and calls your leads, day and night.",
+        link: { label: "AI automation agency services", href: "/ai-automation-agency" },
       },
+    ],
+    more: [
+      { label: "Hire me as your full stack developer", href: "/hire-full-stack-developer" },
+      { label: "Website and automation pricing", href: "/pricing" },
     ],
   },
 
@@ -207,6 +239,10 @@ export const home: HomeContent = {
         id: "roofing",
         name: "Roofing and HVAC",
         line: "Storm season floods your phone at night. I add a quote form that asks for photos and an AI receptionist that answers after hours.",
+        link: {
+          label: "Roofing and HVAC website design",
+          href: "/industries/roofing-hvac-website-design",
+        },
       },
       {
         id: "contractors",
@@ -226,7 +262,7 @@ export const home: HomeContent = {
       {
         title: "Free strategy call",
         when: "Day 1",
-        text: "We talk about your goals and your leads. You leave with clear next steps, even if we never work together.",
+        text: "I ask about your goals and your leads. You leave with clear next steps, even if you never hire me.",
       },
       {
         title: "Plan and quote",
@@ -241,7 +277,7 @@ export const home: HomeContent = {
       {
         title: "Launch and support",
         when: "Launch week",
-        text: "I test every form, call flow and page on phones and laptops. Then we go live together, and I stay on hand for fixes.",
+        text: "I test every form, call flow and page on phones and laptops. Then your site goes live, and I stay on hand for fixes.",
       },
     ],
   },
@@ -277,6 +313,7 @@ export const home: HomeContent = {
       "For more than five years, I have built websites, CRMs and automations for clients on Upwork, on Fiverr and through referrals. You work with me directly, from the first call to launch day.",
       "My goal is simple. When a lead reaches out, your business answers fast and books the call, even when you are busy on a job.",
     ],
+    link: { label: "More about Nayab Gull", href: "/about" },
   },
 
   faq: {
@@ -287,12 +324,12 @@ export const home: HomeContent = {
       {
         question: "How much does a website or automation project cost?",
         answer:
-          "It depends on the scope. A simple marketing site costs far less than a custom web app or a full GoHighLevel build.\n\nOn our free call, I ask about your goals, your current tools and your deadline. Then you get a clear, written price before any work starts. The quote lists what is included and what is not, so there are no surprise bills later.",
+          "It depends on the scope. A simple marketing site costs far less than a custom web app or a full GoHighLevel build.\n\nOn the free call, I ask about your goals, your current tools and your deadline. Then you get a clear, written price before any work starts. The quote lists what is included and what is not, so there are no surprise bills later.",
       },
       {
         question: "How long will my project take?",
         answer:
-          "Most websites take two to six weeks. A GoHighLevel setup or a single AI automation can go live sooner. Your written quote includes the timeline, so you can plan around it.\n\nThe biggest factor is how fast we get your content, like photos, service details and logins. When those arrive early, launch day comes early too.",
+          "Most websites take two to six weeks. A GoHighLevel setup or a single AI automation can go live sooner. Your written quote includes the timeline, so you can plan around it.\n\nThe biggest factor is how fast I get your content, like photos, service details and logins. When those arrive early, launch day comes early too.",
       },
       {
         question: "Who owns the code, the website and the accounts?",
@@ -302,12 +339,12 @@ export const home: HomeContent = {
       {
         question: "You are in Pakistan. How do time zones and calls work?",
         answer:
-          "My workday overlaps with US business hours, so we can talk live on calls.\n\nBetween calls, you get short written updates. You always know where things stand. Most messages get a reply the same business day, and urgent issues get handled first.",
+          "My workday overlaps with US business hours, so you and I can talk live on calls.\n\nBetween calls, you get short written updates. You always know where things stand. Most messages get a reply the same business day, and urgent issues get handled first.",
       },
       {
         question: "What happens after launch?",
         answer:
-          "You can still reach me. I fix bugs, answer questions and help you add pages or automations as you grow.\n\nIf you want ongoing care, we agree on a simple monthly plan. That can cover updates, backups, speed checks and small changes. You can also just message me when you need something.",
+          "You can still reach me. I fix bugs, answer questions and help you add pages or automations as you grow.\n\nIf you want ongoing care, I offer a simple monthly plan. That can cover updates, backups, speed checks and small changes. You can also just message me when you need something.",
       },
       {
         question: "Can you promise more leads or a top spot on Google?",
@@ -322,7 +359,7 @@ export const home: HomeContent = {
       {
         question: "I already use GoHighLevel or another CRM. Can you work with it?",
         answer:
-          "Yes. I can clean up the account you have now and connect it to your site and tools. I can also move you over from another CRM, such as HubSpot, without losing your contacts.\n\nYour pipelines, tags and past notes come across too. Before anything changes, we agree on a plan, and your team keeps working while I move things over.",
+          "Yes. I can clean up the account you have now and connect it to your site and tools. I can also move you over from another CRM, such as HubSpot, without losing your contacts.\n\nYour pipelines, tags and past notes come across too. Before anything changes, you approve the plan, and your team keeps working while I move things over.",
       },
     ],
   },
@@ -336,8 +373,8 @@ export const home: HomeContent = {
       text: "No pressure and no obligation.",
     },
     callText: "Would you rather talk it through first?",
-    cta: { label: "Book a free strategy call", href: STRATEGY_CALL_URL },
-    note: "We look at your site and your lead flow together, and you leave with a plan you can use.",
+    cta: CALL_CTA,
+    note: "I look at your site and your lead flow with you, and you leave with a plan you can use.",
     contact: {
       before: "You can find every way to reach me on the ",
       link: { label: "contact page", href: "/contact" },

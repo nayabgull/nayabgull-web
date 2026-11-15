@@ -1,14 +1,15 @@
 import type { Faq, Link } from "./home.ts";
-import { STRATEGY_CALL_URL } from "./home.ts";
+import { CALL_CTA } from "./home.ts";
 
 /**
- * /contact copy. Primary keyword: "contact nayab gull" (brand).
- * TODO(nayab): this keyword is PROPOSED. Approve it or give me another one (seo.md §1).
- * TODO(nayab): set CONTACT_EMAIL to your real address. Until then the page shows no email, because
- * an invented address would be a false fact.
- * TODO(nayab): confirm the reply time ("within one business day") and the three steps below.
+ * /contact copy. Primary keyword: "contact nayab gull" (brand), approved by Nayab on November 14, 2026.
+ * The reply time ("within one business day") is approved too.
+ * No email address is shown for now (Nayab's decision). Set CONTACT_EMAIL to show the email card.
  */
 export const CONTACT_EMAIL: string | null = null;
+
+/** ISO date of the last content review (sitemap lastModified). */
+export const CONTACT_UPDATED = "2026-11-14";
 
 export interface ContactContent {
   meta: { title: string; description: string };
@@ -30,6 +31,8 @@ export interface ContactContent {
     intro: string;
     /** Text link back to the homepage services, shown under the cards. */
     home: { before: string; link: Link; after: string };
+    /** Pages people often want to read before they get in touch. */
+    links: readonly Link[];
     call: { title: string; text: string; cta: Link };
     email: { title: string; text: string };
   };
@@ -83,10 +86,14 @@ export const contact: ContactContent = {
       link: { label: "what my web development agency builds", href: "/" },
       after: " first.",
     },
+    links: [
+      { label: "Starting prices for websites and automation", href: "/pricing" },
+      { label: "About Nayab Gull", href: "/about" },
+    ],
     call: {
       title: "Book a free call",
-      text: "Choose a time on my calendar. We meet on video for about 30 minutes and go through your site and your leads.",
-      cta: { label: "Book a free strategy call", href: STRATEGY_CALL_URL },
+      text: "Choose a time on my calendar. You and I meet on video for about 30 minutes and go through your site and your leads.",
+      cta: CALL_CTA,
     },
     email: {
       title: "Email",

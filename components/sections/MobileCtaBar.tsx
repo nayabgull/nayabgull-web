@@ -2,10 +2,10 @@
 
 import { useEffect, useState } from "react";
 
-import { STRATEGY_CALL_URL } from "@/content/home.ts";
+import { CALL_CTA } from "@/content/home.ts";
 
 /**
- * Small sticky bar on phones and tablets: "Get a quote" and "Book a call". It stays hidden while the
+ * Small sticky bar on phones and tablets: "Get a quote" and "Book a free call". It stays hidden while the
  * hero (which has both actions) or the closing quote section is on screen, so it never covers them.
  */
 export function MobileCtaBar() {
@@ -36,16 +36,16 @@ export function MobileCtaBar() {
       <div className="mx-auto flex max-w-md gap-2">
         <a
           href="#quote"
-          className="inline-flex min-h-11 flex-1 items-center justify-center rounded-pill border border-border-strong bg-surface px-4 text-small font-semibold"
+          className="inline-flex min-h-11 flex-1 items-center justify-center rounded-pill border border-border-strong bg-surface px-3 text-center text-small leading-tight font-semibold"
         >
           Get a quote
         </a>
         <a
-          href={STRATEGY_CALL_URL}
+          href={CALL_CTA.href}
           rel="noopener"
-          className="btn-primary inline-flex min-h-11 flex-1 items-center justify-center rounded-pill px-4 text-small font-semibold"
+          className="btn-primary inline-flex min-h-11 flex-1 items-center justify-center rounded-pill px-3 text-center text-small leading-tight font-semibold"
         >
-          Book a call
+          {CALL_CTA.label}
         </a>
       </div>
     </div>

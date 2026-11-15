@@ -4,6 +4,7 @@ import Link from "next/link";
 export function Logo() {
   return (
     <Link
+      prefetch={false}
       href="/"
       className="inline-flex min-h-11 items-center gap-3 rounded-md font-display font-bold"
     >
@@ -13,7 +14,7 @@ export function Logo() {
       >
         NG
       </span>
-      <span className="text-lg tracking-tight">Nayab Gull</span>
+      <span className="text-lg tracking-tight whitespace-nowrap">Nayab Gull</span>
     </Link>
   );
 }

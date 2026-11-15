@@ -1,4 +1,5 @@
 import { act, cleanup, fireEvent, render, screen } from "@testing-library/react";
+import { renderToStaticMarkup } from "react-dom/server";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
 import { submitLeadAction } from "@/app/(site)/actions.ts";
@@ -72,6 +73,17 @@ describe("LeadForm", () => {
     expect(form.querySelector('input[name="source"]')).toHaveValue("/contact");
     expect(form.querySelector('input[name="company_website"]')).toHaveAttribute("tabindex", "-1");
     expect(form.querySelector("[data-turnstile]")).toBeNull();
+    expect(form.querySelector("noscript")).toBeNull();
+  });
+
+  it("with Turnstile on and JavaScript off, says why the form cannot send and links the call", () => {
+    const html = renderToStaticMarkup(
+      <LeadForm source="/" labelledBy="t" turnstileSiteKey="site-key" />,
+    );
+    const noscript = /<noscript>(.*?)<\/noscript>/.exec(html)?.[1] ?? "";
+    expect(noscript).toContain("The spam check on this form needs JavaScript.");
+    expect(noscript).toContain('href="https://cal.com/nayab-gull/strategy-call"');
+    expect(noscript).toContain("book a free call");
   });
 
   async function submitWith(state: LeadFormState) {
@@ -201,7 +213,7 @@ describe("MobileCtaBar", () => {
     emit(0, [{ target: zone, isIntersecting: false }]);
     expect(bar).toBeVisible();
     expect(screen.getByRole("link", { name: "Get a quote" })).toHaveAttribute("href", "#quote");
-    expect(screen.getByRole("link", { name: "Book a call" })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: "Book a free call" })).toHaveAttribute(
       "href",
       "https://cal.com/nayab-gull/strategy-call",
     );

@@ -1,3 +1,4 @@
+import { ArrowLink } from "@/components/ui/ArrowLink.tsx";
 import { HammerIcon, HomeIcon, RoofIcon, ScaleIcon, ToothIcon } from "@/components/ui/icons.tsx";
 import { Section } from "@/components/ui/Section.tsx";
 import { SectionHeader } from "@/components/ui/SectionHeader.tsx";
@@ -27,13 +28,18 @@ export function Industries({ industries }: { industries: HomeContent["industries
           return (
             <li
               key={industry.id}
-              className="glass p-6 sm:last:col-span-2 lg:col-span-2 lg:last:col-span-2 lg:nth-[4]:col-start-2"
+              className="glass flex flex-col p-6 sm:last:col-span-2 lg:col-span-2 lg:last:col-span-2 lg:nth-[4]:col-start-2"
             >
               <span className="grid size-11 place-items-center rounded-md bg-surface-strong text-accent">
                 <Icon className="size-6" />
               </span>
               <h3 className="mt-5 text-h3 font-semibold">{industry.name}</h3>
               <p className="mt-2 text-text-muted">{industry.line}</p>
+              {industry.link ? (
+                <ArrowLink href={industry.link.href} className="mt-auto pt-3">
+                  {industry.link.label}
+                </ArrowLink>
+              ) : null}
             </li>
           );
         })}

@@ -95,3 +95,18 @@ export const PhoneIcon = (p: IconProps) => (
     <path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" />
   </Icon>
 );
+export const ChevronDownIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M6 9l6 6 6-6" />
+  </Icon>
+);
+export const MenuIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M4 7h16M4 12h16M4 17h16" />
+  </Icon>
+);
+export const ChatIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-7l-5 4v-4H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z" />
+  </Icon>
+);

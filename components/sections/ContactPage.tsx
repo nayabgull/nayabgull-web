@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { JsonLd } from "@/components/seo/JsonLd.tsx";
+import { ArrowLink } from "@/components/ui/ArrowLink.tsx";
 import { ButtonLink } from "@/components/ui/ButtonLink.tsx";
 import { Container } from "@/components/ui/Container.tsx";
 import { Section } from "@/components/ui/Section.tsx";
@@ -102,11 +103,18 @@ export function ContactPage({ content, email }: { content: ContactContent; email
         </div>
         <p className="mt-8 text-center text-text-muted">
           {other.home.before}
-          <Link href={other.home.link.href} className="text-link">
+          <Link prefetch={false} href={other.home.link.href} className="text-link">
             {other.home.link.label}
           </Link>
           {other.home.after}
         </p>
+        <div className="mt-2 flex flex-col items-center gap-x-8 sm:flex-row sm:justify-center">
+          {other.links.map((link) => (
+            <ArrowLink key={link.href} href={link.href}>
+              {link.label}
+            </ArrowLink>
+          ))}
+        </div>
       </Section>
 
       <Faq faq={content.faq} />
