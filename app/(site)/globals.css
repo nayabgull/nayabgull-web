@@ -349,7 +349,7 @@
   }
 
   /* A closed menu takes no space and has no tap targets, in every browser. */
-  .disclosure:not([open]) > :not(summary) {
+  .disclosure:not([open]) .disclosure-panel {
     display: none;
   }
 

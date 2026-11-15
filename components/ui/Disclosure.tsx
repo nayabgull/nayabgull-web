@@ -58,7 +58,7 @@ export function Disclosure({
       <summary aria-label={label} className={`cursor-pointer list-none ${summaryClassName}`}>
         {summary}
       </summary>
-      {children}
+      <div className="disclosure-panel">{children}</div>
     </details>
   );
 }
