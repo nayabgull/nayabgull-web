@@ -88,7 +88,6 @@ describe("ContentPage", () => {
     const hero = document.querySelector("section[aria-labelledby='hero-heading']");
     expect(hero?.querySelector("form")).toBeNull();
     expect(hero?.querySelector("a[href^='https://cal.com']")).toBeNull();
-    expect(hero).not.toHaveAttribute("data-cta-zone");
     expect(document.querySelector("#faq")).toBeNull();
   });
 

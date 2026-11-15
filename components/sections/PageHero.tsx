@@ -76,7 +76,8 @@ export function PageHero({ content }: { content: Pick<PageContent, "hero" | "nam
   return (
     <section
       aria-labelledby="hero-heading"
-      data-cta-zone={hero.primaryCta ? true : undefined}
+      // The mobile CTA bar stays hidden while the hero is on screen, so it never covers the first view.
+      data-cta-zone
       className="hero-bg pt-2 pb-16 sm:pt-4 lg:pb-20"
     >
       <Container>
