@@ -1,6 +1,6 @@
 import type { CollectionConfig } from "payload";
 
-import { BUSINESS_TYPES, LEAD_STATUSES, SERVICES } from "@/lib/leads/options.ts";
+import { ALL_SERVICES, BUSINESS_TYPES, LEAD_STATUSES, LEAD_TYPES } from "@/lib/leads/options.ts";
 
 import { isEditor } from "./access.ts";
 
@@ -15,7 +15,7 @@ export const Leads: CollectionConfig = {
   access: { read: isEditor, create: () => false, update: isEditor, delete: isEditor },
   admin: {
     useAsTitle: "name",
-    defaultColumns: ["name", "businessType", "service", "status", "createdAt"],
+    defaultColumns: ["name", "leadType", "businessType", "service", "status", "createdAt"],
   },
   defaultSort: "-createdAt",
   timestamps: true,
@@ -24,8 +24,27 @@ export const Leads: CollectionConfig = {
     { name: "email", type: "email", required: true, index: true },
     { name: "phone", type: "text" },
     { name: "businessType", type: "select", required: true, options: [...BUSINESS_TYPES] },
-    { name: "service", type: "select", required: true, options: [...SERVICES] },
+    { name: "service", type: "select", required: true, options: [...ALL_SERVICES] },
     { name: "message", type: "textarea" },
+    {
+      name: "leadType",
+      type: "select",
+      required: true,
+      defaultValue: "quote",
+      index: true,
+      options: [...LEAD_TYPES],
+      admin: { description: "Which form sent it. Demo requests come from the coming-soon page." },
+    },
+    {
+      name: "businessName",
+      type: "text",
+      admin: { description: "Demo requests only." },
+    },
+    {
+      name: "website",
+      type: "text",
+      admin: { description: "Demo requests only. Their current website, if they have one." },
+    },
     {
       name: "sourcePage",
       type: "text",

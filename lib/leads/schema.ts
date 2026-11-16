@@ -1,8 +1,21 @@
 import { z } from "zod";
 
-import type { LeadErrors, LeadField, LeadValues } from "./fields.ts";
-import { HONEYPOT_FIELD, LEAD_FIELDS, SOURCE_FIELD, TURNSTILE_FIELD } from "./fields.ts";
-import { BUSINESS_TYPES, SERVICES, values } from "./options.ts";
+import type {
+  DemoField,
+  FieldErrors,
+  FieldValues,
+  LeadErrors,
+  LeadField,
+  LeadValues,
+} from "./fields.ts";
+import {
+  DEMO_FIELDS,
+  HONEYPOT_FIELD,
+  LEAD_FIELDS,
+  SOURCE_FIELD,
+  TURNSTILE_FIELD,
+} from "./fields.ts";
+import { BUSINESS_TYPES, DEMO_WANTS, SERVICES, values } from "./options.ts";
 
 const trimmed = (max: number) => z.string().trim().max(max, `Keep this under ${max} characters.`);
 
@@ -33,7 +46,9 @@ export function leadValues(form: FormData): LeadValues {
   return Object.fromEntries(LEAD_FIELDS.map((field) => [field, text(form, field)]));
 }
 
-export type ParsedLead = { ok: true; lead: LeadInput } | { ok: false; errors: LeadErrors };
+export type Parsed<T, F extends string> =
+  { ok: true; lead: T } | { ok: false; errors: FieldErrors<F> };
+export type ParsedLead = Parsed<LeadInput, LeadField>;
 
 /** Validates a submitted form on the server. Never trust what the browser checked. */
 export function parseLead(form: FormData): ParsedLead {
@@ -45,6 +60,54 @@ export function parseLead(form: FormData): ParsedLead {
   const errors: LeadErrors = {};
   for (const issue of result.error.issues) {
     const field = issue.path[0] as LeadField;
+    errors[field] ??= issue.message;
+  }
+  return { ok: false, errors };
+}
+
+/** `source` the demo form always saves, so the Leads list shows where the request came from. */
+export const DEMO_SOURCE = "coming-soon";
+
+/** Visitors type "example.com"; store a full https:// address. Anything else stays invalid. */
+const websiteUrl = z
+  .string()
+  .trim()
+  .max(200, "Keep this under 200 characters.")
+  .transform((value) => (value === "" || /^https?:\/\//i.test(value) ? value : `https://${value}`))
+  .refine((value) => {
+    if (value === "") return true;
+    try {
+      const url = new URL(value);
+      return (url.protocol === "https:" || url.protocol === "http:") && url.hostname.includes(".");
+    } catch {
+      return false;
+    }
+  }, "Please enter a valid website, like example.com.");
+
+export const demoSchema = z.object({
+  name: trimmed(80).min(2, "Please enter your name."),
+  email: trimmed(120).pipe(z.email("Please enter a valid email address.")),
+  businessName: trimmed(120).min(2, "Please enter your business name."),
+  website: websiteUrl,
+  businessType: z.enum(values(BUSINESS_TYPES), "Please pick your industry."),
+  service: z.enum(values(DEMO_WANTS), "Please pick what you want."),
+});
+
+/** A demo request, shaped like a lead plus the demo-only fields. */
+export type DemoInput = z.infer<typeof demoSchema> & { source: typeof DEMO_SOURCE };
+
+/** The demo form's visible fields as plain strings, so a failed submission can refill the form. */
+export function demoValues(form: FormData): FieldValues<DemoField> {
+  return Object.fromEntries(DEMO_FIELDS.map((field) => [field, text(form, field)]));
+}
+
+/** Validates a demo request on the server. The source is fixed here, never read from the browser. */
+export function parseDemo(form: FormData): Parsed<DemoInput, DemoField> {
+  const result = demoSchema.safeParse(demoValues(form));
+  if (result.success) return { ok: true, lead: { ...result.data, source: DEMO_SOURCE } };
+  const errors: FieldErrors<DemoField> = {};
+  for (const issue of result.error.issues) {
+    const field = issue.path[0] as DemoField;
     errors[field] ??= issue.message;
   }
   return { ok: false, errors };

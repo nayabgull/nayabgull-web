@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+import { siteModeSchema } from "./site-mode.ts";
+
 const postgresUrl = z
   .string()
   .regex(/^postgres(ql)?:\/\/\S+$/, "must be a postgres:// or postgresql:// connection string");
@@ -17,6 +19,8 @@ const envSchema = z.object({
    */
   TURNSTILE_SECRET_KEY: z.string().min(1).optional(),
   NEXT_PUBLIC_TURNSTILE_SITE_KEY: z.string().min(1).optional(),
+  /** "live" (default) or "coming-soon": every public route shows the holding page (lib/site-mode.ts). */
+  SITE_MODE: siteModeSchema,
 });
 
 export type Env = z.infer<typeof envSchema>;

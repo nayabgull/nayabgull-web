@@ -1,5 +1,6 @@
 import * as migration_20261105_181948_initial from './20261105_181948_initial';
 import * as migration_20261110_113331_leads from './20261110_113331_leads';
+import * as migration_20261116_133101_coming_soon_leads from './20261116_133101_coming_soon_leads';
 
 export const migrations = [
   {
@@ -10,6 +11,11 @@ export const migrations = [
   {
     up: migration_20261110_113331_leads.up,
     down: migration_20261110_113331_leads.down,
-    name: '20261110_113331_leads'
+    name: '20261110_113331_leads',
+  },
+  {
+    up: migration_20261116_133101_coming_soon_leads.up,
+    down: migration_20261116_133101_coming_soon_leads.down,
+    name: '20261116_133101_coming_soon_leads'
   },
 ];

@@ -19,6 +19,7 @@
     "test": "vitest run --coverage",
     "test:watch": "vitest",
     "test:e2e": "playwright test tests/e2e",
+    "test:coming-soon": "playwright test -c playwright.coming-soon.config.ts",
     "test:responsive": "playwright test tests/responsive",
     "test:a11y": "playwright test tests/a11y",
     "audit:seo": "node scripts/audit-seo.ts",

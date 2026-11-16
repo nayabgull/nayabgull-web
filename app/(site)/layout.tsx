@@ -2,11 +2,13 @@ import type { Metadata, Viewport } from "next";
 import { Sora } from "next/font/google";
 import { headers } from "next/headers";
 
+import { ComingSoonFooter, ComingSoonHeader } from "@/components/sections/ComingSoonShell.tsx";
 import { MobileCtaBar } from "@/components/sections/MobileCtaBar.tsx";
 import { SiteFooter } from "@/components/sections/SiteFooter.tsx";
 import { SiteHeader } from "@/components/sections/SiteHeader.tsx";
 import { NONCE_HEADER } from "@/lib/security/headers.ts";
 import { BRAND, SITE_URL } from "@/lib/seo/site.ts";
+import { isComingSoon } from "@/lib/site-mode.ts";
 import { THEME_INIT_SCRIPT } from "@/lib/theme.ts";
 
 import "./globals.css";
@@ -39,6 +41,8 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
   // proxy.ts creates a nonce per request for the Content-Security-Policy (seo.md §9). Reading it
   // here also makes every page render per request, which nonces need.
   const nonce = (await headers()).get(NONCE_HEADER) ?? undefined;
+  // SITE_MODE=coming-soon swaps the full navigation for a minimal header and footer (lib/site-mode.ts).
+  const comingSoon = isComingSoon(process.env);
   return (
     // data-theme is set before paint by THEME_INIT_SCRIPT, so React must not warn about it.
     <html lang="en-US" className={sora.variable} suppressHydrationWarning>
@@ -50,12 +54,12 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
         />
       </head>
       <body>
-        <SiteHeader />
+        {comingSoon ? <ComingSoonHeader /> : <SiteHeader />}
         <main id="main" tabIndex={-1} className="outline-none">
           {children}
         </main>
-        <SiteFooter />
-        <MobileCtaBar />
+        {comingSoon ? <ComingSoonFooter /> : <SiteFooter />}
+        {comingSoon ? null : <MobileCtaBar />}
       </body>
     </html>
   );

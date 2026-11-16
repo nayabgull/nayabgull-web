@@ -15,7 +15,16 @@ afterEach(() => {
 
 describe("parseEnv", () => {
   it("accepts a complete environment", () => {
-    expect(parseEnv(GOOD)).toEqual(GOOD);
+    expect(parseEnv(GOOD)).toEqual({ ...GOOD, SITE_MODE: "live" });
+  });
+
+  it("defaults SITE_MODE to live, accepts coming-soon and rejects anything else", () => {
+    expect(parseEnv(GOOD).SITE_MODE).toBe("live");
+    expect(parseEnv({ ...GOOD, SITE_MODE: "" }).SITE_MODE).toBe("live");
+    expect(parseEnv({ ...GOOD, SITE_MODE: "coming-soon" }).SITE_MODE).toBe("coming-soon");
+    expect(() => parseEnv({ ...GOOD, SITE_MODE: "comming-soon" })).toThrow(
+      /SITE_MODE: must be "live" or "coming-soon"/,
+    );
   });
 
   it("makes the direct URL optional", () => {

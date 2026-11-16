@@ -1,6 +1,13 @@
-import type { LeadFormState } from "./fields.ts";
-import type { LeadInput } from "./schema.ts";
-import { isHoneypotFilled, leadValues, parseLead, turnstileToken } from "./schema.ts";
+import type { DemoFormState, FieldValues, FormState, LeadFormState } from "./fields.ts";
+import type { DemoInput, LeadInput, Parsed } from "./schema.ts";
+import {
+  demoValues,
+  isHoneypotFilled,
+  leadValues,
+  parseDemo,
+  parseLead,
+  turnstileToken,
+} from "./schema.ts";
 
 export const MESSAGES = {
   success: "Thanks! Your request is in. I will reply within one business day.",
@@ -10,30 +17,39 @@ export const MESSAGES = {
   failed: "Something went wrong on my side. Please try again, or book a call instead.",
 } as const;
 
-export interface SubmitDeps {
+export interface SubmitDeps<T = LeadInput> {
   /** Saves the lead (Payload "leads" collection). */
-  save: (lead: LeadInput) => Promise<void>;
+  save: (lead: T) => Promise<void>;
   /** Email notification hook. Its errors are ignored: the lead is already saved. */
-  notify: (lead: LeadInput) => Promise<void>;
+  notify: (lead: T) => Promise<void>;
   /** Present only when Turnstile is configured. Then every submission needs a valid token. */
   verifySpamCheck?: (token: string) => Promise<boolean>;
   logError: (error: unknown) => void;
 }
 
-const success: LeadFormState = {
-  status: "success",
-  message: MESSAGES.success,
-  errors: {},
-  values: {},
-};
+/** What a form needs to say about itself: how to read its fields and how to validate them. */
+interface FormSpec<T, F extends string> {
+  values: (form: FormData) => FieldValues<F>;
+  parse: (form: FormData) => Parsed<T, F>;
+}
 
 /** Validates, spam-checks and saves one form submission. Pure: every side effect comes in as a dep. */
-export async function submitLead(form: FormData, deps: SubmitDeps): Promise<LeadFormState> {
+async function submitForm<T, F extends string>(
+  form: FormData,
+  deps: SubmitDeps<T>,
+  spec: FormSpec<T, F>,
+): Promise<FormState<F>> {
+  const success: FormState<F> = {
+    status: "success",
+    message: MESSAGES.success,
+    errors: {},
+    values: {},
+  };
   // A filled honeypot is a bot. Answer "thanks" so it learns nothing, and save nothing.
   if (isHoneypotFilled(form)) return success;
 
-  const values = leadValues(form);
-  const parsed = parseLead(form);
+  const values = spec.values(form);
+  const parsed = spec.parse(form);
   if (!parsed.ok) {
     return { status: "error", message: MESSAGES.invalid, errors: parsed.errors, values };
   }
@@ -52,4 +68,14 @@ export async function submitLead(form: FormData, deps: SubmitDeps): Promise<Lead
     deps.logError(error);
   }
   return success;
+}
+
+/** The quote form (hero, closing section and /contact). */
+export function submitLead(form: FormData, deps: SubmitDeps): Promise<LeadFormState> {
+  return submitForm(form, deps, { values: leadValues, parse: parseLead });
+}
+
+/** The coming-soon "Request a custom demo" form. */
+export function submitDemo(form: FormData, deps: SubmitDeps<DemoInput>): Promise<DemoFormState> {
+  return submitForm(form, deps, { values: demoValues, parse: parseDemo });
 }

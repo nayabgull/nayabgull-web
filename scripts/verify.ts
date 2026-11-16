@@ -52,6 +52,7 @@ const STAGES: Stage[] = [
   { name: "build", command: ["pnpm", "build:strict"] },
   { name: "bundle", command: ["pnpm", "bundle"], browser: true, server: true },
   { name: "e2e", command: ["pnpm", "test:e2e"], browser: true, server: true },
+  { name: "e2e (coming-soon)", command: ["pnpm", "test:coming-soon"], browser: true, server: true },
   { name: "responsive", command: ["pnpm", "test:responsive"], browser: true, server: true },
   { name: "a11y", command: ["pnpm", "test:a11y"], browser: true, server: true },
   { name: "lighthouse", command: ["pnpm", "lhci"], browser: true, server: true },
