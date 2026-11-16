@@ -18,6 +18,8 @@ export interface Service {
   title: string;
   /** One line: what the client gets. */
   line: string;
+  /** Link to the page that covers this service, once that page exists. */
+  link?: Link;
 }
 
 export interface FlowStep {
@@ -150,6 +152,7 @@ export const home: HomeContent = {
         id: "ghl",
         title: "GoHighLevel",
         line: "CRM, pipelines, SMS and email follow-up set up for you.",
+        link: { label: "GoHighLevel agency services", href: "/gohighlevel-agency" },
       },
       {
         id: "ai",

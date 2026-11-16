@@ -1,16 +1,11 @@
+import Link from "next/link";
+
 import { ButtonLink } from "@/components/ui/ButtonLink.tsx";
 import { Container } from "@/components/ui/Container.tsx";
 import { Logo } from "@/components/ui/Logo.tsx";
 import { ThemeToggle } from "@/components/ui/ThemeToggle.tsx";
 import { STRATEGY_CALL_URL } from "@/content/home.ts";
-
-const NAV = [
-  { label: "Services", href: "#services" },
-  { label: "How it works", href: "#how-it-works" },
-  { label: "Industries", href: "#industries" },
-  { label: "Process", href: "#process" },
-  { label: "FAQ", href: "#faq" },
-] as const;
+import { PRIMARY_NAV } from "@/content/navigation.ts";
 
 export function SiteHeader() {
   return (
@@ -25,14 +20,14 @@ export function SiteHeader() {
         <Logo />
         <nav aria-label="Primary" className="hidden lg:block">
           <ul className="flex items-center gap-1">
-            {NAV.map((item) => (
+            {PRIMARY_NAV.map((item) => (
               <li key={item.href}>
-                <a
+                <Link
                   href={item.href}
                   className="inline-flex min-h-11 items-center rounded-pill px-4 text-small font-medium text-text-muted transition-colors hover:text-text"
                 >
                   {item.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
