@@ -1,0 +1,54 @@
+keyword,cluster,us_volume,ads_competition,change_3m,change_yoy,bid_low_pkr,bid_high_pkr,bid_low_usd,bid_high_usd,kd,intent,notes
+hire gohighlevel expert,ghl,10-100,Low,0%,0%,1162,5546,4.15,19.81,,hire,
+hire gohighlevel developer,ghl,10-100,Low,0%,+∞,1879,6532,6.71,23.33,,hire,
+gohighlevel workflow automation,ghl,10-100,Low,0%,0%,2218,5382,7.92,19.22,,learn,
+gohighlevel website design,ghl,10-100,Medium,0%,0%,2573,62752,9.19,224.11,,learn,
+gohighlevel voice ai,ghl,10-100,Medium,0%,0%,3127,11761,11.17,42.0,,learn,
+gohighlevel specialist,ghl,10-100,Low,0%,0%,2842,22315,10.15,79.7,,hire,
+gohighlevel setup service,ghl,10-100,Medium,0%,+∞,1510,10484,5.39,37.44,,service,
+gohighlevel setup,ghl,10-100,Low,0%,0%,3451,277283,12.32,990.3,44,service,"bid value 277,2xx looks like a Planner cap/outlier, treat with care"
+gohighlevel pricing,ghl,1K-10K,Low,0%,0%,277280,277283,990.29,990.3,,price,"bid value 277,2xx looks like a Planner cap/outlier, treat with care"
+gohighlevel freelancer,ghl,10-100,Medium,0%,+∞,,,,,,hire,no bid data
+gohighlevel for real estate,ghl,10-100,Medium,0%,0%,2529,14593,9.03,52.12,,learn,
+gohighlevel for hvac,ghl,0-10,,0%,0%,,,,,,learn,competition not shown; no bid data
+gohighlevel for agencies,ghl,10-100,Low,0%,0%,,,,,,learn,no bid data
+gohighlevel expert,ghl,100-1K,Low,0%,0%,3766,21151,13.45,75.54,0,hire,
+gohighlevel developer,ghl,100-1K,Low,0%,0%,2195,6613,7.84,23.62,0,hire,
+gohighlevel crm setup,ghl,10-100,Medium,0%,0%,,,,,,service,no bid data
+gohighlevel cost,ghl,100-1K,Low,0%,0%,277280,277283,990.29,990.3,,price,"bid value 277,2xx looks like a Planner cap/outlier, treat with care"
+gohighlevel consultant,ghl,10-100,High,0%,0%,5258,15350,18.78,54.82,,hire,
+gohighlevel automation,ghl,100-1K,Low,0%,0%,2928,277283,10.46,990.3,0,learn,"bid value 277,2xx looks like a Planner cap/outlier, treat with care"
+gohighlevel ai automation,ghl,10-100,Low,0%,0%,,,,,,learn,no bid data
+gohighlevel agency,ghl,100-1K,Low,+900%,"+9,900%",13864,277283,49.51,990.3,5,service,"bid value 277,2xx looks like a Planner cap/outlier, treat with care"
+ghl setup,ghl,10-100,Low,0%,0%,987,27375,3.52,97.77,,service,
+ghl expert,ghl,100-1K,Low,0%,0%,1051,7772,3.75,27.76,,hire,
+ghl developer,ghl,100-1K,Medium,0%,0%,2379,11679,8.5,41.71,,hire,
+ghl agency,ghl,10-100,Low,+900%,+900%,3327,277283,11.88,990.3,42,service,"bid value 277,2xx looks like a Planner cap/outlier, treat with care"
+missed call text back automation,ghl,10-100,Medium,0%,0%,2723,7293,9.72,26.05,,learn,
+marketing automation consultant,ghl,100-1K,Low,0%,-90%,,,,,,hire,no bid data
+lead follow up automation,ghl,10-100,Low,+900%,+∞,3882,20660,13.86,73.79,,learn,
+hire go high level expert,ghl,10-100,Low,0%,+∞,,,,,,hire,no bid data
+highlevel agency,ghl,100-1K,Low,0%,0%,1508,277283,5.39,990.3,,service,"bid value 277,2xx looks like a Planner cap/outlier, treat with care"
+gohighlevel zapier integration,ghl,10-100,Medium,0%,0%,,,,,,learn,no bid data
+gohighlevel snapshot,ghl,100-1K,Medium,-90%,-90%,693,6740,2.48,24.07,11,learn,
+gohighlevel sms automation,ghl,10-100,Medium,0%,0%,2048,17381,7.31,62.08,,learn,
+gohighlevel for lawyers,ghl,10-100,Medium,0%,+∞,,,,,,learn,no bid data
+gohighlevel email automation,ghl,10-100,Low,0%,0%,,,,,,learn,no bid data
+gohighlevel appointment booking,ghl,10-100,Low,0%,0%,,,,,,learn,no bid data
+go high level setup,ghl,10-100,Low,0%,0%,33920,277283,121.14,990.3,,service,"bid value 277,2xx looks like a Planner cap/outlier, treat with care; Google groups close variant with gohighlevel"
+go high level expert,ghl,100-1K,Low,0%,0%,3766,21151,13.45,75.54,,hire,Google groups close variant with gohighlevel
+go high level developer,ghl,10-100,Medium,0%,0%,3552,17986,12.69,64.24,,hire,Google groups close variant with gohighlevel
+go high level consultant,ghl,10-100,Medium,0%,0%,5061,29901,18.07,106.79,,hire,Google groups close variant with gohighlevel
+go high level automation,ghl,100-1K,Low,0%,0%,2928,277283,10.46,990.3,,learn,"bid value 277,2xx looks like a Planner cap/outlier, treat with care; Google groups close variant with gohighlevel"
+go high level agency,ghl,10-100,Low,0%,0%,4323,277283,15.44,990.3,,service,"bid value 277,2xx looks like a Planner cap/outlier, treat with care; Google groups close variant with gohighlevel"
+ghl workflow automation,ghl,10-100,Low,0%,0%,,,,,,learn,no bid data
+ghl white label,ghl,10-100,Medium,0%,0%,2371,277283,8.47,990.3,,service,"bid value 277,2xx looks like a Planner cap/outlier, treat with care"
+ghl voice ai,ghl,10-100,Medium,0%,0%,1708,7915,6.1,28.27,,learn,
+ghl specialist,ghl,10-100,Low,0%,0%,2748,7728,9.81,27.6,,hire,
+ghl snapshot,ghl,100-1K,Medium,0%,-90%,832,5706,2.97,20.38,,learn,
+ghl crm setup,ghl,10-100,Low,0%,+∞,,,,,,service,no bid data
+ghl chatbot,ghl,10-100,Medium,0%,0%,970,5124,3.46,18.3,,learn,
+ghl automation expert,ghl,10-100,Low,+∞,+∞,2773,5865,9.9,20.95,,hire,
+ghl automation,ghl,100-1K,Low,0%,0%,1070,6662,3.82,23.79,,learn,
+crm setup services,ghl,10-100,Low,0%,0%,,,,,,service,no bid data
+crm consultant,ghl,100-1K,Low,0%,0%,2217,9335,7.92,33.34,,hire,
