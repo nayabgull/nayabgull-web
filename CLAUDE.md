@@ -15,6 +15,8 @@ These rules are **non-negotiable**. If a rule cannot be met, stop and ask Nayab.
 
 Priority when rules conflict: **quality-gates > seo > content > frontend > convenience**.
 
+**SEO research (read on demand, not auto-loaded):** before writing or changing any page, title, meta description, FAQ, blog post or other content, read `docs/seo/README.md` and the files it lists (`research/`, `competitors.md`, `offpage-plan.md`) that apply to the task. Keywords come only from `docs/seo/keyword-map.md`; numbers (volume, KD, DR, traffic) only from `docs/seo/research/`. Never estimate a missing number.
+
 ---
 
 ## 1. Stack (locked — ask before changing anything here)
