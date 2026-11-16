@@ -1,0 +1,82 @@
+keyword,cluster,us_volume,ads_competition,change_3m,change_yoy,bid_low_pkr,bid_high_pkr,bid_low_usd,bid_high_usd,kd,intent,notes
+wordpress developer,web-dev,1K-10K,Low,0%,0%,2355,11941,8.41,42.65,,service,volume is Google range (Ads account inactive)
+website redesign services,web-dev,1K-10K,Low,0%,-90%,1858,7398,6.64,26.42,,service,volume is Google range (Ads account inactive)
+website development pricing,web-dev,10-100,Medium,0%,0%,1104,3646,3.94,13.02,,price,volume is Google range (Ads account inactive)
+website development company,web-dev,1K-10K,Low,0%,0%,2773,13864,9.9,49.51,,service,volume is Google range (Ads account inactive)
+website design services,web-dev,1K-10K,Low,0%,0%,2474,10112,8.84,36.11,,service,volume is Google range (Ads account inactive)
+website design for contractors,web-dev,1K-10K,Low,+900%,0%,1639,4437,5.85,15.85,,service,volume is Google range (Ads account inactive)
+website design cost,web-dev,1K-10K,Low,+900%,0%,1216,5645,4.34,20.16,,price,volume is Google range (Ads account inactive)
+website design company,web-dev,10K-100K,Low,0%,0%,2218,9150,7.92,32.68,36,service,volume is Google range (Ads account inactive)
+web development services,web-dev,1K-10K,Low,0%,0%,2773,15384,9.9,54.94,,service,volume is Google range (Ads account inactive)
+web development cost,web-dev,100-1K,Low,0%,0%,1544,7347,5.51,26.24,,price,volume is Google range (Ads account inactive)
+web development company,web-dev,1K-10K,Low,0%,0%,2773,13864,9.9,49.51,45,service,volume is Google range (Ads account inactive)
+web development agency,web-dev,1K-10K,Low,0%,0%,2860,14419,10.21,51.5,30,service,volume is Google range (Ads account inactive)
+web design for roofers,web-dev,10-100,Low,0%,0%,2060,8318,7.36,29.71,,service,volume is Google range (Ads account inactive)
+web design for lawyers,web-dev,100-1K,Low,0%,-90%,8676,19521,30.99,69.72,,service,volume is Google range (Ads account inactive)
+web design for dentists,web-dev,10-100,Medium,0%,0%,6100,13864,21.79,49.51,,service,volume is Google range (Ads account inactive)
+web design agency,web-dev,10K-100K,Low,0%,0%,1797,5546,6.42,19.81,,service,volume is Google range (Ads account inactive)
+web application development services,web-dev,100-1K,Low,0%,-90%,2362,9317,8.44,33.27,,service,volume is Google range (Ads account inactive)
+small business website development,web-dev,100-1K,Low,+900%,0%,1894,5706,6.76,20.38,,service,volume is Google range (Ads account inactive)
+small business website design,web-dev,1K-10K,Low,0%,0%,1730,9012,6.18,32.19,,service,volume is Google range (Ads account inactive)
+small business web design,web-dev,1K-10K,Low,0%,0%,1730,9012,6.18,32.19,,service,volume is Google range (Ads account inactive)
+shopify developer,web-dev,1K-10K,Low,0%,0%,2889,10266,10.32,36.66,,service,volume is Google range (Ads account inactive)
+seo friendly website development,web-dev,10-100,Low,0%,0%,,,,,,service,volume is Google range (Ads account inactive); no bid data
+saas web development company,web-dev,10-100,Low,+∞,0%,,,,,,service,volume is Google range (Ads account inactive); no bid data
+roofing website design,web-dev,100-1K,Low,0%,0%,1736,8318,6.2,29.71,,service,volume is Google range (Ads account inactive)
+real estate website development,web-dev,10-100,Low,0%,0%,3502,8294,12.51,29.62,,service,volume is Google range (Ads account inactive)
+react development company,web-dev,100-1K,Low,-90%,-90%,3110,8318,11.11,29.71,9,service,volume is Google range (Ads account inactive)
+plumber website design,web-dev,100-1K,Low,0%,0%,1736,13864,6.2,49.51,,service,volume is Google range (Ads account inactive)
+nextjs developer,web-dev,10-100,Low,0%,-90%,8318,44864,29.71,160.23,,service,volume is Google range (Ads account inactive)
+mern stack development services,web-dev,10-100,Low,0%,0%,,,,,,service,volume is Google range (Ads account inactive); no bid data
+lead generation website design,web-dev,10-100,Low,0%,-90%,1122,7996,4.01,28.56,,service,volume is Google range (Ads account inactive)
+law firm website design,web-dev,1K-10K,Low,0%,0%,8385,26760,29.95,95.57,,service,volume is Google range (Ads account inactive)
+laravel development company,web-dev,100-1K,Low,0%,0%,2563,13864,9.15,49.51,,service,volume is Google range (Ads account inactive)
+hvac website design,web-dev,100-1K,Low,0%,0%,1739,5546,6.21,19.81,,service,volume is Google range (Ads account inactive)
+hvac web design agency,web-dev,10-100,Medium,0%,-90%,2143,5546,7.65,19.81,,service,volume is Google range (Ads account inactive)
+hire wordpress developer,web-dev,100-1K,Low,0%,0%,3327,9681,11.88,34.58,,hire,volume is Google range (Ads account inactive)
+hire web developer,web-dev,100-1K,Low,0%,0%,2809,13442,10.03,48.01,,hire,volume is Google range (Ads account inactive)
+hire react developer,web-dev,100-1K,Low,0%,0%,3943,19626,14.08,70.09,16,hire,volume is Google range (Ads account inactive)
+hire nextjs developer,web-dev,100-1K,Low,0%,-90%,,,,,,hire,volume is Google range (Ads account inactive); no bid data
+hire laravel developer,web-dev,100-1K,Low,0%,0%,2971,15228,10.61,54.39,,hire,volume is Google range (Ads account inactive)
+full stack web development services,web-dev,10-100,Low,0%,0%,,,,,,service,volume is Google range (Ads account inactive); no bid data
+freelance web developer,web-dev,100-1K,Low,0%,-90%,976,6071,3.49,21.68,,hire,volume is Google range (Ads account inactive)
+ecommerce website design,web-dev,1K-10K,Low,+900%,0%,1676,9427,5.99,33.67,,service,volume is Google range (Ads account inactive)
+ecommerce web development,web-dev,100-1K,Low,0%,-90%,8213,16637,29.33,59.42,,service,volume is Google range (Ads account inactive)
+dental website design,web-dev,100-1K,Medium,0%,-90%,3418,15251,12.21,54.47,,service,volume is Google range (Ads account inactive)
+custom website development,web-dev,100-1K,Low,+900%,+900%,2218,11782,7.92,42.08,,service,volume is Google range (Ads account inactive)
+custom web development services,web-dev,100-1K,Low,0%,0%,2080,12478,7.43,44.56,3,service,volume is Google range (Ads account inactive)
+custom web app development,web-dev,100-1K,Low,+900%,0%,4089,23947,14.6,85.53,,service,volume is Google range (Ads account inactive)
+best web development company,web-dev,100-1K,Low,0%,-90%,2440,11091,8.71,39.61,,service,volume is Google range (Ads account inactive)
+affordable web design,web-dev,100-1K,Low,0%,0%,1538,7781,5.49,27.79,,price,volume is Google range (Ads account inactive)
+web application development company,web-dev,100-1K,Low,0%,0%,2440,20796,8.71,74.27,,service,volume is Google range (Ads account inactive)
+web app development company,web-dev,100-1K,Low,0%,-90%,2823,18301,10.08,65.36,,service,volume is Google range (Ads account inactive)
+startup mvp development,web-dev,100-1K,Low,0%,+900%,3860,16458,13.79,58.78,,service,volume is Google range (Ads account inactive)
+small business website design services,web-dev,100-1K,Low,0%,-90%,2170,9150,7.75,32.68,2,service,volume is Google range (Ads account inactive)
+saas web development,web-dev,10-100,Low,0%,0%,,,,,,service,volume is Google range (Ads account inactive); no bid data
+saas development services,web-dev,100-1K,Low,0%,0%,3379,7548,12.07,26.96,,service,volume is Google range (Ads account inactive)
+saas development cost,web-dev,10-100,Low,0%,0%,,,,,,price,volume is Google range (Ads account inactive); no bid data
+saas development company,web-dev,100-1K,Low,0%,0%,4437,25177,15.85,89.92,12,service,volume is Google range (Ads account inactive)
+saas development agency,web-dev,10-100,Low,0%,-90%,,,,,6,service,volume is Google range (Ads account inactive); no bid data
+saas developer,web-dev,100-1K,Low,0%,-90%,3900,23403,13.93,83.58,1,service,volume is Google range (Ads account inactive)
+saas app development,web-dev,100-1K,Low,0%,-90%,1855,7728,6.62,27.6,,service,volume is Google range (Ads account inactive)
+react js development services,web-dev,100-1K,Low,0%,0%,3090,9666,11.04,34.52,,service,volume is Google range (Ads account inactive)
+outsource web development,web-dev,100-1K,Low,+900%,0%,4419,12867,15.78,45.95,,hire,volume is Google range (Ads account inactive)
+offshore web development company,web-dev,10-100,Low,0%,0%,,,,,,hire,volume is Google range (Ads account inactive); no bid data
+nextjs development services,web-dev,10-100,Low,-90%,-90%,,,,,,service,volume is Google range (Ads account inactive); no bid data
+next js development company,web-dev,100-1K,Low,-90%,-90%,,,,,5,service,volume is Google range (Ads account inactive); no bid data
+next js development agency,web-dev,10-100,Low,0%,-90%,,,,,,service,volume is Google range (Ads account inactive); no bid data
+mvp development services,web-dev,100-1K,Low,0%,0%,3327,11359,11.88,40.57,,service,volume is Google range (Ads account inactive)
+mvp development cost,web-dev,100-1K,Low,0%,+900%,1475,4159,5.27,14.85,,price,volume is Google range (Ads account inactive)
+mvp development company,web-dev,100-1K,Low,0%,0%,2496,13864,8.91,49.51,6,service,volume is Google range (Ads account inactive)
+mern stack developer for hire,web-dev,10-100,Low,+∞,+∞,,,,,,hire,volume is Google range (Ads account inactive); no bid data
+laravel development services,web-dev,100-1K,Low,0%,-90%,6655,18906,23.77,67.52,,service,volume is Google range (Ads account inactive)
+hire saas developer,web-dev,100-1K,Low,0%,+900%,3680,7764,13.14,27.73,4,hire,volume is Google range (Ads account inactive)
+hire react js developer,web-dev,100-1K,Low,0%,0%,3943,19626,14.08,70.09,,hire,volume is Google range (Ads account inactive)
+hire next js developer,web-dev,100-1K,Low,0%,-90%,,,,,,hire,volume is Google range (Ads account inactive); no bid data
+hire mvp developer,web-dev,10-100,Low,+∞,0%,,,,,,hire,volume is Google range (Ads account inactive); no bid data
+hire mern stack developer,web-dev,10-100,Low,0%,0%,,,,,,hire,volume is Google range (Ads account inactive); no bid data
+hire full stack developer,web-dev,100-1K,Low,0%,0%,3022,14460,10.79,51.64,11,hire,volume is Google range (Ads account inactive)
+full stack development services,web-dev,100-1K,Low,0%,-90%,1711,12273,6.11,43.83,,service,volume is Google range (Ads account inactive)
+full stack development company,web-dev,100-1K,Low,0%,0%,1781,8438,6.36,30.14,24,service,volume is Google range (Ads account inactive)
+ecommerce development company,web-dev,100-1K,Low,0%,0%,3222,15916,11.51,56.84,,service,volume is Google range (Ads account inactive)
+custom saas development,web-dev,10-100,Low,0%,0%,4389,12677,15.68,45.27,,service,volume is Google range (Ads account inactive)

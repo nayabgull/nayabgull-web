@@ -1,0 +1,64 @@
+keyword,cluster,us_volume,ads_competition,change_3m,change_yoy,bid_low_usd,bid_high_usd,kd,intent,notes
+what is an ai voice agent,voice,100-1K,Low,0%,900%,4.1,17.35,,learn,"volume is a Planner range (ads account inactive); bid PKR 1,149-4,858 converted at ~280 PKR/USD"
+what is an ai receptionist,voice,10-100,Low,0%,0%,7.31,16.84,,learn,"volume is a Planner range (ads account inactive); bid PKR 2,046-4,714 converted at ~280 PKR/USD"
+voice ai receptionist,voice,10-100,Medium,0%,0%,16.32,43.77,,service,"volume is a Planner range (ads account inactive); bid PKR 4,569-12,255 converted at ~280 PKR/USD"
+voice ai for business,voice,1K-10K,Low,-99%,900%,10.73,27.73,,service,"volume is a Planner range (ads account inactive); bid PKR 3,005-7,764 converted at ~280 PKR/USD"
+voice ai agency,voice,100-1K,Low,900%,900%,12.3,35.84,,hire,"volume is a Planner range (ads account inactive); bid PKR 3,444-10,035 converted at ~280 PKR/USD"
+vapi vs retell,voice,100-1K,Medium,900%,0%,11.31,26.25,,learn,"volume is a Planner range (ads account inactive); bid PKR 3,168-7,351 converted at ~280 PKR/USD; vendor/brand term"
+vapi developer,voice,10-100,Low,0%,0%,,,,hire,volume is a Planner range (ads account inactive); no bid data
+vapi ai pricing,voice,10-100,Medium,900%,0%,5.61,29.97,,price,"volume is a Planner range (ads account inactive); bid PKR 1,572-8,392 converted at ~280 PKR/USD; vendor/brand term"
+vapi ai,voice,1K-10K,Medium,0%,0%,1.24,29.22,,learn,"volume is a Planner range (ads account inactive); bid PKR 347-8,181 converted at ~280 PKR/USD; vendor/brand term"
+retell ai pricing,voice,100-1K,Medium,0%,0%,12.25,44.99,,price,"volume is a Planner range (ads account inactive); bid PKR 3,430-12,598 converted at ~280 PKR/USD; vendor/brand term"
+retell ai developer,voice,10-100,Low,0%,+∞,,,,hire,volume is a Planner range (ads account inactive); no bid data
+retell ai,voice,10K-100K,Medium,0%,0%,3.66,41.77,,learn,"volume is a Planner range (ads account inactive); bid PKR 1,025-11,696 converted at ~280 PKR/USD; vendor/brand term"
+missed call text back,voice,100-1K,Low,900%,900%,7.93,19.18,,learn,"volume is a Planner range (ads account inactive); bid PKR 2,221-5,370 converted at ~280 PKR/USD"
+how do ai voice agents work,voice,,,,,,,,learn,no Planner data for this keyword
+hire ai voice agent developer,voice,,,,,,,,hire,no Planner data for this keyword
+conversational ai phone calls,voice,,,,,,,,learn,no Planner data for this keyword
+best ai receptionist,voice,100-1K,Low,900%,900%,14.55,27.73,,service,"volume is a Planner range (ads account inactive); bid PKR 4,073-7,764 converted at ~280 PKR/USD"
+best ai answering service,voice,100-1K,Low,0%,0%,16.9,51.97,,service,"volume is a Planner range (ads account inactive); bid PKR 4,732-14,552 converted at ~280 PKR/USD"
+ai voice assistant for business,voice,10-100,Low,0%,0%,19.81,89.12,,service,"volume is a Planner range (ads account inactive); bid PKR 5,546-24,955 converted at ~280 PKR/USD"
+ai voice agent services,voice,10-100,Low,0%,0%,13.8,39.61,,service,"volume is a Planner range (ads account inactive); bid PKR 3,865-11,091 converted at ~280 PKR/USD"
+ai voice agent pricing,voice,10-100,Low,0%,0%,13.78,53.88,,price,"volume is a Planner range (ads account inactive); bid PKR 3,859-15,087 converted at ~280 PKR/USD"
+ai voice agent platform,voice,100-1K,Low,0%,0%,15.19,51.48,,service,"volume is a Planner range (ads account inactive); bid PKR 4,254-14,413 converted at ~280 PKR/USD"
+ai voice agent for small business,voice,100-1K,Low,900%,900%,11.88,37.73,,service,"volume is a Planner range (ads account inactive); bid PKR 3,327-10,565 converted at ~280 PKR/USD"
+ai voice agent for sales,voice,10-100,Low,0%,+∞,17.17,57.75,,service,"volume is a Planner range (ads account inactive); bid PKR 4,808-16,170 converted at ~280 PKR/USD"
+ai voice agent for customer service,voice,100-1K,Low,0%,0%,33.08,148.54,,service,"volume is a Planner range (ads account inactive); bid PKR 9,263-41,592 converted at ~280 PKR/USD"
+ai voice agent for business,voice,10-100,Low,900%,900%,20.06,82.33,,service,"volume is a Planner range (ads account inactive); bid PKR 5,618-23,053 converted at ~280 PKR/USD"
+ai voice agent examples,voice,,,,,,,,learn,no Planner data for this keyword
+ai voice agent development,voice,10-100,Low,0%,0%,,,,service,volume is a Planner range (ads account inactive); no bid data
+ai voice agent cost,voice,10-100,Low,0%,+∞,,,,price,volume is a Planner range (ads account inactive); no bid data
+ai voice agent company,voice,10-100,Low,900%,900%,16.11,47.01,,service,"volume is a Planner range (ads account inactive); bid PKR 4,511-13,162 converted at ~280 PKR/USD"
+ai voice agent agency,voice,100-1K,Low,-90%,0%,11.88,27.32,,hire,"volume is a Planner range (ads account inactive); bid PKR 3,327-7,649 converted at ~280 PKR/USD"
+ai voice agent,voice,10K-100K,Low,-90%,900%,14.16,40.69,38,service,"volume is a Planner range (ads account inactive); bid PKR 3,965-11,392 converted at ~280 PKR/USD"
+ai virtual receptionist,voice,1K-10K,Low,-99%,0%,15.35,46.69,,service,"volume is a Planner range (ads account inactive); bid PKR 4,298-13,072 converted at ~280 PKR/USD"
+ai receptionist vs human receptionist,voice,10-100,Low,0%,+∞,,,,learn,volume is a Planner range (ads account inactive); no bid data
+ai receptionist service,voice,100-1K,Low,900%,0%,12.4,65.61,,service,"volume is a Planner range (ads account inactive); bid PKR 3,471-18,371 converted at ~280 PKR/USD"
+ai receptionist pricing,voice,100-1K,Low,0%,900%,10.26,46.73,,price,"volume is a Planner range (ads account inactive); bid PKR 2,873-13,083 converted at ~280 PKR/USD"
+ai receptionist for small business,voice,1K-10K,Low,-90%,900%,13.51,66.4,,service,"volume is a Planner range (ads account inactive); bid PKR 3,782-18,592 converted at ~280 PKR/USD"
+ai receptionist for roofing company,voice,,,,,,,,service,no Planner data for this keyword
+ai receptionist for plumbers,voice,10-100,Low,900%,900%,15.2,32.55,,service,"volume is a Planner range (ads account inactive); bid PKR 4,255-9,114 converted at ~280 PKR/USD"
+ai receptionist for law firm,voice,,,,,,,,service,no Planner data for this keyword
+ai receptionist for hvac,voice,10-100,Low,900%,+∞,16.73,41.61,,service,"volume is a Planner range (ads account inactive); bid PKR 4,683-11,650 converted at ~280 PKR/USD"
+ai receptionist for home services,voice,10-100,Low,0%,+∞,9.93,26.74,,service,"volume is a Planner range (ads account inactive); bid PKR 2,781-7,487 converted at ~280 PKR/USD"
+ai receptionist for dental office,voice,10-100,Low,0%,0%,21.5,120.3,,service,"volume is a Planner range (ads account inactive); bid PKR 6,019-33,685 converted at ~280 PKR/USD"
+ai receptionist for contractors,voice,10-100,Low,900%,+∞,14.62,29.71,,service,"volume is a Planner range (ads account inactive); bid PKR 4,093-8,318 converted at ~280 PKR/USD"
+ai receptionist cost,voice,100-1K,Low,900%,9900%,6.93,18.81,,price,"volume is a Planner range (ads account inactive); bid PKR 1,941-5,268 converted at ~280 PKR/USD"
+ai receptionist,voice,10K-100K,Low,-90%,900%,13.43,37.71,40,service,"volume is a Planner range (ads account inactive); bid PKR 3,760-10,559 converted at ~280 PKR/USD"
+ai phone receptionist,voice,100-1K,Medium,0%,0%,17.43,60.32,,service,"volume is a Planner range (ads account inactive); bid PKR 4,880-16,889 converted at ~280 PKR/USD"
+ai phone assistant for business,voice,10-100,Low,900%,900%,32.08,534.17,,service,"volume is a Planner range (ads account inactive); bid PKR 8,981-149,569 converted at ~280 PKR/USD"
+ai phone answering service,voice,1K-10K,Low,-90%,900%,14.96,55.62,,service,"volume is a Planner range (ads account inactive); bid PKR 4,188-15,575 converted at ~280 PKR/USD"
+ai phone agent,voice,1K-10K,Low,-90%,900%,16.58,67.67,,service,"volume is a Planner range (ads account inactive); bid PKR 4,643-18,949 converted at ~280 PKR/USD"
+ai outbound calling agent,voice,,,,,,,,service,no Planner data for this keyword
+ai call center agent,voice,100-1K,Medium,0%,0%,35.48,117.9,,service,"volume is a Planner range (ads account inactive); bid PKR 9,935-33,011 converted at ~280 PKR/USD"
+ai call answering,voice,100-1K,Medium,0%,0%,14.09,46.13,,service,"volume is a Planner range (ads account inactive); bid PKR 3,946-12,916 converted at ~280 PKR/USD"
+ai appointment setting,voice,10-100,Low,0%,0%,13.92,45.57,,service,"volume is a Planner range (ads account inactive); bid PKR 3,898-12,760 converted at ~280 PKR/USD"
+ai appointment scheduling phone,voice,,,,,,,,service,no Planner data for this keyword
+ai answering service pricing,voice,,,,,,,,price,no Planner data for this keyword
+ai answering service for small business,voice,100-1K,Medium,0%,0%,23.71,104.61,,service,"volume is a Planner range (ads account inactive); bid PKR 6,638-29,292 converted at ~280 PKR/USD"
+ai answering service for law firms,voice,10-100,Medium,0%,+∞,38.61,117.81,,service,"volume is a Planner range (ads account inactive); bid PKR 10,811-32,988 converted at ~280 PKR/USD"
+ai answering service for hvac,voice,10-100,Low,+∞,+∞,23.17,108.03,,service,"volume is a Planner range (ads account inactive); bid PKR 6,488-30,249 converted at ~280 PKR/USD"
+ai answering service for dentists,voice,,,,,,,,service,no Planner data for this keyword
+ai answering service for contractors,voice,10-100,Low,+∞,+∞,14.56,42.11,,service,"volume is a Planner range (ads account inactive); bid PKR 4,076-11,792 converted at ~280 PKR/USD"
+ai answering service,voice,1K-10K,Low,-90%,0%,13.65,38.48,,service,"volume is a Planner range (ads account inactive); bid PKR 3,823-10,773 converted at ~280 PKR/USD"
+24/7 ai phone answering,voice,,,,,,,,service,no Planner data for this keyword
