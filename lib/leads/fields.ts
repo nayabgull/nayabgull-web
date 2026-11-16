@@ -15,6 +15,8 @@ export type LeadField = (typeof LEAD_FIELDS)[number];
 export const HONEYPOT_FIELD = "company_website";
 /** Hidden field with the path of the page the form was sent from. */
 export const SOURCE_FIELD = "source";
+/** Hidden field with the kind of request: "quote" (default) or "demo". */
+export const TYPE_FIELD = "type";
 /** Field name the Cloudflare Turnstile widget adds to the form. */
 export const TURNSTILE_FIELD = "cf-turnstile-response";
 

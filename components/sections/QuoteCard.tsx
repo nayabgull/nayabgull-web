@@ -1,3 +1,4 @@
+import type { LeadRequest } from "@/components/forms/LeadForm.tsx";
 import { LeadForm } from "@/components/forms/LeadForm.tsx";
 
 /** The quote form in a glass card, with its own heading. Used in the hero and on /contact. */
@@ -6,6 +7,7 @@ export function QuoteCard({
   heading,
   text,
   source,
+  request,
   as: Heading = "h2",
 }: {
   /** Unique on the page: the card's anchor and the prefix of its heading id. */
@@ -13,6 +15,8 @@ export function QuoteCard({
   heading: string;
   text: string;
   source: string;
+  /** Set on pages whose form asks for a demo instead of a quote. */
+  request?: LeadRequest;
   as?: "h2" | "h3";
 }) {
   const headingId = `${id}-heading`;
@@ -25,6 +29,7 @@ export function QuoteCard({
       <LeadForm
         source={source}
         labelledBy={headingId}
+        request={request}
         turnstileSiteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
       />
     </div>

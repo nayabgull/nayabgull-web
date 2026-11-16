@@ -1,8 +1,14 @@
 import { z } from "zod";
 
 import type { LeadErrors, LeadField, LeadValues } from "./fields.ts";
-import { HONEYPOT_FIELD, LEAD_FIELDS, SOURCE_FIELD, TURNSTILE_FIELD } from "./fields.ts";
-import { BUSINESS_TYPES, SERVICES, values } from "./options.ts";
+import {
+  HONEYPOT_FIELD,
+  LEAD_FIELDS,
+  SOURCE_FIELD,
+  TURNSTILE_FIELD,
+  TYPE_FIELD,
+} from "./fields.ts";
+import { BUSINESS_TYPES, LEAD_TYPES, SERVICES, values } from "./options.ts";
 
 const trimmed = (max: number) => z.string().trim().max(max, `Keep this under ${max} characters.`);
 
@@ -13,6 +19,8 @@ export const leadSchema = z.object({
   businessType: z.enum(values(BUSINESS_TYPES), "Please pick your business type."),
   service: z.enum(values(SERVICES), "Please pick what you need."),
   message: trimmed(1000),
+  // Hidden field. Anything unexpected falls back to a plain quote request.
+  type: z.enum(values(LEAD_TYPES)).catch("quote"),
   source: z
     .string()
     .trim()
@@ -39,6 +47,7 @@ export type ParsedLead = { ok: true; lead: LeadInput } | { ok: false; errors: Le
 export function parseLead(form: FormData): ParsedLead {
   const result = leadSchema.safeParse({
     ...leadValues(form),
+    type: text(form, TYPE_FIELD),
     source: text(form, SOURCE_FIELD),
   });
   if (result.success) return { ok: true, lead: result.data };

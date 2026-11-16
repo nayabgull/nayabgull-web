@@ -507,8 +507,12 @@ export interface Lead {
   email: string;
   phone?: string | null;
   businessType: 'roofing' | 'hvac' | 'law-firm' | 'dental-medical' | 'real-estate' | 'contractor' | 'other';
-  service: 'website' | 'gohighlevel' | 'ai-automation' | 'full-system';
+  service: 'website' | 'gohighlevel' | 'ai-automation' | 'ai-agent' | 'full-system';
   message?: string | null;
+  /**
+   * Quote request or custom demo request.
+   */
+  type: 'quote' | 'demo';
   /**
    * The page the form was sent from.
    */
@@ -852,6 +856,7 @@ export interface LeadsSelect<T extends boolean = true> {
   businessType?: T;
   service?: T;
   message?: T;
+  type?: T;
   sourcePage?: T;
   status?: T;
   notes?: T;

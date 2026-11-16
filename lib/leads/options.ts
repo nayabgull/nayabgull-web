@@ -19,7 +19,14 @@ export const SERVICES = [
   { value: "website", label: "Website" },
   { value: "gohighlevel", label: "GoHighLevel" },
   { value: "ai-automation", label: "AI automation" },
+  { value: "ai-agent", label: "AI agent" },
   { value: "full-system", label: "Full system" },
+] as const satisfies readonly Option[];
+
+/** What the visitor asked for: a written quote (default) or a custom demo. */
+export const LEAD_TYPES = [
+  { value: "quote", label: "Quote" },
+  { value: "demo", label: "Demo" },
 ] as const satisfies readonly Option[];
 
 export const LEAD_STATUSES = [
@@ -32,6 +39,7 @@ export const LEAD_STATUSES = [
 
 export type BusinessType = (typeof BUSINESS_TYPES)[number]["value"];
 export type ServiceNeed = (typeof SERVICES)[number]["value"];
+export type LeadType = (typeof LEAD_TYPES)[number]["value"];
 export type LeadStatus = (typeof LEAD_STATUSES)[number]["value"];
 
 export const values = <T extends string>(options: readonly Option<T>[]): T[] =>
