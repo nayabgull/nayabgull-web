@@ -4,5 +4,8 @@ import { SITE_URL } from "@/lib/seo/site.ts";
 
 /** Indexable public URLs only. /admin and /api never belong here. CMS pages join as their routes ship. */
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [{ url: SITE_URL, lastModified: new Date() }];
+  return [
+    { url: SITE_URL, lastModified: new Date() },
+    { url: `${SITE_URL}/contact`, lastModified: new Date("2026-11-10") },
+  ];
 }

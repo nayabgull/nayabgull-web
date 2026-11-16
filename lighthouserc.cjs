@@ -1,6 +1,6 @@
 // Budgets from docs/rules/quality-gates.md. Every assertion is "error" — never "warn".
 const base = (process.env.AUDIT_BASE_URL ?? "http://localhost:3000").replace(/\/$/, "");
-const routes = ["/"]; // keep in sync with tests/routes.ts
+const routes = ["/", "/contact"]; // keep in sync with tests/routes.ts
 
 const MB = 1024 * 1024;
 

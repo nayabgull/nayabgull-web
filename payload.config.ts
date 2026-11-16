@@ -10,6 +10,7 @@ import { CaseStudies } from "./collections/CaseStudies.ts";
 import { editor } from "./collections/editor.ts";
 import { FAQs } from "./collections/FAQs.ts";
 import { Industries } from "./collections/Industries.ts";
+import { Leads } from "./collections/Leads.ts";
 import { Media } from "./collections/Media.ts";
 import { Posts } from "./collections/Posts.ts";
 import { Redirects } from "./collections/Redirects.ts";
@@ -26,7 +27,18 @@ export default buildConfig({
     importMap: { baseDir: dirname },
     meta: { titleSuffix: " | Nayab Gull CMS" },
   },
-  collections: [Users, Media, Authors, FAQs, Posts, Services, Industries, CaseStudies, Redirects],
+  collections: [
+    Users,
+    Media,
+    Authors,
+    FAQs,
+    Posts,
+    Services,
+    Industries,
+    CaseStudies,
+    Redirects,
+    Leads,
+  ],
   editor,
   secret: env.PAYLOAD_SECRET,
   db: postgresAdapter({

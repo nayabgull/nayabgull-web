@@ -43,7 +43,7 @@ test.describe("hero calls to action", () => {
 
   test("the same primary CTA closes the page", async ({ page }) => {
     await page.goto("/");
-    const final = page.locator("#book").getByRole("link", { name: "Book a free strategy call" });
+    const final = page.locator("#quote").getByRole("link", { name: "Book a free strategy call" });
     await expect(final).toHaveAttribute("href", STRATEGY_CALL_URL);
   });
 
@@ -130,7 +130,7 @@ test.describe("page structure", () => {
       "work",
       "about",
       "faq",
-      "book",
+      "quote",
     ]);
   });
 

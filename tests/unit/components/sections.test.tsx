@@ -17,7 +17,7 @@ describe("layout sections", () => {
     render(<SiteHeader />);
     expect(screen.getByRole("link", { name: "Skip to content" })).toHaveAttribute("href", "#main");
     expect(screen.getByRole("navigation", { name: "Primary" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Book a call" })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: "Book a free call" })).toHaveAttribute(
       "href",
       home.hero.primaryCta.href,
     );
@@ -29,10 +29,10 @@ describe("layout sections", () => {
     expect(screen.getByText(new RegExp(String(new Date().getFullYear())))).toBeInTheDocument();
   });
 
-  it("about shows the photo once one is set", () => {
-    render(<About about={{ ...home.about, photo: "/images/nayab-gull.webp" }} />);
-    expect(
-      screen.getByRole("img", { name: "Nayab Gull, full-stack developer in Lahore, Pakistan" }),
-    ).toHaveAttribute("data-src", "/images/nayab-gull.webp");
+  it("about is text only: no photo and no initials avatar", () => {
+    const { container } = render(<About about={home.about} />);
+    expect(screen.getByRole("heading", { level: 2, name: home.about.heading })).toBeInTheDocument();
+    expect(container.querySelector("img, [role='img']")).toBeNull();
+    expect(container.textContent).not.toMatch(/\bNG\b/);
   });
 });

@@ -18,7 +18,7 @@ export function FeaturedWork({ work }: { work: HomeContent["work"] }) {
         as="article"
         shine
         hover={false}
-        className="mt-12 grid grid-cols-1 gap-10 p-6 sm:p-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center"
+        className="mx-auto mt-12 grid max-w-3xl grid-cols-1 gap-8 p-6 sm:p-10"
         data-approved={study.approved}
       >
         <div className="min-w-0">
@@ -30,7 +30,7 @@ export function FeaturedWork({ work }: { work: HomeContent["work"] }) {
           ))}
           <TagList tags={study.tags} className="mt-6" />
         </div>
-        <div className="flex min-w-0 flex-col gap-6 rounded-md border-border-strong sm:border sm:border-dashed sm:p-6">
+        <div className="flex min-w-0 flex-col items-start gap-4 border-t border-border pt-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-small text-text-muted">{work.note}</p>
           <ButtonLink href={study.url} variant="secondary">
             {work.linkLabel}
