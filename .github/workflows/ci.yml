@@ -179,6 +179,8 @@ jobs:
       - uses: ./.github/actions/setup
       - uses: ./.github/actions/serve
       - run: BASE_URL=http://localhost:3000 pnpm test:e2e
+      # Same build, served a second time with SITE_MODE=coming-soon on its own port.
+      - run: pnpm test:coming-soon
 
   responsive:
     needs: build

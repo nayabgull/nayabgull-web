@@ -18,16 +18,39 @@ export const SOURCE_FIELD = "source";
 /** Field name the Cloudflare Turnstile widget adds to the form. */
 export const TURNSTILE_FIELD = "cf-turnstile-response";
 
-export type LeadValues = Partial<Record<LeadField, string>>;
-export type LeadErrors = Partial<Record<LeadField, string>>;
+/** Visible fields of the coming-soon "Request a custom demo" form. */
+export const DEMO_FIELDS = [
+  "name",
+  "email",
+  "businessName",
+  "website",
+  "businessType",
+  "service",
+] as const;
+export type DemoField = (typeof DEMO_FIELDS)[number];
 
-export interface LeadFormState {
+export type FieldValues<F extends string> = Partial<Record<F, string>>;
+export type FieldErrors<F extends string> = Partial<Record<F, string>>;
+export type LeadValues = FieldValues<LeadField>;
+export type LeadErrors = FieldErrors<LeadField>;
+
+/** State of a form after a submission, for any form built on submitForm. */
+export interface FormState<F extends string> {
   status: "idle" | "success" | "error";
   /** Shown above the form (success or a general error). */
   message: string;
-  errors: LeadErrors;
+  errors: FieldErrors<F>;
   /** What the visitor typed, so the form can be refilled after an error. */
-  values: LeadValues;
+  values: FieldValues<F>;
 }
 
+export type LeadFormState = FormState<LeadField>;
+export type DemoFormState = FormState<DemoField>;
+
 export const IDLE_STATE: LeadFormState = { status: "idle", message: "", errors: {}, values: {} };
+export const DEMO_IDLE_STATE: DemoFormState = {
+  status: "idle",
+  message: "",
+  errors: {},
+  values: {},
+};

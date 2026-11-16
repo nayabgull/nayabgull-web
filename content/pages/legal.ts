@@ -65,6 +65,7 @@ export const privacyPolicy: PageContent = {
       bullets: [
         "Contact details you give me: your name, email address, phone number and business name.",
         "What you enter in the quote form: your name, email, phone number, business type, the service you need and your message.",
+        "What you enter in the demo request form: your name, email, business name, website, industry and what you want to see.",
         "What you tell me about your project when you book a call, fill in a form, email me or text me.",
         "Booking details, such as the time you pick for a call.",
         "Records of the messages you and I exchange, including texts and emails.",
@@ -111,8 +112,8 @@ export const privacyPolicy: PageContent = {
       ],
       bullets: [
         "Hosting: Vercel serves this website.",
-        "Database: Neon stores the quote form submissions.",
-        "Spam protection: Cloudflare Turnstile checks that a real person sends the quote form.",
+        "Database: Neon stores the quote form and demo request form submissions.",
+        "Spam protection: Cloudflare Turnstile checks that a real person sends the quote form or the demo request form.",
         "Scheduling: Cal.com handles call bookings.",
         "CRM and messaging: GoHighLevel stores contacts and sends texts and emails, through its phone and email carriers.",
       ],
@@ -124,7 +125,7 @@ export const privacyPolicy: PageContent = {
       heading: "Cookies and what this site stores",
       paragraphs: [
         "This site does not use advertising cookies. It saves one small setting in your browser: your light or dark theme choice. That setting never leaves your device.",
-        "The quote form can load a spam check from Cloudflare when you start to fill it in. Cloudflare then receives technical data, such as your IP address, to tell people from bots.",
+        "The quote form and the demo request form can load a spam check from Cloudflare when you start to fill it in. Cloudflare then receives technical data, such as your IP address, to tell people from bots.",
         "When you click through to the booking page, you leave this site. That service has its own privacy policy and may set its own cookies.",
         "If I add analytics or other tools later, I will update this policy first and ask for your consent where the law requires it.",
       ],

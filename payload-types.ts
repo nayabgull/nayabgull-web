@@ -507,8 +507,20 @@ export interface Lead {
   email: string;
   phone?: string | null;
   businessType: 'roofing' | 'hvac' | 'law-firm' | 'dental-medical' | 'real-estate' | 'contractor' | 'other';
-  service: 'website' | 'gohighlevel' | 'ai-automation' | 'full-system';
+  service: 'website' | 'gohighlevel' | 'ai-automation' | 'full-system' | 'ai-agent' | 'ai-receptionist';
   message?: string | null;
+  /**
+   * Which form sent it. Demo requests come from the coming-soon page.
+   */
+  leadType: 'quote' | 'demo';
+  /**
+   * Demo requests only.
+   */
+  businessName?: string | null;
+  /**
+   * Demo requests only. Their current website, if they have one.
+   */
+  website?: string | null;
   /**
    * The page the form was sent from.
    */
@@ -852,6 +864,9 @@ export interface LeadsSelect<T extends boolean = true> {
   businessType?: T;
   service?: T;
   message?: T;
+  leadType?: T;
+  businessName?: T;
+  website?: T;
   sourcePage?: T;
   status?: T;
   notes?: T;

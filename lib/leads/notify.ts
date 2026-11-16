@@ -1,4 +1,4 @@
-import type { LeadInput } from "./schema.ts";
+import type { DemoInput, LeadInput } from "./schema.ts";
 
 /**
  * ─────────────────────────── EMAIL NOTIFICATION HOOK ───────────────────────────
@@ -8,6 +8,6 @@ import type { LeadInput } from "./schema.ts";
  * lose the lead: submitLead saves to Payload first and ignores errors from this hook.
  * ────────────────────────────────────────────────────────────────────────────────
  */
-export function notifyNewLead(_lead: LeadInput): Promise<void> {
+export function notifyNewLead(_lead: LeadInput | DemoInput): Promise<void> {
   return Promise.resolve();
 }
