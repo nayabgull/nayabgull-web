@@ -13,6 +13,23 @@ export interface Link {
   href: string;
 }
 
+/**
+ * Brand identity (one voice on every page): a small web development agency run by Nayab Gull. She
+ * leads every project and builds the core work; on bigger projects she brings in trusted developers
+ * she has worked with before. Copy is first person singular. TRUSTED_TEAM_LINE is the only sentence
+ * on the site that may say "we" (tests/unit/content/brand-voice.test.tsx). Never invent team
+ * members, headcount, photos or roles.
+ */
+export const IDENTITY_LINE = "I run a small web development agency for US businesses.";
+
+/** The one benefit every page repeats, word for word. */
+export const DIRECT_BENEFIT =
+  "You work directly with the person who builds your system. No account managers, no handoffs.";
+
+/** The only place "we" is allowed: bigger projects with trusted developers. */
+export const TRUSTED_TEAM_LINE =
+  "On bigger projects, I bring in trusted developers I have worked with before, and we build it together while I lead the work.";
+
 /** The one primary CTA of every page (content.md §5): a free call on Cal.com. */
 export const CALL_CTA: Link = { label: "Book a free call", href: STRATEGY_CALL_URL };
 
@@ -148,7 +165,7 @@ export const home: HomeContent = {
   meta: {
     title: "Web Development Agency for US Businesses | Nayab Gull",
     description:
-      "A one-person web development agency for US businesses: fast websites, GoHighLevel CRM and AI automation that books calls. Book a free strategy call.",
+      "A small web development agency for US businesses: fast websites, GoHighLevel CRM and AI automation that books calls. Book a free strategy call.",
   },
 
   hero: {
@@ -159,7 +176,7 @@ export const home: HomeContent = {
       highlight: "web development agency",
       after: " that turns your leads into booked calls",
     },
-    lede: "I run a small web development agency for US businesses. I build fast websites, set up lead systems, and add AI that calls every new lead within 60 seconds.",
+    lede: `${IDENTITY_LINE} I build fast websites, set up lead systems, and add AI that calls every new lead within 60 seconds.`,
     proof: ["5+ years", "400+ projects delivered", "Clients in the US, UK and worldwide"],
     primaryCta: CALL_CTA,
     secondaryCta: { label: "See services", href: "#services" },
@@ -304,13 +321,13 @@ export const home: HomeContent = {
 
   about: {
     eyebrow: "About me",
-    heading: "The developer behind the work",
+    heading: "The person behind the agency",
     name: "Nayab Gull",
     role: "Full-stack developer",
     location: "Lahore, Pakistan",
     text: [
-      "Hi, I'm Nayab. I'm a full-stack developer in Lahore, Pakistan, and most of my clients run businesses in the US.",
-      "For more than five years, I have built websites, CRMs and automations for clients on Upwork, on Fiverr and through referrals. You work with me directly, from the first call to launch day.",
+      "Hi, I'm Nayab. I run a small web development agency from Lahore, Pakistan, and most of my clients run businesses in the US.",
+      "For more than five years, I have built websites, CRMs and automations for clients on Upwork, on Fiverr and through referrals. I lead every project myself and build the core work.",
       "My goal is simple. When a lead reaches out, your business answers fast and books the call, even when you are busy on a job.",
     ],
     link: { label: "More about Nayab Gull", href: "/about" },
@@ -353,8 +370,7 @@ export const home: HomeContent = {
       },
       {
         question: "Will I work with you or with a team?",
-        answer:
-          "You work with me. I write the code and stay your main contact. When a project needs more hands, like a designer or a copywriter, I bring in people I trust and lead the work myself. You still talk to one person, and you never pay for a sales team or an account manager.",
+        answer: `You work with me. I lead every project and build the core work myself.\n\n${TRUSTED_TEAM_LINE} You still talk to me the whole time. ${DIRECT_BENEFIT}`,
       },
       {
         question: "I already use GoHighLevel or another CRM. Can you work with it?",

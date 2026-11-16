@@ -15,7 +15,7 @@ export const gohighlevelAgency: PageContent = {
   meta: {
     title: "GoHighLevel Agency: Setup and Automation | Nayab Gull",
     description:
-      "A one-person GoHighLevel agency for US businesses: CRM setup, pipelines, texts and AI follow-up. Setup starts at $750. Book a free strategy call.",
+      "A small GoHighLevel agency for US businesses: CRM setup, pipelines, texts and AI follow-up, done by me. Setup starts at $750. Book a free strategy call.",
   },
 
   hero: {
@@ -25,7 +25,7 @@ export const gohighlevelAgency: PageContent = {
       highlight: "GoHighLevel agency",
       after: " that sets up your CRM and answers every lead",
     },
-    lede: "I build your pipelines, texts, emails, calendars and AI follow-up inside your own account. You work with one person who knows the platform, not a ticket queue.",
+    lede: "I build your pipelines, texts, emails, calendars and AI follow-up inside your own account. You work with the person who knows the platform, not a ticket queue.",
     proof: ["5+ years", "400+ projects delivered", "Setup starts at $750"],
     primaryCta: CALL_CTA,
     form: QUOTE_FORM,
@@ -87,7 +87,7 @@ export const gohighlevelAgency: PageContent = {
       paragraphs: [
         "A GoHighLevel expert turns an empty account into a working sales system. GoHighLevel, or GHL for short, is a CRM and marketing automation platform. A CRM is the tool that stores your contacts and tracks every deal.",
         "The platform puts your leads, texts, emails, calendars, forms and reviews in one place. That only helps when someone sets it up around how your business sells. My job is that setup.",
-        "As a small GoHighLevel agency, I map your sales steps first. Then I build each part, test it with real phone numbers and show your team how to use it. You do not need to learn the software to see results from it.",
+        "I run a small GoHighLevel agency where I set everything up myself. I map your sales steps first. Then I build each part, test it with real phone numbers and show your team how to use it. You do not need to learn the software to see results from it.",
       ],
       bullets: [
         "Every new lead gets a reply in seconds, by text and email.",

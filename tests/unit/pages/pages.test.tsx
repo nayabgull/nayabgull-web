@@ -104,11 +104,6 @@ describe.each(PAGES.filter((page) => !page.noindex))("rendered page $path", (con
     expect(content.hero.form !== undefined).toBe(content.path !== "/about");
   });
 
-  it('speaks in the first person singular, never as "we"', () => {
-    expect(page.bodyText).not.toMatch(/\b(we|we're|we'll|we've|our|ours|let's)\b/i);
-    expect(page.bodyText).not.toMatch(/\bus\b/);
-  });
-
   it("shows enough FAQ items for its page type, each one in the FAQPage JSON-LD", () => {
     const min = MIN_FAQ[entry?.pageType ?? ""] ?? 0;
     expect(content.faq?.items.length ?? 0).toBeGreaterThanOrEqual(min);

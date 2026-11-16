@@ -14,7 +14,7 @@ export const webDesignDevelopment: PageContent = {
   meta: {
     title: "Website Design Company for Small Business | Nayab Gull",
     description:
-      "A one-person website design company for US small businesses. Fast, custom sites that bring in leads. Business websites start at $1,500. Book a free call.",
+      "A small website design company for US small businesses. Fast, custom sites that bring in leads. Business websites start at $1,500. Book a free call.",
   },
 
   hero: {
@@ -22,7 +22,7 @@ export const webDesignDevelopment: PageContent = {
     headline: {
       before: "A ",
       highlight: "website design company",
-      after: " of one, building sites that bring in leads",
+      after: " for small businesses, building sites that bring in leads",
     },
     lede: "I design and code your site myself. It loads fast, reads clearly and gives every visitor one obvious next step: call, book or ask for a quote.",
     proof: ["5+ years", "400+ projects delivered", "Business websites start at $1,500"],
@@ -125,7 +125,7 @@ export const webDesignDevelopment: PageContent = {
       paragraphs: [
         "It depends on your budget and how much contact you want. A DIY builder is cheapest, but your time is the hidden cost. A low-cost website creation company is quick, though you often get a template and a queue.",
         "Large web design firms bring a full team and a matching price. That makes sense for big brands with many people who must approve things.",
-        "A one-person web design agency like mine sits in between. You talk to the person who writes the code. Decisions take a message, not a meeting, and the quote has no account-manager fees inside it.",
+        "A small web design agency like mine sits in between. I lead the project and write the core code myself. Decisions take a message, not a meeting, and the quote has no account-manager fees inside it.",
       ],
     },
     {
@@ -178,7 +178,7 @@ export const webDesignDevelopment: PageContent = {
       eyebrow: "Pricing",
       heading: "What a website development company charges here",
       intro:
-        "I am a small website development company, so the quote covers the work and little else. These starting prices show the range.",
+        "My agency is a small website development company, so the quote covers the work and little else. These starting prices show the range.",
       items: [
         {
           name: "Landing page",
@@ -250,7 +250,7 @@ export const webDesignDevelopment: PageContent = {
 
   faq: {
     eyebrow: "FAQ",
-    heading: "Questions about working with a web design agency of one",
+    heading: "Questions about working with a small web design agency",
     items: [
       {
         question: "How much does a small-business website cost?",

@@ -216,7 +216,7 @@ export const roofingHvacWebsiteDesign: PageContent = {
       eyebrow: "Proof",
       heading: "What I bring to your build",
       paragraphs: [
-        "My background is full-stack development, with more than five years of work and 400+ projects behind me. You get the site, the forms and the follow-up from one person, so nothing gets lost between vendors.",
+        "My background is full-stack development, with more than five years of work and 400+ projects behind me. I build the site, the forms and the follow-up myself, so nothing gets lost between vendors.",
         [
           "I also run my own lead product, ",
           { text: "SmartQuoteDesk", href: "https://smartquotedesk.com" },

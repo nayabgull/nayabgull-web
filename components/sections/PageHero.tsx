@@ -2,6 +2,7 @@ import { Breadcrumbs } from "@/components/seo/Breadcrumbs.tsx";
 import { ButtonLink } from "@/components/ui/ButtonLink.tsx";
 import { Container } from "@/components/ui/Container.tsx";
 import { ArrowDownIcon } from "@/components/ui/icons.tsx";
+import { IDENTITY_LINE } from "@/content/home.ts";
 import type { PageContent, PageHero as PageHeroContent } from "@/content/pages/types.ts";
 
 import { QuoteCard } from "./QuoteCard.tsx";
@@ -67,7 +68,8 @@ export function PageHero({ content }: { content: Pick<PageContent, "hero" | "nam
       <p
         className={`mt-4 text-lead text-text-muted ${centered ? "mx-auto max-w-[60ch]" : "max-w-[52ch]"}`}
       >
-        {hero.lede}
+        {/* The same identity line opens every hero subline (content/home.ts). */}
+        {IDENTITY_LINE} {hero.lede}
       </p>
       <Proof facts={hero.proof} centered={centered} />
       <Ctas hero={hero} centered={centered} />

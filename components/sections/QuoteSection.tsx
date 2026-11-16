@@ -4,6 +4,7 @@ import { ButtonLink } from "@/components/ui/ButtonLink.tsx";
 import { Section } from "@/components/ui/Section.tsx";
 import { SectionHeader } from "@/components/ui/SectionHeader.tsx";
 import type { Quote } from "@/content/home.ts";
+import { DIRECT_BENEFIT } from "@/content/home.ts";
 
 import { QuoteCard } from "./QuoteCard.tsx";
 
@@ -17,6 +18,7 @@ export function QuoteSection({ quote, source }: { quote: Quote; source: string }
         heading={quote.heading}
         intro={quote.text}
       />
+      <p className="mx-auto mt-4 max-w-[60ch] text-center font-semibold">{DIRECT_BENEFIT}</p>
       <div data-cta-zone className="mt-10">
         <QuoteCard
           id="quote-form"

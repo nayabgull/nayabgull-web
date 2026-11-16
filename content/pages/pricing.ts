@@ -161,7 +161,7 @@ export const pricing: PageContent = {
       heading: "Why is website design pricing so different everywhere?",
       paragraphs: [
         "Website design pricing varies because you are buying very different things. A DIY builder sells you software, and you do the work. Template shops sell speed. Large agencies sell a full team and its overhead.",
-        "I sell one experienced person's time and judgment. There is no sales team, no office and no account manager in my price. That is why my numbers sit below most agencies and above the cheapest template shops.",
+        "I run a small agency and build the core work myself. There is no sales team, no office and no account manager in my price. That is why my numbers sit below most agencies and above the cheapest template shops.",
         "The cheapest quote is rarely the lowest cost. A slow site that brings no leads is expensive at any price.",
       ],
     },

@@ -24,7 +24,7 @@ export const hireFullStackDeveloper: PageContent = {
       highlight: "Hire full stack developer",
       after: " Nayab Gull for your next build",
     },
-    lede: "I plan, design, code and launch. You get one senior person who handles the front end, the back end and the tools that connect them.",
+    lede: "When you hire me, you hire the developer who runs the agency. I plan, design, code and launch the front end, the back end and the tools that connect them.",
     proof: ["5+ years", "400+ projects delivered", "Clients in the US, UK and worldwide"],
     primaryCta: CALL_CTA,
     form: QUOTE_FORM,
@@ -61,7 +61,7 @@ export const hireFullStackDeveloper: PageContent = {
       eyebrow: "The basics",
       heading: "What do you get when you hire a web developer who is full stack?",
       paragraphs: [
-        "You get one person who can build the whole product. Full stack means both halves of a web project. The front end is what visitors see and click. The back end is the logic, the database and the links to other tools.",
+        "You get the developer who runs the agency and can build the whole product. Full stack means both halves of a web project. The front end is what visitors see and click. The back end is the logic, the database and the links to other tools.",
         "When you hire a web developer for only one half, you become the go-between. With both halves in one head, the design, the data and the deadlines stay in step.",
         "I also set up hosting, domains and tracking. So the handover is a working product, not a folder of files.",
       ],
@@ -133,7 +133,7 @@ export const hireFullStackDeveloper: PageContent = {
       eyebrow: "Buying guide",
       heading: "How to vet a freelance web developer before you sign",
       paragraphs: [
-        "Before you hire any freelance web developer, including me, run a short check. It takes one call and saves months of pain.",
+        "Before you hire any freelance web developer or agency, mine included, run a short check. It takes one call and saves months of pain.",
         "Good answers are plain and specific. Vague answers are your warning sign. If someone cannot explain their work simply, they will not explain your project simply either.",
       ],
       bullets: [

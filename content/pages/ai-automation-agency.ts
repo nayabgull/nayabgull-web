@@ -15,7 +15,7 @@ export const aiAutomationAgency: PageContent = {
   meta: {
     title: "AI Automation Agency for Small Business | Nayab Gull",
     description:
-      "A one-person AI automation agency for US small businesses: AI receptionists, chatbots and workflows that answer leads fast. Book a free strategy call.",
+      "A small AI automation agency for US small businesses: AI receptionists, chatbots and workflows that answer leads fast. Book a free strategy call.",
   },
 
   hero: {
@@ -87,7 +87,7 @@ export const aiAutomationAgency: PageContent = {
       paragraphs: [
         "AI automation services hand repeat tasks to software that can read, write, talk and decide within rules you set. Old automation only followed fixed steps. AI adds language, so it can hold a call or sort a messy email.",
         "Think of it as a new hire who never sleeps and follows your script. It answers the first call, asks the basic questions and passes the hard cases to you. It does not replace your judgment.",
-        "As a one-person AI automation agency, I pick the task, write the rules and connect the tools. Then I test it with real cases before any customer meets it.",
+        "In my small AI automation agency, I set up every build myself. I pick the task, write the rules and connect the tools. Then I test it with real cases before any customer meets it.",
       ],
       bullets: [
         "Leads get an answer in seconds, day or night.",

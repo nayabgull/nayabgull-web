@@ -1,4 +1,4 @@
-import { CALL_CTA, home } from "../home.ts";
+import { CALL_CTA, DIRECT_BENEFIT, home, TRUSTED_TEAM_LINE } from "../home.ts";
 
 import type { PageContent } from "./types.ts";
 
@@ -7,6 +7,7 @@ import type { PageContent } from "./types.ts";
  * The page is text only: no photo and no avatar.
  * TODO(nayab): send your real LinkedIn, GitHub and Upwork profile URLs. They go into the Person
  * JSON-LD as `sameAs` (seo.md §6) and into a "Find me online" line on this page. None are shown now.
+ * Identity: a small web development agency run by Nayab Gull (see IDENTITY_LINE in content/home.ts).
  * TODO(nayab): this page states only facts you have confirmed. Add your own story (how you started,
  * what you studied, why you do this work) in your own words; never let anyone invent it.
  */
@@ -17,7 +18,7 @@ export const about: PageContent = {
   meta: {
     title: "About Nayab Gull, Full-Stack Developer | Nayab Gull",
     description:
-      "Meet Nayab Gull, a full-stack developer in Lahore, Pakistan, who builds websites, GoHighLevel CRMs and AI automation for US businesses. Book a free call.",
+      "Meet Nayab Gull, who runs a small web development agency for US businesses: websites, GoHighLevel CRMs and AI automation, built by her. Book a free call.",
   },
 
   hero: {
@@ -27,8 +28,8 @@ export const about: PageContent = {
       highlight: "Nayab Gull",
       after: ". I build websites and automation that book calls.",
     },
-    lede: "I am a full-stack developer in Lahore, Pakistan. For more than five years, I have built sites, CRMs and AI tools for business owners in the US, the UK and beyond.",
-    proof: ["5+ years", "400+ projects delivered", "One person, start to finish"],
+    lede: "I lead every project myself from Lahore, Pakistan, and I build the core work. For more than five years, I have built sites, CRMs and AI tools for owners in the US, the UK and beyond.",
+    proof: ["5+ years", "400+ projects delivered", "You work with me, start to finish"],
     primaryCta: CALL_CTA,
   },
 
@@ -39,12 +40,13 @@ export const about: PageContent = {
       about: {
         ...home.about,
         eyebrow: "The short version",
-        heading: "Who you will be working with",
+        heading: "A small agency, led by the person who builds",
         link: undefined,
         text: [
-          "I write code for a living, and I like the business side just as much. A site is only good if it brings you work.",
-          "Clients first found me on Upwork and Fiverr. Many stayed, and many sent friends. That is how one-off gigs turned into 400+ finished projects.",
-          "Today I work with a small number of clients at a time, so each one gets my full attention.",
+          "I started as a full-stack developer. Clients first found me on Upwork and Fiverr. Many stayed, and many sent friends. That is how one-off gigs turned into 400+ finished projects.",
+          "Today I run a small web development agency for US businesses. I lead every project myself, and I build the core work: the site, the CRM setup and the automation.",
+          TRUSTED_TEAM_LINE,
+          "I take on a small number of clients at a time, so each one gets my full attention.",
         ],
       },
     },
@@ -60,9 +62,9 @@ export const about: PageContent = {
           " covers everything from a single landing page to a full business site.",
         ],
         [
-          "Second, I set up CRMs. As a ",
-          { text: "GoHighLevel agency of one", href: "/gohighlevel-agency" },
-          ", I build the pipelines, texts and calendars that keep leads from going cold.",
+          "Second, I set up CRMs. My ",
+          { text: "small GoHighLevel agency", href: "/gohighlevel-agency" },
+          " builds the pipelines, texts and calendars that keep leads from going cold, and I set them up myself.",
         ],
         [
           "Third, I add AI. My ",
@@ -83,7 +85,7 @@ export const about: PageContent = {
       items: [
         {
           title: "You talk to the builder",
-          text: "There is no account manager in the middle. When you ask a question, the person who wrote the code answers it.",
+          text: DIRECT_BENEFIT,
         },
         {
           title: "You own everything",
@@ -153,9 +155,8 @@ export const about: PageContent = {
     heading: "Quick answers about me",
     items: [
       {
-        question: "Are you a company or one person?",
-        answer:
-          "One person. I plan, design and code the work myself. When a project needs extra hands, such as a copywriter, I bring in people I trust and stay in charge of the result.",
+        question: "Are you an agency or a freelancer?",
+        answer: `I run a small web development agency, and I lead every project myself. I plan the work, and I build the core of it.\n\n${TRUSTED_TEAM_LINE} ${DIRECT_BENEFIT}`,
       },
       {
         question: "Where are you based?",

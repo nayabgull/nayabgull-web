@@ -1,5 +1,5 @@
 import type { Faq, Link } from "./home.ts";
-import { CALL_CTA } from "./home.ts";
+import { CALL_CTA, DIRECT_BENEFIT } from "./home.ts";
 
 /**
  * /contact copy. Primary keyword: "contact nayab gull" (brand), approved by Nayab on November 14, 2026.
@@ -60,7 +60,7 @@ export const contact: ContactContent = {
   next: {
     eyebrow: "What happens next",
     heading: "Three steps after you hit send",
-    intro: "No sales team and no long wait. Here is what you can expect from me.",
+    intro: DIRECT_BENEFIT,
     steps: [
       {
         title: "I read your message",

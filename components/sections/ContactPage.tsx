@@ -7,6 +7,7 @@ import { Container } from "@/components/ui/Container.tsx";
 import { Section } from "@/components/ui/Section.tsx";
 import { SectionHeader } from "@/components/ui/SectionHeader.tsx";
 import type { ContactContent } from "@/content/contact.ts";
+import { IDENTITY_LINE } from "@/content/home.ts";
 import { contactJsonLd } from "@/lib/seo/contact-jsonld.ts";
 
 import { Faq } from "./Faq.tsx";
@@ -35,7 +36,9 @@ export function ContactPage({ content, email }: { content: ContactContent; email
               <span className="text-gradient">{hero.headline.highlight}</span>
               {hero.headline.after}
             </h1>
-            <p className="mx-auto mt-5 max-w-[60ch] text-lead text-text-muted">{hero.lede}</p>
+            <p className="mx-auto mt-5 max-w-[60ch] text-lead text-text-muted">
+              {IDENTITY_LINE} {hero.lede}
+            </p>
           </div>
           <div className="mt-10">
             <QuoteCard
