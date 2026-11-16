@@ -11,6 +11,12 @@ const envSchema = z.object({
   DATABASE_URI_DIRECT: postgresUrl.optional(),
   /** Signs Payload sessions. Generate with `openssl rand -hex 32`. */
   PAYLOAD_SECRET: z.string().min(32, "must be at least 32 characters"),
+  /**
+   * Cloudflare Turnstile keys for the lead form. Both optional: with no secret the form skips the
+   * Turnstile check (honeypot and Zod still run), so the build and local work need no keys.
+   */
+  TURNSTILE_SECRET_KEY: z.string().min(1).optional(),
+  NEXT_PUBLIC_TURNSTILE_SITE_KEY: z.string().min(1).optional(),
 });
 
 export type Env = z.infer<typeof envSchema>;
