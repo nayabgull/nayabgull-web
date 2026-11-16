@@ -4,10 +4,13 @@ import type { Block, PageContent } from "@/content/pages/types.ts";
 import { pageJsonLd } from "@/lib/seo/page-jsonld.ts";
 
 import { About } from "./About.tsx";
+import { AgentFlow } from "./blocks/AgentFlow.tsx";
 import { CardsSection } from "./blocks/CardsSection.tsx";
+import { CompareSection } from "./blocks/CompareSection.tsx";
 import { LinksSection } from "./blocks/LinksSection.tsx";
 import { PricesSection } from "./blocks/PricesSection.tsx";
 import { ProseSection } from "./blocks/ProseSection.tsx";
+import { StackSection } from "./blocks/StackSection.tsx";
 import { Faq } from "./Faq.tsx";
 import { LeadFlow } from "./LeadFlow.tsx";
 import { PageHero } from "./PageHero.tsx";
@@ -30,6 +33,12 @@ function BlockSection({ block }: { block: Block }) {
       return <LeadFlow flow={block} id={block.id} />;
     case "profile":
       return <About about={block.about} />;
+    case "compare":
+      return <CompareSection block={block} />;
+    case "agent-flow":
+      return <AgentFlow block={block} />;
+    case "stack":
+      return <StackSection block={block} />;
   }
 }
 
@@ -46,7 +55,11 @@ export function ContentPage({ content }: { content: PageContent }) {
         <BlockSection key={block.id} block={block} />
       ))}
       {content.faq ? <Faq faq={content.faq} /> : null}
-      <QuoteSection quote={{ ...home.quote, ...content.closing }} source={content.path} />
+      <QuoteSection
+        quote={{ ...home.quote, ...content.closing }}
+        source={content.path}
+        request={content.request}
+      />
     </>
   );
 }

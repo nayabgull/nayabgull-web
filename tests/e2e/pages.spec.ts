@@ -54,10 +54,15 @@ for (const content of PAGES) {
       test("primary CTA is above the fold", async ({ page }) => {
         await page.goto(content.path);
         const hero = page.locator("section", { has: page.locator("h1") });
-        const top = hero.getByRole("link", { name: "Book a free call" });
+        const primary = content.hero.primaryCta ?? { label: "", href: "" };
+        const top = hero.getByRole("link", { name: primary.label });
         await expect(top).toBeInViewport();
-        await expect(top).toHaveAttribute("href", STRATEGY_CALL_URL);
-        await expect(top).toHaveAttribute("rel", /noopener/);
+        await expect(top).toHaveAttribute("href", primary.href);
+        // Every hero also offers the call (the primary CTA everywhere except on a demo page).
+        const call = hero.getByRole("link", { name: "Book a free call" });
+        await expect(call).toBeInViewport();
+        await expect(call).toHaveAttribute("href", STRATEGY_CALL_URL);
+        await expect(call).toHaveAttribute("rel", /noopener/);
       });
     }
 
@@ -78,7 +83,7 @@ for (const content of PAGES) {
       const hero = page.locator("section", { has: page.locator("h1") });
       await expect(hero.getByRole("form")).toHaveCount(content.hero.form ? 1 : 0);
       if (!content.hero.form) return;
-      await expect(hero.getByRole("form", { name: "Get a free quote" })).toBeVisible();
+      await expect(hero.getByRole("form", { name: content.hero.form.heading })).toBeVisible();
       await expect(hero.locator('input[name="source"]')).toHaveValue(content.path);
     });
 
@@ -161,6 +166,7 @@ test.describe("site navigation", () => {
     await services.focus();
     await page.keyboard.press("Enter");
     await expect(pricing).toBeVisible();
+    await expect(nav.getByRole("link", { name: "AI agent development" })).toBeVisible();
     await expect(nav.getByRole("link", { name: "Web design and development" })).toBeVisible();
     await expect(nav.getByRole("link", { name: "Hire a full stack developer" })).toBeVisible();
     await page.keyboard.press("Escape");

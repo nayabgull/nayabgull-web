@@ -29,6 +29,7 @@ Rules: one primary keyword per page; a keyword appears as a target on one page o
 | Page | URL | Primary | Volume · Comp · Bid | Secondary |
 | --- | --- | --- | --- | --- |
 | Hub | /ai-automation-agency | ai automation agency | 1K–10K · Low · $20 | ai automation services, ai workflow automation, marketing automation agency, business automation consultant, ai integration services |
+| AI agents | /ai-automation-agency/ai-agent-development | ai agent development services | 100–1K · Low · $57 | ai agent development company, ai agent development, custom ai agent development, custom ai agents for business, ai agents for business (1K–10K), hire ai agent developer, ai agent developer, ai agent agency, ai agent services, ai agent for small business, agentic ai development company, ai agent integration services |
 | n8n / Make / Zapier | /ai-automation-agency/n8n-make-zapier | n8n automation | 1K–10K · Medium · $16 | n8n workflow, n8n expert, make com automation, make com expert, zapier workflow automation, hire zapier expert, zapier automation agency |
 | AI chatbots | /ai-automation-agency/ai-chatbot-development | ai chatbot development services | 100–1K · Low · $38 | chatbot development services, chat bot development, whatsapp business api integration, chatgpt api integration |
 | AI voice agents | /ai-automation-agency/ai-voice-agents | ai receptionist for small business | volume to verify | ai voice agent, ai phone answering |

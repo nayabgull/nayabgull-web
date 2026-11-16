@@ -1,3 +1,4 @@
+import type { LeadType, ServiceNeed } from "../../lib/leads/options.ts";
 import type { Flow, HomeContent, Link } from "../home.ts";
 
 /**
@@ -19,7 +20,10 @@ export interface PageHero {
   lede: string;
   /** Only confirmed facts. Rendered as one line above the CTAs. */
   proof: readonly string[];
-  /** "Book a free call" (Cal.com). Every page except the legal ones has it. */
+  /**
+   * "Book a free call" (Cal.com) on every page except the legal ones. A demo page (`request`) makes
+   * "Get a free demo" (the form) primary and keeps "Book a free call" as `secondaryCta`.
+   */
   primaryCta?: Link;
   secondaryCta?: Link;
   /**
@@ -99,8 +103,52 @@ export interface ProfileBlock {
   about: HomeContent["about"];
 }
 
+/** A comparison table: the first column names the row, the others compare the options. */
+export interface CompareBlock extends BlockBase {
+  kind: "compare";
+  /** Header of the first column, for example "Question". */
+  rowLabel: string;
+  /** The options being compared, in column order. */
+  columns: readonly string[];
+  /** Each row has one full sentence per column. */
+  rows: readonly { label: string; cells: readonly string[] }[];
+  note?: Rich;
+}
+
+export interface AgentStep {
+  /** Short name on the step button, for example "Trigger". */
+  label: string;
+  title: string;
+  text: string;
+  /** One concrete case, in plain words. */
+  example: string;
+  icon: NonNullable<Flow["steps"][number]["icon"]>;
+}
+
+/** The click-through "how an agent works" sequence. Pure CSS, one step open at a time. */
+export interface AgentFlowBlock extends BlockBase {
+  kind: "agent-flow";
+  steps: readonly AgentStep[];
+  footer: string;
+}
+
+/** Tools grouped by job, shown as text badges (never third-party logos). */
+export interface StackBlock extends BlockBase {
+  kind: "stack";
+  groups: readonly { title: string; text: Rich; tags: readonly string[] }[];
+}
+
 export type Block =
-  ProseBlock | CardsBlock | StepsBlock | PricesBlock | LinksBlock | FlowBlock | ProfileBlock;
+  | ProseBlock
+  | CardsBlock
+  | StepsBlock
+  | PricesBlock
+  | LinksBlock
+  | FlowBlock
+  | ProfileBlock
+  | CompareBlock
+  | AgentFlowBlock
+  | StackBlock;
 
 export interface ServiceSchema {
   name: string;
@@ -113,6 +161,8 @@ export interface PageContent {
   path: string;
   /** Short name for breadcrumbs. */
   name: string;
+  /** Hub above this page. Adds a middle step to the breadcrumb trail and its JSON-LD. */
+  parent?: { name: string; path: string };
   /** ISO date of the last content review (sitemap lastModified). */
   updated: string;
   meta: { title: string; description: string };
@@ -123,7 +173,12 @@ export interface PageContent {
    * Heading and one line of the closing quote section. Every page ends with that section (quote
    * form plus "Book a free call"); pages without their own closing copy use the homepage's.
    */
-  closing?: { heading: string; text: string };
+  closing?: { heading: string; text: string; form?: { heading: string; text: string } };
+  /**
+   * Set on a demo page: both forms send this request type, with the service preselected. Without
+   * it the forms ask for a quote.
+   */
+  request?: { type: LeadType; service?: ServiceNeed };
   /** Service JSON-LD for hub, service and industry pages (seo.md §6). */
   service?: ServiceSchema;
   /** Person JSON-LD (About page). */
