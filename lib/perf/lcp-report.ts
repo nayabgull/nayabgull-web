@@ -1,8 +1,6 @@
 /**
- * Explains a mobile LCP in the CI log. Lighthouse's mobile LCP is simulated (Lantern): it counts
- * every request that finished before the observed LCP frame, so a script that loads before the
- * hero text is shown adds its download time to LCP. The report prints the facts needed to see
- * that: the LCP element and phases, the observed FCP/LCP and when each script finished.
+ * Explains a mobile LCP in the CI log: the LCP element and phases, the observed FCP/LCP, when each
+ * script finished and the long main-thread tasks near LCP, so a missed budget shows its cause.
  */
 
 interface Node {
@@ -81,7 +79,7 @@ export function lcpReport(lhr: Lhr): string[] {
     .map((task) => `${ms(task.startTime)}+${ms(task.duration)}`);
 
   return [
-    `LCP ${lhr.requestedUrl ?? "?"}: simulated ${ms(audits["largest-contentful-paint"]?.numericValue)} ms`,
+    `LCP ${lhr.requestedUrl ?? "?"}: ${ms(audits["largest-contentful-paint"]?.numericValue)} ms`,
     `  element ${snippet}`,
     `  phases ${phases || "?"}`,
     `  observed FCP ${ms(metrics.observedFirstContentfulPaint)} ms, LCP ${ms(observedLcp)} ms`,

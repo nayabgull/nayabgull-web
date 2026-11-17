@@ -63,6 +63,9 @@ module.exports = {
       url: routes.map((route) => `${base}${route}`),
       numberOfRuns: 3,
       settings: {
+        // Real (DevTools) network and CPU throttling instead of the Lantern simulation, which
+        // counts every script that loaded before the first paint into LCP (quality-gates.md).
+        throttlingMethod: "devtools",
         ...(preset === "desktop" ? { preset: "desktop" } : {}),
         ...(noindex ? { skipAudits: ["is-crawlable"] } : {}),
       },

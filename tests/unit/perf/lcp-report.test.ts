@@ -61,7 +61,7 @@ describe("lcp report", () => {
 
   it("prints the element, phases, observed timings, scripts and long tasks", () => {
     expect(lcpReport(lhr)).toEqual([
-      "LCP http://localhost:3000/about: simulated 2520 ms",
+      "LCP http://localhost:3000/about: 2520 ms",
       '  element <p class="lede">',
       "  phases TTFB 455, Render Delay 2064",
       "  observed FCP 180 ms, LCP 190 ms",
@@ -72,7 +72,7 @@ describe("lcp report", () => {
 
   it("copes with a result that has none of the audits", () => {
     expect(lcpReport({})).toEqual([
-      "LCP ?: simulated ? ms",
+      "LCP ?: ? ms",
       "  element ?",
       "  phases ?",
       "  observed FCP ? ms, LCP ? ms",

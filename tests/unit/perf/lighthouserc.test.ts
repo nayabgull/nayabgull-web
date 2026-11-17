@@ -8,7 +8,7 @@ const BASE = "http://localhost:3000";
 
 interface Collect {
   url: string[];
-  settings: { skipAudits?: string[]; preset?: string };
+  settings: { skipAudits?: string[]; preset?: string; throttlingMethod?: string };
 }
 
 /** Loads lighthouserc.cjs in a fresh Node process, the way lhci does, for one route set. */
@@ -35,18 +35,25 @@ describe("lighthouserc.cjs", () => {
   it("audits every indexable route with no skipped audits", () => {
     const collect = load("indexable");
     expect(paths(collect)).toEqual([...INDEXABLE_ROUTES]);
-    expect(collect.settings.skipAudits).toBeUndefined();
+    expect(collect.settings).toEqual({ throttlingMethod: "devtools" });
   });
 
   it("audits every noindex route and skips only is-crawlable there", () => {
     const collect = load("noindex");
     expect(paths(collect)).toEqual([...NOINDEX_ROUTES]);
-    expect(collect.settings.skipAudits).toEqual(["is-crawlable"]);
+    expect(collect.settings).toEqual({
+      throttlingMethod: "devtools",
+      skipAudits: ["is-crawlable"],
+    });
   });
 
-  it("keeps the desktop preset for both route sets", () => {
-    expect(load("indexable", "desktop").settings).toEqual({ preset: "desktop" });
+  it("keeps the desktop preset and devtools throttling for both route sets", () => {
+    expect(load("indexable", "desktop").settings).toEqual({
+      throttlingMethod: "devtools",
+      preset: "desktop",
+    });
     expect(load("noindex", "desktop").settings).toEqual({
+      throttlingMethod: "devtools",
       preset: "desktop",
       skipAudits: ["is-crawlable"],
     });
