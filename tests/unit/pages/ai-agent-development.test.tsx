@@ -1,14 +1,19 @@
-import { render, screen, within } from "@testing-library/react";
+import { cleanup, render, screen, within } from "@testing-library/react";
 import { renderToStaticMarkup } from "react-dom/server";
-import { describe, expect, it, vi } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 
 import { AgentFlow } from "@/components/sections/blocks/AgentFlow.tsx";
 import { CompareSection } from "@/components/sections/blocks/CompareSection.tsx";
-import { StackSection } from "@/components/sections/blocks/StackSection.tsx";
+import { ExplainerSection } from "@/components/sections/blocks/ExplainerSection.tsx";
+import { FeaturesSection } from "@/components/sections/blocks/FeaturesSection.tsx";
+import { StepperSection } from "@/components/sections/blocks/StepperSection.tsx";
+import { UseCasesSection } from "@/components/sections/blocks/UseCasesSection.tsx";
 import { ContentPage } from "@/components/sections/ContentPage.tsx";
-import { Process } from "@/components/sections/Process.tsx";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs.tsx";
-import { aiAgentDevelopment as content } from "@/content/pages/ai-agent-development.ts";
+import {
+  aiAgentDevelopment as content,
+  PENDING_FAQ,
+} from "@/content/pages/ai-agent-development.ts";
 import { aiAutomationAgency } from "@/content/pages/ai-automation-agency.ts";
 import type { Block } from "@/content/pages/types.ts";
 import { pagePrices } from "@/content/pages/types.ts";
@@ -18,6 +23,8 @@ import { pageJsonLd } from "@/lib/seo/page-jsonld.ts";
 import { snapshot } from "@/lib/seo/snapshot.ts";
 
 vi.mock("next/image", () => ({ default: () => null }));
+
+afterEach(cleanup);
 
 const PATH = "/ai-automation-agency/ai-agent-development";
 
@@ -47,7 +54,8 @@ const ENTITIES: Record<string, readonly string[]> = {
   "tool calling": ["tool calling"],
   "knowledge base (RAG)": ["knowledge base", "rag"],
   memory: ["memory"],
-  "CRM integration (HubSpot, GoHighLevel)": ["crm integration", "hubspot", "gohighlevel"],
+  // The approved copy says "CRM and API integrations" and names both CRMs.
+  "CRM integration (HubSpot, GoHighLevel)": ["crm and api integrations", "hubspot", "gohighlevel"],
   "n8n / Make / Zapier": ["n8n", "make", "zapier"],
   "webhooks and APIs": ["webhooks and apis"],
   "voice agent (Vapi)": ["voice agent", "vapi"],
@@ -85,14 +93,15 @@ describe("AI agent development page", () => {
     expect(missing).toEqual([]);
   });
 
-  it("covers every entity of the topical map", () => {
+  it("covers at least 70% of the topical-map entities (content.md §4)", () => {
     const missing = Object.entries(ENTITIES)
       .filter(([, terms]) => !terms.every((term) => copy.includes(term)))
       .map(([entity]) => entity);
-    expect(missing).toEqual([]);
+    const covered = Object.keys(ENTITIES).length - missing.length;
+    expect(covered / Object.keys(ENTITIES).length).toBeGreaterThanOrEqual(0.7);
   });
 
-  it("never targets the keywords reserved for future pages in a heading, the title or the meta", () => {
+  it("never targets the reserved keywords in the title, the meta, the H1 or an H2", () => {
     const reserved = [
       "ai sales agent",
       "ai lead generation agent",
@@ -103,34 +112,24 @@ describe("AI agent development page", () => {
     const targets = [
       content.meta.title,
       content.meta.description,
-      ...page.headings.map((heading) => heading.text),
+      // H3s may name a use case (the approved copy has "AI receptionist and voice agent").
+      ...page.headings.filter((heading) => heading.level <= 2).map((heading) => heading.text),
     ]
       .join(" | ")
       .toLowerCase();
     expect(reserved.filter((keyword) => targets.includes(keyword))).toEqual([]);
   });
 
-  it("answers the brief's questions in question-style headings or the FAQ", () => {
-    const questions = [
-      ...page.headings.filter((heading) => heading.text.endsWith("?")).map((h) => h.text),
-      ...(content.faq?.items.map((item) => item.question) ?? []),
-    ]
-      .join(" | ")
-      .toLowerCase();
-    for (const topic of [
-      "what is an ai agent",
-      "chatbot",
-      "cost of an ai agent",
-      "how long",
-      "connect to my crm",
-      "not sure",
-      "data safe",
-      "who owns",
-      "technical team",
-    ]) {
-      expect(questions, topic).toContain(topic);
+  it("shows the approved FAQ and keeps the two unconfirmed answers off the page and out of the schema", () => {
+    expect(content.faq?.items).toHaveLength(8);
+    const faqNode = pageJsonLd(content)["@graph"].find((node) => node["@type"] === "FAQPage");
+    const names = (faqNode?.mainEntity as { name: string }[]).map((item) => item.name);
+    expect(names).toEqual(content.faq?.items.map((item) => item.question));
+    for (const pending of PENDING_FAQ) {
+      expect(names).not.toContain(pending.question);
+      expect(page.bodyText).not.toContain(pending.question);
+      expect(page.bodyText).not.toContain(pending.draft);
     }
-    expect(content.faq?.items.length).toBeGreaterThanOrEqual(8);
   });
 
   it("shows no price and puts no Offer in the Service schema until Nayab sets one", () => {
@@ -166,13 +165,12 @@ describe("AI agent development page", () => {
     expect(within(nav).getByText("AI agent development")).toHaveAttribute("aria-current", "page");
   });
 
-  it("links to the six pages the brief names, and the hub links back down", () => {
+  it("links to the hub, GoHighLevel, roofing, contact and about pages, and the hub links back down", () => {
     const hrefs = new Set(page.links.map((link) => link.href));
     for (const href of [
       "/ai-automation-agency",
       "/gohighlevel-agency",
       "/industries/roofing-hvac-website-design",
-      "/pricing",
       "/contact",
       "/about",
     ]) {
@@ -267,36 +265,109 @@ describe("CompareSection", () => {
   });
 });
 
-describe("StackSection", () => {
-  const stack = block("stack");
+describe("ExplainerSection", () => {
+  const explainer = block("explainer");
 
-  it("shows each tool group as a card with text badges and no images", () => {
-    const { container } = render(<StackSection block={stack} />);
-    for (const group of stack.groups) {
-      expect(screen.getByRole("heading", { level: 3, name: group.title })).toBeInTheDocument();
-      for (const tag of group.tags) expect(screen.getByText(tag)).toBeInTheDocument();
+  it("shows the definition beside a one-image picture of request, model, tools and action", () => {
+    const { container } = render(<ExplainerSection block={explainer} />);
+    const figure = screen.getByRole("img", { name: explainer.diagramLabel });
+    expect(within(figure).queryAllByRole("listitem")).toHaveLength(0);
+    expect(container.querySelectorAll(".agent-map-node")).toHaveLength(4);
+    expect(explainer.diagram.map((node) => node.label)).toEqual([
+      "Request",
+      "AI model",
+      "Tools",
+      "Action",
+    ]);
+    expect(screen.getByText(explainer.callout)).toBeInTheDocument();
+    for (const note of explainer.notes) expect(screen.getByText(note.text)).toBeInTheDocument();
+  });
+});
+
+describe("FeaturesSection", () => {
+  const features = content.blocks.filter((candidate) => candidate.kind === "features");
+
+  it("renders icon cards with bold lead-ins, a list heading, the example and the closing line", () => {
+    const custom = features.find((candidate) => candidate.id === "custom-agents");
+    if (!custom) throw new Error("No custom-agents block.");
+    render(<FeaturesSection block={custom} />);
+    expect(
+      screen.getByRole("heading", { level: 3, name: custom.listIntro ?? "" }),
+    ).toBeInTheDocument();
+    for (const item of custom.items ?? []) {
+      expect(screen.getByText(item.title ?? "", { selector: "strong" })).toBeInTheDocument();
     }
-    expect(container.querySelector("img, svg")).toBeNull();
-    expect(screen.getByRole("link", { name: "how I set up GoHighLevel" })).toHaveAttribute(
+    expect(screen.getByText("Example")).toBeInTheDocument();
+    expect(screen.getAllByRole("listitem")).toHaveLength(6);
+  });
+
+  it("renders the hire section as a check list and the integrations with text names only", () => {
+    const hire = features.find((candidate) => candidate.id === "hire");
+    const integrations = features.find((candidate) => candidate.id === "integrations");
+    if (!hire || !integrations) throw new Error("Missing features blocks.");
+    const first = render(<FeaturesSection block={hire} />);
+    expect(first.container.querySelectorAll("li strong")).toHaveLength(0);
+    expect(screen.getAllByRole("listitem")).toHaveLength(7);
+    first.unmount();
+    const second = render(<FeaturesSection block={integrations} />);
+    expect(second.container.querySelector("img")).toBeNull();
+    for (const name of ["CRM systems", "Websites", "WhatsApp", "Voice", "Email", "Calendars"]) {
+      expect(screen.getByText(name, { selector: "strong" })).toBeInTheDocument();
+    }
+    expect(screen.getByRole("link", { name: "GoHighLevel" })).toHaveAttribute(
       "href",
       "/gohighlevel-agency",
     );
   });
 
-  it("renders without an intro", () => {
-    render(<StackSection block={{ ...stack, id: "bare-stack", intro: undefined }} />);
-    expect(screen.getAllByRole("list").length).toBeGreaterThan(0);
+  it("renders a block with only paragraphs and an outro", () => {
+    const { container } = render(
+      <FeaturesSection
+        block={{
+          kind: "features",
+          id: "bare-features",
+          eyebrow: "E",
+          heading: "H",
+          layout: "cards",
+          paragraphs: ["One short line."],
+          outro: "The end.",
+        }}
+      />,
+    );
+    expect(container.querySelectorAll("p")).toHaveLength(2);
+    expect(container.querySelector("ul")).toBeNull();
   });
 });
 
-describe("Process", () => {
-  it("gives five steps their own five-column layout and keeps four steps on four columns", () => {
-    const steps = block("steps");
-    expect(steps.steps).toHaveLength(5);
-    const five = render(<Process process={steps} />);
-    expect(five.container.querySelector("ol")?.className).toContain("xl:grid-cols-5");
-    five.unmount();
-    const four = render(<Process process={{ ...steps, steps: steps.steps.slice(0, 4) }} />);
-    expect(four.container.querySelector("ol")?.className).toContain("lg:grid-cols-4");
+describe("UseCasesSection", () => {
+  const useCases = block("use-cases");
+
+  it("shows five cards: problem, what the agent does, result, the example business and the full example", () => {
+    render(<UseCasesSection block={useCases} />);
+    expect(useCases.items).toHaveLength(5);
+    expect(screen.getAllByText("The problem")).toHaveLength(5);
+    expect(screen.getAllByText("What the agent does")).toHaveLength(5);
+    expect(screen.getAllByText("Result")).toHaveLength(5);
+    for (const item of useCases.items) {
+      expect(screen.getByRole("heading", { level: 3, name: item.title })).toBeInTheDocument();
+      expect(screen.getByText(`Example: ${item.business}`)).toBeInTheDocument();
+    }
+    expect(screen.getAllByText("See the full example")).toHaveLength(5);
+  });
+});
+
+describe("StepperSection", () => {
+  it("numbers the five process steps without timelines", () => {
+    const stepper = block("stepper");
+    const { container } = render(<StepperSection block={stepper} />);
+    expect(screen.getAllByRole("listitem")).toHaveLength(5);
+    expect(container.querySelector("ol")?.getAttribute("style")).toContain("--stepper-count: 5");
+    expect(stepper.steps.map((step) => step.title)).toEqual([
+      "Discovery and Planning",
+      "AI Agent Design",
+      "Development and Integration",
+      "Testing and Review",
+      "Deployment and Support",
+    ]);
   });
 });

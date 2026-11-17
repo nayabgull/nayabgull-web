@@ -7,7 +7,7 @@ test.describe("AI agent development page", () => {
   test("hero: Get a free demo is the primary CTA and jumps to the demo form", async ({ page }) => {
     await page.goto(PATH);
     const hero = page.locator("section", { has: page.locator("h1") });
-    await expect(page.locator("h1")).toContainText("AI agent development services");
+    await expect(page.locator("h1")).toHaveText("AI Agent Development Services");
 
     const form = hero.getByRole("form", { name: "Get a free demo" });
     await expect(form).toBeVisible();
@@ -155,5 +155,48 @@ test.describe("AI agent development page", () => {
     const trail = graph.find((node) => node["@type"] === "BreadcrumbList");
     expect(trail?.itemListElement).toHaveLength(3);
     await expect(page.locator("main")).not.toContainText("$");
+  });
+
+  test("use-case cards open the full example without JavaScript", async ({ browser }) => {
+    const context = await browser.newContext({ javaScriptEnabled: false });
+    const page = await context.newPage();
+    await page.goto(PATH);
+    const cards = page.locator("#use-cases li");
+    await expect(cards).toHaveCount(5);
+    const first = cards.first();
+    await expect(first.getByText("The problem")).toBeVisible();
+    await expect(first.getByText("Example: insurance agency")).toBeVisible();
+    const example = first.getByText(/an insurance agency may ask customers/);
+    await expect(example).toBeHidden();
+    await first.getByText("See the full example").click();
+    await expect(example).toBeVisible();
+    await context.close();
+  });
+
+  test("process is a horizontal stepper on desktop and a vertical one on phones", async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto(PATH);
+    const steps = page.locator("#process .stepper-step");
+    await expect(steps).toHaveCount(5);
+    const desktop = await steps.evaluateAll((items) =>
+      items.map((item) => Math.round(item.getBoundingClientRect().top)),
+    );
+    expect(new Set(desktop).size).toBe(1);
+    await page.setViewportSize({ width: 375, height: 800 });
+    const phone = await steps.evaluateAll((items) =>
+      items.map((item) => Math.round(item.getBoundingClientRect().left)),
+    );
+    expect(new Set(phone).size).toBe(1);
+  });
+
+  test("FAQ shows only confirmed answers: the two pending questions are not on the page", async ({
+    page,
+  }) => {
+    await page.goto(PATH);
+    await expect(page.locator("#faq summary")).toHaveCount(8);
+    await expect(page.getByText("Who owns the agent and the data?")).toHaveCount(0);
+    await expect(page.getByText("Do you work in US time zones?")).toHaveCount(0);
   });
 });

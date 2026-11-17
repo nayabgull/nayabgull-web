@@ -86,7 +86,18 @@ export function PageHero({
         {IDENTITY_LINE} {hero.lede}
       </p>
       <Proof facts={hero.proof} centered={centered} />
+      {hero.callout ? <p className="mt-5 font-semibold">{hero.callout}</p> : null}
       <Ctas hero={hero} centered={centered} />
+      {/* Extra intro paragraphs sit under the CTAs, so the primary CTA stays above the fold. */}
+      {hero.body ? (
+        <div
+          className={`mt-6 space-y-3 border-l-2 border-border-strong pl-4 text-text-muted ${centered ? "mx-auto max-w-[60ch] text-left" : "max-w-[56ch]"}`}
+        >
+          {hero.body.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
+        </div>
+      ) : null}
     </div>
   );
   return (
@@ -99,7 +110,10 @@ export function PageHero({
       <Container>
         <Breadcrumbs current={content.name} parent={content.parent} centered={centered} />
         {hero.form ? (
-          <div className="mt-2 grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+          <div
+            // A hero with extra intro text starts at the top, so its CTAs stay above the fold.
+            className={`mt-2 grid gap-12 lg:grid-cols-[1.1fr_0.9fr] ${hero.body ? "items-start lg:pt-6" : "items-center"}`}
+          >
             {copy}
             <QuoteCard
               id="hero-quote"
