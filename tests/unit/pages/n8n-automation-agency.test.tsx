@@ -110,6 +110,30 @@ describe("n8n automation agency page", () => {
     }
   });
 
+  it("renders Nayab's confirmed ownership and time-zone answers word for word, also in FAQPage", () => {
+    const confirmed = {
+      "Who owns the accounts and the work?":
+        "My clients do. In most projects, the client buys the tools in their own name, such as n8n, a CRM or a phone service. I build everything inside those accounts: the workflows, the code and the full setup. At launch, it all stays with the client. If a client would rather run on my accounts, I can do that too, at an extra cost.",
+      "Do you work in US time zones?":
+        "Yes. I am available for calls and messages every weekday from 9 AM to 3 PM Eastern Time (6 AM to noon Pacific). That covers the US morning and early afternoon.",
+    };
+    const faqPage = pageJsonLd(content)["@graph"].find((node) => node["@type"] === "FAQPage");
+    const entities = (faqPage?.mainEntity ?? []) as {
+      name: string;
+      acceptedAnswer: { text: string };
+    }[];
+    for (const [question, answer] of Object.entries(confirmed)) {
+      const item = content.faq?.items.find((candidate) => candidate.question === question);
+      expect(item?.answer.replace(/\n\n/g, " "), question).toBe(answer);
+      expect(page.headings.map((heading) => heading.text).join(" | ") + page.bodyText).toContain(
+        question,
+      );
+      expect(page.bodyText).toContain(answer.split(". ")[0] ?? "");
+      const schema = entities.find((entity) => entity.name === question);
+      expect(schema?.acceptedAnswer.text.replace(/\s+/g, " "), question).toBe(answer);
+    }
+  });
+
   it("shows no price and puts no Offer in the Service schema until Nayab sets one", () => {
     expect(pagePrices(content)).toEqual([]);
     expect(JSON.stringify(content)).not.toMatch(/\$\s?\d/);

@@ -37,4 +37,4 @@ Those pages list features. This page adds what they lack: a fair n8n vs Make vs 
 
 - Pricing: no price on the page yet.
 - Proof: no n8n case study is approved yet.
-- Confirm the FAQ answers on ownership and time zone (marked `TODO(nayab)` in the content file).
+- FAQ answers on ownership and time zone: confirmed by Nayab on November 17, 2026 (exact wording).

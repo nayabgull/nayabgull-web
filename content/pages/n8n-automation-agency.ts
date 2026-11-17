@@ -11,8 +11,8 @@ import type { PageContent } from "./types.ts";
  * the "pricing" section (it also adds the Offer to the Service JSON-LD) and update the page tests.
  * TODO(nayab): CASE STUDY. No n8n case study is approved yet. When a client approves one, put the
  * real result in the "proof" section. Never invent results, clients or numbers.
- * TODO(nayab): confirm the FAQ answers on ownership and time zone, the timelines in "process" and
- * in the FAQ, and what the free demo includes.
+ * TODO(nayab): confirm the timelines in "process" and in the FAQ, and what the free demo includes.
+ * The ownership and time-zone FAQ answers are Nayab's confirmed wording (2026-11-17); keep them as is.
  */
 export const n8nAutomationAgency: PageContent = {
   path: "/ai-automation-agency/n8n-automation-agency",
@@ -203,7 +203,7 @@ export const n8nAutomationAgency: PageContent = {
       eyebrow: "Proof",
       heading: "Why hire an n8n expert who is also a developer?",
       paragraphs: [
-        "Most workflows break at the edges, where one app hands data to the next. I am a full-stack developer, so I can fix those edges with code when a ready-made step falls short.",
+        "Most workflows break at the edges, where one app hands data to the next. I am an n8n developer who also writes full-stack code, so I can fix those edges when a ready-made step falls short.",
         [
           "Over five years, I have delivered 400+ projects for clients in the US, the UK and beyond. When you hire an n8n expert from my agency, you work with me, not a hand-off team. For bigger builds, I also take work as a ",
           { text: "hired full stack developer", href: "/hire-full-stack-developer" },
@@ -257,10 +257,10 @@ export const n8nAutomationAgency: PageContent = {
           "Self-host when you want your data on your own server or you run a lot of tasks. It costs less at high volume, but someone has to keep the server updated.\n\nPick n8n Cloud when you want zero upkeep. I can set up either one and explain the trade-off for your case.",
       },
       {
-        // TODO(nayab): confirm this ownership answer.
-        question: "Who owns the workflows?",
+        // Confirmed by Nayab on 2026-11-17. Exact wording, split into two paragraphs (max 4 sentences each).
+        question: "Who owns the accounts and the work?",
         answer:
-          "You do. I build in an account in your name, and you keep the logins. Each workflow is yours to change, copy or move.\n\nAt the end, you get a short guide to what each flow does. If you move to another n8n developer, they can pick it up from there.",
+          "My clients do. In most projects, the client buys the tools in their own name, such as n8n, a CRM or a phone service.\n\nI build everything inside those accounts: the workflows, the code and the full setup. At launch, it all stays with the client. If a client would rather run on my accounts, I can do that too, at an extra cost.",
       },
       {
         question: "What support do I get after launch?",
@@ -268,10 +268,10 @@ export const n8nAutomationAgency: PageContent = {
           "I watch the workflows closely in the first month and fix anything that fails. Error alerts tell me right away when an app changes.\n\nAfter that, you can message me for fixes or new flows. If you prefer, I offer ongoing care as well.",
       },
       {
-        // TODO(nayab): confirm this time-zone answer.
-        question: "I am in the US. How does the time zone work?",
+        // Confirmed by Nayab on 2026-11-17. Exact wording.
+        question: "Do you work in US time zones?",
         answer:
-          "I overlap with US business hours for calls, and I reply to messages within one business day. You pick a call time that suits your time zone.\n\nThe workflows themselves run around the clock, so they keep working while you sleep.",
+          "Yes. I am available for calls and messages every weekday from 9 AM to 3 PM Eastern Time (6 AM to noon Pacific). That covers the US morning and early afternoon.",
       },
     ],
   },
