@@ -1,6 +1,24 @@
 @import "tailwindcss";
 
 /*
+ * Size-adjusted fallback for Sora headings. next/font generates "Sora Fallback" with only
+ * local(Arial), which Linux and Android do not have, so headings fell back to an unadjusted system
+ * font and shifted when Sora loaded (mobile CLS, quality-gates.md). Same metrics as next/font's
+ * Arial-based fallback; Liberation Sans and Helvetica are metric-compatible with Arial, Roboto is
+ * close.
+ */
+@font-face {
+  font-family: "Sora Fallback Local";
+  src:
+    local("Arial"), local("ArialMT"), local("Liberation Sans"), local("LiberationSans"),
+    local("Helvetica Neue"), local("Helvetica"), local("Roboto"), local("Roboto-Regular");
+  ascent-override: 85.29%;
+  descent-override: 25.5%;
+  line-gap-override: 0%;
+  size-adjust: 113.73%;
+}
+
+/*
  * Design tokens (frontend.md §4). Dark-first: :root holds the dark theme. The light theme applies when
  * the visitor picks it (data-theme="light") or when no choice is stored and the system prefers light.
  * Every text/background pair below meets WCAG 2.2 AA (4.5:1 body text, 3:1 large text and UI).
@@ -42,7 +60,7 @@
   --color-danger: #fca5a5;
   --color-danger-soft: rgb(248 113 113 / 0.14);
 
-  --font-display: var(--font-sora), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-sora), "Sora Fallback Local", ui-sans-serif, system-ui, sans-serif;
   /* Body text uses the system font (no download); Sora is for headings only. */
   --font-sans:
     ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
