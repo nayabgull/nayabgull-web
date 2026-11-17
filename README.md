@@ -51,5 +51,5 @@ then commit the generated files. The database never changes by itself (`push: fa
 ## Cloud sessions
 
 Claude Code cloud sessions need no setup: pick this repo and the Default environment. A SessionStart
-hook installs Node 24, pnpm and dependencies and sets build-only placeholders. Real secrets never go
+hook installs Node 24, pnpm, dependencies and gitleaks and sets build-only placeholders. Real secrets never go
 in the repo or environment variables. Details: [docs/cloud-sessions.md](docs/cloud-sessions.md).

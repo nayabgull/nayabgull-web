@@ -71,6 +71,29 @@ ensure_pnpm() {
   log "pnpm $(COREPACK_ENABLE_DOWNLOAD_PROMPT=0 pnpm -v)"
 }
 
+# gitleaks for the `secrets` stage of `pnpm verify`. Pinned release, SHA-256 from its checksums file.
+GITLEAKS_VERSION=8.28.0
+GITLEAKS_SHA256=a65b5253807a68ac0cafa4414031fd740aeb55f54fb7e55f386acb52e6a840eb
+
+ensure_gitleaks() {
+  if command -v gitleaks >/dev/null 2>&1; then
+    log "gitleaks $(gitleaks version 2>/dev/null) already installed"
+    return 0
+  fi
+  local tarball="gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz" tmp
+  tmp=$(mktemp -d)
+  log "Downloading $tarball"
+  curl -fsSL "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/$tarball" \
+    -o "$tmp/$tarball" &&
+    echo "$GITLEAKS_SHA256  $tmp/$tarball" | sha256sum -c --quiet - &&
+    tar -xzf "$tmp/$tarball" -C "$tmp" gitleaks &&
+    install -m 0755 "$tmp/gitleaks" /usr/local/bin/gitleaks
+  local status=$?
+  rm -rf "$tmp"
+  [ $status -eq 0 ] && log "gitleaks $(gitleaks version) installed"
+  return $status
+}
+
 install_deps() {
   local stamp=node_modules/.cloud-session-setup.sha256 hash
   hash=$(cat package.json pnpm-lock.yaml scripts/cloud-session-setup.sh | sha256sum | cut -d' ' -f1)
@@ -115,6 +138,7 @@ main() {
   ensure_node || warn "Node 24 is not available; using $(node -v 2>/dev/null || echo 'no node')"
   ensure_pnpm || warn "pnpm setup via corepack failed"
   install_deps || warn "pnpm install failed; run it by hand to see why"
+  ensure_gitleaks || warn "gitleaks install failed; the secrets stage of pnpm verify will fail"
   write_env || warn "could not write $CLAUDE_ENV_FILE"
 }
 
