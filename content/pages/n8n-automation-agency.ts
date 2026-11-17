@@ -104,32 +104,37 @@ export const n8nAutomationAgency: PageContent = {
       note: "None of these is the best tool for every job. The right pick depends on your apps, your volume and who will look after the flows.",
     },
     {
-      kind: "cards",
+      kind: "features",
       id: "builds",
       eyebrow: "What I build",
       heading: "n8n automation services: five workflows I build often",
       intro: "Each one replaces a task someone on your team does by hand today.",
-      columns: 3,
+      layout: "cards",
       items: [
         {
           title: "Lead form to CRM to text",
           text: "A visitor fills your web form. n8n adds the lead to your CRM, tags the job type and texts the lead within a minute. You get a ping with the details.",
+          icon: "crm",
         },
         {
           title: "Invoice to accounting",
           text: "An invoice lands in your inbox as a PDF. n8n reads the amount, the vendor and the due date. Then it creates the bill in QuickBooks or Xero and files the PDF.",
+          icon: "database",
         },
         {
           title: "AI that sorts your email",
           text: "An AI step reads each new email and labels it: sales, support, billing or spam. Hot sales leads go to your phone. The rest wait in the right folder.",
+          icon: "mail",
         },
         {
           title: "Booked call to follow-up",
           text: "Someone books a call on your calendar. n8n sends a reminder the day before and a short form after the call. No-shows get a friendly link to book again.",
+          icon: "calendar",
         },
         {
           title: "Weekly report in your inbox",
           text: "Every Monday, n8n pulls new leads, booked jobs and paid invoices from your apps into one short email.",
+          icon: "chat",
         },
       ],
     },
@@ -151,7 +156,7 @@ export const n8nAutomationAgency: PageContent = {
       ],
     },
     {
-      kind: "steps",
+      kind: "stepper",
       id: "process",
       eyebrow: "Process",
       heading: "How I build your n8n workflows",
@@ -159,23 +164,19 @@ export const n8nAutomationAgency: PageContent = {
       steps: [
         {
           title: "Free demo",
-          when: "Day 1",
-          text: "You show me one task you repeat. I show you how a workflow would handle it, and you decide if it is worth it.",
+          text: "Day 1: You show me one task you repeat. I show you how a workflow would handle it, and you decide if it is worth it.",
         },
         {
           title: "Map the steps",
-          when: "Week 1",
-          text: "I write down each step, each app and each rule. You check the map, and I fix anything that does not match your day.",
+          text: "Week 1: I write down each step, each app and each rule. You check the map, and I fix anything that does not match your day.",
         },
         {
           title: "Build and test",
-          when: "Weeks 1 to 2",
-          text: "I build the workflow in your account. Then I run real past cases through it and fix every step that fails.",
+          text: "Weeks 1 to 2: I build the workflow in your account. Then I run real past cases through it and fix every step that fails.",
         },
         {
           title: "Launch and watch",
-          when: "First month",
-          text: "The workflow goes live. I set alerts for errors and check the logs with you in the first weeks.",
+          text: "First month: The workflow goes live. I set alerts for errors and check the logs with you in the first weeks.",
         },
       ],
     },
@@ -282,6 +283,7 @@ export const n8nAutomationAgency: PageContent = {
       heading: "Request your custom demo",
       text: "No pressure and no obligation.",
     },
+    band: true,
   },
 
   service: {
