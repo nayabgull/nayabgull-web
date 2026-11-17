@@ -21,6 +21,7 @@ export const PRIMARY_NAV: readonly NavItem[] = [
     links: [
       { label: "Web design and development", href: "/services/web-design-development" },
       { label: "Hire a full stack developer", href: "/hire-full-stack-developer" },
+      { label: "Hire a SaaS developer", href: "/hire-saas-developer" },
       { label: "Pricing", href: "/pricing" },
     ],
   },
@@ -51,6 +52,7 @@ export const FOOTER_NAV: readonly FooterGroup[] = [
       { label: "GoHighLevel agency", href: "/gohighlevel-agency" },
       { label: "AI automation agency", href: "/ai-automation-agency" },
       { label: "Hire a full stack developer", href: "/hire-full-stack-developer" },
+      { label: "Hire a SaaS developer", href: "/hire-saas-developer" },
       { label: "Pricing", href: "/pricing" },
     ],
   },

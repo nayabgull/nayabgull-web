@@ -87,6 +87,23 @@ export interface LinksBlock extends BlockBase {
   items: readonly RelatedLink[];
 }
 
+export interface TableRow {
+  /** What this row compares, shown as a full-width label above its cells. */
+  label: string;
+  /** One cell per column, each one a short sentence. */
+  cells: readonly string[];
+}
+
+/** A comparison table: one column per option, one row per point of comparison. */
+export interface TableBlock extends BlockBase {
+  kind: "table";
+  /** Visible caption, read out by screen readers as the table's name. */
+  caption: string;
+  /** Column headers (the options). Keep them short: the table must fit a 280 px screen. */
+  columns: readonly string[];
+  rows: readonly TableRow[];
+}
+
 /** The animated "what happens to a lead" sequence, with its own centered header. */
 export interface FlowBlock extends Flow {
   kind: "flow";
@@ -100,7 +117,14 @@ export interface ProfileBlock {
 }
 
 export type Block =
-  ProseBlock | CardsBlock | StepsBlock | PricesBlock | LinksBlock | FlowBlock | ProfileBlock;
+  | ProseBlock
+  | CardsBlock
+  | StepsBlock
+  | PricesBlock
+  | LinksBlock
+  | TableBlock
+  | FlowBlock
+  | ProfileBlock;
 
 export interface ServiceSchema {
   name: string;

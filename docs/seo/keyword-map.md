@@ -14,6 +14,7 @@ Rules: one primary keyword per page; a keyword appears as a target on one page o
 | Contact | /contact | contact nayab gull (brand, approved by Nayab 2026-11-14) | — | — |
 | Pricing | /pricing | website development cost | 100–1K · Low · $23 | cost of web design, website design pricing, web app development cost |
 | Hire | /hire-full-stack-developer | hire full stack developer | 100–1K · Low · $51 | hire web developer, hire website developer, website designers for hire (1K–10K), hire freelance web developer, freelance web developer, hire frontend developer |
+| Hire SaaS | /hire-saas-developer | hire saas developer (approved by Nayab 2026-11-17) | 100–1K · Low · KD 4 | saas developer, custom saas development, saas development agency, saas app development, saas development services, saas web development company |
 
 ## GoHighLevel hub (priority 1)
 
