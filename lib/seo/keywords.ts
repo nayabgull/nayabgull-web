@@ -50,6 +50,19 @@ export const KEYWORDS: readonly KeywordEntry[] = [
     ],
   },
   {
+    url: "/hire-saas-developer",
+    pageType: "service",
+    primary: "hire saas developer",
+    secondary: [
+      "saas developer",
+      "custom saas development",
+      "saas development agency",
+      "saas app development",
+      "saas development services",
+      "saas web development company",
+    ],
+  },
+  {
     url: "/gohighlevel-agency",
     pageType: "hub",
     primary: "gohighlevel agency",

@@ -72,6 +72,19 @@ const PAGE: PageContent = {
       intro: "Links intro.",
       items: [{ label: "Homepage link", href: "/", text: "Back to the start." }],
     },
+    {
+      kind: "table",
+      id: "compare",
+      eyebrow: "Compare",
+      heading: "Table heading",
+      intro: "Table intro.",
+      caption: "Two options, compared.",
+      columns: ["Option A", "Option B"],
+      rows: [
+        { label: "Cost", cells: ["Low.", "High."] },
+        { label: "Speed", cells: ["Fast.", "Slow."] },
+      ],
+    },
     { kind: "profile", id: "about", about: home.about },
   ],
 };
@@ -110,6 +123,7 @@ describe("ContentPage", () => {
       "Steps heading",
       "Prices heading",
       "Links heading",
+      "Table heading",
       home.about.heading,
     ]) {
       expect(screen.getByRole("heading", { level: 2, name: heading })).toBeInTheDocument();
@@ -117,6 +131,19 @@ describe("ContentPage", () => {
     expect(screen.getByText("Starts at $600.")).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Card link" })).toHaveAttribute("href", "/");
     expect(screen.getByRole("link", { name: "Homepage link" })).toHaveAttribute("href", "/");
+  });
+
+  it("renders a table block with a caption, option columns and a labelled group per row", () => {
+    render(<ContentPage content={PAGE} />);
+    const table = screen.getByRole("table", { name: "Two options, compared." });
+    const columns = [...table.querySelectorAll("thead th[scope='col']")];
+    expect(columns.map((th) => th.textContent)).toEqual(["Option A", "Option B"]);
+    const groups = [...table.querySelectorAll("tbody th[scope='rowgroup']")];
+    expect(groups.map((th) => th.textContent)).toEqual(["Cost", "Speed"]);
+    expect(groups[0]).toHaveAttribute("colspan", "2");
+    const cells = [...table.querySelectorAll("td")];
+    expect(cells.map((td) => td.textContent)).toEqual(["Low.", "High.", "Fast.", "Slow."]);
+    expect(cells[3]).toHaveAttribute("headers", "compare-col-1 compare-row-1");
   });
 
   it("renders the money hero (CTAs, proof, quote form), a flow block, FAQ and its own closing copy", () => {
