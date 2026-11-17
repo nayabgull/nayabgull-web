@@ -206,6 +206,12 @@
       linear-gradient(var(--color-grid) 1px, transparent 1px) 0 0 / 56px 56px,
       linear-gradient(90deg, var(--color-grid) 1px, transparent 1px) 0 0 / 56px 56px;
     mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
+    /*
+     * The three large glows cost ~150 ms of raster on a phone. Hidden (so not painted) for the first
+     * 0.4 s, the first frame holds only the hero text and is on screen before the framework JS runs
+     * (mobile LCP budget, quality-gates.md). A visibility switch is not motion; the fade below is.
+     */
+    animation: hero-glow-show 0s 0.4s both;
   }
 
   /* Gradient text on key words. `color` keeps a solid, AA-contrast value for axe and forced colors. */
@@ -389,6 +395,10 @@
       border-color 0.25s ease;
   }
 
+  .hero-bg::before {
+    animation: hero-glow-in 0.6s ease-out 0.4s both;
+  }
+
   .shine::after {
     animation: shine-sweep 7s ease-in-out 1.5s infinite;
   }
@@ -453,6 +463,28 @@
 
   .flow[data-inview="true"] .flow-booked {
     animation: flow-booked 10s ease-out infinite;
+  }
+}
+
+@keyframes hero-glow-show {
+  from {
+    visibility: hidden;
+  }
+
+  to {
+    visibility: visible;
+  }
+}
+
+@keyframes hero-glow-in {
+  from {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  to {
+    visibility: visible;
+    opacity: 1;
   }
 }
 
