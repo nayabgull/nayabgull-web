@@ -20,6 +20,12 @@ interface NetworkItem {
   transferSize?: number;
 }
 
+interface ShiftItem {
+  node?: Node;
+  score?: number;
+  subItems?: { items?: { cause?: string; extra?: { value?: string } | Node }[] };
+}
+
 interface TaskItem {
   startTime?: number;
   duration?: number;
@@ -38,6 +44,8 @@ export interface Lhr {
 
 const items = <T>(audit: Audit | undefined): T[] => (audit?.details?.items ?? []) as T[];
 const ms = (value: number | undefined) => (value === undefined ? "?" : `${Math.round(value)}`);
+
+const clsValue = (value: number | undefined) => (value === undefined ? "?" : value.toFixed(3));
 
 /** Last path segment of a URL, without query string. */
 export function shortName(url: string): string {
@@ -78,6 +86,18 @@ export function lcpReport(lhr: Lhr): string[] {
     )
     .map((task) => `${ms(task.startTime)}+${ms(task.duration)}`);
 
+  const shifts = items<ShiftItem>(audits["layout-shifts"]).map((shift) => {
+    const causes = (shift.subItems?.items ?? [])
+      .map((cause) => {
+        const extra =
+          cause.extra && "value" in cause.extra ? ` ${shortName(cause.extra.value ?? "")}` : "";
+        return `${cause.cause ?? "?"}${extra}`;
+      })
+      .join("; ");
+    const score = shift.score === undefined ? "?" : shift.score.toFixed(3);
+    return `${score} ${shift.node?.snippet ?? "?"}${causes ? ` (${causes})` : ""}`;
+  });
+
   return [
     `LCP ${lhr.requestedUrl ?? "?"}: ${ms(audits["largest-contentful-paint"]?.numericValue)} ms`,
     `  element ${snippet}`,
@@ -85,5 +105,6 @@ export function lcpReport(lhr: Lhr): string[] {
     `  observed FCP ${ms(metrics.observedFirstContentfulPaint)} ms, LCP ${ms(observedLcp)} ms`,
     `  scripts end (ms) ${scripts.join(", ") || "none"}`,
     `  main-thread tasks >= 10 ms near LCP (start+duration) ${longTasks.join(", ") || "none"}`,
+    `  CLS ${clsValue(audits["cumulative-layout-shift"]?.numericValue)}${shifts.map((shift) => `\n    shift ${shift}`).join("")}`,
   ];
 }

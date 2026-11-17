@@ -41,6 +41,27 @@ const lhr = {
         ],
       },
     },
+    "cumulative-layout-shift": { numericValue: 0.1124 },
+    "layout-shifts": {
+      details: {
+        items: [
+          {
+            node: { snippet: '<h1 id="hero-heading">' },
+            score: 0.0912,
+            subItems: {
+              items: [
+                {
+                  cause: "Web font loaded",
+                  extra: { type: "url", value: "http://x/media/sora.woff2" },
+                },
+                { cause: "Media element lacking an explicit size", extra: { snippet: "<img>" } },
+              ],
+            },
+          },
+          { score: 0.021 },
+        ],
+      },
+    },
     "main-thread-tasks": {
       details: {
         items: [
@@ -67,6 +88,9 @@ describe("lcp report", () => {
       "  observed FCP 180 ms, LCP 190 ms",
       "  scripts end (ms) a.js 120 (before LCP), b.js 230",
       "  main-thread tasks >= 10 ms near LCP (start+duration) 50+12",
+      "  CLS 0.112" +
+        '\n    shift 0.091 <h1 id="hero-heading"> (Web font loaded sora.woff2; Media element lacking an explicit size)' +
+        "\n    shift 0.021 ?",
     ]);
   });
 
@@ -78,6 +102,7 @@ describe("lcp report", () => {
       "  observed FCP ? ms, LCP ? ms",
       "  scripts end (ms) none",
       "  main-thread tasks >= 10 ms near LCP (start+duration) none",
+      "  CLS ?",
     ]);
   });
 });
