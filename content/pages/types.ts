@@ -31,6 +31,10 @@ export interface PageHero {
    * card on the right, like the homepage. Without it the hero is centered text.
    */
   form?: { heading: string; text: string };
+  /** Extra short paragraphs under the lede (service pages with a longer intro). */
+  body?: readonly string[];
+  /** One bold line right above the CTAs. */
+  callout?: string;
 }
 
 interface BlockBase {
@@ -132,10 +136,84 @@ export interface AgentFlowBlock extends BlockBase {
   footer: string;
 }
 
-/** Tools grouped by job, shown as text badges (never third-party logos). */
-export interface StackBlock extends BlockBase {
-  kind: "stack";
-  groups: readonly { title: string; text: Rich; tags: readonly string[] }[];
+/** Icons that content may name (components/ui/icon-map.tsx). */
+export type IconName =
+  | "calendar"
+  | "chat"
+  | "check"
+  | "chip"
+  | "code"
+  | "crm"
+  | "database"
+  | "flow"
+  | "globe"
+  | "mail"
+  | "person"
+  | "phone"
+  | "plug"
+  | "rules"
+  | "shield"
+  | "spark"
+  | "target"
+  | "test"
+  | "wrench";
+
+/**
+ * Short text on the left, a small "request → model → tools → action" picture on the right, then
+ * the remaining points as small cards and one closing line.
+ */
+export interface ExplainerBlock extends BlockBase {
+  kind: "explainer";
+  paragraphs: readonly string[];
+  /** Spoken name of the picture (its labels are decorative). */
+  diagramLabel: string;
+  diagram: readonly { label: string; caption: string; icon: IconName }[];
+  notes: readonly { text: string; icon: IconName }[];
+  callout: string;
+}
+
+export interface Feature {
+  /** Bold card title. Checklist items have none. */
+  title?: string;
+  text: Rich;
+  icon?: IconName;
+}
+
+/**
+ * A section built from short pieces: lead paragraphs, an optional example card, then a grid of
+ * icon cards (`cards`) or a two-column check list (`checklist`), then one closing line.
+ */
+export interface FeaturesBlock extends BlockBase {
+  kind: "features";
+  layout: "cards" | "checklist";
+  paragraphs?: readonly Rich[];
+  example?: { label: string; paragraphs: readonly string[]; afterList?: boolean };
+  listIntro?: string;
+  items?: readonly Feature[];
+  outro?: Rich;
+}
+
+export interface UseCase {
+  title: string;
+  /** The example business, shown as a chip. */
+  business: string;
+  problem: string;
+  agent: string;
+  result: string;
+  /** The rest of the example, behind "See the full example". */
+  more: readonly string[];
+}
+
+/** Use cases as cards: the problem → what the agent does → result, plus the full example. */
+export interface UseCasesBlock extends BlockBase {
+  kind: "use-cases";
+  items: readonly UseCase[];
+}
+
+/** Numbered steps: a horizontal stepper on wide screens, a vertical one on small screens. */
+export interface StepperBlock extends BlockBase {
+  kind: "stepper";
+  steps: readonly { title: string; text: string }[];
 }
 
 export type Block =
@@ -148,7 +226,10 @@ export type Block =
   | ProfileBlock
   | CompareBlock
   | AgentFlowBlock
-  | StackBlock;
+  | ExplainerBlock
+  | FeaturesBlock
+  | UseCasesBlock
+  | StepperBlock;
 
 export interface ServiceSchema {
   name: string;
@@ -173,7 +254,13 @@ export interface PageContent {
    * Heading and one line of the closing quote section. Every page ends with that section (quote
    * form plus "Book a free call"); pages without their own closing copy use the homepage's.
    */
-  closing?: { heading: string; text: string; form?: { heading: string; text: string } };
+  closing?: {
+    heading: string;
+    text: string;
+    form?: { heading: string; text: string };
+    /** Renders the closing section as a full-width call-to-action band. */
+    band?: boolean;
+  };
   /**
    * Set on a demo page: both forms send this request type, with the service preselected. Without
    * it the forms ask for a quote.

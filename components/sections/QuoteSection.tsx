@@ -14,13 +14,16 @@ export function QuoteSection({
   quote,
   source,
   request,
+  band = false,
 }: {
   quote: Quote;
   source: string;
   request?: LeadRequest;
+  /** Full-width call-to-action band (glow background) instead of a plain section. */
+  band?: boolean;
 }) {
   return (
-    <Section id="quote" labelledBy="quote-heading">
+    <Section id="quote" labelledBy="quote-heading" className={band ? "cta-band" : ""}>
       <SectionHeader
         id="quote-heading"
         eyebrow={quote.eyebrow}

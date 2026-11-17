@@ -11,19 +11,17 @@ export function Process({ process }: { process: HomeContent["process"] }) {
         heading={process.heading}
         intro={process.intro}
       />
-      <ol
-        className={`mt-12 grid gap-5 md:grid-cols-2 ${process.steps.length === 5 ? "lg:grid-cols-3 xl:grid-cols-5" : "lg:grid-cols-4"}`}
-      >
+      <ol className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
         {process.steps.map((step, index) => (
           <li key={step.title} className="relative rounded-lg border border-border bg-surface p-6">
-            <div className="flex flex-wrap items-center justify-between gap-3">
+            <div className="flex items-center justify-between gap-3">
               <span
                 aria-hidden="true"
                 className="font-display text-h2 leading-none font-bold text-accent"
               >
                 {String(index + 1).padStart(2, "0")}
               </span>
-              <span className="rounded-pill bg-surface-strong px-3 py-1 text-small font-medium whitespace-nowrap">
+              <span className="rounded-pill bg-surface-strong px-3 py-1 text-small font-medium">
                 {step.when}
               </span>
             </div>

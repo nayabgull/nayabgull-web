@@ -464,6 +464,125 @@
     }
   }
 
+  /* "Request → AI model → tools → action" picture (ExplainerSection). The line sits behind the icons. */
+  .agent-map-line {
+    position: absolute;
+    top: 1.5rem;
+    bottom: 1.5rem;
+    left: calc(1.5rem - 1px);
+    width: 2px;
+    background: linear-gradient(var(--color-accent-from), var(--color-lime));
+    opacity: 0.6;
+  }
+
+  /* Use-case rows: a dot per line and a thin rail between them (UseCasesSection). */
+  .usecase-row::before {
+    content: "";
+    position: absolute;
+    top: 0.45rem;
+    left: 0.25rem;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: var(--radius-pill);
+    background: var(--color-accent);
+  }
+
+  .usecase-row:last-child::before {
+    background: var(--color-lime);
+  }
+
+  .usecase-row:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 1.15rem;
+    bottom: -0.85rem;
+    left: calc(0.5rem - 1px);
+    width: 2px;
+    background: var(--color-border-strong);
+  }
+
+  /* Process stepper (StepperSection): vertical below 64rem, horizontal from 64rem. */
+  .stepper {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .stepper-step {
+    position: relative;
+    display: flex;
+    gap: 1rem;
+  }
+
+  .stepper-number {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    flex-shrink: 0;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: var(--radius-pill);
+    background: linear-gradient(100deg, var(--color-accent-from), var(--color-accent-to));
+    color: var(--color-on-accent);
+    font-family: var(--font-display);
+    font-weight: 700;
+  }
+
+  .stepper-step:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    top: 3rem;
+    bottom: -1.5rem;
+    left: calc(1.5rem - 1px);
+    width: 2px;
+    background: var(--color-border-strong);
+  }
+
+  .stepper-body {
+    padding-top: 0.6rem;
+  }
+
+  @media (min-width: 64rem) {
+    .stepper {
+      grid-template-columns: repeat(var(--stepper-count, 5), minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+
+    .stepper-step {
+      flex-direction: column;
+    }
+
+    .stepper-step:not(:last-child)::before {
+      top: calc(1.5rem - 1px);
+      bottom: auto;
+      left: 3.75rem;
+      width: calc(100% - 3rem);
+      height: 2px;
+    }
+
+    .stepper-body {
+      padding-top: 0;
+    }
+  }
+
+  /* Closing call-to-action band: the hero glow, full-bleed. */
+  .cta-band {
+    position: relative;
+    isolation: isolate;
+    border-block: 1px solid var(--color-border);
+  }
+
+  .cta-band::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(50rem 30rem at 15% 0%, var(--color-glow-1), transparent 60%),
+      radial-gradient(45rem 30rem at 90% 100%, var(--color-glow-3), transparent 60%);
+  }
+
   /*
    * Comparison table (components/sections/blocks/CompareSection.tsx). A real table from 48rem.
    * Below that each row is a card and every cell names its column, so it never scrolls sideways.
@@ -667,6 +786,23 @@
 
   .dot-live::after {
     animation: pulse-live 2s ease-out infinite;
+  }
+
+  /* Request picture: the icons light up one after another (opacity and transform only). */
+  .agent-map-node:nth-child(1) .agent-map-icon {
+    animation: agent-map-pulse 6s ease-in-out infinite;
+  }
+
+  .agent-map-node:nth-child(2) .agent-map-icon {
+    animation: agent-map-pulse 6s ease-in-out 1.5s infinite;
+  }
+
+  .agent-map-node:nth-child(3) .agent-map-icon {
+    animation: agent-map-pulse 6s ease-in-out 3s infinite;
+  }
+
+  .agent-map-node:nth-child(4) .agent-map-icon {
+    animation: agent-map-pulse 6s ease-in-out 4.5s infinite;
   }
 
   /* Agent flow: the connector fills and the open panel fades up (transform and opacity only). */
@@ -1036,5 +1172,17 @@
   to {
     opacity: 1;
     transform: none;
+  }
+}
+
+@keyframes agent-map-pulse {
+  0%,
+  30%,
+  100% {
+    transform: none;
+  }
+
+  12% {
+    transform: scale(1.12);
   }
 }
