@@ -22,7 +22,7 @@ Checked on: (date)
 | 8 | gohighlevel workflows | /gohighlevel-agency/workflows-automation | 100 – 1K |  |  |  |
 | 9 | gohighlevel api | /gohighlevel-agency/api-integrations | 100 – 1K |  |  |  |
 | 10 | custom crm development services | /gohighlevel-agency/custom-crm-development | 100 – 1K |  |  |  |
-| 11 | n8n automation | /ai-automation-agency/n8n-make-zapier | 1K – 10K |  |  |  |
+| 11 | n8n automation agency | /ai-automation-agency/n8n-automation-agency | 100 – 1K | 3 |  |  |
 | 12 | ai chatbot development services | /ai-automation-agency/ai-chatbot-development | 100 – 1K |  |  |  |
 | 13 | ai receptionist for small business | /ai-automation-agency/ai-voice-agents | not in research |  |  |  |
 | 14 | business process automation | /ai-automation-agency/business-process-automation | 1K – 10K |  |  |  |
