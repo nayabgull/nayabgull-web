@@ -22,6 +22,7 @@ async function saveLead(lead: LeadInput): Promise<void> {
       businessType: lead.businessType,
       service: lead.service,
       message: lead.message,
+      type: lead.type,
       sourcePage: lead.source,
       status: "new",
     },

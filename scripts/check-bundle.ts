@@ -9,6 +9,7 @@ import type { LoadedScript, RouteBundle } from "../lib/perf/bundle-budget.ts";
 import {
   BUNDLE_BUDGET,
   checkRoute,
+  existsOnBase,
   frameworkFiles,
   kb,
   parseBaseline,
@@ -53,8 +54,12 @@ await run("Bundle size", async () => {
           );
         }
       });
-      await page.goto(`${BASE_URL}${path}`, { waitUntil: "networkidle" });
-      sizes[path] = splitRoute(await Promise.all(scripts), framework);
+      const response = await page.goto(`${BASE_URL}${path}`, { waitUntil: "networkidle" });
+      const scriptsLoaded = await Promise.all(scripts);
+      // Measuring the base branch: a route the PR adds is not there, so it gets no baseline.
+      if (!values["measure-only"] || existsOnBase(response?.status())) {
+        sizes[path] = splitRoute(scriptsLoaded, framework);
+      }
       await page.close();
     }
   } finally {

@@ -1,11 +1,11 @@
 import type { CollectionConfig } from "payload";
 
-import { BUSINESS_TYPES, LEAD_STATUSES, SERVICES } from "@/lib/leads/options.ts";
+import { BUSINESS_TYPES, LEAD_STATUSES, LEAD_TYPES, SERVICES } from "@/lib/leads/options.ts";
 
 import { isEditor } from "./access.ts";
 
 /**
- * Every quote-form submission. The website creates leads through the Local API in a Server Action
+ * Every quote-form and demo-form submission. The website creates leads through the Local API in a Server Action
  * (after Zod validation and the spam checks), so the public REST and GraphQL APIs can never create
  * one. Only logged-in editors can read or change them.
  */
@@ -15,7 +15,7 @@ export const Leads: CollectionConfig = {
   access: { read: isEditor, create: () => false, update: isEditor, delete: isEditor },
   admin: {
     useAsTitle: "name",
-    defaultColumns: ["name", "businessType", "service", "status", "createdAt"],
+    defaultColumns: ["name", "type", "businessType", "service", "status", "createdAt"],
   },
   defaultSort: "-createdAt",
   timestamps: true,
@@ -26,6 +26,14 @@ export const Leads: CollectionConfig = {
     { name: "businessType", type: "select", required: true, options: [...BUSINESS_TYPES] },
     { name: "service", type: "select", required: true, options: [...SERVICES] },
     { name: "message", type: "textarea" },
+    {
+      name: "type",
+      type: "select",
+      required: true,
+      defaultValue: "quote",
+      options: [...LEAD_TYPES],
+      admin: { readOnly: true, description: "Quote request or custom demo request." },
+    },
     {
       name: "sourcePage",
       type: "text",

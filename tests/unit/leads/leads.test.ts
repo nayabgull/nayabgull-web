@@ -2,7 +2,13 @@ import { describe, expect, it, vi } from "vitest";
 
 import { IDLE_STATE } from "@/lib/leads/fields.ts";
 import { notifyNewLead } from "@/lib/leads/notify.ts";
-import { BUSINESS_TYPES, LEAD_STATUSES, SERVICES, values } from "@/lib/leads/options.ts";
+import {
+  BUSINESS_TYPES,
+  LEAD_STATUSES,
+  LEAD_TYPES,
+  SERVICES,
+  values,
+} from "@/lib/leads/options.ts";
 import { leadValues, parseLead } from "@/lib/leads/schema.ts";
 import type { SubmitDeps } from "@/lib/leads/submit.ts";
 import { MESSAGES, submitLead } from "@/lib/leads/submit.ts";
@@ -50,8 +56,10 @@ describe("lead options", () => {
       "Website",
       "GoHighLevel",
       "AI automation",
+      "AI agent",
       "Full system",
     ]);
+    expect(values(LEAD_TYPES)).toEqual(["quote", "demo"]);
     expect(values(LEAD_STATUSES)).toEqual(["new", "contacted", "booked", "won", "lost"]);
   });
 });
@@ -59,7 +67,20 @@ describe("lead options", () => {
 describe("parseLead", () => {
   it("accepts a complete form and trims the text", () => {
     const parsed = parseLead(form(GOOD));
-    expect(parsed).toEqual({ ok: true, lead: { ...GOOD, name: "Sam Roofer" } });
+    expect(parsed).toEqual({ ok: true, lead: { ...GOOD, type: "quote", name: "Sam Roofer" } });
+  });
+
+  it("reads the request type, and treats anything else as a quote request", () => {
+    const type = (value?: string) => {
+      const parsed = parseLead(form({ ...GOOD, type: value }));
+      return parsed.ok ? parsed.lead.type : "invalid";
+    };
+    expect(type("demo")).toBe("demo");
+    expect(type("quote")).toBe("quote");
+    expect(type(undefined)).toBe("quote");
+    expect(type("free-money")).toBe("quote");
+    const demo = parseLead(form({ ...GOOD, type: "demo", service: "ai-agent" }));
+    expect(demo.ok && demo.lead.service).toBe("ai-agent");
   });
 
   it("lets phone and message stay empty", () => {

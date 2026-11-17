@@ -26,6 +26,7 @@ export function pageJsonLd(content: PageContent): JsonLdGraph {
     website(),
     breadcrumbs([
       { name: "Home", path: "/" },
+      ...(content.parent ? [content.parent] : []),
       { name: content.name, path: content.path },
     ]),
   ];

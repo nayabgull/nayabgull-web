@@ -5,13 +5,14 @@ import type { PageContent } from "./types.ts";
 /**
  * /ai-automation-agency (hub). Primary keyword: "ai automation agency".
  * TODO(nayab): confirm the timelines in "process", the tool list and every FAQ answer.
- * TODO(nayab): the child pages (n8n/Make/Zapier, chatbots, voice agents, process automation) are
- * not built yet, so this hub cannot link down to them. Add the links when those pages ship.
+ * Child pages that are live: /ai-automation-agency/ai-agent-development (linked from "related").
+ * TODO(nayab): the other child pages (n8n/Make/Zapier, chatbots, voice agents, process automation)
+ * are not built yet, so this hub cannot link down to them. Add the links when those pages ship.
  */
 export const aiAutomationAgency: PageContent = {
   path: "/ai-automation-agency",
   name: "AI automation agency",
-  updated: "2026-11-10",
+  updated: "2026-11-16",
   meta: {
     title: "AI Automation Agency for Small Business | Nayab Gull",
     description:
@@ -243,6 +244,11 @@ export const aiAutomationAgency: PageContent = {
       eyebrow: "Related",
       heading: "More ways I can help",
       items: [
+        {
+          label: "AI agent development services",
+          href: "/ai-automation-agency/ai-agent-development",
+          text: "One agent for one job: it reads a lead, uses your tools and passes hard cases to you.",
+        },
         {
           label: "GoHighLevel setup and CRM automation",
           href: "/gohighlevel-agency",

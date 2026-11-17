@@ -93,7 +93,18 @@ describe.each(PAGES.filter((page) => !page.noindex))("rendered page $path", (con
     const ctas = page.links.filter((link) => link.href === STRATEGY_CALL_URL);
     expect(ctas.length).toBeGreaterThanOrEqual(2);
     expect(new Set(ctas.map((cta) => cta.text))).toEqual(new Set([CALL_CTA.label]));
-    expect(content.hero.primaryCta).toEqual(CALL_CTA);
+    if (content.request?.type !== "demo") {
+      expect(content.hero.primaryCta).toEqual(CALL_CTA);
+      return;
+    }
+    // A demo page: the demo form is the primary CTA (hero and closing section), and
+    // "Book a free call" stays next to it as the secondary one.
+    expect(content.hero.primaryCta).toEqual({ label: "Get a free demo", href: "#hero-quote" });
+    expect(content.hero.secondaryCta).toEqual(CALL_CTA);
+    expect(page.html).toContain('id="hero-quote"');
+    expect(page.html.match(/name="type" value="demo"/g)).toHaveLength(2);
+    expect(page.html.match(/Get my free demo/g)).toHaveLength(2);
+    expect(page.html).not.toContain("Get my free quote");
   });
 
   it("has the quote form in the hero of a money page and at the end of every page", () => {
