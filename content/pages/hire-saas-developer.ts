@@ -9,8 +9,8 @@ import type { PageContent } from "./types.ts";
  * TODO(nayab): /services/saas-mvp-development, /services/nextjs-react-development and the AI agent
  * page are not built yet, so this page cannot link to them (broken links fail CI). Add the links
  * in "related" and "build" when those pages ship.
- * TODO(nayab): confirm the stack list, the process timelines and every FAQ answer. The ownership
- * and time-zone answers describe your policies; confirm them before launch.
+ * TODO(nayab): confirm the stack list, the process timelines and the FAQ answers on cost, timeline,
+ * support and takeovers. The ownership and time-zone answers are Nayab's own wording (2026-11-17).
  */
 export const hireSaasDeveloper: PageContent = {
   path: "/hire-saas-developer",
@@ -26,8 +26,8 @@ export const hireSaasDeveloper: PageContent = {
     eyebrow: "SaaS development",
     headline: {
       before: "",
-      highlight: "Hire SaaS developer",
-      after: " Nayab Gull to build and grow your product",
+      highlight: "Hire SaaS Developer",
+      after: " for Your Product: Build, Launch and Grow",
     },
     lede: "I turn your SaaS idea into a working app that customers can sign up for and pay for. Then I help it grow.",
     proof: ["5+ years", "400+ projects delivered", "Clients in the US, UK and worldwide"],
@@ -301,16 +301,16 @@ export const hireSaasDeveloper: PageContent = {
           "Most MVPs take a few weeks to a few months. The biggest factor is how many features you want in the first version.\n\nI help you cut the list down, so you can launch sooner and learn from real users.",
       },
       {
-        // TODO(nayab): confirm this ownership answer before launch.
-        question: "Who owns the code and the app?",
+        // Nayab's own wording (2026-11-17), split into two paragraphs for the 4-sentence limit.
+        question: "Who owns the accounts and the work?",
         answer:
-          "You own all of it. The code sits in a repository under your name, and the app runs on hosting you control.\n\nYou also own the Stripe account and the customer data. If you switch developers later, nothing is locked.",
+          "My clients do. In most projects, the client buys the tools in their own name, such as hosting, Stripe or a database service. I build everything inside those accounts: the code, the setup and the full app.\n\nAt launch, it all stays with the client. If a client would rather run on my accounts, I can do that too, at an extra cost.",
       },
       {
-        // TODO(nayab): confirm this time-zone and communication answer before launch.
-        question: "How do time zones and updates work?",
+        // Nayab's own wording (2026-11-17).
+        question: "Do you work in US time zones?",
         answer:
-          "I am in Lahore, Pakistan, and part of my working day overlaps with US business hours. During that overlap, you and I can meet live on video.\n\nOutside calls, you get short written updates and a preview link each week.",
+          "Yes. I am available for calls and messages every weekday from 9 AM to 3 PM Eastern Time (6 AM to noon Pacific). That covers the US morning and early afternoon.",
       },
       {
         question: "Do you offer support after launch?",
