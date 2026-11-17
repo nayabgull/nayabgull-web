@@ -17,6 +17,12 @@ const nextConfig: NextConfig = {
       { source: "/api/:path*", headers: NOINDEX },
     ]);
   },
+  experimental: {
+    // Inline the site CSS (about 8.5 KB gzip) in the HTML instead of a render-blocking stylesheet
+    // request: on a throttled phone that request is a full extra round trip before the first
+    // paint (mobile FCP budget, quality-gates.md).
+    inlineCss: true,
+  },
   turbopack: {
     rules: {
       "*.css": {
