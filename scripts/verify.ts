@@ -33,6 +33,7 @@ const STAGES: Stage[] = [
   { name: "commitlint", command: ["pnpm", "exec", "commitlint", "--from", base, "--to", "HEAD"] },
   { name: "secrets", command: ["gitleaks", "git", "--redact", "--no-banner", "."] },
   { name: "deps (audit)", command: ["pnpm", "audit", "--audit-level=high"] },
+  { name: "deps (audit ignores)", command: ["pnpm", "audit:ignores"] },
   { name: "deps (licences)", command: ["pnpm", "audit:licenses"] },
   {
     name: "sast",

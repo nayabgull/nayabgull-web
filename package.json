@@ -27,6 +27,7 @@
     "audit:structured-data": "node scripts/audit-structured-data.ts",
     "audit:links": "node scripts/audit-links.ts",
     "audit:licenses": "node scripts/check-licenses.ts",
+    "audit:ignores": "node scripts/check-audit-ignores.ts",
     "bundle": "node scripts/check-bundle.ts",
     "lhci": "node scripts/lhci.ts",
     "verify": "node scripts/verify.ts",
