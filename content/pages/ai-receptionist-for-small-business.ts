@@ -339,11 +339,9 @@ export const aiReceptionistForSmallBusiness: PageContent = {
         ],
       },
       outro: [
-        "See all my ",
+        "This page is one part of my ",
         { text: "AI automation services", href: "/ai-automation-agency" },
-        ", or read ",
-        { text: "more about me and how I work", href: "/about" },
-        ".",
+        ", which cover calls, chat, CRM updates and follow-ups.",
       ],
     },
   ],

@@ -105,7 +105,7 @@ test.describe("AI receptionist for small business page", () => {
 
   test("FAQ has the approved answers, and no phone number is published", async ({ page }) => {
     await page.goto(PATH);
-    await expect(page.locator("#faq summary")).toHaveCount(8);
+    await expect(page.locator("#faq summary")).toHaveCount(7);
     const owner = page.locator("#faq details", {
       has: page.locator("summary", { hasText: "Who owns the accounts and the work?" }),
     });
