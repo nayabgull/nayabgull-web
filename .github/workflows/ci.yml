@@ -88,6 +88,8 @@ jobs:
       - uses: ./.github/actions/setup
       - name: Vulnerabilities (high and above)
         run: pnpm audit --audit-level=high
+      - name: Audit ignores still needed (fails once a patched release is published)
+        run: pnpm audit:ignores
       - name: Licence allow-list (replaces dependency-review while the repo is private)
         run: pnpm audit:licenses
 

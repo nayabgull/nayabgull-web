@@ -21,3 +21,13 @@ overrides:
   # happy-dom <=21.0.3 (GHSA-834v-8h66-3h79, GHSA-c8p4-j97h-3vg8, high) comes in through
   # @lexical/headless and vitest; 21.0.4 is the patched release.
   happy-dom@<21.0.4: 21.0.4
+
+# picomatch <=4.0.7 (GHSA-fc5q-39xc-vjpf, high, ReDoS via crafted extglob patterns) has no patched
+# release on npm yet (latest is 4.0.7). In production dependencies it is reached only through
+# payload > json-schema-to-typescript > tinyglobby, which Payload loads only in its generate:types CLI,
+# never in the server runtime; every glob pattern is static (approved by Nayab 2026-11-18).
+# Documented in lib/security/audit-ignores.ts; scripts/check-audit-ignores.ts fails the deps job once
+# picomatch 4.0.8 is published, and then this ignore is replaced with an override.
+auditConfig:
+  ignoreGhsas:
+    - GHSA-fc5q-39xc-vjpf
