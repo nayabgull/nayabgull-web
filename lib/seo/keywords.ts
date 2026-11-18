@@ -141,10 +141,21 @@ export const KEYWORDS: readonly KeywordEntry[] = [
     ],
   },
   {
-    url: "/ai-automation-agency/ai-voice-agents",
+    url: "/ai-automation-agency/ai-receptionist-for-small-business",
     pageType: "service",
     primary: "ai receptionist for small business",
-    secondary: ["ai voice agent", "ai phone answering"],
+    secondary: [
+      "ai voice agent",
+      "ai phone answering service",
+      "ai virtual receptionist",
+      "ai receptionist service",
+      "ai voice agent for small business",
+      "ai answering service for small business",
+      "ai call answering",
+      "ai phone receptionist",
+      "voice ai receptionist",
+      "ai voice agent services",
+    ],
   },
   {
     url: "/ai-automation-agency/business-process-automation",
