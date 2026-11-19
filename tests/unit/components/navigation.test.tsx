@@ -34,6 +34,7 @@ describe("navigation data", () => {
     const services = PRIMARY_NAV[0];
     expect(services && isNavGroup(services) ? services.links : []).toEqual([
       { label: "AI agent development", href: "/ai-automation-agency/ai-agent-development" },
+      { label: "GoHighLevel workflows", href: "/gohighlevel-agency/workflows-automation" },
       { label: "Web design and development", href: "/services/web-design-development" },
       { label: "Hire a full stack developer", href: "/hire-full-stack-developer" },
       { label: "Pricing", href: "/pricing" },
