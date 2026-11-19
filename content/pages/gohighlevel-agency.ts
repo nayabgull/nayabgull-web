@@ -5,13 +5,14 @@ import type { PageContent } from "./types.ts";
 /**
  * /gohighlevel-agency (hub). Primary keyword: "gohighlevel agency".
  * TODO(nayab): confirm the timelines in "process" and every FAQ answer; they describe how you work.
- * TODO(nayab): the child pages (workflows, API, custom CRM) are not built yet, so this hub cannot
- * link down to them. Add the links here when those pages ship (seo.md §4 and §10).
+ * Links down to its child pages (seo.md §4 and §10): workflows (the "Workflows" card).
+ * TODO(nayab): the API and custom CRM child pages are not built yet. Add their links here when
+ * those pages ship, and keep the hub at 8 internal links or fewer.
  */
 export const gohighlevelAgency: PageContent = {
   path: "/gohighlevel-agency",
   name: "GoHighLevel agency",
-  updated: "2026-11-10",
+  updated: "2026-11-19",
   meta: {
     title: "GoHighLevel Agency: Setup and Automation | Nayab Gull",
     description:
@@ -116,6 +117,10 @@ export const gohighlevelAgency: PageContent = {
         {
           title: "Workflows",
           text: "A workflow is a list of steps that run on their own. One new form can send a text, send an email and give your team a task.",
+          link: {
+            label: "GoHighLevel workflows I build",
+            href: "/gohighlevel-agency/workflows-automation",
+          },
         },
         {
           title: "A2P 10DLC registration",
