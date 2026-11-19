@@ -1,24 +1,8 @@
-import {
-  ChatIcon,
-  CheckIcon,
-  CodeIcon,
-  FlowIcon,
-  PhoneIcon,
-  SparkIcon,
-} from "@/components/ui/icons.tsx";
+import { ICONS } from "@/components/ui/icon-map.tsx";
 import { RichText } from "@/components/ui/RichText.tsx";
 import { Section } from "@/components/ui/Section.tsx";
 import { SectionHeader } from "@/components/ui/SectionHeader.tsx";
-import type { AgentFlowBlock, AgentStep } from "@/content/pages/types.ts";
-
-const ICONS: Record<AgentStep["icon"], typeof CodeIcon> = {
-  code: CodeIcon,
-  flow: FlowIcon,
-  phone: PhoneIcon,
-  check: CheckIcon,
-  chat: ChatIcon,
-  spark: SparkIcon,
-};
+import type { AgentFlowBlock } from "@/content/pages/types.ts";
 
 /**
  * "How an agent works": five steps the visitor clicks through, one open at a time. No JavaScript:
