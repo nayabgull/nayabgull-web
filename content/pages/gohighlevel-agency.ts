@@ -5,13 +5,14 @@ import type { PageContent } from "./types.ts";
 /**
  * /gohighlevel-agency (hub). Primary keyword: "gohighlevel agency".
  * TODO(nayab): confirm the timelines in "process" and every FAQ answer; they describe how you work.
- * TODO(nayab): the child pages (workflows, API, custom CRM) are not built yet, so this hub cannot
- * link down to them. Add the links here when those pages ship (seo.md §4 and §10).
+ * Child pages that are live: /gohighlevel-agency/custom-crm-development (linked from "related").
+ * TODO(nayab): the other child pages (workflows, API) are not built yet, so this hub cannot link
+ * down to them. Add the links here when those pages ship (seo.md §4 and §10).
  */
 export const gohighlevelAgency: PageContent = {
   path: "/gohighlevel-agency",
   name: "GoHighLevel agency",
-  updated: "2026-11-10",
+  updated: "2026-11-19",
   meta: {
     title: "GoHighLevel Agency: Setup and Automation | Nayab Gull",
     description:
@@ -241,6 +242,11 @@ export const gohighlevelAgency: PageContent = {
       eyebrow: "Related",
       heading: "Where this setup fits",
       items: [
+        {
+          label: "Custom CRM development services",
+          href: "/gohighlevel-agency/custom-crm-development",
+          text: "A CRM built around your sales steps, inside GoHighLevel or as a custom web app.",
+        },
         {
           label: "AI receptionists and chatbots",
           href: "/ai-automation-agency",
