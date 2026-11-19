@@ -147,15 +147,16 @@ export const KEYWORDS: readonly KeywordEntry[] = [
     secondary: ["ai voice agent", "ai phone answering"],
   },
   {
-    url: "/ai-automation-agency/business-process-automation",
+    url: "/ai-automation-agency/business-process-automation-services",
     pageType: "service",
-    primary: "business process automation",
+    primary: "business process automation services",
     secondary: [
+      "business process automation",
       "workflow automation",
       "workflow automation solutions",
-      "business process automation services",
       "workflow automation services",
       "workflow automation for small business",
+      "business process automation companies",
     ],
   },
   {
