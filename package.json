@@ -19,6 +19,8 @@
     "test": "vitest run --coverage",
     "test:watch": "vitest",
     "test:e2e": "playwright test tests/e2e",
+    "test:e2e:cms": "playwright test tests/cms-e2e",
+    "test:e2e:cms:seed": "payload run tests/cms-e2e/seed.ts",
     "test:responsive": "playwright test tests/responsive",
     "test:a11y": "playwright test tests/a11y",
     "audit:seo": "node scripts/audit-seo.ts",
