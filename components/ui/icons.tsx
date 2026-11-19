@@ -162,6 +162,19 @@ export const CalendarIcon = (p: IconProps) => (
     <path d="M3 10h18M8 3v4M16 3v4" />
   </Icon>
 );
+export const CartIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M3 4h2l2.4 11h11L21 8H6.2" />
+    <circle cx="9" cy="19.5" r="1.5" />
+    <circle cx="17" cy="19.5" r="1.5" />
+  </Icon>
+);
+export const LayoutIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <rect x="3" y="4" width="18" height="16" rx="2" />
+    <path d="M3 9h18M9 9v11" />
+  </Icon>
+);
 export const DatabaseIcon = (p: IconProps) => (
   <Icon {...p}>
     <ellipse cx="12" cy="6" rx="8" ry="3" />
