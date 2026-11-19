@@ -1,6 +1,12 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 
-import { connectionString, getEnv, isMigrationRun, parseEnv } from "@/lib/env.ts";
+import {
+  connectionString,
+  getEnv,
+  isMigrationRun,
+  parseEnv,
+  usesPlaceholderDatabase,
+} from "@/lib/env.ts";
 
 const GOOD = {
   DATABASE_URI: "postgres://user:pass@host-pooler.neon.tech/db",
@@ -74,5 +80,17 @@ describe("getEnv", () => {
     const { getEnv: fresh } = await import("@/lib/env.ts");
     expect(() => fresh()).toThrow(/Invalid environment variables/);
     expect(typeof getEnv).toBe("function");
+  });
+});
+
+describe("usesPlaceholderDatabase", () => {
+  it("is true only for the CI placeholder URL", () => {
+    expect(
+      usesPlaceholderDatabase({
+        DATABASE_URI: "postgres://ci-placeholder:ci-placeholder@localhost:5432/ci-placeholder",
+      }),
+    ).toBe(true);
+    expect(usesPlaceholderDatabase(GOOD)).toBe(false);
+    expect(usesPlaceholderDatabase({})).toBe(false);
   });
 });

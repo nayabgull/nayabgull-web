@@ -63,6 +63,14 @@ export function connectionString(env: Env, migrating: boolean): string {
   return env.DATABASE_URI_DIRECT;
 }
 
+/**
+ * True when the database URL is a CI placeholder: there is no database to read, so CMS-backed parts
+ * of the site (the blog) render as empty instead of trying to connect on every request.
+ */
+export function usesPlaceholderDatabase(source: EnvSource): boolean {
+  return PLACEHOLDER.test(source.DATABASE_URI ?? "");
+}
+
 let cached: Env | undefined;
 
 /** Validated environment, parsed once per process. */

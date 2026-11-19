@@ -32,7 +32,13 @@ describe("toCandidate", () => {
       content,
       resultApproved: true,
       seo: { title: "a", metaDescription: "b", primaryKeyword: "c", canonical: "d" },
+      lead: [],
     });
+  });
+
+  it("puts a post's direct answer before the body copy", () => {
+    expect(toCandidate("posts", { directAnswer: "Short answer." }).lead).toEqual(["Short answer."]);
+    expect(toCandidate("posts", {}).lead).toEqual([""]);
   });
 
   it("survives partial or malformed input", () => {

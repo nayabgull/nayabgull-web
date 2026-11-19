@@ -42,6 +42,8 @@ export interface PublishCandidate {
   content: unknown;
   /** Case studies only: Nayab confirmed the result is real and shareable. */
   resultApproved?: boolean | undefined;
+  /** Copy the template shows before the body, in order (a post's direct answer). */
+  lead?: readonly string[] | undefined;
 }
 
 /** An Issue plus the admin field it belongs to, so the editor sees the error on that field. */
@@ -68,6 +70,8 @@ export function pathFor(
 
 /** Which admin field an audit rule belongs to. Everything else is about the body copy. */
 export function fieldForRule(rule: string): string {
+  const postField = POST_RULE_FIELDS[rule];
+  if (postField) return postField;
   if (rule.startsWith("title-")) return "seo.title";
   if (rule.startsWith("meta-")) return "seo.metaDescription";
   if (rule.startsWith("canonical-")) return "seo.canonical";
@@ -76,6 +80,19 @@ export function fieldForRule(rule: string): string {
   if (rule === "h1-single") return "title";
   return "content";
 }
+
+/** Post-only rules (lib/cms/post-rules.ts) and the field each one belongs to. */
+const POST_RULE_FIELDS: Readonly<Record<string, string>> = {
+  "direct-answer": "directAnswer",
+  excerpt: "excerpt",
+  "hero-image": "heroImage",
+  hub: "hub",
+  author: "author",
+  category: "category",
+  "slug-reserved": "slug",
+  "secondary-registered": "seo.secondaryKeywords",
+  "secondary-coverage": "seo.secondaryKeywords",
+};
 
 const normalize = (value: string | undefined): string => (value ?? "").trim().toLowerCase();
 
@@ -111,6 +128,7 @@ function resolveEntry(
 function snapshotFor(candidate: PublishCandidate, path: string): PageSnapshot {
   const copy = extractLexical(candidate.content);
   const headings = [{ level: 1, text: candidate.title }, ...copy.headings];
+  const paragraphs = [...(candidate.lead ?? []).filter((p) => p.trim() !== ""), ...copy.paragraphs];
   return {
     lang: "en-US",
     title: candidate.seo.title,
@@ -122,8 +140,8 @@ function snapshotFor(candidate: PublishCandidate, path: string): PageSnapshot {
     jsonLd: [],
     links: copy.links,
     images: [],
-    paragraphs: copy.paragraphs,
-    bodyText: [...headings.map((h) => h.text), ...copy.paragraphs].join(" "),
+    paragraphs,
+    bodyText: [...headings.map((h) => h.text), ...paragraphs].join(" "),
   };
 }
 

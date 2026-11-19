@@ -5,7 +5,15 @@ import { SiteFooter } from "@/components/sections/SiteFooter.tsx";
 import { SiteHeader } from "@/components/sections/SiteHeader.tsx";
 import { Disclosure } from "@/components/ui/Disclosure.tsx";
 import { CALL_CTA } from "@/content/home.ts";
-import { FOOTER_NAV, isNavGroup, navHrefs, PRIMARY_NAV } from "@/content/navigation.ts";
+import {
+  BLOG_LINK,
+  FOOTER_NAV,
+  footerNav,
+  isNavGroup,
+  navHrefs,
+  PRIMARY_NAV,
+  primaryNav,
+} from "@/content/navigation.ts";
 import { ALL_ROUTES } from "@/lib/seo/routes.ts";
 
 afterEach(cleanup);
@@ -134,5 +142,44 @@ describe("Disclosure", () => {
     open();
     fireEvent.click(screen.getByText("Inside link"));
     expect(details.open).toBe(false);
+  });
+});
+
+describe("Blog link", () => {
+  it("is hidden until a post is published", () => {
+    expect(primaryNav(false)).toBe(PRIMARY_NAV);
+    expect(footerNav(false)).toBe(FOOTER_NAV);
+    render(
+      <>
+        <SiteHeader />
+        <SiteFooter />
+      </>,
+    );
+    expect(screen.queryByRole("link", { name: "Blog" })).toBeNull();
+  });
+
+  it("sits before About in the header and in the footer's Company group once a post is live", () => {
+    expect(primaryNav(true).map((item) => item.label)).toEqual([
+      "Services",
+      "AI Automation",
+      "GoHighLevel",
+      "Industries",
+      "Blog",
+      "About",
+      "Contact",
+    ]);
+    expect(footerNav(true).find((group) => group.title === "Company")?.links).toContainEqual(
+      BLOG_LINK,
+    );
+    render(
+      <>
+        <SiteHeader showBlog />
+        <SiteFooter showBlog />
+      </>,
+    );
+    for (const name of ["Primary", "Menu", "Footer"]) {
+      const nav = screen.getByRole("navigation", { name });
+      expect(within(nav).getByRole("link", { name: "Blog" })).toHaveAttribute("href", "/blog");
+    }
   });
 });

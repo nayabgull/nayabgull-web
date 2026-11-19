@@ -2,10 +2,13 @@ import Link from "next/link";
 
 import { Container } from "@/components/ui/Container.tsx";
 import { Logo } from "@/components/ui/Logo.tsx";
-import { FOOTER_NAV } from "@/content/navigation.ts";
+import { footerNav } from "@/content/navigation.ts";
 
-/** Links every public page. The extra bottom padding keeps the mobile CTA bar off the last line. */
-export function SiteFooter() {
+/**
+ * Links every public page. The extra bottom padding keeps the mobile CTA bar off the last line.
+ * "Blog" shows only while at least one post is published (`showBlog`).
+ */
+export function SiteFooter({ showBlog = false }: { showBlog?: boolean }) {
   return (
     <footer className="border-t border-border pt-12 pb-[max(6rem,env(safe-area-inset-bottom))] lg:pb-[max(3rem,env(safe-area-inset-bottom))]">
       <Container>
@@ -17,7 +20,7 @@ export function SiteFooter() {
             </p>
           </div>
           <nav aria-label="Footer" className="grid grid-cols-2 gap-x-10 gap-y-8 sm:grid-cols-4">
-            {FOOTER_NAV.map((group) => (
+            {footerNav(showBlog).map((group) => (
               <div key={group.title}>
                 <p className="font-display text-small font-semibold">{group.title}</p>
                 <ul className="mt-2">

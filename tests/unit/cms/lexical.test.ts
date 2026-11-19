@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { extractLexical } from "@/lib/content/lexical.ts";
+import { extractLexical, lexicalBlocks, lexicalUploads } from "@/lib/content/lexical.ts";
 
 const text = (value: string) => ({ type: "text", text: value });
 
@@ -84,5 +84,51 @@ describe("extractLexical", () => {
     expect(copy.headings).toEqual([{ level: 3, text: "A" }]);
     expect(copy.links).toEqual([{ href: "https://nayabgull.com/a", text: "A" }]);
     expect(copy.paragraphs).toEqual(["internalemptyno fields"]);
+  });
+});
+
+describe("blocks and uploads", () => {
+  it("reads FAQ and CTA block copy as an H2 plus paragraphs", () => {
+    const copy = extractLexical({
+      root: {
+        type: "root",
+        children: [
+          {
+            type: "block",
+            fields: {
+              blockType: "faq",
+              heading: "Questions",
+              faqs: [{ question: "Q?", answer: "One.\n\nTwo." }, 4, { answer: 5 }],
+            },
+          },
+          { type: "block", fields: { blockType: "cta", heading: "Book", text: "Get a plan." } },
+          { type: "block", fields: { blockType: "cta", heading: " ", text: " " } },
+          { type: "block", fields: { blockType: "faq", heading: "No items" } },
+        ],
+      },
+    });
+    expect(copy.headings).toEqual([
+      { level: 2, text: "Questions" },
+      { level: 2, text: "Book" },
+      { level: 2, text: "No items" },
+    ]);
+    expect(copy.paragraphs).toEqual(["One.", "Two.", "Get a plan."]);
+  });
+
+  it("lists blocks and upload values in reading order", () => {
+    const state = {
+      root: {
+        type: "root",
+        children: [
+          { type: "upload", value: 3 },
+          { type: "block", fields: { blockType: "cta" } },
+          { type: "block", fields: {} },
+          { type: "upload", value: { id: 4 } },
+        ],
+      },
+    };
+    expect(lexicalBlocks(state).map((block) => block.blockType)).toEqual(["cta", ""]);
+    expect(lexicalUploads(state)).toEqual([3, { id: 4 }]);
+    expect(lexicalUploads(null)).toEqual([]);
   });
 });

@@ -3,11 +3,14 @@ import type { CollectionConfig } from "payload";
 import { validateAlt } from "@/lib/cms/alt.ts";
 
 import { anyone, isEditor } from "./access.ts";
+import { revalidateBlogAfterChange, revalidateBlogAfterDelete } from "./hooks/revalidate-blog.ts";
 
 export const Media: CollectionConfig = {
   slug: "media",
   access: { read: anyone, create: isEditor, update: isEditor, delete: isEditor },
   admin: { useAsTitle: "alt" },
+  // A published post shows these, so a change revalidates the blog.
+  hooks: { afterChange: [revalidateBlogAfterChange], afterDelete: [revalidateBlogAfterDelete] },
   upload: {
     mimeTypes: ["image/*"],
     imageSizes: [
