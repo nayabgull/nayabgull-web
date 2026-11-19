@@ -126,7 +126,7 @@ export interface AgentStep {
   text: string;
   /** One concrete case, in plain words. */
   example: string;
-  icon: NonNullable<Flow["steps"][number]["icon"]>;
+  icon: IconName;
 }
 
 /** The click-through "how an agent works" sequence. Pure CSS, one step open at a time. */
