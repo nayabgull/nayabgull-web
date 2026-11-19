@@ -5,8 +5,9 @@ import type { PageContent } from "./types.ts";
 /**
  * /gohighlevel-agency (hub). Primary keyword: "gohighlevel agency".
  * TODO(nayab): confirm the timelines in "process" and every FAQ answer; they describe how you work.
- * TODO(nayab): the child pages (workflows, API, custom CRM) are not built yet, so this hub cannot
- * link down to them. Add the links here when those pages ship (seo.md §4 and §10).
+ * TODO(nayab): the workflows and custom CRM child pages are not built yet, so this hub cannot link
+ * down to them. Add the links in "related" when those pages ship (seo.md §4 and §10). The API
+ * integrations page is linked there already.
  */
 export const gohighlevelAgency: PageContent = {
   path: "/gohighlevel-agency",
@@ -241,6 +242,11 @@ export const gohighlevelAgency: PageContent = {
       eyebrow: "Related",
       heading: "Where this setup fits",
       items: [
+        {
+          label: "GoHighLevel API integrations",
+          href: "/gohighlevel-agency/api-integrations",
+          text: "Your website, Stripe, Sheets, QuickBooks and Vapi, linked to your CRM.",
+        },
         {
           label: "AI receptionists and chatbots",
           href: "/ai-automation-agency",

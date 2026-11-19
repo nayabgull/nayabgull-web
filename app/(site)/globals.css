@@ -464,6 +464,133 @@
     }
   }
 
+  /*
+   * "Your app ⇄ GoHighLevel" picture (TwoWaySection). Narrow: the two systems stack and the lanes
+   * run down (request) and up (event). From a 28rem container: one row, lanes run right and left.
+   */
+  .twoway {
+    display: grid;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .twoway-lanes {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .twoway-lane {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    text-align: center;
+  }
+
+  .twoway-tag {
+    border: 1px solid var(--color-border-strong);
+    border-radius: 999px;
+    padding: 0.125rem 0.75rem;
+    background: var(--color-bg-raised);
+    color: var(--color-accent);
+    font-weight: 600;
+    font-size: var(--text-small);
+  }
+
+  .twoway-arrow {
+    position: relative;
+    width: 2px;
+    height: 3rem;
+    background: linear-gradient(var(--color-accent-from), var(--color-lime));
+  }
+
+  .twoway-arrow::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    translate: -50% 0;
+    border-inline: 6px solid transparent;
+    border-top: 9px solid var(--color-lime);
+  }
+
+  .twoway-lane-back .twoway-arrow {
+    background: linear-gradient(var(--color-accent-from), var(--color-lime));
+  }
+
+  .twoway-lane-back .twoway-arrow::after {
+    top: -2px;
+    bottom: auto;
+    border-top: 0;
+    border-bottom: 9px solid var(--color-accent-from);
+  }
+
+  /* The dot layer spans the whole arrow, so translating it by 100% moves the dot end to end. */
+  .twoway-dot {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+  }
+
+  .twoway-dot::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 999px;
+    background: var(--color-text);
+    translate: -50% -50%;
+  }
+
+  @container (min-width: 28rem) {
+    .twoway {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr) minmax(0, 1fr);
+    }
+
+    .twoway-lanes {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1.5rem;
+    }
+
+    .twoway-arrow {
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--color-accent-from), var(--color-lime));
+    }
+
+    .twoway-arrow::after {
+      top: 50%;
+      right: -2px;
+      bottom: auto;
+      left: auto;
+      translate: 0 -50%;
+      border-inline: 0;
+      border-block: 6px solid transparent;
+      border-left: 9px solid var(--color-lime);
+    }
+
+    .twoway-lane-back .twoway-arrow {
+      background: linear-gradient(90deg, var(--color-accent-from), var(--color-lime));
+    }
+
+    .twoway-lane-back .twoway-arrow::after {
+      top: 50%;
+      right: auto;
+      left: -2px;
+      border-block: 6px solid transparent;
+      border-left: 0;
+      border-right: 9px solid var(--color-accent-from);
+    }
+
+    .twoway-dot::before {
+      top: 50%;
+      left: 0;
+    }
+  }
+
   /* "Request → AI model → tools → action" picture (ExplainerSection). The line sits behind the icons. */
   .agent-map-line {
     position: absolute;
@@ -786,6 +913,25 @@
 
   .dot-live::after {
     animation: pulse-live 2s ease-out infinite;
+  }
+
+  /* Two-way picture: a dot travels each lane in its direction (transform and opacity only). */
+  .twoway-dot {
+    animation: twoway-down 3.2s ease-in-out infinite;
+  }
+
+  .twoway-lane-back .twoway-dot {
+    animation: twoway-up 3.2s ease-in-out 1.6s infinite;
+  }
+
+  @container (min-width: 28rem) {
+    .twoway-dot {
+      animation-name: twoway-right;
+    }
+
+    .twoway-lane-back .twoway-dot {
+      animation-name: twoway-left;
+    }
   }
 
   /* Request picture: the icons light up one after another (opacity and transform only). */
@@ -1184,5 +1330,77 @@
 
   12% {
     transform: scale(1.12);
+  }
+}
+
+@keyframes twoway-down {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+
+  15%,
+  70% {
+    opacity: 1;
+  }
+
+  85%,
+  100% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+}
+
+@keyframes twoway-up {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+
+  15%,
+  70% {
+    opacity: 1;
+  }
+
+  85%,
+  100% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+}
+
+@keyframes twoway-right {
+  0% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+
+  15%,
+  70% {
+    opacity: 1;
+  }
+
+  85%,
+  100% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+@keyframes twoway-left {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+
+  15%,
+  70% {
+    opacity: 1;
+  }
+
+  85%,
+  100% {
+    opacity: 0;
+    transform: translateX(0);
   }
 }
