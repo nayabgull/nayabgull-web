@@ -225,6 +225,71 @@
     text-underline-offset: 3px;
   }
 
+  /* Blog post body from the CMS: semantic elements only, spacing and type from the tokens. */
+  .post-body {
+    margin-top: 2rem;
+  }
+
+  .post-body > * + * {
+    margin-top: 1.25rem;
+  }
+
+  /* Direct children only: FAQ and CTA blocks style their own headings. */
+  .post-body > h2 {
+    margin-top: 3rem;
+    font-size: var(--text-h2);
+    font-weight: 700;
+    line-height: 1.15;
+    scroll-margin-top: 6rem;
+  }
+
+  .post-body > h3,
+  .post-body > h4 {
+    margin-top: 2rem;
+    font-size: var(--text-h3);
+    font-weight: 700;
+    line-height: 1.25;
+    scroll-margin-top: 6rem;
+  }
+
+  .post-body > ul,
+  .post-body > ol,
+  .post-body li > ul,
+  .post-body li > ol {
+    padding-left: 1.5rem;
+  }
+
+  .post-body > ul,
+  .post-body li > ul {
+    list-style: disc;
+  }
+
+  .post-body > ol,
+  .post-body li > ol {
+    list-style: decimal;
+  }
+
+  .post-body li + li {
+    margin-top: 0.5rem;
+  }
+
+  .post-body blockquote {
+    border-left: 3px solid var(--color-border-strong);
+    padding-left: 1rem;
+    color: var(--color-text-muted);
+  }
+
+  .post-body hr {
+    border-color: var(--color-border);
+  }
+
+  .post-body code {
+    border-radius: var(--radius-sm);
+    background: var(--color-surface-strong);
+    padding: 0.1em 0.35em;
+    font-size: 0.9em;
+  }
+
   .glass {
     position: relative;
     isolation: isolate;

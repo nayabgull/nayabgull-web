@@ -7,7 +7,8 @@ import { ChevronDownIcon, MenuIcon } from "@/components/ui/icons.tsx";
 import { Logo } from "@/components/ui/Logo.tsx";
 import { ThemeToggle } from "@/components/ui/ThemeToggle.tsx";
 import { CALL_CTA } from "@/content/home.ts";
-import { isNavGroup, PRIMARY_NAV } from "@/content/navigation.ts";
+import type { NavItem } from "@/content/navigation.ts";
+import { isNavGroup, primaryNav } from "@/content/navigation.ts";
 
 const ITEM =
   "inline-flex min-h-11 items-center gap-1 rounded-pill px-3 text-small font-medium text-text-muted transition-colors hover:text-text";
@@ -15,11 +16,11 @@ const MENU_LINK =
   "flex min-h-11 items-center rounded-md px-3 text-small font-medium hover:bg-surface-strong";
 
 /** Desktop navigation: plain links, plus a dropdown for every group. */
-function DesktopNav() {
+function DesktopNav({ items }: { items: readonly NavItem[] }) {
   return (
     <nav aria-label="Primary" className="hidden xl:block">
       <ul className="flex items-center">
-        {PRIMARY_NAV.map((item) => (
+        {items.map((item) => (
           <li key={item.label} className="relative">
             {isNavGroup(item) ? (
               <Disclosure
@@ -54,7 +55,7 @@ function DesktopNav() {
 }
 
 /** Below 1280 px: one menu button; the panel lists every page, groups under their label. */
-function MobileNav() {
+function MobileNav({ items }: { items: readonly NavItem[] }) {
   return (
     <Disclosure
       className="xl:hidden"
@@ -67,7 +68,7 @@ function MobileNav() {
         className="absolute inset-x-0 top-full z-50 max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-b border-border-strong bg-bg-raised px-gutter pt-3 pb-6 shadow-card"
       >
         <ul className="mx-auto max-w-md">
-          {PRIMARY_NAV.map((item) =>
+          {items.map((item) =>
             isNavGroup(item) ? (
               <li key={item.label} className="py-2">
                 <p className="px-3 text-small font-semibold text-text-muted">{item.label}</p>
@@ -103,9 +104,11 @@ function MobileNav() {
 /**
  * Sticky on every page: logo, navigation to real pages, theme toggle and the "Book a free call" button.
  * Links use prefetch={false} site-wide: pages render per request (the CSP nonce needs that), so a
- * prefetch would only make the server render pages nobody asked for.
+ * prefetch would only make the server render pages nobody asked for. "Blog" shows only while at
+ * least one post is published (`showBlog`).
  */
-export function SiteHeader() {
+export function SiteHeader({ showBlog = false }: { showBlog?: boolean }) {
+  const items = primaryNav(showBlog);
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-bg">
       <a
@@ -116,7 +119,7 @@ export function SiteHeader() {
       </a>
       <Container className="relative flex h-18 items-center justify-between gap-3">
         <Logo />
-        <DesktopNav />
+        <DesktopNav items={items} />
         <div className="flex items-center gap-2">
           <ThemeToggle />
           <ButtonLink
@@ -126,7 +129,7 @@ export function SiteHeader() {
           >
             {CALL_CTA.label}
           </ButtonLink>
-          <MobileNav />
+          <MobileNav items={items} />
         </div>
       </Container>
     </header>
