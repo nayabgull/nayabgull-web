@@ -5,14 +5,15 @@ import type { PageContent } from "./types.ts";
 /**
  * /ai-automation-agency (hub). Primary keyword: "ai automation agency".
  * TODO(nayab): confirm the timelines in "process", the tool list and every FAQ answer.
- * Child pages that are live: /ai-automation-agency/ai-agent-development (linked from "related").
- * TODO(nayab): the other child pages (n8n/Make/Zapier, chatbots, voice agents, process automation)
+ * Child pages that are live: /ai-automation-agency/ai-agent-development and
+ * /ai-automation-agency/business-process-automation-services (both linked from "related").
+ * TODO(nayab): the other child pages (n8n/Make/Zapier, chatbots, voice agents)
  * are not built yet, so this hub cannot link down to them. Add the links when those pages ship.
  */
 export const aiAutomationAgency: PageContent = {
   path: "/ai-automation-agency",
   name: "AI automation agency",
-  updated: "2026-11-16",
+  updated: "2026-11-19",
   meta: {
     title: "AI Automation Agency for Small Business | Nayab Gull",
     description:
@@ -250,6 +251,11 @@ export const aiAutomationAgency: PageContent = {
           text: "One agent for one job: it reads a lead, uses your tools and passes hard cases to you.",
         },
         {
+          label: "Business process automation services",
+          href: "/ai-automation-agency/business-process-automation-services",
+          text: "Workflows that move leads, invoices and reports between your apps with no copy and paste.",
+        },
+        {
           label: "GoHighLevel setup and CRM automation",
           href: "/gohighlevel-agency",
           text: "Pipelines, texting and calendars that give your AI a place to work.",
@@ -263,11 +269,6 @@ export const aiAutomationAgency: PageContent = {
           label: "Custom website design",
           href: "/services/web-design-development",
           text: "A fast site with a chat widget and forms your AI can answer.",
-        },
-        {
-          label: "Hire a full stack developer",
-          href: "/hire-full-stack-developer",
-          text: "For custom code when off-the-shelf tools cannot do the job.",
         },
         {
           label: "Starting prices for websites, CRM and AI",

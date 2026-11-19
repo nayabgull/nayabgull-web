@@ -4,11 +4,13 @@ import { Section } from "@/components/ui/Section.tsx";
 import { SectionHeader } from "@/components/ui/SectionHeader.tsx";
 import type { UseCasesBlock } from "@/content/pages/types.ts";
 
-const ROWS = [
-  ["problem", "The problem"],
-  ["agent", "What the agent does"],
-  ["result", "Result"],
-] as const;
+const DEFAULT_LABELS: NonNullable<UseCasesBlock["labels"]> = {
+  problem: "The problem",
+  agent: "What the agent does",
+  result: "Result",
+};
+
+const ROWS = ["problem", "agent", "result"] as const;
 
 /**
  * Use cases as cards. Each card reads "The problem → What the agent does → Result" in three short
@@ -16,6 +18,7 @@ const ROWS = [
  */
 export function UseCasesSection({ block }: { block: UseCasesBlock }) {
   const headingId = `${block.id}-heading`;
+  const labels = block.labels ?? DEFAULT_LABELS;
   return (
     <Section id={block.id} labelledBy={headingId}>
       <SectionHeader
@@ -41,24 +44,29 @@ export function UseCasesSection({ block }: { block: UseCasesBlock }) {
               </div>
               <h3 className="mt-4 text-h3 font-semibold">{item.title}</h3>
               <dl className="usecase mt-4 space-y-4">
-                {ROWS.map(([key, label]) => (
+                {ROWS.map((key) => (
                   <div key={key} className="usecase-row relative pl-6">
-                    <dt className="text-small font-semibold text-accent">{label}</dt>
-                    <dd className="mt-0.5 text-text-muted">{item[key]}</dd>
+                    <dt className="text-small font-semibold text-accent">{labels[key]}</dt>
+                    {/* A <p> keeps each row its own text block for the content audit. */}
+                    <dd className="mt-0.5 text-text-muted">
+                      <p>{item[key]}</p>
+                    </dd>
                   </div>
                 ))}
               </dl>
-              <details className="faq-item group mt-auto border-t border-border pt-2">
-                <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 font-semibold">
-                  <span>See the full example</span>
-                  <ChevronDownIcon className="faq-chevron size-5 transition-transform" />
-                </summary>
-                <div className="space-y-3 pb-1 text-text-muted">
-                  {item.more.map((paragraph) => (
-                    <p key={paragraph}>{paragraph}</p>
-                  ))}
-                </div>
-              </details>
+              {item.more?.length ? (
+                <details className="faq-item group mt-auto border-t border-border pt-2">
+                  <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 font-semibold">
+                    <span>See the full example</span>
+                    <ChevronDownIcon className="faq-chevron size-5 transition-transform" />
+                  </summary>
+                  <div className="space-y-3 pb-1 text-text-muted">
+                    {item.more.map((paragraph) => (
+                      <p key={paragraph}>{paragraph}</p>
+                    ))}
+                  </div>
+                </details>
+              ) : null}
             </li>
           ))}
         </ul>

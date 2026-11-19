@@ -200,14 +200,19 @@ export interface UseCase {
   problem: string;
   agent: string;
   result: string;
-  /** The rest of the example, behind "See the full example". */
-  more: readonly string[];
+  /** The rest of the example, behind "See the full example". Left out: no expander. */
+  more?: readonly string[];
 }
 
 /** Use cases as cards: the problem → what the agent does → result, plus the full example. */
 export interface UseCasesBlock extends BlockBase {
   kind: "use-cases";
   items: readonly UseCase[];
+  /**
+   * Row labels on every card. Defaults to "The problem", "What the agent does" and "Result"; a
+   * page about plain workflows names the middle row after the workflow instead.
+   */
+  labels?: { problem: string; agent: string; result: string };
 }
 
 /** Numbered steps: a horizontal stepper on wide screens, a vertical one on small screens. */
