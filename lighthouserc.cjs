@@ -8,6 +8,7 @@ const routes = [
   "/ai-automation-agency/ai-agent-development",
   "/industries/roofing-hvac-website-design",
   "/services/web-design-development",
+  "/services/nextjs-react-development",
   "/hire-full-stack-developer",
   "/pricing",
   "/about",
