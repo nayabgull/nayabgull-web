@@ -2,6 +2,7 @@ import { about } from "./about.ts";
 import { aiAgentDevelopment } from "./ai-agent-development.ts";
 import { aiAutomationAgency } from "./ai-automation-agency.ts";
 import { gohighlevelAgency } from "./gohighlevel-agency.ts";
+import { gohighlevelApiIntegrations } from "./gohighlevel-api-integrations.ts";
 import { hireFullStackDeveloper } from "./hire-full-stack-developer.ts";
 import { privacyPolicy, terms } from "./legal.ts";
 import { pricing } from "./pricing.ts";
@@ -12,6 +13,7 @@ import { webDesignDevelopment } from "./web-design-development.ts";
 /** Every launch page except the homepage, in build order. The sitemap and the tests read this list. */
 export const PAGES: readonly PageContent[] = [
   gohighlevelAgency,
+  gohighlevelApiIntegrations,
   aiAutomationAgency,
   aiAgentDevelopment,
   roofingHvacWebsiteDesign,

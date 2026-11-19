@@ -4,6 +4,7 @@ const base = (process.env.AUDIT_BASE_URL ?? "http://localhost:3000").replace(/\/
 const routes = [
   "/",
   "/gohighlevel-agency",
+  "/gohighlevel-agency/api-integrations",
   "/ai-automation-agency",
   "/ai-automation-agency/ai-agent-development",
   "/industries/roofing-hvac-website-design",

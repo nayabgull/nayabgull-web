@@ -13,6 +13,7 @@ import { LinksSection } from "./blocks/LinksSection.tsx";
 import { PricesSection } from "./blocks/PricesSection.tsx";
 import { ProseSection } from "./blocks/ProseSection.tsx";
 import { StepperSection } from "./blocks/StepperSection.tsx";
+import { TwoWaySection } from "./blocks/TwoWaySection.tsx";
 import { UseCasesSection } from "./blocks/UseCasesSection.tsx";
 import { Faq } from "./Faq.tsx";
 import { LeadFlow } from "./LeadFlow.tsx";
@@ -48,6 +49,8 @@ function BlockSection({ block }: { block: Block }) {
       return <UseCasesSection block={block} />;
     case "stepper":
       return <StepperSection block={block} />;
+    case "two-way":
+      return <TwoWaySection block={block} />;
   }
 }
 
