@@ -8,6 +8,7 @@ import { hireFullStackDeveloper } from "./hire-full-stack-developer.ts";
 import { lawFirmWebsiteDesign } from "./law-firm-website-design.ts";
 import { privacyPolicy, terms } from "./legal.ts";
 import { pricing } from "./pricing.ts";
+import { realEstateWebsiteDesign } from "./real-estate-website-design.ts";
 import { roofingHvacWebsiteDesign } from "./roofing-hvac-website-design.ts";
 import type { PageContent } from "./types.ts";
 import { webDesignDevelopment } from "./web-design-development.ts";
@@ -21,6 +22,7 @@ export const PAGES: readonly PageContent[] = [
   lawFirmWebsiteDesign,
   contractorWebsiteDesign,
   dentalMedicalWebsiteDesign,
+  realEstateWebsiteDesign,
   webDesignDevelopment,
   hireFullStackDeveloper,
   pricing,

@@ -38,6 +38,7 @@ export const PRIMARY_NAV: readonly NavItem[] = [
         label: "Dental and medical websites",
         href: "/industries/dental-medical-website-design",
       },
+      { label: "Real estate websites", href: "/industries/real-estate-website-design" },
     ],
   },
   { label: "About", href: "/about" },
@@ -72,6 +73,7 @@ export const FOOTER_NAV: readonly FooterGroup[] = [
         label: "Dental and medical websites",
         href: "/industries/dental-medical-website-design",
       },
+      { label: "Real estate websites", href: "/industries/real-estate-website-design" },
     ],
   },
   {
