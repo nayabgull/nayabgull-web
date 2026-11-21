@@ -39,4 +39,20 @@ describe("snapshot", () => {
     expect(bare.title).toBeUndefined();
     expect(bare.lang).toBeUndefined();
   });
+
+  it("leaves form text out of copyText but keeps page copy and bodyText", () => {
+    const html = `<html><body><main>
+      <p>Roofers lose jobs when quotes arrive late.</p>
+      <form><label for="s">What do you need?</label>
+        <select id="s"><option>Shopify store</option></select>
+        <button>Send my request</button></form>
+      <p>I reply within one business day.</p>
+    </main></body></html>`;
+    const result = snapshot(html);
+    expect(result.copyText).toBe(
+      "Roofers lose jobs when quotes arrive late. I reply within one business day.",
+    );
+    expect(result.bodyText).toContain("Shopify store");
+    expect(result.bodyText).toContain("Send my request");
+  });
 });
