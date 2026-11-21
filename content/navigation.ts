@@ -32,6 +32,7 @@ export const PRIMARY_NAV: readonly NavItem[] = [
     label: "Industries",
     links: [
       { label: "Roofing and HVAC websites", href: "/industries/roofing-hvac-website-design" },
+      { label: "Real estate websites", href: "/industries/real-estate-website-design" },
     ],
   },
   { label: "About", href: "/about" },
@@ -60,6 +61,7 @@ export const FOOTER_NAV: readonly FooterGroup[] = [
     title: "Industries",
     links: [
       { label: "Roofing and HVAC websites", href: "/industries/roofing-hvac-website-design" },
+      { label: "Real estate websites", href: "/industries/real-estate-website-design" },
     ],
   },
   {
