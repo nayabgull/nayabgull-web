@@ -312,7 +312,7 @@ export const realEstateWebsiteDesign: PageContent = {
       heading: "Why hire a developer who builds the site and the system?",
       layout: "cards",
       paragraphs: [
-        "An agent site often fails between a saved home and your calendar. As a full-stack developer, I build the search, the CRM link and the booking myself. In more than five years, I have finished 400+ projects.",
+        "As a full-stack developer, I build every step between a saved home and your calendar myself: the search, the CRM link and the booking. In more than five years, I have finished 400+ projects.",
       ],
       example: {
         label: "Case study",

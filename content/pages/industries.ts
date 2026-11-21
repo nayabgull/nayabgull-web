@@ -104,52 +104,12 @@ export const industries: PageContent = {
       eyebrow: "Why it matters",
       heading: "Why does an industry website beat a generic one?",
       paragraphs: [
-        "A site built for your industry wins more work because it speaks to one kind of buyer. A generic template talks to everyone, so it answers nobody's real questions.",
+        "A site built for your industry wins more work because it speaks to one kind of buyer. Every page answers the questions that buyer really asks.",
         "Think about the first form on the site. A roofer needs the address and photos of the damage. A law firm needs the case type, the state and how urgent it is.",
         "For a dental office, it is the visit type and the insurance plan. Builders want the job size, the timeline and a budget range. One generic contact form gets none of this, so you start every lead with a phone call.",
         "Trust works the same way. Homeowners check a license number and proof of insurance. Patients want to see the people who will treat them. Clients of a firm look for bar admissions.",
         "Each field also has its own rules. Attorneys follow state bar advertising rules. Agents follow MLS display rules and Fair Housing rules. You approve every claim before launch, because those rules are yours to judge.",
       ],
-    },
-    {
-      kind: "compare",
-      id: "compare",
-      eyebrow: "Compare",
-      heading: "Generic template vs a site built for your industry",
-      intro: "Here is the plain difference, part by part.",
-      rowLabel: "Part of the site",
-      columns: ["Built for your industry", "Generic template"],
-      rows: [
-        {
-          label: "The first form",
-          cells: [
-            "It asks the few questions you need before you call back.",
-            "It asks for a name, an email and a message.",
-          ],
-        },
-        {
-          label: "The pages",
-          cells: [
-            "Each service you sell gets a page that answers its own questions.",
-            "One services page lists everything in a few lines.",
-          ],
-        },
-        {
-          label: "The proof",
-          cells: [
-            "It shows the proof your buyers check first, from licenses to provider bios.",
-            "It shows stock photos and a short line about quality.",
-          ],
-        },
-        {
-          label: "After the click",
-          cells: [
-            "Booking, texts and reminders start the moment a lead comes in.",
-            "The lead waits in an inbox until someone has time.",
-          ],
-        },
-      ],
-      note: "A template can work for a brand-new business on a tight budget. Once leads matter, the details pay for themselves.",
     },
     {
       kind: "features",
@@ -207,15 +167,15 @@ export const industries: PageContent = {
       steps: [
         {
           title: "Free call and site review",
-          text: "You tell me how customers find you and how they book today. Then I review your current site.",
+          text: "First, you show me how customers find you and how they book today. After that, I study your current site.",
         },
         {
           title: "Page plan and fixed quote",
-          text: "You get the pages, the form questions and a fixed price in writing to approve.",
+          text: "A written plan lists the pages, the form questions and a fixed price for you to approve.",
         },
         {
           title: "Design and writing",
-          text: "I draft the pages from your notes and your photos. You correct anything that does not sound like you.",
+          text: "Your notes and photos become the first drafts. You change any line until it sounds like your business.",
         },
         {
           title: "Build and testing",
@@ -223,7 +183,7 @@ export const industries: PageContent = {
         },
         {
           title: "Launch and handover",
-          text: "I connect your domain and show your team how to update pages on their own.",
+          text: "Your domain moves to the new site, and your team learns to update pages on their own.",
         },
       ],
     },
@@ -288,7 +248,7 @@ export const industries: PageContent = {
       heading: "Why work with one developer across industries?",
       layout: "cards",
       paragraphs: [
-        "I am a full-stack developer with more than five years of work and 400+ projects behind me. I build the site, the forms and the follow-up myself, so nothing gets lost between vendors.",
+        "I am a full-stack developer with more than five years of work and 400+ projects behind me. I build the site, the forms and the follow-up myself, so every step fits the next one.",
         "Building for several industries also helps you. A form idea that cuts bad leads for a roofer can help a contractor too. I bring those lessons into every new build.",
       ],
       example: {
@@ -347,7 +307,7 @@ export const industries: PageContent = {
       {
         question: "Can you promise a top spot on Google?",
         answer:
-          "No, and nobody can honestly promise that. I build fast pages that Google can read, with clear service pages and correct business details.\n\nYour reviews, your Google Business Profile and your competitors matter too.",
+          "No, I cannot promise that. I build fast pages that Google can read, with clear service pages and correct business details.\n\nYour reviews and your Google Business Profile matter too.",
       },
       {
         question: "Who checks the rules for my industry?",

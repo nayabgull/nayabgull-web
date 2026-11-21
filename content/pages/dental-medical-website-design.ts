@@ -215,51 +215,6 @@ export const dentalMedicalWebsiteDesign: PageContent = {
       ],
     },
     {
-      kind: "compare",
-      id: "compare",
-      eyebrow: "Compare",
-      heading: "Website template, big dental website design agency or me?",
-      intro:
-        "A template, a healthcare website design agency and a developer like me each suit a different practice.",
-      rowLabel: "Question",
-      columns: ["Website template", "Large dental marketing agency", "Working with me"],
-      rows: [
-        {
-          label: "Who builds it",
-          cells: [
-            "You or your office manager, between patients.",
-            "A team, often with a separate account manager.",
-            "I design and build it, and you talk to me the whole way.",
-          ],
-        },
-        {
-          label: "Booking and forms",
-          cells: [
-            "A contact form, with booking added through plugins.",
-            "Often part of a package or a monthly add-on.",
-            "Online booking, patient forms and reminders are planned with the site.",
-          ],
-        },
-        {
-          label: "Patient data",
-          cells: [
-            "You check the privacy terms of each plugin yourself.",
-            "Ask which of their vendors sign a BAA.",
-            "I help you pick HIPAA-ready tools, and your advisor confirms them.",
-          ],
-        },
-        {
-          label: "Best for",
-          cells: [
-            "A brand-new office on a very small budget.",
-            "Groups that want ads and a site from one company.",
-            "Practices that want a fast site and fewer calls at the front desk.",
-          ],
-        },
-      ],
-      note: "Ask any dental web design company these questions before you sign.",
-    },
-    {
       kind: "stepper",
       id: "process",
       eyebrow: "Process",
@@ -331,10 +286,10 @@ export const dentalMedicalWebsiteDesign: PageContent = {
       kind: "features",
       id: "proof",
       eyebrow: "Proof",
-      heading: "Why hire a developer for your practice website?",
+      heading: "One developer or a dental website design agency: who builds your site?",
       layout: "cards",
       paragraphs: [
-        "Most practice sites stop at the contact form. The real work starts after it: the calendar, the forms and the texts. As a full-stack developer, I build those parts too. Over more than five years, I have delivered 400+ projects.",
+        "If you are comparing a dental web design company or a healthcare website design agency with me, here is what you get. I build the site and the parts after the contact form: the calendar, the forms and the texts. Over more than five years, I have delivered 400+ projects.",
       ],
       example: {
         label: "Case study",

@@ -3,7 +3,6 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
 import { AgentFlow } from "@/components/sections/blocks/AgentFlow.tsx";
-import { CompareSection } from "@/components/sections/blocks/CompareSection.tsx";
 import { ContentPage } from "@/components/sections/ContentPage.tsx";
 import { FOOTER_NAV, isNavGroup, PRIMARY_NAV } from "@/content/navigation.ts";
 import { dentalMedicalWebsiteDesign as content } from "@/content/pages/dental-medical-website-design.ts";
@@ -268,23 +267,5 @@ describe("Patient flow", () => {
     expect(within(group).getAllByRole("radio")).toHaveLength(5);
     expect(container.querySelectorAll(".agent-node svg")).toHaveLength(5);
     expect(container.querySelector("script")).toBeNull();
-  });
-});
-
-describe("Template vs agency vs me table", () => {
-  const compare = block("compare");
-
-  it("compares the three options in a real table, one sentence per cell", () => {
-    render(<CompareSection block={compare} />);
-    const table = screen.getByRole("table", { name: compare.heading });
-    expect(
-      within(table)
-        .getAllByRole("columnheader")
-        .map((cell) => cell.textContent),
-    ).toEqual(["Question", "Website template", "Large dental marketing agency", "Working with me"]);
-    for (const row of compare.rows) {
-      expect(row.cells).toHaveLength(3);
-      for (const cell of row.cells) expect(cell).toMatch(/\.$/);
-    }
   });
 });

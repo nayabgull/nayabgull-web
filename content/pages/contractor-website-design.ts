@@ -184,51 +184,6 @@ export const contractorWebsiteDesign: PageContent = {
       outro: "You decide the questions, the hours and when a call goes straight to you.",
     },
     {
-      kind: "compare",
-      id: "compare",
-      eyebrow: "Compare",
-      heading: "DIY builder vs lead platforms vs your own website",
-      intro:
-        "You have three main ways to get work online. Each one has a place. Here is the honest version.",
-      rowLabel: "Question",
-      columns: ["DIY site builder", "Angi or HomeAdvisor", "Your own website"],
-      rows: [
-        {
-          label: "Who owns the leads",
-          cells: [
-            "You do, but few leads come in.",
-            "The platform does, and it may send the same lead to other pros.",
-            "You do, and each lead comes only to you.",
-          ],
-        },
-        {
-          label: "What you pay for",
-          cells: [
-            "A monthly plan and your own evenings.",
-            "Fees for each lead, even the ones that never answer.",
-            "The build up front, then hosting and upkeep.",
-          ],
-        },
-        {
-          label: "How you stand out",
-          cells: [
-            "Many sites look alike because they start from the same template.",
-            "Your profile sits next to your rivals on one list.",
-            "Your projects, your reviews and your story stand alone.",
-          ],
-        },
-        {
-          label: "Follow-up",
-          cells: [
-            "You call people back by hand.",
-            "You race other pros to the same phone number.",
-            "Texts and booking start the minute a lead comes in.",
-          ],
-        },
-      ],
-      note: "Lead platforms can fill gaps in a slow month. Your own site is the asset that keeps working when you stop paying for leads.",
-    },
-    {
       kind: "stepper",
       id: "process",
       eyebrow: "Process",
@@ -285,7 +240,7 @@ export const contractorWebsiteDesign: PageContent = {
       heading: "Who builds your site",
       layout: "cards",
       paragraphs: [
-        "I am a full-stack developer with more than five years of work and 400+ projects behind me. Because I build the site, the forms and the follow-up myself, no step gets lost between vendors.",
+        "I am a full-stack developer with more than five years of work and 400+ projects behind me. Because I build the site, the forms and the follow-up myself, every step fits the next one.",
         "I will not show you made-up results. On the call, I can walk you through real builds and point out what I would change on your site first.",
       ],
       items: [
@@ -343,7 +298,7 @@ export const contractorWebsiteDesign: PageContent = {
       {
         question: "Will my business show on Google Maps?",
         answer:
-          "Google Maps listings come from your Google Business Profile, not from the website itself. I make sure your site and your profile match and link to each other.\n\nThat match helps, but nobody can honestly promise a spot on the map. Reviews, distance and your competitors matter too.",
+          "Google Maps listings come from your Google Business Profile, not from the website itself. I make sure your site and your profile match and link to each other.\n\nThat match helps, but I cannot promise a spot on the map. Reviews and distance matter too.",
       },
       {
         question: "Can you redesign my current site?",

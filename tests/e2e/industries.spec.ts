@@ -79,18 +79,9 @@ test.describe("Industries hub", () => {
     await expect(page).toHaveURL(new RegExp(`${PATH}$`));
   });
 
-  test("comparison: a table on desktop, no sideways scroll on a small phone", async ({ page }) => {
-    await page.setViewportSize({ width: 1440, height: 900 });
-    await page.goto(PATH);
-    const table = page.getByRole("table", {
-      name: "Generic template vs a site built for your industry",
-    });
-    await expect(table.getByRole("columnheader")).toHaveText([
-      "Part of the site",
-      "Built for your industry",
-      "Generic template",
-    ]);
+  test("no sideways scroll on a small phone", async ({ page }) => {
     await page.setViewportSize({ width: 320, height: 740 });
+    await page.goto(PATH);
     const overflow = await page.evaluate(
       () => document.documentElement.scrollWidth > document.documentElement.clientWidth,
     );

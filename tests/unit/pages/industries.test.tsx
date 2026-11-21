@@ -244,6 +244,19 @@ describe("Links, navigation and sitemap", () => {
 });
 
 describe("Truth rules", () => {
+  it("makes no claim about other agencies, vendors or companies, on the hub or any industry page", () => {
+    for (const candidate of [content, ...CHILDREN]) {
+      expect(
+        candidate.blocks.some((item) => item.kind === "compare"),
+        candidate.path,
+      ).toBe(false);
+      const text = renderPage(candidate).bodyText.toLowerCase();
+      expect(text, candidate.path).not.toMatch(
+        /between vendors|nobody can honestly|angi|homeadvisor|vendor hosts|portal/,
+      );
+    }
+  });
+
   it("shows only the general starting prices from /pricing, with an Offer for each", () => {
     expect(pagePrices(content).map((price) => price.from)).toEqual([1500, 2500]);
     const service = pageJsonLd(content)["@graph"].find((node) => node["@type"] === "Service");

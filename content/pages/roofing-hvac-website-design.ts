@@ -200,8 +200,8 @@ export const roofingHvacWebsiteDesign: PageContent = {
       eyebrow: "Buying guide",
       heading: "How to compare a roofing web design company",
       paragraphs: [
-        "Whether you hire me or another roofing web design company, ask the same five questions. They also work for HVAC website design companies. The answers tell you more than any portfolio.",
-        "Watch for long contracts and sites you only rent. If you stop paying and the site vanishes, you never owned it. A fair builder hands you the keys.",
+        "Whether you talk to me or to any roofing web design company, ask the same five questions. They also work for HVAC website design companies. Here is how I answer them.",
+        "With me, your domain, hosting and site stay in accounts under your name. I use your real photos, and I show you a site I built on your own phone.",
       ],
       bullets: [
         "Who owns the domain, the site and the content if you move on?",
@@ -217,7 +217,7 @@ export const roofingHvacWebsiteDesign: PageContent = {
       eyebrow: "Proof",
       heading: "What I bring to your build",
       paragraphs: [
-        "My background is full-stack development, with more than five years of work and 400+ projects behind me. I build the site, the forms and the follow-up myself, so nothing gets lost between vendors.",
+        "My background is full-stack development, with more than five years of work and 400+ projects behind me. I build the site, the forms and the follow-up myself, so every step fits the next one.",
         [
           "I also run my own lead product, ",
           { text: "SmartQuoteDesk", href: "https://smartquotedesk.com" },
@@ -334,7 +334,7 @@ export const roofingHvacWebsiteDesign: PageContent = {
       {
         question: "Will my site show up on Google?",
         answer:
-          "I build the site so Google can read it: fast pages, clear service pages and correct business details. That is the base every local site needs.\n\nNobody can honestly promise a top spot. Rankings also depend on your reviews, your Google Business Profile and your competitors.",
+          "I build the site so Google can read it: fast pages, clear service pages and correct business details. That is the base every local site needs.\n\nI cannot promise a top spot. Rankings also depend on your reviews and your Google Business Profile.",
       },
       {
         question: "Can you write the content and use my photos?",

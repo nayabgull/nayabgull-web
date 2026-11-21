@@ -54,17 +54,9 @@ test.describe("Dental and medical website design page", () => {
     await expect(panels.locator("visible=true")).toHaveCount(1);
   });
 
-  test("comparison: a table on desktop, no sideways scroll on a small phone", async ({ page }) => {
-    await page.setViewportSize({ width: 1440, height: 900 });
-    await page.goto(PATH);
-    const table = page.getByRole("table", { name: /big dental website design agency/ });
-    await expect(table.getByRole("columnheader")).toHaveText([
-      "Question",
-      "Website template",
-      "Large dental marketing agency",
-      "Working with me",
-    ]);
+  test("no sideways scroll on a small phone", async ({ page }) => {
     await page.setViewportSize({ width: 320, height: 740 });
+    await page.goto(PATH);
     const overflow = await page.evaluate(
       () => document.documentElement.scrollWidth > document.documentElement.clientWidth,
     );
