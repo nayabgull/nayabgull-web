@@ -8,19 +8,16 @@ import type { PageContent } from "./types.ts";
  * Brief: content/briefs/wordpress-development.md. The /services hub does not exist yet, so the
  * breadcrumb goes Home › this page.
  *
- * Facts taken from other pages in the repo (confirm they apply to WordPress work):
+ * Facts taken from other pages in the repo (Nayab confirmed on 2026-11-22 that they apply to WordPress):
  * - "5+ years" and "400+ projects delivered" (homepage, web design page).
  * - Free 30-minute call and a written quote within 3 days (/pricing).
  * - "2 to 6 weeks" for design and build, and "Launch week" (/services/web-design-development).
  * - The optional regular plan for updates and checks after launch (/services/web-design-development).
  * - The ownership and US time zone FAQ answers (approved copy on /industries/law-firm-website-design).
  *
- * TODO(nayab): PRICING. No WordPress price is in the repo, so no price is shown and there is no
- * Offer in the Service JSON-LD. Add the approved starting prices as a `prices` block (and to
- * APPROVED_PRICES in tests/unit/pages/pages.test.tsx) when you decide them.
+ * Price approved by Nayab on 2026-11-22: "WordPress websites start at $1,500" (prices block,
+ * which also adds the Offer to the Service JSON-LD).
  * TODO(nayab): CASE STUDY. No WordPress case study is approved yet (see the "proof" section).
- * TODO(nayab): FREE REVIEW. Confirm you offer the free WordPress site review on the call, and what
- * it covers (the "free-review" section).
  * TODO(nayab): CARE PLAN. When /packages/wordpress-care-plan goes live, link it from the
  * "after launch" FAQ and the related links.
  */
@@ -42,7 +39,7 @@ export const wordpressDevelopment: PageContent = {
       after: " for sites you can edit, trust and grow",
     },
     lede: "As a WordPress development agency, I design, build and fix WordPress sites for small businesses. Your site loads fast, stays easy to edit and brings in leads.",
-    proof: ["5+ years", "400+ projects delivered"],
+    proof: ["5+ years", "400+ projects delivered", "WordPress websites start at $1,500"],
     primaryCta: CALL_CTA,
     form: QUOTE_FORM,
     secondaryCta: { label: "See what I build", href: "#services" },
@@ -55,7 +52,7 @@ export const wordpressDevelopment: PageContent = {
       eyebrow: "The problem",
       heading: "Problems I fix on WordPress sites",
       intro:
-        "WordPress is a great tool, but business sites often grow messy. These four problems come up most.",
+        "WordPress is a great tool, but business sites often grow messy. These are common problems.",
       columns: 2,
       items: [
         {
@@ -72,7 +69,7 @@ export const wordpressDevelopment: PageContent = {
         },
         {
           title: "Security scares",
-          text: "Old plugins, old PHP and no backups leave the door open. A hacked site can show spam to your visitors or get flagged by Google.",
+          text: "Old plugins, old PHP and no backups leave the door open.",
         },
       ],
     },
@@ -179,26 +176,31 @@ export const wordpressDevelopment: PageContent = {
       ],
     },
     {
-      // TODO(nayab): PRICING. Replace this note with a `prices` block once the WordPress prices are approved.
-      kind: "prose",
+      // Price approved by Nayab on 2026-11-22: "WordPress websites start at $1,500".
+      kind: "prices",
       id: "pricing",
       eyebrow: "Pricing",
       heading: "What does a WordPress development company charge?",
-      paragraphs: [
-        "A WordPress development company prices each project by its scope. Small sites with a custom theme are modest jobs. Large WooCommerce stores with custom plugins cost more.",
-        "After the first call, you get a fixed quote in writing. The price only changes if you ask for more work.",
-        [
-          "For the general factors that move any website price, see my ",
-          { text: "website pricing page", href: "/pricing" },
-          ".",
-        ],
+      intro: [
+        "A WordPress development company prices each project by its scope. After the first call, you get a fixed quote in writing. For the factors that move any website price, see my ",
+        { text: "website pricing page", href: "/pricing" },
+        ".",
       ],
-      bullets: [
-        "How many pages you need, and how different their layouts are.",
-        "Custom blocks, custom post types or a custom plugin.",
-        "A WooCommerce store, and how many products it holds.",
-        "Moving content from an old site, and links to tools like a CRM.",
+      items: [
+        {
+          name: "WordPress website",
+          from: 1500,
+          label: "Starts at $1,500.",
+          text: "A custom WordPress site for a small business, built on a lean theme you can edit yourself.",
+          includes: [
+            "A design made for your pages, not a theme demo.",
+            "Forms and tap-to-call buttons that reach you fast.",
+            "Titles, meta text and a sitemap set up for search.",
+            "Admin login plus a short video on how to edit.",
+          ],
+        },
       ],
+      note: "These are starting prices in US dollars, not fixed quotes or guarantees. Your price goes up with extra pages, custom blocks, a WooCommerce store, content you need moved and tool connections. You pay hosting, your domain and any paid plugins to those companies directly.",
     },
     {
       kind: "prose",
@@ -283,7 +285,7 @@ export const wordpressDevelopment: PageContent = {
       ],
     },
     {
-      // TODO(nayab): FREE REVIEW. Confirm this offer and what the review covers.
+      // Free review confirmed by Nayab on 2026-11-22.
       kind: "features",
       id: "free-review",
       eyebrow: "Free review",
@@ -334,7 +336,7 @@ export const wordpressDevelopment: PageContent = {
       {
         question: "How much does it cost to hire a WordPress developer?",
         answer:
-          "It depends on the scope: the number of pages, custom features, a store and how much content needs to move. You get a fixed quote in writing after a free call.\n\nI quote by the project, not by the hour. If the work takes longer than I planned, the price stays the same.",
+          "WordPress websites start at $1,500. The final price depends on the number of pages, custom features, a store and how much content needs to move. You get a fixed quote in writing after a free call.\n\nI quote by the project, not by the hour. If the work takes longer than I planned, the price stays the same.",
       },
       {
         question: "Which WordPress design agency is the best in the USA?",

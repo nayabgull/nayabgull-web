@@ -207,9 +207,21 @@ describe("WordPress development page", () => {
     }
   });
 
-  it("shows no price and puts no Offer in the Service schema until Nayab sets one", () => {
-    expect(pagePrices(content)).toEqual([]);
-    expect(JSON.stringify(content)).not.toMatch(/\$\s?\d/);
+  it("shows the approved $1,500 starting price, with a matching Offer in the Service schema", () => {
+    expect(pagePrices(content)).toEqual([
+      expect.objectContaining({
+        name: "WordPress website",
+        from: 1500,
+        label: "Starts at $1,500.",
+      }),
+    ]);
+    expect(content.hero.proof).toContain("WordPress websites start at $1,500");
+    // No other dollar amount anywhere on the page.
+    expect(
+      JSON.stringify(content)
+        .match(/\$\s?[\d,]+/g)
+        ?.every((amount) => amount === "$1,500"),
+    ).toBe(true);
     const graph = pageJsonLd(content)["@graph"];
     expect(graph.map((node) => node["@type"])).toEqual([
       "ProfessionalService",
@@ -222,18 +234,31 @@ describe("WordPress development page", () => {
     expect(service).toMatchObject({
       serviceType: "WordPress website design and development",
       areaServed: { "@type": "Country", name: "United States" },
+      offers: [
+        {
+          "@type": "Offer",
+          name: "WordPress website",
+          priceSpecification: {
+            "@type": "PriceSpecification",
+            minPrice: 1500,
+            priceCurrency: "USD",
+          },
+        },
+      ],
     });
     expect(service).toHaveProperty("provider");
-    expect(service).not.toHaveProperty("offers");
-    expect(JSON.stringify(graph)).not.toMatch(/"(price|minPrice|Offer)"/);
   });
 
   it("invents no case study, client, statistic or guarantee", () => {
+    expect(copy).toContain("these are common problems");
+    expect(copy).not.toContain("flagged by google");
     const proof = content.blocks.find((candidate) => candidate.id === "proof");
     expect(JSON.stringify(proof)).toContain("no approved WordPress case study");
     const text = JSON.stringify(content);
     expect(text).not.toMatch(/\b\d+(\.\d+)?\s?(%|percent|x)\b/i);
-    expect(text).not.toMatch(/\bguarantee/i);
+    // "guarantee" only in the price note, which says the price is not one.
+    expect(text.match(/\bguarantee/gi)).toEqual(["guarantee"]);
+    expect(text).toContain("not fixed quotes or guarantees");
     expect(text).not.toMatch(/\bcompliant\b/i);
   });
 

@@ -61,11 +61,11 @@ WordPress, block editor (Gutenberg), full site editing, themes and child themes,
 4. WordPress website design and development services (custom design, themes and blocks, plugins and integrations, WooCommerce, speed, migration and redesign)
 5. Custom WordPress development: what custom really means
 6. How I build your WordPress site, step by step (5 steps with timeline)
-7. What does a WordPress development company charge? (no price yet: TODO)
+7. What does a WordPress development company charge? (prices block: "WordPress websites start at $1,500", approved November 22, 2026; Offer in the Service schema)
 8. Is WordPress still a good choice in 2026? (PAA "Is WordPress outdated in 2026?")
 9. Hire a WordPress developer, a large agency or me? (comparison table)
 10. Why choose a WordPress website development company that builds the whole system? (proof; no approved case study yet: TODO)
-11. Get a free review of your WordPress site (free audit offer: TODO confirm)
+11. Get a free review of your WordPress site (free audit offer, confirmed November 22, 2026)
 12. What to pair with your WordPress site (related links)
 13. Questions to ask a WordPress development agency (8 FAQs)
 14. Closing quote section (same primary CTA: Book a free call)
@@ -83,12 +83,13 @@ Changes from the proposal: "How we work" became "How I build" (brand voice: no "
 
 Not linked until they are built: /packages/wordpress-care-plan, /packages/website-speed-optimization, /services/website-maintenance, /services/ecommerce-development, /services/small-business-website-design.
 
-## 7b. Open items for Nayab
+## 7b. Decisions and open items
 
-- Pricing: no WordPress starting price is in the repo. No price and no Offer schema until one is approved.
-- Case study: no approved WordPress case study.
-- Free site review on the call: confirm the offer and what it covers.
-- Timeline: "30 minutes", "within 3 days", "2 to 6 weeks" and "launch week" come from /pricing and /services/web-design-development. Confirm they hold for WordPress builds.
+- Price: "WordPress websites start at $1,500" (approved by Nayab, November 22, 2026).
+- Free site review on the call: confirmed (November 22, 2026).
+- Timeline (30 minutes, within 3 days, 2 to 6 weeks, launch week) and the other facts from /pricing and /services/web-design-development: confirmed for WordPress (November 22, 2026).
+- Services: all kept, including custom plugin and headless WordPress with Next.js (November 22, 2026).
+- Open: no approved WordPress case study yet.
 
 ## 8. Schema
 
