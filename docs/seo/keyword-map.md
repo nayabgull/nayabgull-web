@@ -53,7 +53,7 @@ Rules: one primary keyword per page; a keyword appears as a target on one page o
 | 1 | /services/web-design-development | website design company | 10K–100K · Low · $34 | web design company, web design firms, website creation company, web design agency, website design services, website development company |
 | 1 | /services/nextjs-react-development | react development company | 100–1K · Low · $88 | react development agency ($458), react development services, hire react developers, hire next js developer, hire node js developer, nextjs development company |
 | 1 | /services/saas-mvp-development | mvp development company | 100–1K · Low · $100 | mvp development agency ($121), mvp development services for startups, saas development company, saas application development services |
-| 1 | /services/shopify-development | shopify agency | 1K–10K · Low · $35 | shopify seo services, expert shopify developers, hire shopify developer, shopify website development company, shopify store design services, headless shopify |
+| 1 | /services/shopify-development | shopify development agency | 100–1K · Low · $63 | shopify agency, shopify development company, hire shopify developer, hire shopify expert, shopify plus development agency, shopify seo services, expert shopify developers, shopify website development company, shopify store design services, headless shopify |
 | 1 | /services/wordpress-development | wordpress agency | 1K–10K · Low · $40 | wordpress experts for hire ($86), hire wordpress developer, wordpress web design company, wordpress development agency |
 | 2 | /services/custom-web-app-development | custom web development services | 100–1K · Low · $31 | web app development agency, web application development services, full stack development company, mern stack developer |
 | 2 | /services/laravel-development | laravel development company | 100–1K · Low · $82 | laravel development services, php development company, hire dedicated php developer |
@@ -81,6 +81,10 @@ Rules: one primary keyword per page; a keyword appears as a target on one page o
 | Cost | service pages | cost to develop an app (1K–10K), small business website cost breakdown, custom software development cost, website maintenance cost, law firm website cost |
 | Industries | /industries/* | law firm website must-haves, dental website checklist, roofing lead generation website, real estate IDX guide |
 | Dev | service pages | Next.js vs WordPress, headless Shopify, MVP development process, Shopify speed optimization |
+
+## Notes
+
+- Primary changed from shopify agency (KD 56) to shopify development agency (KD 3), approved by Nayab 2026-11-22, source PR #49.
 
 ## Never primary
 

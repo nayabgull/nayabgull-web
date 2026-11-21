@@ -1,17 +1,21 @@
 # Content brief: /services/shopify-development
 
-Status: proposal (November 21, 2026). Keywords are not in `docs/seo/keyword-map.md` until Nayab approves them.
+Status: keywords approved by Nayab (November 22, 2026) and registered in `docs/seo/keyword-map.md` and `lib/seo/keywords.ts`. Page: `content/pages/shopify-development.ts`.
 Research: `docs/seo/research/shopify-keywords.csv`, `shopify-wordpress-serp-notes.md`, `shopify-wordpress-report.md`.
 
 ## 1. Primary keyword and intent
 
-- Proposed primary: **shopify development agency** (100–1K US searches, Ads competition Low, top-of-page bid up to $63.26, Ahrefs KD 3).
+- Primary (approved): **shopify development agency** (100–1K US searches, Ads competition Low, top-of-page bid up to $63.26, Ahrefs KD 3).
 - Current primary: shopify agency (1K–10K, Low, $32.27, KD 56). Keep it as a secondary.
 - Intent: hire. The reader is a US store owner or brand manager who wants someone to build, fix or grow a Shopify store.
 - Page type: service page (`seo.md` §10: 1,200+ words, process, deliverables, tech, pricing range, FAQ 6+, case study link).
 - Target length: about 2,000 words.
 
-## 2. Secondary keywords (proposal)
+## 2. Secondary keywords
+
+Approved and registered (November 22, 2026): shopify agency, shopify development company, hire shopify developer, hire shopify expert, shopify plus development agency, shopify seo services, expert shopify developers, shopify website development company, shopify store design services, headless shopify.
+
+Research proposal (the rest still needs approval before any page targets it):
 
 - shopify development company (KD 9)
 - hire shopify developer (KD 8, in map)
@@ -31,7 +35,7 @@ Never use as targets: shopify login, shopify pricing, shopify plans, shopify fre
 
 ## 3. Entities to cover
 
-Shopify, Shopify Plus, Shopify Partner, Online Store 2.0, Liquid, theme (Dawn and paid themes), sections and blocks, metafields, Shopify apps, Shopify Payments, Shop Pay, checkout, Storefront API, Hydrogen (headless), product and collection pages, Core Web Vitals, page speed, structured data, Google Analytics 4, Klaviyo, migration from WooCommerce, Magento or Wix, 301 redirects, store audit.
+Shopify, Shopify Plus, Online Store 2.0, Liquid, theme (Dawn and paid themes), sections and blocks, metafields, Shopify apps, Shopify Payments, Shop Pay, checkout, Storefront API, Hydrogen (headless), product and collection pages, Core Web Vitals, page speed, structured data, Google Analytics 4, Klaviyo, migration from WooCommerce, Magento or Wix, 301 redirects, store audit.
 
 ## 4. Questions to answer (People Also Ask, Google US)
 
@@ -56,7 +60,7 @@ Shopify, Shopify Plus, Shopify Partner, Online Store 2.0, Liquid, theme (Dawn an
   - A free Shopify store audit as the low-risk first step.
   - Real Shopify work from Nayab (case study link only if real and approved).
 
-## 6. H2 outline (proposal)
+## 6. H2 outline (proposal; the page follows it with the changes in §9)
 
 1. Shopify development agency for US store owners (hero; H1 contains "Shopify development agency"; primary keyword in the first 100 words)
 2. Problems I fix on Shopify stores (slow pages, theme limits, apps that clash, low conversion)
@@ -81,3 +85,11 @@ Shopify, Shopify Plus, Shopify Partner, Online Store 2.0, Liquid, theme (Dawn an
 ## 8. Schema
 
 Organization (ProfessionalService), WebSite, BreadcrumbList, Service (provider, areaServed US, Offer only if a price is shown), FAQPage from the FAQ block.
+
+## 9. Decisions for the page (November 22, 2026)
+
+- "Shopify Partner" is left out of the entities: the page never shows partner status or any badge.
+- No price, timeline per build step or case study is approved for Shopify. The page shows the pricing factors and a fixed written quote, the free call (30 minutes) and the written quote (within 3 days) from `/pricing`, and an honest "no approved case study yet" note. TODO(nayab) comments in the page file mark each gap.
+- No comparison table with named competitors: the table compares option types (marketplace freelancer, large agency, working with Nayab).
+- `/services/ecommerce-development` and `/packages/website-speed-optimization` do not exist yet. The page links to `/services/web-design-development`, `/pricing`, `/hire-full-stack-developer`, `/ai-automation-agency` and `/about` until they do.
+- FAQ: 7 questions; 4 from People Also Ask (set up, developer cost, worth it, manage my store), plus ownership, US time zones and editing.

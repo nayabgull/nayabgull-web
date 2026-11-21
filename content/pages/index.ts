@@ -6,6 +6,7 @@ import { hireFullStackDeveloper } from "./hire-full-stack-developer.ts";
 import { privacyPolicy, terms } from "./legal.ts";
 import { pricing } from "./pricing.ts";
 import { roofingHvacWebsiteDesign } from "./roofing-hvac-website-design.ts";
+import { shopifyDevelopment } from "./shopify-development.ts";
 import type { PageContent } from "./types.ts";
 import { webDesignDevelopment } from "./web-design-development.ts";
 
@@ -16,6 +17,7 @@ export const PAGES: readonly PageContent[] = [
   aiAgentDevelopment,
   roofingHvacWebsiteDesign,
   webDesignDevelopment,
+  shopifyDevelopment,
   hireFullStackDeveloper,
   pricing,
   about,

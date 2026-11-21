@@ -263,11 +263,15 @@ export const KEYWORDS: readonly KeywordEntry[] = [
   {
     url: "/services/shopify-development",
     pageType: "service",
-    primary: "shopify agency",
+    primary: "shopify development agency",
     secondary: [
+      "shopify agency",
+      "shopify development company",
+      "hire shopify developer",
+      "hire shopify expert",
+      "shopify plus development agency",
       "shopify seo services",
       "expert shopify developers",
-      "hire shopify developer",
       "shopify website development company",
       "shopify store design services",
       "headless shopify",
