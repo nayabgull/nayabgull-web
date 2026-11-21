@@ -11,12 +11,12 @@ import type { PageContent } from "./types.ts";
  * (content/home.ts), 5+ years and 400+ projects (content/home.ts), ownership, time zone and support
  * answers (content/home.ts FAQ), A2P 10DLC (content/pages/gohighlevel-agency.ts).
  *
- * TODO(nayab): PRICING. The prices block shows the general starting prices from /pricing. Confirm
- * they apply to dental and medical sites, or replace them with approved dental prices.
+ * Prices ($1,500 business website, $2,500 full system, with the Offer schema), the "two to six
+ * weeks" timeline and the outside facts (HIPAA and BAA, Google review rules, no care details in
+ * review replies, callers told to dial 911 in an emergency): approved by Nayab 2026-11-21.
+ * No practice management software or other product is named.
  * TODO(nayab): PROOF. No dental or medical case study, client, number or review is approved yet.
  * Replace the "Case study" note in the "proof" section with a real, approved result.
- * TODO(nayab): OUTSIDE FACTS. Check the HIPAA/BAA lines (patient-data section, FAQ) and the Google
- * review rule (patient flow, FAQ) before launch.
  * TODO(nayab): when /ai-automation-agency/ai-voice-agents goes live, point the after-hours section
  * link there instead of the AI automation hub.
  */

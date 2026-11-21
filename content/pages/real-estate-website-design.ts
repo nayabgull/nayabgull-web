@@ -11,11 +11,9 @@ import type { PageContent } from "./types.ts";
  * The page never says Nayab supplies MLS access or a data feed. Fair Housing is named only as the
  * brokerage's responsibility, with no compliance claim.
  *
- * TODO(nayab): PRICING. No price is shown on purpose, so there is no `prices` block and no Offer in
- * the Service JSON-LD. Add the approved starting price for an IDX site as a `prices` block (and to
- * APPROVED_PRICES in tests/unit/pages/pages.test.tsx if it is new) when you decide it.
- * TODO(nayab): TIMELINE. The process shows no week counts on purpose. Add the real timeline for each
- * step (and to the "How long does it take?" answer) once you confirm it.
+ * Prices ($1,500 business website, $2,500 full system, from content/pages/pricing.ts) and the
+ * "two to six weeks" timeline: approved by Nayab 2026-11-21. No IDX provider, CRM or other vendor
+ * is named or described, except GoHighLevel (what I build on).
  * TODO(nayab): PROOF. No real estate case study, client name, number or review is approved yet.
  * Replace the "Case study" note in the "proof" section with a real, approved result.
  * TODO(nayab): when /ai-automation-agency/ai-receptionist-for-small-business goes live, point the
@@ -64,7 +62,7 @@ export const realEstateWebsiteDesign: PageContent = {
       items: [
         {
           title: "“My site sends buyers somewhere else.”",
-          text: "Your site has no real home search, so buyers browse on a big listing portal. Their contact details end up with another agent.",
+          text: "Your site has no real home search, so buyers leave to search somewhere else. You never get their contact details.",
         },
         {
           title: "“I get a name and nothing else.”",
@@ -85,7 +83,7 @@ export const realEstateWebsiteDesign: PageContent = {
         "A real estate site has two jobs: help people find a home and turn them into a client you can call.",
       layout: "cards",
       paragraphs: [
-        "Most home buyers search on a phone between other tasks. So I design the phone view first. These six parts go into almost every real estate agent website design I make.",
+        "I design the phone view first, then the desktop. These six parts go into almost every real estate agent website design I make.",
       ],
       items: [
         {
@@ -100,7 +98,7 @@ export const realEstateWebsiteDesign: PageContent = {
         },
         {
           title: "Showing requests",
-          text: "Buyers pick a time that suits them right on the listing. You confirm it with one tap.",
+          text: "Buyers ask for a time that suits them right on the listing. The request lands on your calendar for you to confirm.",
           icon: "calendar",
         },
         {
@@ -239,47 +237,12 @@ export const realEstateWebsiteDesign: PageContent = {
       ],
     },
     {
-      kind: "compare",
-      id: "compare",
-      eyebrow: "Compare",
-      heading: "Three ways to get a real estate agent site: an honest comparison",
-      intro: "Each option suits a different stage. Here is what you get from each.",
-      rowLabel: "Question",
-      columns: ["Template site from a vendor", "Large real estate web company", "Working with me"],
-      rows: [
-        {
-          label: "Follow-up",
-          cells: [
-            "It usually comes with the vendor's own CRM.",
-            "Many charge for it each month, on top of the site.",
-            "Texts, drips and showing booking come as part of the build.",
-          ],
-        },
-        {
-          label: "Who owns the site",
-          cells: [
-            "The vendor hosts it, and leaving can mean a rebuild.",
-            "That depends on your contract, so check it first.",
-            "The domain, the site and the leads sit in accounts under your name.",
-          ],
-        },
-        {
-          label: "Best for",
-          cells: [
-            "A new agent who needs something live this week.",
-            "Big brokerages that want ads, content and a site from one company.",
-            "Agents and teams who want their own site and their own system.",
-          ],
-        },
-      ],
-      note: "Each option has a place. Pick the one that matches your business now.",
-    },
-    {
       kind: "stepper",
       id: "process",
       eyebrow: "Process",
       heading: "My five-step process for a real estate website",
-      intro: "You keep selling homes, and I handle the build.",
+      intro:
+        "Most websites take two to six weeks. MLS approval time depends on your MLS, and your written quote shows the full timeline.",
       steps: [
         {
           title: "Free call and site review",
@@ -304,20 +267,42 @@ export const realEstateWebsiteDesign: PageContent = {
       ],
     },
     {
-      // TODO(nayab): PRICING. Replace this note with a `prices` block once the starting price is approved.
-      kind: "prose",
+      kind: "prices",
       id: "pricing",
       eyebrow: "Pricing",
       heading: "What sets the price of real estate website design?",
-      paragraphs: [
-        "Three things set the price: pages and agent profiles, who writes the copy and how much follow-up you add.",
-        "Your IDX provider and your MLS may charge their own fees. Those go to them, not to me, and I point them out before you decide.",
-        [
-          "After the first call, I send a fixed quote in writing. My ",
-          { text: "website pricing page", href: "/pricing" },
-          " lists what moves any price up or down.",
-        ],
+      intro: [
+        "These are my general starting prices. Your quote depends on the pages, the agent profiles and the follow-up you add. Every service is on my ",
+        { text: "website pricing page", href: "/pricing" },
+        ".",
       ],
+      items: [
+        {
+          name: "Business website (5 pages)",
+          from: 1500,
+          label: "Starts at $1,500.",
+          text: "An agent or team site: home, listings, areas, about and contact.",
+          includes: [
+            "Custom design on each page.",
+            "Lead forms and call buttons.",
+            "On-page SEO basics.",
+            "Editing access and training.",
+          ],
+        },
+        {
+          name: "Full system",
+          from: 2500,
+          label: "Starts at $2,500.",
+          text: "Website, CRM and AI, built together as one lead system for buyers and sellers.",
+          includes: [
+            "Business website.",
+            "CRM setup and follow-up.",
+            "AI replies for new leads.",
+            "Launch support and training.",
+          ],
+        },
+      ],
+      note: "These are starting prices in US dollars, not fixed quotes or guarantees. IDX provider and MLS fees are separate and paid by you. After the first call, I send a fixed quote in writing.",
     },
     {
       // TODO(nayab): PROOF. Replace the "Case study" note with a real, approved real estate result.
@@ -393,7 +378,7 @@ export const realEstateWebsiteDesign: PageContent = {
       {
         question: "How long does it take to build a real estate website?",
         answer:
-          "It depends on the number of pages and agents, and on how fast your MLS approves the IDX setup. You get a written timeline with your quote, before any work starts.",
+          "Most websites take two to six weeks. MLS approval time depends on your MLS, and listings go live only after it approves the IDX setup.\n\nYou get a written timeline with your quote, before any work starts.",
       },
       {
         question: "Will I be able to add agents and pages myself?",

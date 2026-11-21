@@ -74,7 +74,7 @@ export const industries: PageContent = {
         },
         {
           title: "Real estate agents and brokerages",
-          text: "Buyers browse big portals, and a plain contact form tells you little. I add home search on your own site, lead capture on listings and showing requests.",
+          text: "Buyers leave your site to search somewhere else, and a plain contact form tells you little. I add home search on your own site, lead capture on listings and showing requests.",
           link: {
             label: "Real estate website design for agents",
             href: "/industries/real-estate-website-design",

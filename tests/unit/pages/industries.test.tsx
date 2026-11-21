@@ -63,7 +63,7 @@ const CARD_FACTS: Record<string, readonly string[]> = {
     "reminders",
   ],
   "/industries/real-estate-website-design": [
-    "portal",
+    "somewhere else",
     "home search",
     "lead capture on listings",
     "showing requests",
