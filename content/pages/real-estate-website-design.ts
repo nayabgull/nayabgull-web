@@ -129,7 +129,7 @@ export const realEstateWebsiteDesign: PageContent = {
       heading: "Real estate IDX website design, explained plainly",
       paragraphs: [
         "IDX stands for Internet Data Exchange. It is the system that lets your website show homes from your local MLS, including listings from other brokerages.",
-        "The listings come through your own MLS membership and an IDX provider that your MLS approves. Your MLS has to approve the setup before any listing goes live. I do not provide MLS access or a listing feed, and nobody else can do that for you.",
+        "The listings come through your own MLS membership and an IDX provider that your MLS approves. Your MLS has to approve the setup before any listing goes live. I do not provide MLS access or a listing feed.",
         "My part is the website around that feed. I connect the IDX provider you choose, design the search pages and send every saved home and question to your CRM.",
         "Your MLS also sets display rules, such as how listing credits appear. I build to those rules, and you or your broker check them before launch.",
       ],
