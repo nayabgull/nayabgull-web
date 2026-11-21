@@ -91,8 +91,8 @@ describe("Dental and medical website design page", () => {
       "doctor website design",
       "healthcare workflow automation",
     ]);
-    // No /industries hub yet: the breadcrumb goes Home › this page.
-    expect(content.parent).toBeUndefined();
+    // The breadcrumb goes Home › Industries › this page.
+    expect(content.parent).toEqual({ name: "Industries", path: "/industries" });
   });
 
   it("is a full industry page of 1,500 to 2,000 words", () => {
@@ -205,7 +205,7 @@ describe("Dental and medical website design page", () => {
     expect(JSON.stringify(content.blocks)).not.toMatch(/https?:\/\//);
   });
 
-  it("links to the web design service, the AI pages, the GoHighLevel hub, pricing and About, never to /industries", () => {
+  it("links to the web design service, the AI pages, the GoHighLevel hub, pricing and up to /industries", () => {
     const hrefs = new Set(page.links.map((link) => link.href));
     for (const href of [
       "/services/web-design-development",
@@ -213,11 +213,10 @@ describe("Dental and medical website design page", () => {
       "/ai-automation-agency/ai-agent-development",
       "/gohighlevel-agency",
       "/pricing",
-      "/about",
+      "/industries",
     ]) {
       expect(hrefs, href).toContain(href);
     }
-    expect(hrefs).not.toContain("/industries");
   });
 
   it("is in the header Industries menu and the footer", () => {

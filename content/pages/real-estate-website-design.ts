@@ -5,8 +5,7 @@ import type { PageContent } from "./types.ts";
 /**
  * /industries/real-estate-website-design (industry page). Primary keyword: "real estate website
  * design". Brief: content/briefs/real-estate-website-design.md. Keywords: docs/seo/keyword-map.md
- * (Industries). The /industries hub does not exist yet, so the breadcrumb goes Home › this page and
- * nothing links to /industries.
+ * (Industries). Breadcrumb: Home › Industries › this page.
  *
  * IDX: listings come through the client's own MLS membership and an IDX provider the MLS approves.
  * The page never says Nayab supplies MLS access or a data feed. Fair Housing is named only as the
@@ -25,6 +24,7 @@ import type { PageContent } from "./types.ts";
 export const realEstateWebsiteDesign: PageContent = {
   path: "/industries/real-estate-website-design",
   name: "Real estate websites",
+  parent: { name: "Industries", path: "/industries" },
   updated: "2026-11-21",
   meta: {
     title: "Real Estate Website Design for Agents | Nayab Gull",
@@ -243,7 +243,7 @@ export const realEstateWebsiteDesign: PageContent = {
       id: "compare",
       eyebrow: "Compare",
       heading: "Three ways to get a real estate agent site: an honest comparison",
-      intro: "Each path fits a different business. Look at what each one really gives you.",
+      intro: "Each option suits a different stage. Here is what you get from each.",
       rowLabel: "Question",
       columns: ["Template site from a vendor", "Large real estate web company", "Working with me"],
       rows: [
@@ -251,55 +251,55 @@ export const realEstateWebsiteDesign: PageContent = {
           label: "Follow-up",
           cells: [
             "It usually comes with the vendor's own CRM.",
-            "Many sell it as an extra monthly service.",
+            "Many charge for it each month, on top of the site.",
             "Texts, drips and showing booking come as part of the build.",
           ],
         },
         {
           label: "Who owns the site",
           cells: [
-            "The vendor hosts it, so moving away can be hard.",
-            "It depends on the contract, so ask before you sign.",
-            "Your accounts hold the domain, the site and the leads.",
+            "The vendor hosts it, and leaving can mean a rebuild.",
+            "That depends on your contract, so check it first.",
+            "The domain, the site and the leads sit in accounts under your name.",
           ],
         },
         {
           label: "Best for",
           cells: [
             "A new agent who needs something live this week.",
-            "Large brokerages that want ads and content from one vendor.",
+            "Big brokerages that want ads, content and a site from one company.",
             "Agents and teams who want their own site and their own system.",
           ],
         },
       ],
-      note: "All three can work. Pick the one that fits your business today.",
+      note: "Each option has a place. Pick the one that matches your business now.",
     },
     {
       kind: "stepper",
       id: "process",
       eyebrow: "Process",
       heading: "My five-step process for a real estate website",
-      intro: "You keep selling homes while I do the work.",
+      intro: "You keep selling homes, and I handle the build.",
       steps: [
         {
           title: "Free call and site review",
-          text: "You tell me about your market, your team and your current tools. Then I review your site.",
+          text: "You walk me through your market, your team and your tools. Then I look through your current site.",
         },
         {
           title: "Page plan and IDX choice",
-          text: "You get the page list, the lead flow and a fixed scope in writing. I help you pick the IDX provider, and you start the MLS approval.",
+          text: "A written plan lists the pages, the lead flow and the scope. I help you pick the IDX provider, and you start the MLS approval.",
         },
         {
           title: "Design and writing",
-          text: "I draft the pages from your notes. You correct anything that does not sound like you.",
+          text: "I write the first drafts from your notes and listings. You edit any line that does not match your voice.",
         },
         {
           title: "Build and testing",
-          text: "I build the site and the follow-up, then test both on real phones.",
+          text: "I set up the site, the home search and the follow-up, then test each on real phones.",
         },
         {
           title: "Launch and handover",
-          text: "I connect your domain and show your team how to add agents and pages.",
+          text: "Your domain goes live on the new site, and your team learns to add agents and pages.",
         },
       ],
     },
@@ -310,12 +310,12 @@ export const realEstateWebsiteDesign: PageContent = {
       eyebrow: "Pricing",
       heading: "What sets the price of real estate website design?",
       paragraphs: [
-        "Three things set the price: how many pages and agents you need, how much writing I do and how much follow-up you want.",
+        "Three things set the price: pages and agent profiles, who writes the copy and how much follow-up you add.",
         "Your IDX provider and your MLS may charge their own fees. Those go to them, not to me, and I point them out before you decide.",
         [
-          "You get a fixed quote in writing after the first call. For the factors that change any website price, see my ",
+          "After the first call, I send a fixed quote in writing. My ",
           { text: "website pricing page", href: "/pricing" },
-          ".",
+          " lists what moves any price up or down.",
         ],
       ],
     },
@@ -327,30 +327,30 @@ export const realEstateWebsiteDesign: PageContent = {
       heading: "Why hire a developer who builds the site and the system?",
       layout: "cards",
       paragraphs: [
-        "Most agent websites break where the listing meets the inbox and the calendar. I am a full-stack developer, so I build those parts too. Over five years, I have delivered 400+ projects.",
+        "An agent site often fails between a saved home and your calendar. As a full-stack developer, I build the search, the CRM link and the booking myself. In more than five years, I have finished 400+ projects.",
       ],
       example: {
         label: "Case study",
         paragraphs: [
-          "I have no approved real estate case study to show yet, and I will not invent one. Ask for a free demo and judge the lead flow yourself.",
+          "There is no approved real estate case study yet, so I show none. Ask for a free demo and judge the lead flow with your own listings.",
         ],
       },
       outro: [
-        "You can read ",
-        { text: "more about me and how I work", href: "/about" },
-        " before you book a call.",
+        "Read ",
+        { text: "about my background and the way I work", href: "/about" },
+        " before you book.",
       ],
     },
     {
       kind: "links",
       id: "related",
       eyebrow: "Related",
-      heading: "Services that pair well with your new site",
+      heading: "More help for your real estate business",
       items: [
         {
           label: "My web design and development service",
           href: "/services/web-design-development",
-          text: "The full build process, the tech and what every site includes.",
+          text: "How I plan, build and launch each site.",
         },
         {
           label: "GoHighLevel CRM setup and automation",
@@ -358,9 +358,9 @@ export const realEstateWebsiteDesign: PageContent = {
           text: "Pipelines, texts and drips for agents who need a CRM.",
         },
         {
-          label: "Roofing and HVAC website design",
-          href: "/industries/roofing-hvac-website-design",
-          text: "See how the same approach works for a very different trade.",
+          label: "Websites for other industries",
+          href: "/industries",
+          text: "Law firms, clinics, roofers and contractors each have their own page.",
         },
       ],
     },

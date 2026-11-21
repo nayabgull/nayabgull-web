@@ -6,11 +6,12 @@ import type { PageContent } from "./types.ts";
  * /industries/roofing-hvac-website-design (industry page). Primary keyword: "roofing website design".
  * TODO(nayab): confirm the timelines, the list of field-service tools in the FAQ and every answer.
  * TODO(nayab): add real project photos or screenshots when a roofing or HVAC client approves them.
- * The /industries hub does not exist yet, so the breadcrumb goes Home › this page.
+ * Breadcrumb: Home › Industries › this page (the /industries hub links back down).
  */
 export const roofingHvacWebsiteDesign: PageContent = {
   path: "/industries/roofing-hvac-website-design",
   name: "Roofing and HVAC website design",
+  parent: { name: "Industries", path: "/industries" },
   updated: "2026-11-10",
   meta: {
     title: "Roofing Website Design for Roofers and HVAC | Nayab Gull",

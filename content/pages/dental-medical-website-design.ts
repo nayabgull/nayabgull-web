@@ -5,8 +5,7 @@ import type { PageContent } from "./types.ts";
 /**
  * /industries/dental-medical-website-design (industry page). Primary keyword: "medical website
  * design company". Brief: content/briefs/dental-medical-website-design.md. Keywords:
- * docs/seo/keyword-map.md (Industries). The /industries hub does not exist yet, so the breadcrumb
- * goes Home › this page and nothing links to /industries.
+ * docs/seo/keyword-map.md (Industries). Breadcrumb: Home › Industries › this page.
  *
  * Facts on this page come from the repo: prices (content/pages/pricing.ts), "two to six weeks"
  * (content/home.ts), 5+ years and 400+ projects (content/home.ts), ownership, time zone and support
@@ -24,6 +23,7 @@ import type { PageContent } from "./types.ts";
 export const dentalMedicalWebsiteDesign: PageContent = {
   path: "/industries/dental-medical-website-design",
   name: "Dental and medical websites",
+  parent: { name: "Industries", path: "/industries" },
   updated: "2026-11-21",
   meta: {
     title: "Medical Website Design Company for Dentists | Nayab Gull",
@@ -342,11 +342,6 @@ export const dentalMedicalWebsiteDesign: PageContent = {
           "I do not have an approved dental or medical case study yet, and I will not make one up. Ask for a free demo and judge the booking flow on your own practice.",
         ],
       },
-      outro: [
-        "Before you book, you can read ",
-        { text: "who I am and how I work", href: "/about" },
-        ".",
-      ],
     },
     {
       kind: "links",

@@ -5,8 +5,7 @@ import type { PageContent } from "./types.ts";
 /**
  * /industries/law-firm-website-design (industry page). Primary keyword: "law firm website design".
  * Brief: content/briefs/law-firm-website-design.md. Keywords: docs/seo/keyword-map.md (Industries).
- * The /industries hub does not exist yet, so the breadcrumb goes Home › this page and nothing links
- * to /industries.
+ * Breadcrumb: Home › Industries › this page.
  *
  * TODO(nayab): TIMELINE. The process shows no week counts on purpose. Add the real timeline for each
  * step (and to the "How long does it take?" answer) once you confirm it.
@@ -21,6 +20,7 @@ import type { PageContent } from "./types.ts";
 export const lawFirmWebsiteDesign: PageContent = {
   path: "/industries/law-firm-website-design",
   name: "Law firm websites",
+  parent: { name: "Industries", path: "/industries" },
   updated: "2026-11-19",
   meta: {
     title: "Law Firm Website Design for Attorneys | Nayab Gull",

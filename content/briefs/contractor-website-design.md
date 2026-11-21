@@ -1,6 +1,6 @@
 # Content brief: contractor website design
 
-Page: `/industries/contractor-website-design` (industry page, no hub yet).
+Page: `/industries/contractor-website-design` (industry page). Breadcrumb: Home › Industries › Contractor website design.
 Keywords: the row in `docs/seo/keyword-map.md`. Research: `docs/seo/research/keywords-all.csv` and `docs/seo/research/clusters/keywords-web-dev.csv`.
 
 ## 1. Primary keyword and intent

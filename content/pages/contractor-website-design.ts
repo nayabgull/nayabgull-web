@@ -16,11 +16,12 @@ import type { PageContent } from "./types.ts";
  * TODO(nayab): PROOF. No contractor case study, client name, number or review is approved yet.
  * Replace the "proof" section with a real, approved result when one exists.
  * TODO(nayab): Confirm the FAQ answer on build time once the timelines are set.
- * The /industries hub does not exist yet, so the breadcrumb goes Home › this page.
+ * Breadcrumb: Home › Industries › this page (the /industries hub links back down).
  */
 export const contractorWebsiteDesign: PageContent = {
   path: "/industries/contractor-website-design",
   name: "Contractor website design",
+  parent: { name: "Industries", path: "/industries" },
   updated: "2026-11-19",
   meta: {
     title: "Contractor Website Design That Wins Bids | Nayab Gull",

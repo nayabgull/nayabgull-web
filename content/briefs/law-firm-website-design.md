@@ -1,6 +1,6 @@
 # Content brief: law firm website design
 
-Page: `/industries/law-firm-website-design` (industry page). No `/industries` hub yet, so the breadcrumb is Home › Law firm websites.
+Page: `/industries/law-firm-website-design` (industry page). Breadcrumb: Home › Industries › Law firm websites.
 Keywords: the "Law firms" row of `docs/seo/keyword-map.md`. Research: `docs/seo/research/keywords-all.csv` (cluster "Niche: Law Firm Websites") and `docs/seo/research/clusters/keywords-web-dev.csv`.
 
 ## 1. Primary keyword and intent

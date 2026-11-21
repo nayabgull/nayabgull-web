@@ -1,6 +1,6 @@
 # Content brief: dental and medical website design
 
-Page: `/industries/dental-medical-website-design` (industry page). No `/industries` hub yet, so the breadcrumb is Home › Dental and medical websites.
+Page: `/industries/dental-medical-website-design` (industry page). Breadcrumb: Home › Industries › Dental and medical websites.
 Keywords: the "Dental & medical" row of `docs/seo/keyword-map.md`. Research: `docs/seo/research/keywords-all.csv` (cluster "Niche: Dental, Medical & Healthcare Websites"; "healthcare workflow automation" sits under "Business Process & Workflow Automation").
 
 ## 1. Primary keyword and intent

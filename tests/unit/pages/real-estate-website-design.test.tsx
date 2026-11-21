@@ -82,8 +82,8 @@ describe("Real estate website design page", () => {
       "real estate brokerage website design",
       "real estate marketing automation",
     ]);
-    // No /industries hub yet: the breadcrumb goes Home › this page.
-    expect(content.parent).toBeUndefined();
+    // The breadcrumb goes Home › Industries › this page.
+    expect(content.parent).toEqual({ name: "Industries", path: "/industries" });
   });
 
   it("is a full industry page of 1,500 to 2,000 words", () => {
@@ -208,18 +208,17 @@ describe("Real estate website design page", () => {
     expect(JSON.stringify(content)).not.toMatch(/zillow|realtor\.com|redfin/i);
   });
 
-  it("links to the web design service, the GHL and AI hubs, the roofing page and pricing, never to /industries", () => {
+  it("links to the web design service, the GHL and AI hubs, pricing and up to /industries", () => {
     const hrefs = new Set(page.links.map((link) => link.href));
     for (const href of [
       "/services/web-design-development",
       "/gohighlevel-agency",
       "/ai-automation-agency",
-      "/industries/roofing-hvac-website-design",
       "/pricing",
+      "/industries",
     ]) {
       expect(hrefs, href).toContain(href);
     }
-    expect(hrefs).not.toContain("/industries");
   });
 
   it("is in the header Industries menu and the footer", () => {
