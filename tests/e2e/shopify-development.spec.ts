@@ -66,7 +66,9 @@ test.describe("Shopify development page", () => {
     expect(overflow).toBe(false);
   });
 
-  test("structured data: Service for the US with no price, and an FAQPage", async ({ page }) => {
+  test("structured data: Service for the US with the $1,500 Offer, and an FAQPage", async ({
+    page,
+  }) => {
     await page.goto(PATH);
     const raw = await page.locator('script[type="application/ld+json"]').first().textContent();
     const graph = (JSON.parse(raw ?? "{}") as { "@graph": Record<string, unknown>[] })["@graph"];
@@ -75,16 +77,24 @@ test.describe("Shopify development page", () => {
       expect(types, type).toContain(type);
     }
     const service = graph.find((node) => node["@type"] === "Service");
-    expect(service).toMatchObject({ areaServed: { "@type": "Country", name: "United States" } });
-    expect(service).not.toHaveProperty("offers");
-    await expect(page.locator("main")).not.toContainText("$");
+    expect(service).toMatchObject({
+      areaServed: { "@type": "Country", name: "United States" },
+      offers: [
+        {
+          "@type": "Offer",
+          name: "Shopify store build",
+          priceSpecification: { minPrice: 1500, priceCurrency: "USD" },
+        },
+      ],
+    });
+    await expect(page.locator("#pricing")).toContainText("Starts at $1,500.");
   });
 
   test("FAQ: the ownership answer opens and closes", async ({ page }) => {
     await page.goto(PATH);
     const item = page.locator("#faq details", { hasText: "Who owns the store and the code?" });
     await item.locator("summary").click();
-    await expect(item).toContainText("sit in your name");
+    await expect(item).toContainText("You never share your password");
     await item.locator("summary").click();
     await expect(item).not.toHaveAttribute("open");
     await expect(page.locator("#faq summary")).toHaveCount(7);

@@ -7,14 +7,11 @@ import type { PageContent } from "./types.ts";
  * Keywords approved by Nayab on 2026-11-22 (source: PR #49). Brief: content/briefs/shopify-development.md.
  * The /services hub does not exist yet, so the breadcrumb goes Home › this page.
  *
- * TODO(nayab): PRICING. No Shopify price is approved, so there is no `prices` block and no Offer in
- * the Service JSON-LD. Add the approved starting prices (store setup, redesign, custom work,
- * monthly support) as a `prices` block and to APPROVED_PRICES in tests/unit/pages/pages.test.tsx.
- * TODO(nayab): TIMELINE. Only the free call (30 minutes) and the written quote (within 3 days) have
- * times, both from /pricing. Add the real build and migration times once you confirm them.
+ * Approved by Nayab on 2026-11-22: the starting price ("Shopify store builds start at $1,500"),
+ * the timelines (new store 2 to 4 weeks, migration 1 to 3 weeks), the free store audit, one week of
+ * monitoring after launch and access through a collaborator or staff account.
  * TODO(nayab): PROOF. No Shopify case study, store name or result is approved yet. Replace the
  * "Case study" note in the "proof" section with a real, approved result.
- * TODO(nayab): FREE AUDIT. Confirm the free store audit offer and what it covers ("audit" block).
  * TODO(nayab): link /services/ecommerce-development and /packages/website-speed-optimization from
  * the "related" block once those pages exist (brief §7).
  */
@@ -80,7 +77,7 @@ export const shopifyDevelopment: PageContent = {
       paragraphs: [
         "A Shopify development agency builds and changes the parts of your store that settings alone cannot. That covers the theme code, custom sections, app setup and links to other tools.",
         "Shopify themes use a template language called Liquid. Modern themes follow Online Store 2.0, which splits each page into sections and blocks you can move around in the editor. Good Shopify work keeps that editor working, so you can still change pages yourself.",
-        "Can you hire someone to set up your Shopify store? Yes. That is the most common job I get, and it is a good place to start.",
+        "Can you hire someone to set up your Shopify store? Yes, and the store stays yours.",
       ],
     },
     {
@@ -170,7 +167,7 @@ export const shopifyDevelopment: PageContent = {
       paragraphs: [
         "Shopify Plus is Shopify's plan for larger, high-volume brands. It adds more control over checkout and tools for B2B selling.",
         "If you are already on Plus, the work looks much like any other store, with a few extra pieces. I can build checkout changes and connect Plus to your other systems.",
-        "If you are not on Plus yet, ask first whether you need it. Many stores grow for years on a standard plan. On the call, I tell you plainly if the upgrade pays for itself.",
+        "If you are not on Plus yet, ask first whether you need it. On the call, I tell you plainly if the upgrade pays for itself.",
       ],
     },
     {
@@ -189,8 +186,7 @@ export const shopifyDevelopment: PageContent = {
         { text: "The path from product page to checkout." },
         { text: "Titles, descriptions and structured data on key pages." },
       ],
-      outro:
-        "You leave with a short list of fixes in order of impact. Some you can do yourself, and some need a developer.",
+      outro: "You leave with a short list of fixes in order of impact.",
     },
     {
       kind: "stepper",
@@ -209,7 +205,7 @@ export const shopifyDevelopment: PageContent = {
         },
         {
           title: "Design and build",
-          text: "I build on a copy of your theme, so your live store keeps selling. You click through a private preview link.",
+          text: "A new store takes 2 to 4 weeks. A migration takes 1 to 3 weeks, depending on how many products and orders move. I build on a copy of your theme, so your live store keeps selling.",
         },
         {
           title: "Testing",
@@ -222,20 +218,30 @@ export const shopifyDevelopment: PageContent = {
       ],
     },
     {
-      // TODO(nayab): PRICING. Replace this note with a `prices` block once Shopify prices are approved.
-      kind: "prose",
+      kind: "prices",
       id: "pricing",
       eyebrow: "Pricing",
       heading: "What does a Shopify development company cost?",
-      paragraphs: [
-        "How much does it cost to hire a Shopify expert? It depends on what you need built. A store setup with a paid theme is a small job. A custom theme, a migration or a headless build is a much larger one.",
-        "Four things move the price most: the number of custom sections, the number of products to move, the apps and tools to connect, and who writes the product text.",
-        [
-          "You get a fixed quote in writing after the free call. To see what changes any web price, read my ",
-          { text: "website development cost guide", href: "/pricing" },
-          ".",
-        ],
+      intro: [
+        "How much does it cost to hire a Shopify expert? Shopify store builds start at $1,500. A custom theme, a migration or a headless build costs more. To see what changes any web price, read my ",
+        { text: "website development cost guide", href: "/pricing" },
+        ".",
       ],
+      items: [
+        {
+          name: "Shopify store build",
+          from: 1500,
+          label: "Starts at $1,500.",
+          text: "A new Shopify store, set up and ready to take orders.",
+          includes: [
+            "Products, collections, payments, shipping and taxes.",
+            "A theme customized to your brand.",
+            "Test orders before launch.",
+            "A short video on how to edit your store.",
+          ],
+        },
+      ],
+      note: "These are starting prices in US dollars, not fixed quotes or guarantees. Custom sections, products to move, apps to connect and product writing raise the price. Your Shopify plan and paid apps are billed by Shopify and the app makers.",
     },
     {
       kind: "compare",
@@ -333,7 +339,7 @@ export const shopifyDevelopment: PageContent = {
       {
         question: "How much does a Shopify developer charge?",
         answer:
-          "Prices vary a lot, from small hourly fixes to large custom builds. I work on fixed quotes, not hourly rates.\n\nAfter the free call, you get the full price in writing, so there are no surprise lines on the bill.",
+          "Prices vary a lot, from small hourly fixes to large custom builds. I work on fixed quotes, not hourly rates. Shopify store builds start at $1,500.\n\nAfter the free call, you get the full price in writing, so there are no surprise lines on the bill.",
       },
       {
         question: "Is it worth it to hire a Shopify expert?",
@@ -348,7 +354,7 @@ export const shopifyDevelopment: PageContent = {
       {
         question: "Who owns the store and the code?",
         answer:
-          "You do. The Shopify account, the theme, the domain and every app account sit in your name. I work inside those accounts as a staff member or collaborator.\n\nAt handover, you remove my access whenever you like, and the store keeps running.",
+          "You do. The Shopify account, the theme, the domain and every app account sit in your name.\n\nI work through a Shopify collaborator account (or a staff account if you prefer). You never share your password, and you can remove my access anytime.",
       },
       {
         question: "Do you work in US time zones?",

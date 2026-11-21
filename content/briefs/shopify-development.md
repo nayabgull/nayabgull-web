@@ -89,7 +89,8 @@ Organization (ProfessionalService), WebSite, BreadcrumbList, Service (provider, 
 ## 9. Decisions for the page (November 22, 2026)
 
 - "Shopify Partner" is left out of the entities: the page never shows partner status or any badge.
-- No price, timeline per build step or case study is approved for Shopify. The page shows the pricing factors and a fixed written quote, the free call (30 minutes) and the written quote (within 3 days) from `/pricing`, and an honest "no approved case study yet" note. TODO(nayab) comments in the page file mark each gap.
+- Approved by Nayab on November 22, 2026: "Shopify store builds start at $1,500" (prices block and Offer schema); "A new store takes 2 to 4 weeks. A migration takes 1 to 3 weeks, depending on how many products and orders move."; the free store audit; one week of monitoring after launch; access through a Shopify collaborator account (or a staff account), with no shared password and access the client can remove anytime.
+- No Shopify case study is approved yet: the page shows an honest "no approved case study yet" note (TODO(nayab) in the page file).
 - No comparison table with named competitors: the table compares option types (marketplace freelancer, large agency, working with Nayab).
 - `/services/ecommerce-development` and `/packages/website-speed-optimization` do not exist yet. The page links to `/services/web-design-development`, `/pricing`, `/hire-full-stack-developer`, `/ai-automation-agency` and `/about` until they do.
 - FAQ: 7 questions; 4 from People Also Ask (set up, developer cost, worth it, manage my store), plus ownership, US time zones and editing.

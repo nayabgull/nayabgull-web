@@ -202,9 +202,21 @@ describe("Shopify development page", () => {
     expect(schema.find((node) => node.name === question)?.acceptedAnswer.text).toBe(answer);
   });
 
-  it("shows no price and puts no Offer in the Service schema until Nayab sets one", () => {
-    expect(pagePrices(content)).toEqual([]);
-    expect(JSON.stringify(content)).not.toMatch(/\$\s?\d/);
+  it("shows the approved starting price as a prices block and as an Offer in the Service schema", () => {
+    expect(pagePrices(content)).toEqual([
+      expect.objectContaining({
+        name: "Shopify store build",
+        from: 1500,
+        label: "Starts at $1,500.",
+      }),
+    ]);
+    expect(copy).toContain("shopify store builds start at $1,500.");
+    expect(JSON.stringify(content).match(/\$\d+(?:,\d{3})*/g)).toEqual(
+      expect.arrayContaining(["$1,500"]),
+    );
+    expect(new Set(JSON.stringify(content).match(/\$\d+(?:,\d{3})*/g))).toEqual(
+      new Set(["$1,500"]),
+    );
     const graph = pageJsonLd(content)["@graph"];
     expect(graph.map((node) => node["@type"])).toEqual([
       "ProfessionalService",
@@ -217,10 +229,33 @@ describe("Shopify development page", () => {
     expect(service).toMatchObject({
       serviceType: "Shopify development",
       areaServed: { "@type": "Country", name: "United States" },
+      offers: [
+        {
+          "@type": "Offer",
+          name: "Shopify store build",
+          priceSpecification: {
+            "@type": "PriceSpecification",
+            minPrice: 1500,
+            priceCurrency: "USD",
+          },
+        },
+      ],
     });
     expect(service).toHaveProperty("provider");
-    expect(service).not.toHaveProperty("offers");
-    expect(JSON.stringify(graph)).not.toMatch(/"(price|minPrice|Offer)"/);
+  });
+
+  it("shows the approved timelines, the week of monitoring and the access wording", () => {
+    const process = block("stepper");
+    expect(process.steps.find((step) => step.title === "Design and build")?.text).toContain(
+      "A new store takes 2 to 4 weeks. A migration takes 1 to 3 weeks, depending on how many products and orders move.",
+    );
+    expect(process.steps.at(-1)?.text).toContain("watch the store that week");
+    const owner = content.faq?.items.find(
+      (item) => item.question === "Who owns the store and the code?",
+    );
+    expect(faqPlainText(owner?.answer ?? "")).toContain(
+      "I work through a Shopify collaborator account (or a staff account if you prefer). You never share your password, and you can remove my access anytime.",
+    );
   });
 
   it("invents no case study, store, result or partner badge", () => {
@@ -230,10 +265,13 @@ describe("Shopify development page", () => {
     expect(text).not.toMatch(/\b\d+(\.\d+)?\s?(%|percent|x)\b/i);
     expect(text).not.toMatch(/shopify (partner|expert badge|certified)|premier|award/i);
     // The only numbers are the confirmed ones: 5+ years, 400+ projects, 30-minute call, quote in
-    // 3 days, the time zone window, Online Store 2.0, Google Analytics 4 and 301 redirects.
+    // 3 days, the time zone window, the $1,500 starting price, the 2 to 4 and 1 to 3 week timelines,
+    // Online Store 2.0, Google Analytics 4 and 301 redirects.
     const pageCopy = JSON.stringify([content.hero, content.blocks, content.faq, content.closing]);
     const numbers = [...new Set(pageCopy.match(/\b\d+(?:\.\d+)?\+?/g) ?? [])].sort();
-    expect(numbers).toEqual(["2.0", "3", "30", "301", "4", "400+", "5+", "6", "9"].sort());
+    expect(numbers).toEqual(
+      ["1", "1500", "2", "2.0", "3", "30", "301", "4", "400+", "5+", "500", "6", "9"].sort(),
+    );
   });
 
   it("links to the web design service, pricing, hiring, the AI hub and About", () => {
