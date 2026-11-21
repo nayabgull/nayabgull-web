@@ -8,6 +8,7 @@ import { pricing } from "./pricing.ts";
 import { roofingHvacWebsiteDesign } from "./roofing-hvac-website-design.ts";
 import type { PageContent } from "./types.ts";
 import { webDesignDevelopment } from "./web-design-development.ts";
+import { wordpressDevelopment } from "./wordpress-development.ts";
 
 /** Every launch page except the homepage, in build order. The sitemap and the tests read this list. */
 export const PAGES: readonly PageContent[] = [
@@ -16,6 +17,7 @@ export const PAGES: readonly PageContent[] = [
   aiAgentDevelopment,
   roofingHvacWebsiteDesign,
   webDesignDevelopment,
+  wordpressDevelopment,
   hireFullStackDeveloper,
   pricing,
   about,

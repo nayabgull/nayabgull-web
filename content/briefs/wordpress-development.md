@@ -1,31 +1,30 @@
 # Content brief: /services/wordpress-development
 
-Status: proposal (November 21, 2026). Keywords are not in `docs/seo/keyword-map.md` until Nayab approves them.
+Status: keywords approved by Nayab on November 22, 2026 and registered in `docs/seo/keyword-map.md` and `lib/seo/keywords.ts`. Page built: `content/pages/wordpress-development.ts`.
 Research: `docs/seo/research/wordpress-keywords.csv`, `shopify-wordpress-serp-notes.md`, `shopify-wordpress-report.md`.
 
 ## 1. Primary keyword and intent
 
-- Proposed primary: **wordpress development agency** (100–1K US searches, Ads competition Low, top-of-page bid up to $42.98, Ahrefs KD 5). Already a secondary on this page.
-- Current primary: wordpress agency (1K–10K, Low, $29.92, KD 43). Keep it as a secondary.
+- Primary (approved November 22, 2026): **wordpress development agency** (100–1K US searches, Ads competition Low, top-of-page bid up to $42.98, Ahrefs KD 5). Already a secondary on this page.
+- Old primary: wordpress agency (1K–10K, Low, $29.92, KD 43). Now a secondary.
 - Intent: hire. The reader is a US small-business owner or marketing lead who needs a new WordPress site, a rebuild or custom features.
 - Page type: service page (`seo.md` §10: 1,200+ words, process, deliverables, tech, pricing range, FAQ 6+, case study link).
 - Target length: about 2,000 words.
 
-## 2. Secondary keywords (proposal)
+## 2. Secondary keywords (approved November 22, 2026)
 
+- wordpress agency (1K–10K, KD 43, the old primary)
 - wordpress website design agency (1K–10K, KD 3)
 - wordpress design company (1K–10K, KD 4)
-- wordpress web design agency (1K–10K, KD 6)
 - wordpress website development company (KD 2)
 - custom wordpress development (KD 0)
-- hire dedicated wordpress developer (KD 0)
-- wordpress specialist (KD 8)
-- hire wordpress developer (KD 24, in map)
-- wordpress experts for hire (KD 25, in map)
-- wordpress agency (KD 43, current primary)
-- wordpress web design company (KD 45, in map; proposal: replace with wordpress design company)
+- wordpress experts for hire (KD 25)
+- hire wordpress developer (KD 24)
+- wordpress web design company (KD 45, kept as approved)
 
-Owned by other pages, do not target here: hire woocommerce developers and woocommerce development services (/services/ecommerce-development), wordpress maintenance plans (/packages/wordpress-care-plan), wordpress support services (/services/website-maintenance).
+Proposed in the research but not approved, so not targets: wordpress web design agency, hire dedicated wordpress developer, wordpress specialist.
+
+Owned by other pages, do not target here: hire woocommerce developers and woocommerce development services (/services/ecommerce-development), wordpress maintenance plans, wordpress care plans, wordpress maintenance packages and wordpress maintenance company (/packages/wordpress-care-plan), managed wordpress hosting services (/services/website-maintenance), wordpress support services (/services/website-maintenance).
 
 Never use as targets: wordpress login, wordpress pricing, wordpress free themes, wordpress course, wordpress tutorial, wordpress developer jobs, wordpress developer salary, upwork wordpress developer, any "near me" keyword.
 
@@ -54,28 +53,42 @@ WordPress, block editor (Gutenberg), full site editing, themes and child themes,
   - Speed and security baked in, with a link to the care plan for after launch.
   - Direct work with one senior developer in a US-friendly time window.
 
-## 6. H2 outline (proposal)
+## 6. H2 outline (as built)
 
-1. WordPress development agency for US small businesses (hero; H1 contains "WordPress development agency"; primary keyword in the first 100 words)
-2. Problems I fix on WordPress sites (slow, hard to edit, plugin conflicts, security scares)
-3. WordPress website design and development services (new site, redesign, custom theme, custom plugin, WooCommerce handoff, headless)
-4. Custom WordPress development: what "custom" really means
-5. How we work: 5 steps with timeline
-6. What a WordPress development company costs (price ranges)
-7. Is WordPress still a good choice in 2026?
-8. Hire a dedicated WordPress developer vs an agency vs a marketplace (comparison table)
-9. Case study (real and approved)
-10. WordPress development agency FAQ (8 questions from section 4 plus ownership and support)
-11. Book a free strategy call (same primary CTA)
+1. Hero H1: "A WordPress development agency for sites you can edit, trust and grow" (primary keyword in the lede, inside the first 100 words)
+2. Problems I fix on WordPress sites
+3. What is a WordPress agency? (PAA)
+4. WordPress website design and development services (custom design, themes and blocks, plugins and integrations, WooCommerce, speed, migration and redesign)
+5. Custom WordPress development: what custom really means
+6. How I build your WordPress site, step by step (5 steps with timeline)
+7. What does a WordPress development company charge? (no price yet: TODO)
+8. Is WordPress still a good choice in 2026? (PAA "Is WordPress outdated in 2026?")
+9. Hire a WordPress developer, a large agency or me? (comparison table)
+10. Why choose a WordPress website development company that builds the whole system? (proof; no approved case study yet: TODO)
+11. Get a free review of your WordPress site (free audit offer: TODO confirm)
+12. What to pair with your WordPress site (related links)
+13. Questions to ask a WordPress development agency (8 FAQs)
+14. Closing quote section (same primary CTA: Book a free call)
 
-## 7. Internal links (3–8)
+Changes from the proposal: "How we work" became "How I build" (brand voice: no "we"). The "hire a dedicated developer vs agency vs marketplace" table uses the approved keyword "hire wordpress developer" instead.
 
-- /packages/wordpress-care-plan
-- /packages/website-speed-optimization
-- /services/website-maintenance
-- /services/ecommerce-development
-- /services/small-business-website-design
+## 7. Internal links (3–8, only pages that exist)
+
+- /services/web-design-development
 - /pricing
+- /gohighlevel-agency
+- /ai-automation-agency
+- /hire-full-stack-developer
+- /about
+
+Not linked until they are built: /packages/wordpress-care-plan, /packages/website-speed-optimization, /services/website-maintenance, /services/ecommerce-development, /services/small-business-website-design.
+
+## 7b. Open items for Nayab
+
+- Pricing: no WordPress starting price is in the repo. No price and no Offer schema until one is approved.
+- Case study: no approved WordPress case study.
+- Free site review on the call: confirm the offer and what it covers.
+- Timeline: "30 minutes", "within 3 days", "2 to 6 weeks" and "launch week" come from /pricing and /services/web-design-development. Confirm they hold for WordPress builds.
 
 ## 8. Schema
 
