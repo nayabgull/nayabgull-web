@@ -287,7 +287,7 @@ export const realEstateWebsiteDesign: PageContent = {
         },
         {
           title: "Page plan and IDX choice",
-          text: "You get the page list, the lead flow and a fixed scope in writing. We pick the IDX provider, and you start the MLS approval.",
+          text: "You get the page list, the lead flow and a fixed scope in writing. I help you pick the IDX provider, and you start the MLS approval.",
         },
         {
           title: "Design and writing",
