@@ -168,8 +168,8 @@ export const shopifyDevelopment: PageContent = {
       eyebrow: "Shopify Plus",
       heading: "Do you need a Shopify Plus development agency?",
       paragraphs: [
-        "Shopify Plus is Shopify's plan for larger, high-volume brands. It adds more control over checkout, automation with Shopify Flow and tools for B2B selling.",
-        "If you are already on Plus, the work looks much like any other store, with a few extra pieces. I can build checkout changes, set up Flow automations and connect Plus to your other systems.",
+        "Shopify Plus is Shopify's plan for larger, high-volume brands. It adds more control over checkout and tools for B2B selling.",
+        "If you are already on Plus, the work looks much like any other store, with a few extra pieces. I can build checkout changes and connect Plus to your other systems.",
         "If you are not on Plus yet, ask first whether you need it. Many stores grow for years on a standard plan. On the call, I tell you plainly if the upgrade pays for itself.",
       ],
     },

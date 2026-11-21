@@ -286,3 +286,10 @@ describe("Freelancer vs agency vs me table", () => {
     }
   });
 });
+
+describe("Shopify Plus section", () => {
+  it("does not sell Shopify Flow as a Plus-only feature (it is on every current plan)", () => {
+    const plus = content.blocks.find((candidate) => candidate.id === "plus");
+    expect(JSON.stringify(plus)).not.toMatch(/\bflow\b/i);
+  });
+});
