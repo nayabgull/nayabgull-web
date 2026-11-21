@@ -506,8 +506,19 @@ export interface Lead {
   name: string;
   email: string;
   phone?: string | null;
-  businessType: 'roofing' | 'hvac' | 'law-firm' | 'dental-medical' | 'real-estate' | 'contractor' | 'other';
-  service: 'website' | 'gohighlevel' | 'ai-automation' | 'ai-agent' | 'full-system';
+  businessType:
+    'roofing' | 'hvac' | 'law-firm' | 'dental-medical' | 'real-estate' | 'contractor' | 'ecommerce' | 'saas' | 'other';
+  service:
+    | 'website'
+    | 'shopify'
+    | 'web-app'
+    | 'gohighlevel'
+    | 'ai-receptionist'
+    | 'ai-chatbot'
+    | 'ai-agent'
+    | 'ai-automation'
+    | 'full-system'
+    | 'not-sure';
   message?: string | null;
   /**
    * Quote request or custom demo request.

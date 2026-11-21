@@ -1,12 +1,13 @@
 import { describe, expect, it, vi } from "vitest";
 
 import { IDLE_STATE } from "@/lib/leads/fields.ts";
-import { notifyNewLead } from "@/lib/leads/notify.ts";
+import { describeLead, notifyNewLead } from "@/lib/leads/notify.ts";
 import {
   BUSINESS_TYPES,
   LEAD_STATUSES,
   LEAD_TYPES,
   SERVICES,
+  labelFor,
   values,
 } from "@/lib/leads/options.ts";
 import { leadValues, parseLead } from "@/lib/leads/schema.ts";
@@ -50,21 +51,57 @@ describe("lead options", () => {
       "Dental/Medical",
       "Real estate",
       "Contractor",
+      "Online store",
+      "SaaS or startup",
       "Other",
     ]);
-    expect(SERVICES.map((o) => o.label)).toEqual([
-      "Website",
-      "GoHighLevel",
-      "AI automation",
-      "AI agent",
-      "Full system",
+    expect(SERVICES.map((o) => [o.value, o.label])).toEqual([
+      ["website", "Website (WordPress or custom)"],
+      ["shopify", "Shopify store"],
+      ["web-app", "Web app or SaaS"],
+      ["gohighlevel", "GoHighLevel or CRM"],
+      ["ai-receptionist", "AI receptionist"],
+      ["ai-chatbot", "AI chatbot"],
+      ["ai-agent", "AI agent"],
+      ["ai-automation", "Automation (n8n, Zapier, workflows)"],
+      ["full-system", "Full system"],
+      ["not-sure", "Not sure yet"],
     ]);
+    expect(BUSINESS_TYPES.map((o) => o.value)).toEqual(
+      expect.arrayContaining(["ecommerce", "saas"]),
+    );
     expect(values(LEAD_TYPES)).toEqual(["quote", "demo"]);
     expect(values(LEAD_STATUSES)).toEqual(["new", "contacted", "booked", "won", "lost"]);
   });
 });
 
+describe("labelFor", () => {
+  it("returns the label, or the raw value when it is unknown", () => {
+    expect(labelFor(SERVICES, "shopify")).toBe("Shopify store");
+    expect(labelFor(SERVICES, "old-value")).toBe("old-value");
+  });
+});
+
 describe("parseLead", () => {
+  it("accepts every service and business type, including the new ones", () => {
+    for (const service of values(SERVICES)) {
+      expect(parseLead(form({ ...GOOD, service })).ok).toBe(true);
+    }
+    for (const businessType of values(BUSINESS_TYPES)) {
+      expect(parseLead(form({ ...GOOD, businessType })).ok).toBe(true);
+    }
+  });
+
+  it("still accepts the values saved before this change", () => {
+    for (const service of ["website", "gohighlevel", "ai-automation", "ai-agent", "full-system"]) {
+      expect(parseLead(form({ ...GOOD, service })).ok).toBe(true);
+    }
+  });
+
+  it("rejects a service that is not offered", () => {
+    expect(parseLead(form({ ...GOOD, service: "seo" })).ok).toBe(false);
+  });
+
   it("accepts a complete form and trims the text", () => {
     const parsed = parseLead(form(GOOD));
     expect(parsed).toEqual({ ok: true, lead: { ...GOOD, type: "quote", name: "Sam Roofer" } });
@@ -210,5 +247,24 @@ describe("verifyTurnstile", () => {
     await expect(verifyTurnstile("t", "s", respond({ success: true }, false))).resolves.toBe(false);
     const down = vi.fn(() => Promise.reject(new Error("offline")));
     await expect(verifyTurnstile("t", "s", down)).resolves.toBe(false);
+  });
+});
+
+describe("describeLead", () => {
+  it("shows the labels of the service, business type and request type", () => {
+    const parsed = parseLead(
+      form({ ...GOOD, service: "ai-receptionist", businessType: "saas", type: "demo" }),
+    );
+    if (!parsed.ok) throw new Error("expected a valid lead");
+    expect(describeLead(parsed.lead)).toEqual({
+      name: "Sam Roofer",
+      email: "sam@example.com",
+      phone: "(512) 555-0100",
+      businessType: "SaaS or startup",
+      service: "AI receptionist",
+      type: "Demo",
+      message: "Need a new site before storm season.",
+      source: "/contact",
+    });
   });
 });
