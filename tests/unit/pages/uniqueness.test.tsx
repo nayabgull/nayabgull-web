@@ -12,8 +12,9 @@ import { snapshot } from "@/lib/seo/snapshot.ts";
 
 vi.mock("next/image", () => ({ default: () => null }));
 
+/** Page copy only: the shared lead form is site chrome, so `copyText` leaves out <form> text. */
 const bodyText = (element: React.ReactElement): string =>
-  snapshot(renderToStaticMarkup(<main>{element}</main>)).bodyText;
+  snapshot(renderToStaticMarkup(<main>{element}</main>)).copyText;
 
 /** content.md §7: no two pages share more than 20% identical text. */
 describe("page uniqueness", () => {

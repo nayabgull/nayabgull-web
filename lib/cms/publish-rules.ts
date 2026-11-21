@@ -111,6 +111,8 @@ function resolveEntry(
 function snapshotFor(candidate: PublishCandidate, path: string): PageSnapshot {
   const copy = extractLexical(candidate.content);
   const headings = [{ level: 1, text: candidate.title }, ...copy.headings];
+  // Rich text has no <form>, so the page copy is the whole body text.
+  const bodyText = [...headings.map((h) => h.text), ...copy.paragraphs].join(" ");
   return {
     lang: "en-US",
     title: candidate.seo.title,
@@ -123,7 +125,8 @@ function snapshotFor(candidate: PublishCandidate, path: string): PageSnapshot {
     links: copy.links,
     images: [],
     paragraphs: copy.paragraphs,
-    bodyText: [...headings.map((h) => h.text), ...copy.paragraphs].join(" "),
+    bodyText,
+    copyText: bodyText,
   };
 }
 
