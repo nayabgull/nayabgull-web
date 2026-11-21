@@ -307,7 +307,7 @@ export const industries: PageContent = {
       {
         question: "Do you only work with these five industries?",
         answer:
-          "No. These five each have their own page because I know their problems well. The same process works for many other service businesses.\n\nTell me what you do on the free call. If I am not a good fit, I will say so.",
+          "No. These are the industries I know best, but I also build for other service businesses. On the first call, I will tell you honestly whether I am the right fit for your project.",
       },
       {
         question: "How much does a small business website cost?",

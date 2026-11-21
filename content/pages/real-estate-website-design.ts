@@ -154,7 +154,7 @@ export const realEstateWebsiteDesign: PageContent = {
           title: "They get a text right away",
           text: "A short text goes out right away in your name. It thanks them and asks one simple question about their plans.",
           example:
-            "Example: “Hi Maria, it is Jake. Are you planning to buy this spring or later?” goes out.",
+            "Example: “Thanks for saving that search. Are you planning to buy this spring or later?” goes out.",
           icon: "chat",
         },
         {
