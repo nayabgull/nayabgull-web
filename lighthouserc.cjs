@@ -9,6 +9,7 @@ const routes = [
   "/industries/roofing-hvac-website-design",
   "/industries/law-firm-website-design",
   "/industries/contractor-website-design",
+  "/industries/dental-medical-website-design",
   "/services/web-design-development",
   "/hire-full-stack-developer",
   "/pricing",

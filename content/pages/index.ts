@@ -2,6 +2,7 @@ import { about } from "./about.ts";
 import { aiAgentDevelopment } from "./ai-agent-development.ts";
 import { aiAutomationAgency } from "./ai-automation-agency.ts";
 import { contractorWebsiteDesign } from "./contractor-website-design.ts";
+import { dentalMedicalWebsiteDesign } from "./dental-medical-website-design.ts";
 import { gohighlevelAgency } from "./gohighlevel-agency.ts";
 import { hireFullStackDeveloper } from "./hire-full-stack-developer.ts";
 import { lawFirmWebsiteDesign } from "./law-firm-website-design.ts";
@@ -19,6 +20,7 @@ export const PAGES: readonly PageContent[] = [
   roofingHvacWebsiteDesign,
   lawFirmWebsiteDesign,
   contractorWebsiteDesign,
+  dentalMedicalWebsiteDesign,
   webDesignDevelopment,
   hireFullStackDeveloper,
   pricing,
