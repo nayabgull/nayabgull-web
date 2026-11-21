@@ -286,10 +286,10 @@ export const dentalMedicalWebsiteDesign: PageContent = {
       kind: "features",
       id: "proof",
       eyebrow: "Proof",
-      heading: "One developer or a dental website design agency: who builds your site?",
+      heading: "Hiring a dental website design agency? Here is how I work",
       layout: "cards",
       paragraphs: [
-        "If you are comparing a dental web design company or a healthcare website design agency with me, here is what you get. I build the site and the parts after the contact form: the calendar, the forms and the texts. Over more than five years, I have delivered 400+ projects.",
+        "Comparing a dental web design company or a healthcare website design agency? You work directly with me, the developer who builds and connects every part: the site, the calendar, the forms and the texts. Over more than five years, I have delivered 400+ projects.",
       ],
       example: {
         label: "Case study",

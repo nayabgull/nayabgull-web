@@ -250,7 +250,7 @@ export const lawFirmWebsiteDesign: PageContent = {
       heading: "Why hire a developer who builds the whole system?",
       layout: "cards",
       paragraphs: [
-        "I work as one developer, not a law firm website design agency, so you talk to the person who builds your site. As a full-stack developer, I build the form, the inbox rules and the calendar link too. Over five years, I have delivered 400+ projects.",
+        "Looking for a law firm website design agency? You work directly with me, the developer who builds and connects every part: the form, the inbox rules and the calendar link. Over five years, I have delivered 400+ projects.",
       ],
       example: {
         label: "Case study",
