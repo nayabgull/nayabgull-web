@@ -6,6 +6,7 @@ import { aiReceptionistForSmallBusiness } from "./ai-receptionist-for-small-busi
 import { businessProcessAutomationServices } from "./business-process-automation-services.ts";
 import { contractorWebsiteDesign } from "./contractor-website-design.ts";
 import { customCrmDevelopment } from "./custom-crm-development.ts";
+import { dentalMedicalWebsiteDesign } from "./dental-medical-website-design.ts";
 import { gohighlevelAgency } from "./gohighlevel-agency.ts";
 import { gohighlevelApiIntegrations } from "./gohighlevel-api-integrations.ts";
 import { gohighlevelWorkflows } from "./gohighlevel-workflows.ts";
@@ -37,6 +38,7 @@ export const PAGES: readonly PageContent[] = [
   contractorWebsiteDesign,
   lawFirmWebsiteDesign,
   realEstateWebsiteDesign,
+  dentalMedicalWebsiteDesign,
   webDesignDevelopment,
   nextjsReactDevelopment,
   hireFullStackDeveloper,
