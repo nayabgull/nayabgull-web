@@ -36,6 +36,7 @@ describe("navigation data", () => {
       { label: "AI agent development", href: "/ai-automation-agency/ai-agent-development" },
       { label: "Web design and development", href: "/services/web-design-development" },
       { label: "Hire a full stack developer", href: "/hire-full-stack-developer" },
+      { label: "Hire a SaaS developer", href: "/hire-saas-developer" },
       { label: "Pricing", href: "/pricing" },
     ]);
   });
