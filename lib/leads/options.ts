@@ -12,15 +12,22 @@ export const BUSINESS_TYPES = [
   { value: "dental-medical", label: "Dental/Medical" },
   { value: "real-estate", label: "Real estate" },
   { value: "contractor", label: "Contractor" },
+  { value: "ecommerce", label: "Online store" },
+  { value: "saas", label: "SaaS or startup" },
   { value: "other", label: "Other" },
 ] as const satisfies readonly Option[];
 
 export const SERVICES = [
-  { value: "website", label: "Website" },
-  { value: "gohighlevel", label: "GoHighLevel" },
-  { value: "ai-automation", label: "AI automation" },
+  { value: "website", label: "Website (WordPress or custom)" },
+  { value: "shopify", label: "Shopify store" },
+  { value: "web-app", label: "Web app or SaaS" },
+  { value: "gohighlevel", label: "GoHighLevel or CRM" },
+  { value: "ai-receptionist", label: "AI receptionist" },
+  { value: "ai-chatbot", label: "AI chatbot" },
   { value: "ai-agent", label: "AI agent" },
+  { value: "ai-automation", label: "Automation (n8n, Zapier, workflows)" },
   { value: "full-system", label: "Full system" },
+  { value: "not-sure", label: "Not sure yet" },
 ] as const satisfies readonly Option[];
 
 /** What the visitor asked for: a written quote (default) or a custom demo. */
@@ -44,3 +51,7 @@ export type LeadStatus = (typeof LEAD_STATUSES)[number]["value"];
 
 export const values = <T extends string>(options: readonly Option<T>[]): T[] =>
   options.map((option) => option.value);
+
+/** Readable label for a saved value, for emails and the GoHighLevel webhook. Unknown values pass through. */
+export const labelFor = (options: readonly Option[], value: string): string =>
+  options.find((option) => option.value === value)?.label ?? value;

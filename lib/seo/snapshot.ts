@@ -36,6 +36,12 @@ export interface PageSnapshot {
   paragraphs: string[];
   /** All visible body copy, with navigation, header and footer removed. */
   bodyText: string;
+  /**
+   * `bodyText` without anything inside a `<form>`. The lead form is shared site chrome (labels,
+   * dropdown options, buttons), not page copy, so the uniqueness check (content.md §7) ignores it.
+   * Page copy outside the form is always kept.
+   */
+  copyText: string;
 }
 
 const clean = (text: string): string => text.replace(/\s+/g, " ").trim();
@@ -77,6 +83,8 @@ export function snapshot(html: string): PageSnapshot {
   body
     .find("script, style, noscript, template, nav, header, footer, [aria-hidden='true']")
     .remove();
+  const withoutForms = body.clone();
+  withoutForms.find("form").remove();
   const paragraphs = body
     .find("p, li, blockquote, td, dd")
     .toArray()
@@ -97,5 +105,6 @@ export function snapshot(html: string): PageSnapshot {
     images,
     paragraphs,
     bodyText: clean(body.text()),
+    copyText: clean(withoutForms.text()),
   };
 }

@@ -237,8 +237,8 @@ describe("Links, navigation and sitemap", () => {
     expect(FOOTER_NAV.find((group) => group.title === "Industries")?.links[0]).toEqual(link);
   });
 
-  it("is in the sitemap with its review date", () => {
-    const item = sitemap().find((url) => url.url === canonicalFor(PATH));
+  it("is in the sitemap with its review date", async () => {
+    const item = (await sitemap()).find((url) => url.url === canonicalFor(PATH));
     expect(item?.lastModified).toEqual(new Date(content.updated));
   });
 });
