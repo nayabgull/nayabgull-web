@@ -1,0 +1,427 @@
+import { CALL_CTA } from "../home.ts";
+
+import type { PageContent } from "./types.ts";
+
+/**
+ * /industries/real-estate-website-design (industry page). Primary keyword: "real estate website
+ * design". Brief: content/briefs/real-estate-website-design.md. Keywords: docs/seo/keyword-map.md
+ * (Industries). The /industries hub does not exist yet, so the breadcrumb goes Home › this page and
+ * nothing links to /industries.
+ *
+ * IDX: listings come through the client's own MLS membership and an IDX provider the MLS approves.
+ * The page never says Nayab supplies MLS access or a data feed. Fair Housing is named only as the
+ * brokerage's responsibility, with no compliance claim.
+ *
+ * TODO(nayab): PRICING. No price is shown on purpose, so there is no `prices` block and no Offer in
+ * the Service JSON-LD. Add the approved starting price for an IDX site as a `prices` block (and to
+ * APPROVED_PRICES in tests/unit/pages/pages.test.tsx if it is new) when you decide it.
+ * TODO(nayab): TIMELINE. The process shows no week counts on purpose. Add the real timeline for each
+ * step (and to the "How long does it take?" answer) once you confirm it.
+ * TODO(nayab): PROOF. No real estate case study, client name, number or review is approved yet.
+ * Replace the "Case study" note in the "proof" section with a real, approved result.
+ * TODO(nayab): when /ai-automation-agency/ai-receptionist-for-small-business goes live, point the
+ * follow-up section link there instead of the AI automation hub.
+ */
+export const realEstateWebsiteDesign: PageContent = {
+  path: "/industries/real-estate-website-design",
+  name: "Real estate websites",
+  updated: "2026-11-21",
+  meta: {
+    title: "Real Estate Website Design for Agents | Nayab Gull",
+    description:
+      "Real estate website design for agents, teams and brokerages: IDX search, lead capture on listings and fast follow-up that books showings. Get a free demo.",
+  },
+
+  // Both forms on this page ask for a custom demo, with "Website" preselected.
+  request: { type: "demo", service: "website" },
+
+  hero: {
+    eyebrow: "Real estate",
+    headline: {
+      before: "",
+      highlight: "Real estate website design",
+      after: " that turns home searches into showings",
+    },
+    lede: "I build real estate websites for agents, teams and brokerages. Buyers search your listings, save the homes they like and book a showing. Then the follow-up keeps going while you are out with clients.",
+    proof: [],
+    primaryCta: { label: "Get a free demo", href: "#hero-quote" },
+    secondaryCta: CALL_CTA,
+    form: {
+      heading: "Get a free demo",
+      text: "Tell me about your market and your team. I reply within one business day.",
+    },
+  },
+
+  blocks: [
+    {
+      kind: "cards",
+      id: "problems",
+      eyebrow: "The problem",
+      heading: "Why busy agents still lose buyers online",
+      intro:
+        "The leaks happen between the first home search and the first showing. Agents describe them the same way.",
+      columns: 3,
+      items: [
+        {
+          title: "“My site sends buyers somewhere else.”",
+          text: "Your site has no real home search, so buyers browse on a big listing portal. Their contact details end up with another agent.",
+        },
+        {
+          title: "“I get a name and nothing else.”",
+          text: "A form says “Contact me” and asks for nothing useful. You cannot tell a buyer from a renter or a curious neighbor.",
+        },
+        {
+          title: "“Leads go cold while I am at a showing.”",
+          text: "A buyer asks about a home on Saturday. You see it on Monday, and they already toured it with someone else.",
+        },
+      ],
+    },
+    {
+      kind: "features",
+      id: "features",
+      eyebrow: "What I build",
+      heading: "What realtor website design should include",
+      intro:
+        "A real estate site has two jobs: help people find a home and turn them into a client you can call.",
+      layout: "cards",
+      paragraphs: [
+        "Most home buyers search on a phone between other tasks. So I design the phone view first. These six parts go into almost every real estate agent website design I make.",
+      ],
+      items: [
+        {
+          title: "Listing search",
+          text: "Buyers search by price, beds and area on your own site. They can save a search and get new-listing alerts.",
+          icon: "target",
+        },
+        {
+          title: "Lead capture on listings",
+          text: "A visitor who saves a home, saves a search or asks a question leaves a name, a phone number and an email.",
+          icon: "mail",
+        },
+        {
+          title: "Showing requests",
+          text: "Buyers pick a time that suits them right on the listing. You confirm it with one tap.",
+          icon: "calendar",
+        },
+        {
+          title: "Agent and team pages",
+          text: "Each agent gets a page with a photo, the areas they cover and their own contact button.",
+          icon: "person",
+        },
+        {
+          title: "Neighborhood pages",
+          text: "Pages about the areas you know: homes, parks, commutes and recent listings.",
+          icon: "globe",
+        },
+        {
+          title: "A fast mobile site",
+          text: "Photos load in the right size for each phone, and the call button stays on screen.",
+          icon: "phone",
+        },
+      ],
+      outro:
+        "Fair Housing rules apply to every page and ad. Your brokerage is responsible for them, so you approve every word before launch.",
+    },
+    {
+      kind: "prose",
+      id: "idx",
+      eyebrow: "IDX listings",
+      heading: "Real estate IDX website design, explained plainly",
+      paragraphs: [
+        "IDX stands for Internet Data Exchange. It is the system that lets your website show homes from your local MLS, including listings from other brokerages.",
+        "The listings come through your own MLS membership and an IDX provider that your MLS approves. Your MLS has to approve the setup before any listing goes live. I do not provide MLS access or a listing feed.",
+        "My part is the website around that feed. I connect the IDX provider you choose, design the search pages and send every saved home and question to your CRM.",
+        "Your MLS also sets display rules, such as how listing credits appear. I build to those rules, and you or your broker check them before launch.",
+      ],
+    },
+    {
+      kind: "agent-flow",
+      id: "lead-flow",
+      eyebrow: "Follow-up",
+      heading: "How real estate marketing automation turns a search into a showing",
+      intro: "Pick a step to follow one new buyer from first search to booked showing.",
+      steps: [
+        {
+          label: "Saved search",
+          title: "A buyer saves a search on your site",
+          text: "A visitor likes three homes and saves a search. To do that, they enter a name, a phone number and an email.",
+          example:
+            "Example: a couple saves a search for 3-bedroom homes near a middle school on a Tuesday night.",
+          icon: "target",
+        },
+        {
+          label: "First text",
+          title: "They get a text right away",
+          text: "A short text goes out right away in your name. It thanks them and asks one simple question about their plans.",
+          example:
+            "Example: “Hi Maria, it is Jake. Are you planning to buy this spring or later?” goes out.",
+          icon: "chat",
+        },
+        {
+          label: "Agent alert",
+          title: "The right agent gets the lead",
+          text: "The lead goes to the agent who covers that area, or to the next agent in line. That agent gets an alert with the homes the buyer saved.",
+          example:
+            "Example: the agent for the north side gets a phone alert with both names and the saved search.",
+          icon: "person",
+        },
+        {
+          label: "Showing booked",
+          title: "The buyer books a showing",
+          text: "The buyer picks a time from the agent's calendar. The agent confirms it with the listing agent before the visit.",
+          example:
+            "Example: the couple books Saturday at 10 AM and gets a reminder text on Friday.",
+          icon: "calendar",
+        },
+        {
+          label: "CRM and drip",
+          title: "Your CRM keeps the follow-up going",
+          text: "The lead lands in your CRM with every saved home attached. Slow buyers get a gentle drip of texts and emails, so you stay in touch for months.",
+          example: "Example: a buyer who plans to move next year gets a short check-in each month.",
+          icon: "crm",
+        },
+      ],
+      footer: "The texts sound like you, and you can take over the chat at any moment.",
+    },
+    {
+      kind: "features",
+      id: "follow-up",
+      eyebrow: "Speed to lead",
+      heading: "Who follows up when you are at a showing?",
+      intro:
+        "You cannot text a new lead while you walk a client through a kitchen. The system answers for you.",
+      layout: "checklist",
+      paragraphs: [
+        "I set up the follow-up in your CRM. If you do not have one yet, I can build it in GoHighLevel, which handles texts, emails, pipelines and calendars in one place.",
+      ],
+      example: {
+        label: "Example",
+        paragraphs: [
+          "A buyer asks about a listing at 7:30 PM on a Sunday. They get a text right away and book a showing for Monday evening.",
+        ],
+      },
+      listIntro: "What the follow-up can do for your business:",
+      items: [
+        { text: "Text every new lead right away, day or night." },
+        { text: "Send drip texts and emails to buyers who are months away." },
+        { text: "Remind past clients of their home anniversary, so they remember you." },
+      ],
+      outro: [
+        "Business texting in the US needs a short registration called A2P 10DLC, and I handle that setup with you. For the bigger picture, see my ",
+        { text: "AI automation services for small businesses", href: "/ai-automation-agency" },
+        ".",
+      ],
+    },
+    {
+      kind: "features",
+      id: "brokerage",
+      eyebrow: "Teams and brokerages",
+      heading: "Real estate brokerage website design for teams",
+      intro:
+        "A team or brokerage site has to work for many agents at once, and leads must reach the right person fast.",
+      layout: "cards",
+      items: [
+        {
+          title: "Lead routing",
+          text: "Leads go to agents by area, by price range or in turn. You set the rules, and you can change them later.",
+          icon: "flow",
+        },
+        {
+          title: "Agent pages that sell",
+          text: "Each agent page shows their own listings, the areas they cover and real client reviews, plus a button that books time with them.",
+          icon: "person",
+        },
+        {
+          title: "Recruiting pages",
+          text: "A clear page for agents who want to join, with a short form that goes to the broker.",
+          icon: "rules",
+        },
+      ],
+    },
+    {
+      kind: "compare",
+      id: "compare",
+      eyebrow: "Compare",
+      heading: "Three ways to get a real estate agent site: an honest comparison",
+      intro: "Each path fits a different business. Look at what each one really gives you.",
+      rowLabel: "Question",
+      columns: ["Template site from a vendor", "Large real estate web company", "Working with me"],
+      rows: [
+        {
+          label: "Follow-up",
+          cells: [
+            "It usually comes with the vendor's own CRM.",
+            "Many sell it as an extra monthly service.",
+            "Texts, drips and showing booking come as part of the build.",
+          ],
+        },
+        {
+          label: "Who owns the site",
+          cells: [
+            "The vendor hosts it, so moving away can be hard.",
+            "It depends on the contract, so ask before you sign.",
+            "Your accounts hold the domain, the site and the leads.",
+          ],
+        },
+        {
+          label: "Best for",
+          cells: [
+            "A new agent who needs something live this week.",
+            "Large brokerages that want ads and content from one vendor.",
+            "Agents and teams who want their own site and their own system.",
+          ],
+        },
+      ],
+      note: "All three can work. Pick the one that fits your business today.",
+    },
+    {
+      kind: "stepper",
+      id: "process",
+      eyebrow: "Process",
+      heading: "My five-step process for a real estate website",
+      intro: "You keep selling homes while I do the work.",
+      steps: [
+        {
+          title: "Free call and site review",
+          text: "You tell me about your market, your team and your current tools. Then I review your site.",
+        },
+        {
+          title: "Page plan and IDX choice",
+          text: "You get the page list, the lead flow and a fixed scope in writing. I help you pick the IDX provider, and you start the MLS approval.",
+        },
+        {
+          title: "Design and writing",
+          text: "I draft the pages from your notes. You correct anything that does not sound like you.",
+        },
+        {
+          title: "Build and testing",
+          text: "I build the site and the follow-up, then test both on real phones.",
+        },
+        {
+          title: "Launch and handover",
+          text: "I connect your domain and show your team how to add agents and pages.",
+        },
+      ],
+    },
+    {
+      // TODO(nayab): PRICING. Replace this note with a `prices` block once the starting price is approved.
+      kind: "prose",
+      id: "pricing",
+      eyebrow: "Pricing",
+      heading: "What sets the price of real estate website design?",
+      paragraphs: [
+        "Three things set the price: how many pages and agents you need, how much writing I do and how much follow-up you want.",
+        "Your IDX provider and your MLS may charge their own fees. Those go to them, not to me, and I point them out before you decide.",
+        [
+          "You get a fixed quote in writing after the first call. For the factors that change any website price, see my ",
+          { text: "website pricing page", href: "/pricing" },
+          ".",
+        ],
+      ],
+    },
+    {
+      // TODO(nayab): PROOF. Replace the "Case study" note with a real, approved real estate result.
+      kind: "features",
+      id: "proof",
+      eyebrow: "Proof",
+      heading: "Why hire a developer who builds the site and the system?",
+      layout: "cards",
+      paragraphs: [
+        "Most agent websites break where the listing meets the inbox and the calendar. I am a full-stack developer, so I build those parts too. Over five years, I have delivered 400+ projects.",
+      ],
+      example: {
+        label: "Case study",
+        paragraphs: [
+          "I have no approved real estate case study to show yet, and I will not invent one. Ask for a free demo and judge the lead flow yourself.",
+        ],
+      },
+      outro: [
+        "You can read ",
+        { text: "more about me and how I work", href: "/about" },
+        " before you book a call.",
+      ],
+    },
+    {
+      kind: "links",
+      id: "related",
+      eyebrow: "Related",
+      heading: "Services that pair well with your new site",
+      items: [
+        {
+          label: "My web design and development service",
+          href: "/services/web-design-development",
+          text: "The full build process, the tech and what every site includes.",
+        },
+        {
+          label: "GoHighLevel CRM setup and automation",
+          href: "/gohighlevel-agency",
+          text: "Pipelines, texts and drips for agents who need a CRM.",
+        },
+        {
+          label: "Roofing and HVAC website design",
+          href: "/industries/roofing-hvac-website-design",
+          text: "See how the same approach works for a very different trade.",
+        },
+      ],
+    },
+  ],
+
+  faq: {
+    eyebrow: "FAQ",
+    heading: "Questions agents and brokers ask before they hire me",
+    items: [
+      {
+        question: "Can you give me MLS access or a listing feed?",
+        answer:
+          "No. Listings come through your own MLS membership and an IDX provider your MLS approves. Your MLS must approve the setup.\n\nI help you pick a provider, then connect it to your site and your CRM.",
+      },
+      {
+        question: "Can I keep my current IDX provider and CRM?",
+        answer:
+          "Often, yes. I first check how your provider and your CRM connect to other tools. If they do, I build around them.",
+      },
+      {
+        question: "Who owns the accounts and the work?",
+        answer:
+          "My clients do. In most projects, the client buys the tools in their own name, such as hosting, a domain or a CRM.\n\nI build everything inside those accounts: the website, the intake flows and the full setup. At launch, it all stays with the client. If a client would rather run on my accounts, I can do that too, at an extra cost.",
+      },
+      {
+        question: "Who is responsible for Fair Housing and MLS rules?",
+        answer:
+          "Your brokerage is. I build the site to the rules you give me, and you or your broker approve every page before launch.",
+      },
+      {
+        question: "How long does it take to build a real estate website?",
+        answer:
+          "It depends on the number of pages and agents, and on how fast your MLS approves the IDX setup. You get a written timeline with your quote, before any work starts.",
+      },
+      {
+        question: "Will I be able to add agents and pages myself?",
+        answer:
+          "Yes. Your team can add an agent, a neighborhood page or a blog post without any code. At handover, I show you how on a short video call.",
+      },
+      {
+        question: "Do you work in US time zones?",
+        answer:
+          "Yes. I am available for calls and messages every weekday from 9 AM to 3 PM Eastern Time (6 AM to noon Pacific). That covers the US morning and early afternoon.",
+      },
+    ],
+  },
+
+  closing: {
+    heading: "Ready for a site that books showings while you sell?",
+    text: "Start with a free demo. Tell me your market and your team size, and I will show you how the site and the lead flow would work for you.",
+    form: {
+      heading: "Request your free demo",
+      text: "No pressure and no obligation.",
+    },
+    band: true,
+  },
+
+  service: {
+    name: "Real estate website design",
+    serviceType: "Real estate website design",
+    description:
+      "Websites for US real estate agents, teams and brokerages: IDX listing search through the client's MLS, lead capture, showing booking and CRM follow-up.",
+  },
+};

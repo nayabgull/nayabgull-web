@@ -16,6 +16,7 @@ import { privacyPolicy, terms } from "./legal.ts";
 import { n8nAutomationAgency } from "./n8n-automation-agency.ts";
 import { nextjsReactDevelopment } from "./nextjs-react-development.ts";
 import { pricing } from "./pricing.ts";
+import { realEstateWebsiteDesign } from "./real-estate-website-design.ts";
 import { roofingHvacWebsiteDesign } from "./roofing-hvac-website-design.ts";
 import type { PageContent } from "./types.ts";
 import { webDesignDevelopment } from "./web-design-development.ts";
@@ -35,6 +36,7 @@ export const PAGES: readonly PageContent[] = [
   roofingHvacWebsiteDesign,
   contractorWebsiteDesign,
   lawFirmWebsiteDesign,
+  realEstateWebsiteDesign,
   webDesignDevelopment,
   nextjsReactDevelopment,
   hireFullStackDeveloper,
