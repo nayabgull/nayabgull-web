@@ -47,3 +47,9 @@ pnpm dev               # then open http://localhost:3000/admin to create the fir
 
 After changing a collection: `pnpm db:migrate:create <name>`, `pnpm generate:types` and `pnpm generate:importmap`,
 then commit the generated files. The database never changes by itself (`push: false`).
+
+## Cloud sessions
+
+Claude Code cloud sessions need no setup: pick this repo and the Default environment. A SessionStart
+hook installs Node 24, pnpm, dependencies and gitleaks and sets build-only placeholders. Real secrets never go
+in the repo or environment variables. Details: [docs/cloud-sessions.md](docs/cloud-sessions.md).
