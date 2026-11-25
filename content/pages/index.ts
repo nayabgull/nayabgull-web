@@ -9,6 +9,7 @@ import { hireFullStackDeveloper } from "./hire-full-stack-developer.ts";
 import { hireSaasDeveloper } from "./hire-saas-developer.ts";
 import { privacyPolicy, terms } from "./legal.ts";
 import { n8nAutomationAgency } from "./n8n-automation-agency.ts";
+import { nextjsReactDevelopment } from "./nextjs-react-development.ts";
 import { pricing } from "./pricing.ts";
 import { roofingHvacWebsiteDesign } from "./roofing-hvac-website-design.ts";
 import type { PageContent } from "./types.ts";
@@ -25,6 +26,7 @@ export const PAGES: readonly PageContent[] = [
   businessProcessAutomationServices,
   roofingHvacWebsiteDesign,
   webDesignDevelopment,
+  nextjsReactDevelopment,
   hireFullStackDeveloper,
   hireSaasDeveloper,
   pricing,

@@ -156,6 +156,7 @@ export interface AgentFlowBlock extends BlockBase {
 /** Icons that content may name (components/ui/icon-map.tsx). */
 export type IconName =
   | "calendar"
+  | "cart"
   | "chat"
   | "check"
   | "chip"
@@ -164,6 +165,7 @@ export type IconName =
   | "database"
   | "flow"
   | "globe"
+  | "layout"
   | "mail"
   | "person"
   | "phone"

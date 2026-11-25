@@ -45,6 +45,7 @@ describe("navigation data", () => {
       },
       { label: "GoHighLevel workflows", href: "/gohighlevel-agency/workflows-automation" },
       { label: "Web design and development", href: "/services/web-design-development" },
+      { label: "Next.js and React development", href: "/services/nextjs-react-development" },
       { label: "Hire a full stack developer", href: "/hire-full-stack-developer" },
       { label: "Hire a SaaS developer", href: "/hire-saas-developer" },
       { label: "Pricing", href: "/pricing" },

@@ -2,6 +2,7 @@ import type { IconName } from "@/content/pages/types.ts";
 
 import {
   CalendarIcon,
+  CartIcon,
   ChatIcon,
   CheckIcon,
   ChipIcon,
@@ -9,6 +10,7 @@ import {
   DatabaseIcon,
   FlowIcon,
   GlobeIcon,
+  LayoutIcon,
   MailIcon,
   PersonIcon,
   PhoneIcon,
@@ -25,6 +27,7 @@ import {
 /** Icon names that content files may use, mapped to the decorative icons. */
 export const ICONS: Record<IconName, typeof CheckIcon> = {
   calendar: CalendarIcon,
+  cart: CartIcon,
   chat: ChatIcon,
   check: CheckIcon,
   chip: ChipIcon,
@@ -33,6 +36,7 @@ export const ICONS: Record<IconName, typeof CheckIcon> = {
   database: DatabaseIcon,
   flow: FlowIcon,
   globe: GlobeIcon,
+  layout: LayoutIcon,
   mail: MailIcon,
   person: PersonIcon,
   phone: PhoneIcon,
