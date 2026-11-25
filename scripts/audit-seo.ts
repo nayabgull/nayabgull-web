@@ -2,6 +2,7 @@ import { auditNoindexPage, auditSeoPage } from "../lib/seo/audit-rules.ts";
 import type { Issue } from "../lib/seo/issue.ts";
 import { validateJsonLd } from "../lib/seo/jsonld-validate.ts";
 import { keywordFor } from "../lib/seo/keywords.ts";
+import { allHrefs, checkLinkGraph, internalTargets } from "../lib/seo/link-graph.ts";
 import { checkRobotsTxt, checkSecurityHeaders, parseSitemap } from "../lib/seo/site-rules.ts";
 import { snapshot } from "../lib/seo/snapshot.ts";
 import { NOINDEX_ROUTES } from "../tests/routes.ts";
@@ -74,12 +75,25 @@ async function auditNoindex(path: string, sitemapPaths: readonly string[]): Prom
   return { path: `${path} (noindex)`, issues };
 }
 
+/** seo.md §4: every page within 3 clicks of the homepage, none without an incoming link. */
+async function auditLinkGraph(paths: readonly string[]): Promise<PageResult> {
+  const graph = new Map<string, string[]>();
+  for (const path of paths) {
+    const res = await fetchPath(path);
+    const hrefs = res.status === 200 ? allHrefs(res.body) : [];
+    graph.set(path, internalTargets(path, hrefs));
+  }
+  return { path: "(link graph)", issues: checkLinkGraph(graph) };
+}
+
 await run("SEO audit", async () => {
   const noindex = new Set(NOINDEX_ROUTES);
   const sitemapPaths = parseSitemap(await fetchOptional("/sitemap.xml")).paths;
-  const paths = (await discoverPaths()).filter((path) => !noindex.has(path));
+  const discovered = await discoverPaths();
+  const paths = discovered.filter((path) => !noindex.has(path));
   return [
     await auditSite(),
+    await auditLinkGraph([...new Set(["/", ...discovered, ...NOINDEX_ROUTES])]),
     ...(await Promise.all(paths.map(auditPage))),
     ...(await Promise.all(NOINDEX_ROUTES.map((path) => auditNoindex(path, sitemapPaths)))),
   ];
