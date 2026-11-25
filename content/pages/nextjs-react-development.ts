@@ -25,7 +25,7 @@ export const nextjsReactDevelopment: PageContent = {
   },
 
   // Both forms on this page ask for a custom demo, with "Website" preselected.
-  request: { type: "demo", service: "website" },
+  request: { type: "demo", service: "web-app" },
 
   hero: {
     eyebrow: "Next.js and React",

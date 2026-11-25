@@ -31,6 +31,9 @@ export const wordpressDevelopment: PageContent = {
       "A WordPress development agency for US small businesses: custom themes, WooCommerce, speed fixes and safe redesigns. Book a free call today.",
   },
 
+  // Both forms ask for a quote, with the service preselected (lead form table, PR #53).
+  request: { type: "quote", service: "website" },
+
   hero: {
     eyebrow: "WordPress development",
     headline: {

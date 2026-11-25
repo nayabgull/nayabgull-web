@@ -4,7 +4,9 @@ const PATH = "/services/nextjs-react-development";
 const STRATEGY_CALL_URL = "https://cal.com/nayab-gull/strategy-call";
 
 test.describe("Next.js and React development page", () => {
-  test("hero: H1, demo form with Website preselected, and the call button", async ({ page }) => {
+  test("hero: H1, demo form with Web app or SaaS preselected, and the call button", async ({
+    page,
+  }) => {
     await page.goto(PATH);
     const hero = page.locator("section", { has: page.locator("h1") });
     await expect(page.locator("h1")).toHaveText(
@@ -12,7 +14,7 @@ test.describe("Next.js and React development page", () => {
     );
     const form = hero.getByRole("form", { name: "Request a custom demo" });
     await expect(form).toBeVisible();
-    await expect(form.getByLabel("What you need")).toHaveValue("website");
+    await expect(form.getByLabel("What you need")).toHaveValue("web-app");
     await expect(form.locator('input[name="type"]')).toHaveValue("demo");
     await expect(form.locator('input[name="source"]')).toHaveValue(PATH);
     await expect(hero.getByRole("link", { name: "Book a free call" })).toHaveAttribute(
@@ -28,7 +30,7 @@ test.describe("Next.js and React development page", () => {
     await page.goto(PATH);
     const closing = page.locator("#quote");
     const form = closing.getByRole("form", { name: "Request your custom demo" });
-    await expect(form.getByLabel("What you need")).toHaveValue("website");
+    await expect(form.getByLabel("What you need")).toHaveValue("web-app");
     await expect(closing.getByRole("link", { name: "Book a free call" })).toHaveAttribute(
       "href",
       STRATEGY_CALL_URL,

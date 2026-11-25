@@ -1,6 +1,8 @@
 import type { Locator } from "@playwright/test";
 import { expect, test } from "@playwright/test";
 
+import { BUSINESS_TYPES, SERVICES } from "../../lib/leads/options.ts";
+
 /**
  * These tests only send submissions the server rejects (a bad phone number), so they never save a
  * lead. That keeps them safe for the post-deploy smoke test against production.
@@ -22,21 +24,11 @@ test.describe("homepage quote forms", () => {
     await expect(form.getByRole("button", { name: "Get my free quote" })).toBeVisible();
     await expect(form.getByLabel("Business type").locator("option")).toHaveText([
       "Choose one",
-      "Roofing",
-      "HVAC",
-      "Law firm",
-      "Dental/Medical",
-      "Real estate",
-      "Contractor",
-      "Other",
+      ...BUSINESS_TYPES.map((option) => option.label),
     ]);
     await expect(form.getByLabel("What you need").locator("option")).toHaveText([
       "Choose one",
-      "Website",
-      "GoHighLevel",
-      "AI automation",
-      "AI agent",
-      "Full system",
+      ...SERVICES.map((option) => option.label),
     ]);
   });
 

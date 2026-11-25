@@ -22,6 +22,9 @@ export const hireSaasDeveloper: PageContent = {
       "Hire SaaS developer Nayab Gull to plan, build and grow your SaaS app: logins, billing, dashboards and AI features. Book a free call to talk it through.",
   },
 
+  // Both forms ask for a quote, with the service preselected (lead form table, PR #53).
+  request: { type: "quote", service: "web-app" },
+
   hero: {
     eyebrow: "SaaS development",
     headline: {

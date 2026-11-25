@@ -29,7 +29,7 @@ export const aiReceptionistForSmallBusiness: PageContent = {
   },
 
   // Both forms on this page ask for a custom demo. "AI agent" is the closest service option.
-  request: { type: "demo", service: "ai-agent" },
+  request: { type: "demo", service: "ai-receptionist" },
 
   hero: {
     eyebrow: "AI receptionist",

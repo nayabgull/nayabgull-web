@@ -32,7 +32,7 @@ export const aiChatbotDevelopment: PageContent = {
   },
 
   // Both forms on this page ask for a custom demo.
-  request: { type: "demo", service: "ai-automation" },
+  request: { type: "demo", service: "ai-chatbot" },
 
   hero: {
     eyebrow: "AI chatbots",
