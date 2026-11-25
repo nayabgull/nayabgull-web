@@ -83,10 +83,6 @@ Rules: one primary keyword per page; a keyword appears as a target on one page o
 | Industries | /industries/* | law firm website must-haves, dental website checklist, roofing lead generation website, real estate IDX guide |
 | Dev | service pages | Next.js vs WordPress, headless Shopify, MVP development process, Shopify speed optimization |
 
-## Notes
-
-- Primary changed from shopify agency (KD 56) to shopify development agency (KD 3), approved by Nayab 2026-11-22, source PR #49.
-
 ## Never primary
 
 - Any "near me" keyword (no US office) — secondary mention only where natural.
@@ -94,4 +90,5 @@ Rules: one primary keyword per page; a keyword appears as a target on one page o
 
 ## Notes
 
+- Shopify primary changed from shopify agency (KD 56) to shopify development agency (KD 3), approved by Nayab 2026-11-22, source PR #49.
 - WordPress primary changed from wordpress agency (KD 43) to wordpress development agency (KD 5); care plan secondaries added; approved by Nayab 2026-11-22, source PR #49.
