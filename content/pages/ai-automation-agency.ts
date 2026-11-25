@@ -269,6 +269,11 @@ export const aiAutomationAgency: PageContent = {
           text: "Workflows that move leads, invoices and reports between your apps with no copy and paste.",
         },
         {
+          label: "AI chatbot development services",
+          href: "/ai-automation-agency/ai-chatbot-development",
+          text: "A chatbot for your website or WhatsApp that answers questions and captures leads.",
+        },
+        {
           label: "GoHighLevel setup and CRM automation",
           href: "/gohighlevel-agency",
           text: "Pipelines, texting and calendars that give your AI a place to work.",
