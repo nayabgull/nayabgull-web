@@ -12,7 +12,7 @@ import type { PageContent } from "./types.ts";
 export const gohighlevelAgency: PageContent = {
   path: "/gohighlevel-agency",
   name: "GoHighLevel agency",
-  updated: "2026-11-19",
+  updated: "2026-11-25",
   meta: {
     title: "GoHighLevel Agency: Setup and Automation | Nayab Gull",
     description:
@@ -262,11 +262,6 @@ export const gohighlevelAgency: PageContent = {
           text: "AI that answers calls and chats, then saves the notes to your CRM.",
         },
         {
-          label: "Websites for roofing and HVAC companies",
-          href: "/industries/roofing-hvac-website-design",
-          text: "A fast site with a photo quote form that feeds your pipeline.",
-        },
-        {
           label: "Website design and development",
           href: "/services/web-design-development",
           text: "A new site that sends every form into your CRM from day one.",
@@ -275,11 +270,6 @@ export const gohighlevelAgency: PageContent = {
           label: "Pricing for every service",
           href: "/pricing",
           text: "All five starting prices on one page, with what each includes.",
-        },
-        {
-          label: "About Nayab Gull",
-          href: "/about",
-          text: "Who sets up your account, and how I work with clients.",
         },
       ],
     },

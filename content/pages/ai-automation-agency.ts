@@ -12,7 +12,7 @@ import type { PageContent } from "./types.ts";
 export const aiAutomationAgency: PageContent = {
   path: "/ai-automation-agency",
   name: "AI automation agency",
-  updated: "2026-11-19",
+  updated: "2026-11-25",
   meta: {
     title: "AI Automation Agency for Small Business | Nayab Gull",
     description:
@@ -277,21 +277,6 @@ export const aiAutomationAgency: PageContent = {
           label: "GoHighLevel setup and CRM automation",
           href: "/gohighlevel-agency",
           text: "Pipelines, texting and calendars that give your AI a place to work.",
-        },
-        {
-          label: "Roofing and HVAC websites with AI call answering",
-          href: "/industries/roofing-hvac-website-design",
-          text: "How the AI receptionist works for a trade that gets storm calls at night.",
-        },
-        {
-          label: "Custom website design",
-          href: "/services/web-design-development",
-          text: "A fast site with a chat widget and forms your AI can answer.",
-        },
-        {
-          label: "Starting prices for websites, CRM and AI",
-          href: "/pricing",
-          text: "What each service starts at, and what you pay to other providers.",
         },
       ],
     },

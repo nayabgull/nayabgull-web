@@ -171,9 +171,9 @@ describe("Shopify development page", () => {
     expect(content.closing?.text).toMatch(/free audit/);
   });
 
-  it("opens and closes with Book a free call, and preselects Website in the quote forms", () => {
+  it("opens and closes with Book a free call, and preselects Shopify store in the quote forms", () => {
     expect(content.hero.primaryCta).toEqual(CALL_CTA);
-    expect(content.request).toEqual({ type: "quote", service: "website" });
+    expect(content.request).toEqual({ type: "quote", service: "shopify" });
   });
 
   it("answers the People Also Ask questions and the hiring objections in the FAQ", () => {

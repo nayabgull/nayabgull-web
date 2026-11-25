@@ -16,7 +16,7 @@ test.describe("Shopify development page", () => {
     );
     const form = hero.getByRole("form", { name: "Get a free quote" });
     await expect(form).toBeVisible();
-    await expect(form.getByLabel("What you need")).toHaveValue("website");
+    await expect(form.getByLabel("What you need")).toHaveValue("shopify");
     await expect(form.locator('input[name="type"]')).toHaveValue("quote");
     await expect(form.locator('input[name="source"]')).toHaveValue(PATH);
     await hero.getByRole("link", { name: "See what I build" }).click();

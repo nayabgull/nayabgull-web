@@ -25,6 +25,7 @@ const indexableRoutes = [
   "/services/wordpress-development",
   "/services/shopify-development",
   "/hire-full-stack-developer",
+  "/hire-saas-developer",
   "/pricing",
   "/about",
   "/contact",

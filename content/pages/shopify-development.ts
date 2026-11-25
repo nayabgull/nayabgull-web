@@ -18,15 +18,15 @@ import type { PageContent } from "./types.ts";
 export const shopifyDevelopment: PageContent = {
   path: "/services/shopify-development",
   name: "Shopify development",
-  updated: "2026-11-22",
+  updated: "2026-11-25",
   meta: {
     title: "Shopify Development Agency for US Stores | Nayab Gull",
     description:
       "A small Shopify development agency for US store owners: setup, theme work, migration, speed and apps. Start with a free store audit on a free call.",
   },
 
-  // Both forms ask for a quote, with "Website" preselected.
-  request: { type: "quote", service: "website" },
+  // Both forms ask for a quote, with "Shopify store" preselected.
+  request: { type: "quote", service: "shopify" },
 
   hero: {
     eyebrow: "Shopify development",
@@ -76,7 +76,7 @@ export const shopifyDevelopment: PageContent = {
       heading: "What does a Shopify development agency do?",
       paragraphs: [
         "A Shopify development agency builds and changes the parts of your store that settings alone cannot. That covers the theme code, custom sections, app setup and links to other tools.",
-        "Shopify themes use a template language called Liquid. Modern themes follow Online Store 2.0, which splits each page into sections and blocks you can move around in the editor. Good Shopify work keeps that editor working, so you can still change pages yourself.",
+        "Shopify themes use a template language called Liquid. Modern themes follow Online Store 2.0, which splits each page into sections and blocks you can move around in the editor. Good work keeps that editor working for you.",
         "Can you hire someone to set up your Shopify store? Yes, and the store stays yours.",
       ],
     },
@@ -156,7 +156,7 @@ export const shopifyDevelopment: PageContent = {
       paragraphs: [
         "Headless Shopify means Shopify still runs your products, payments and orders, but the shop front your customers see is a separate site. That front end can be built with Next.js or with Shopify's own Hydrogen. It gets product data through the Storefront API.",
         "The upside is full design freedom and very fast pages. The downside is cost and upkeep. Many theme apps do not work out of the box, so each feature needs its own build.",
-        "My honest advice: most small stores do not need it. A well-built theme is fast enough for them. Headless makes sense when you have a large catalog, content-heavy pages or a design no theme can handle.",
+        "Most small stores do not need it. A well-built theme is fast enough. Headless makes sense when you have a large catalog, content-heavy pages or a design no theme can handle.",
       ],
     },
     {
@@ -241,7 +241,7 @@ export const shopifyDevelopment: PageContent = {
           ],
         },
       ],
-      note: "These are starting prices in US dollars, not fixed quotes or guarantees. Custom sections, products to move, apps to connect and product writing raise the price. Your Shopify plan and paid apps are billed by Shopify and the app makers.",
+      note: "These are starting prices in US dollars, not fixed quotes or guarantees. More sections, products, apps or product writing raise the price. Your Shopify plan and paid apps are billed by Shopify and the app makers.",
     },
     {
       kind: "compare",
@@ -349,7 +349,7 @@ export const shopifyDevelopment: PageContent = {
       {
         question: "Can I hire someone to manage my Shopify store?",
         answer:
-          "I handle the technical side: theme updates, fixes, new sections, apps and speed. Daily tasks such as orders, customer emails and ads stay with you or your team.\n\nAfter launch, you can message me for fixes and changes.",
+          "I handle the technical side: theme updates, fixes, new sections, apps and speed. Daily tasks such as orders, customer emails and ads stay with you or your team.\n\nAfter launch, message me for fixes.",
       },
       {
         question: "Who owns the store and the code?",
