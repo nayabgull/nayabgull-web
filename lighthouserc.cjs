@@ -14,6 +14,7 @@ const indexableRoutes = [
   "/ai-automation-agency/business-process-automation-services",
   "/ai-automation-agency/ai-chatbot-development",
   "/industries/roofing-hvac-website-design",
+  "/industries/contractor-website-design",
   "/services/web-design-development",
   "/services/nextjs-react-development",
   "/hire-full-stack-developer",

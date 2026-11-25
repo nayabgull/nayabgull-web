@@ -4,6 +4,7 @@ import { aiAutomationAgency } from "./ai-automation-agency.ts";
 import { aiChatbotDevelopment } from "./ai-chatbot-development.ts";
 import { aiReceptionistForSmallBusiness } from "./ai-receptionist-for-small-business.ts";
 import { businessProcessAutomationServices } from "./business-process-automation-services.ts";
+import { contractorWebsiteDesign } from "./contractor-website-design.ts";
 import { customCrmDevelopment } from "./custom-crm-development.ts";
 import { gohighlevelAgency } from "./gohighlevel-agency.ts";
 import { gohighlevelWorkflows } from "./gohighlevel-workflows.ts";
@@ -29,6 +30,7 @@ export const PAGES: readonly PageContent[] = [
   businessProcessAutomationServices,
   aiChatbotDevelopment,
   roofingHvacWebsiteDesign,
+  contractorWebsiteDesign,
   webDesignDevelopment,
   nextjsReactDevelopment,
   hireFullStackDeveloper,
