@@ -1,6 +1,7 @@
 import { about } from "./about.ts";
 import { aiAgentDevelopment } from "./ai-agent-development.ts";
 import { aiAutomationAgency } from "./ai-automation-agency.ts";
+import { aiReceptionistForSmallBusiness } from "./ai-receptionist-for-small-business.ts";
 import { gohighlevelAgency } from "./gohighlevel-agency.ts";
 import { hireFullStackDeveloper } from "./hire-full-stack-developer.ts";
 import { hireSaasDeveloper } from "./hire-saas-developer.ts";
@@ -17,6 +18,7 @@ export const PAGES: readonly PageContent[] = [
   aiAutomationAgency,
   aiAgentDevelopment,
   n8nAutomationAgency,
+  aiReceptionistForSmallBusiness,
   roofingHvacWebsiteDesign,
   webDesignDevelopment,
   hireFullStackDeveloper,

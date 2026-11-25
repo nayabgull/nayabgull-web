@@ -5,6 +5,7 @@ import { pageJsonLd } from "@/lib/seo/page-jsonld.ts";
 
 import { About } from "./About.tsx";
 import { AgentFlow } from "./blocks/AgentFlow.tsx";
+import { CallFlowSection } from "./blocks/CallFlowSection.tsx";
 import { CardsSection } from "./blocks/CardsSection.tsx";
 import { CompareSection } from "./blocks/CompareSection.tsx";
 import { ExplainerSection } from "./blocks/ExplainerSection.tsx";
@@ -23,6 +24,8 @@ import { QuoteSection } from "./QuoteSection.tsx";
 
 function BlockSection({ block }: { block: Block }) {
   switch (block.kind) {
+    case "call-flow":
+      return <CallFlowSection block={block} />;
     case "prose":
       return <ProseSection block={block} />;
     case "cards":

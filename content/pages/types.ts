@@ -233,7 +233,27 @@ export interface StepperBlock extends BlockBase {
   steps: readonly { title: string; text: string }[];
 }
 
+/**
+ * One phone call from ring to text summary: numbered steps with what is said at each one, then the
+ * text message the owner gets. HTML and CSS only (globals.css, ".call-*").
+ */
+export interface CallFlowBlock extends BlockBase {
+  kind: "call-flow";
+  steps: readonly {
+    /** Who acts in this step, for example "Caller" or "AI receptionist". */
+    who: string;
+    title: string;
+    /** A short line of the call, shown as a speech bubble. */
+    says: string;
+    icon: IconName;
+  }[];
+  /** The text the owner receives after the call. */
+  summary: { label: string; lines: readonly { name: string; value: string }[] };
+  footer: string;
+}
+
 export type Block =
+  | CallFlowBlock
   | ProseBlock
   | CardsBlock
   | StepsBlock

@@ -35,6 +35,10 @@ describe("navigation data", () => {
     expect(services && isNavGroup(services) ? services.links : []).toEqual([
       { label: "AI agent development", href: "/ai-automation-agency/ai-agent-development" },
       { label: "n8n automation agency", href: "/ai-automation-agency/n8n-automation-agency" },
+      {
+        label: "AI receptionist",
+        href: "/ai-automation-agency/ai-receptionist-for-small-business",
+      },
       { label: "Web design and development", href: "/services/web-design-development" },
       { label: "Hire a full stack developer", href: "/hire-full-stack-developer" },
       { label: "Hire a SaaS developer", href: "/hire-saas-developer" },
