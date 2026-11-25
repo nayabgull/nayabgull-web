@@ -72,6 +72,7 @@ export interface Config {
     authors: Author;
     faqs: Faq;
     posts: Post;
+    categories: Category;
     services: Service;
     industries: Industry;
     'case-studies': CaseStudy;
@@ -89,6 +90,7 @@ export interface Config {
     authors: AuthorsSelect<false> | AuthorsSelect<true>;
     faqs: FaqsSelect<false> | FaqsSelect<true>;
     posts: PostsSelect<false> | PostsSelect<true>;
+    categories: CategoriesSelect<false> | CategoriesSelect<true>;
     services: ServicesSelect<false> | ServicesSelect<true>;
     industries: IndustriesSelect<false> | IndustriesSelect<true>;
     'case-studies': CaseStudiesSelect<false> | CaseStudiesSelect<true>;
@@ -219,19 +221,30 @@ export interface Author {
    * Lowercase, hyphens, at most 5 words, no dates. Changing it needs a 301 redirect.
    */
   slug: string;
+  /**
+   * Shown under the name in the author box.
+   */
   jobTitle?: string | null;
+  /**
+   * 2–4 sentences about real experience. Shown on every post.
+   */
   bio: string;
+  /**
+   * A real photo. The alt text comes from the media item.
+   */
   photo?: (number | null) | Media;
   /**
-   * LinkedIn, GitHub, Upwork. Used for the Person schema.
+   * Full https:// link to the real LinkedIn profile. Used for the Person sameAs. Leave empty if there is none.
    */
-  sameAs?:
-    | {
-        label: string;
-        url: string;
-        id?: string | null;
-      }[]
-    | null;
+  linkedinUrl?: string | null;
+  /**
+   * Full https:// link to the real GitHub profile. Used for the Person sameAs. Leave empty if there is none.
+   */
+  githubUrl?: string | null;
+  /**
+   * Full https:// link to the real Upwork profile. Used for the Person sameAs. Leave empty if there is none.
+   */
+  upworkUrl?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -263,11 +276,39 @@ export interface Post {
    * Lowercase, hyphens, at most 5 words, no dates. Changing it needs a 301 redirect.
    */
   slug: string;
-  author: number | Author;
-  publishedAt?: string | null;
-  category?: string | null;
+  /**
+   * One or two sentences for post cards and llms.txt.
+   */
+  excerpt: string;
+  /**
+   * Answers the post's main question in 60 words or fewer. Shown first, above the table of contents.
+   */
+  directAnswer: string;
+  /**
+   * The media item's alt text is checked when you publish.
+   */
+  heroImage: number | Media;
+  /**
+   * The page this post links up to. One of: /gohighlevel-agency, /ai-automation-agency, /ai-automation-agency/ai-agent-development, /industries/roofing-hvac-website-design, /services/web-design-development, /hire-full-stack-developer, /pricing
+   */
+  hub: string;
+  category: number | Category;
+  /**
+   * Tag pages are noindex. Keep tags few and reuse them.
+   */
   tags?: string[] | null;
-  heroImage?: (number | null) | Media;
+  author: number | Author;
+  /**
+   * Filled in on the first publish if empty.
+   */
+  datePublished?: string | null;
+  /**
+   * Set automatically every time the post is published.
+   */
+  dateModified?: string | null;
+  /**
+   * Start at H2. Add at least one FAQ block, link 3–8 site pages in total (paths like /gohighlevel-agency), and let the CTA block do the selling.
+   */
   content: {
     root: {
       type: string;
@@ -300,10 +341,32 @@ export interface Post {
      * Leave empty. It fills in as https://nayabgull.com plus the page path on save.
      */
     canonical?: string | null;
+    /**
+     * Only secondary keywords registered for this URL in docs/seo/keyword-map.md. At least 60% must appear in the copy.
+     */
+    secondaryKeywords?: string[] | null;
   };
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "categories".
+ */
+export interface Category {
+  id: number;
+  name: string;
+  /**
+   * Lowercase, hyphens, at most 5 words, no dates. Changing it needs a 301 redirect.
+   */
+  slug: string;
+  /**
+   * 1–2 sentences under the category page heading.
+   */
+  description: string;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -570,6 +633,10 @@ export interface PayloadLockedDocument {
         value: number | Post;
       } | null)
     | ({
+        relationTo: 'categories';
+        value: number | Category;
+      } | null)
+    | ({
         relationTo: 'services';
         value: number | Service;
       } | null)
@@ -717,13 +784,9 @@ export interface AuthorsSelect<T extends boolean = true> {
   jobTitle?: T;
   bio?: T;
   photo?: T;
-  sameAs?:
-    | T
-    | {
-        label?: T;
-        url?: T;
-        id?: T;
-      };
+  linkedinUrl?: T;
+  githubUrl?: T;
+  upworkUrl?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -744,11 +807,15 @@ export interface FaqsSelect<T extends boolean = true> {
 export interface PostsSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
-  author?: T;
-  publishedAt?: T;
+  excerpt?: T;
+  directAnswer?: T;
+  heroImage?: T;
+  hub?: T;
   category?: T;
   tags?: T;
-  heroImage?: T;
+  author?: T;
+  datePublished?: T;
+  dateModified?: T;
   content?: T;
   seo?:
     | T
@@ -757,10 +824,22 @@ export interface PostsSelect<T extends boolean = true> {
         metaDescription?: T;
         primaryKeyword?: T;
         canonical?: T;
+        secondaryKeywords?: T;
       };
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "categories_select".
+ */
+export interface CategoriesSelect<T extends boolean = true> {
+  name?: T;
+  slug?: T;
+  description?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -923,6 +1002,23 @@ export interface FAQBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'faq';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CTABlock".
+ */
+export interface CTABlock {
+  /**
+   * Short and specific. Shown as an H2.
+   */
+  heading: string;
+  /**
+   * One or two sentences. The button is always "Book a free call", the primary CTA of the site.
+   */
+  text: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'cta';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

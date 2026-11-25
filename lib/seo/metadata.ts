@@ -21,6 +21,10 @@ export interface PageMetaInput {
   imageAlt?: string;
   /** Legal pages only: `noindex, follow` (they stay out of the sitemap). */
   noindex?: boolean;
+  /** A 1200×630 image served somewhere other than /og/<slug> (blog pages). Wins over `imageAlt`. */
+  image?: { url: string; alt: string };
+  /** Blog posts: Open Graph article times (ISO 8601) and author names. */
+  article?: { publishedTime: string; modifiedTime: string; authors: readonly string[] };
 }
 
 /**
@@ -29,14 +33,21 @@ export interface PageMetaInput {
  */
 export function pageMetadata(input: PageMetaInput): Metadata {
   const url = canonicalFor(input.path);
-  const images =
-    input.imageAlt === undefined
-      ? {}
-      : {
-          images: [
-            { url: `/og/${ogSlug(input.path)}`, width: 1200, height: 630, alt: input.imageAlt },
-          ],
-        };
+  const image =
+    input.image ??
+    (input.imageAlt === undefined
+      ? undefined
+      : { url: `/og/${ogSlug(input.path)}`, alt: input.imageAlt });
+  const images = image
+    ? { images: [{ url: image.url, width: 1200, height: 630, alt: image.alt }] }
+    : {};
+  const article = input.article
+    ? {
+        publishedTime: input.article.publishedTime,
+        modifiedTime: input.article.modifiedTime,
+        authors: [...input.article.authors],
+      }
+    : {};
   return {
     title: { absolute: input.title },
     description: input.description,
@@ -49,6 +60,7 @@ export function pageMetadata(input: PageMetaInput): Metadata {
       locale: "en_US",
       type: input.type ?? "website",
       ...images,
+      ...article,
     },
     twitter: {
       card: "summary_large_image",

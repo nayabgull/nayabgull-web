@@ -7,6 +7,7 @@ import sharp from "sharp";
 
 import { Authors } from "./collections/Authors.ts";
 import { CaseStudies } from "./collections/CaseStudies.ts";
+import { Categories } from "./collections/Categories.ts";
 import { editor } from "./collections/editor.ts";
 import { FAQs } from "./collections/FAQs.ts";
 import { Industries } from "./collections/Industries.ts";
@@ -33,6 +34,7 @@ export default buildConfig({
     Authors,
     FAQs,
     Posts,
+    Categories,
     Services,
     Industries,
     CaseStudies,

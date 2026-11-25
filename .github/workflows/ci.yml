@@ -181,6 +181,29 @@ jobs:
       - uses: ./.github/actions/setup
       - uses: ./.github/actions/serve
       - run: BASE_URL=http://localhost:3000 pnpm test:e2e
+      # Blog and other CMS routes need real data: a throwaway Postgres in this job only, migrated
+      # and seeded with test-only documents (tests/cms-e2e/seed.ts refuses any non-test database).
+      - name: CMS e2e against a seeded test database
+        env:
+          DATABASE_URI: postgres://postgres:postgres@postgres:5432/cms_e2e_test
+          DATABASE_URI_DIRECT: postgres://postgres:postgres@postgres:5432/cms_e2e_test
+        run: |
+          pnpm db:migrate
+          pnpm test:e2e:cms:seed
+          nohup pnpm start --port 3100 > server-cms.log 2>&1 &
+          if ! node scripts/wait-for-url.ts http://localhost:3100; then cat server-cms.log; exit 1; fi
+          BASE_URL=http://localhost:3100 pnpm test:e2e:cms
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: cms_e2e_test
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
 
   responsive:
     needs: build

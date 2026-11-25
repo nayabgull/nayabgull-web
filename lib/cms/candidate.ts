@@ -30,5 +30,6 @@ export function toCandidate(collection: PageCollection, doc: unknown): PublishCa
     },
     content: data.content,
     resultApproved: data.resultApproved === true,
+    lead: collection === "posts" ? [text(data.directAnswer) ?? ""] : [],
   };
 }

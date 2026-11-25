@@ -139,3 +139,21 @@ export function navHrefs(): string[] {
   const footer = FOOTER_NAV.flatMap((group) => group.links.map((link) => link.href));
   return [...new Set([...header, ...footer])];
 }
+
+/** "Blog" joins the header and footer only while at least one post is published. */
+export const BLOG_LINK: Link = { label: "Blog", href: "/blog" };
+
+/** Header items, with "Blog" before "About" when the blog has a published post. */
+export function primaryNav(showBlog: boolean): readonly NavItem[] {
+  if (!showBlog) return PRIMARY_NAV;
+  const about = PRIMARY_NAV.findIndex((item) => !isNavGroup(item) && item.href === "/about");
+  return [...PRIMARY_NAV.slice(0, about), BLOG_LINK, ...PRIMARY_NAV.slice(about)];
+}
+
+/** Footer groups, with "Blog" in Company when the blog has a published post. */
+export function footerNav(showBlog: boolean): readonly FooterGroup[] {
+  if (!showBlog) return FOOTER_NAV;
+  return FOOTER_NAV.map((group) =>
+    group.title === "Company" ? { ...group, links: [...group.links, BLOG_LINK] } : group,
+  );
+}
