@@ -54,24 +54,18 @@ test.describe("Real estate website design page", () => {
     await expect(panels.locator("visible=true")).toHaveCount(1);
   });
 
-  test("comparison: a table on desktop, no sideways scroll on a small phone", async ({ page }) => {
-    await page.setViewportSize({ width: 1440, height: 900 });
-    await page.goto(PATH);
-    const table = page.getByRole("table", { name: /an honest comparison/ });
-    await expect(table.getByRole("columnheader")).toHaveText([
-      "Question",
-      "Template site from a vendor",
-      "Large real estate web company",
-      "Working with me",
-    ]);
+  test("no sideways scroll on a small phone", async ({ page }) => {
     await page.setViewportSize({ width: 320, height: 740 });
+    await page.goto(PATH);
     const overflow = await page.evaluate(
       () => document.documentElement.scrollWidth > document.documentElement.clientWidth,
     );
     expect(overflow).toBe(false);
   });
 
-  test("structured data: Service for the US with no price, and an FAQPage", async ({ page }) => {
+  test("structured data: Service for the US with two starting-price offers, and an FAQPage", async ({
+    page,
+  }) => {
     await page.goto(PATH);
     const raw = await page.locator('script[type="application/ld+json"]').first().textContent();
     const graph = (JSON.parse(raw ?? "{}") as { "@graph": Record<string, unknown>[] })["@graph"];
@@ -81,8 +75,11 @@ test.describe("Real estate website design page", () => {
     }
     const service = graph.find((node) => node["@type"] === "Service");
     expect(service).toMatchObject({ areaServed: { "@type": "Country", name: "United States" } });
-    expect(service).not.toHaveProperty("offers");
-    await expect(page.locator("main")).not.toContainText("$");
+    expect(service?.offers).toHaveLength(2);
+    await expect(page.locator("#pricing")).toContainText("Starts at $1,500.");
+    await expect(page.locator("#pricing")).toContainText(
+      "IDX provider and MLS fees are separate and paid by you.",
+    );
   });
 
   test("FAQ: the ownership and time zone answers open and close", async ({ page }) => {

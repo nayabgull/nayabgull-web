@@ -19,6 +19,7 @@ const indexableRoutes = [
   "/industries/law-firm-website-design",
   "/industries/real-estate-website-design",
   "/industries/dental-medical-website-design",
+  "/industries",
   "/services/web-design-development",
   "/services/nextjs-react-development",
   "/hire-full-stack-developer",

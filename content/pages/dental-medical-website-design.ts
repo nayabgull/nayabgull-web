@@ -5,25 +5,25 @@ import type { PageContent } from "./types.ts";
 /**
  * /industries/dental-medical-website-design (industry page). Primary keyword: "medical website
  * design company". Brief: content/briefs/dental-medical-website-design.md. Keywords:
- * docs/seo/keyword-map.md (Industries). The /industries hub does not exist yet, so the breadcrumb
- * goes Home › this page and nothing links to /industries.
+ * docs/seo/keyword-map.md (Industries). Breadcrumb: Home › Industries › this page.
  *
  * Facts on this page come from the repo: prices (content/pages/pricing.ts), "two to six weeks"
  * (content/home.ts), 5+ years and 400+ projects (content/home.ts), ownership, time zone and support
  * answers (content/home.ts FAQ), A2P 10DLC (content/pages/gohighlevel-agency.ts).
  *
- * TODO(nayab): PRICING. The prices block shows the general starting prices from /pricing. Confirm
- * they apply to dental and medical sites, or replace them with approved dental prices.
+ * Prices ($1,500 business website, $2,500 full system, with the Offer schema), the "two to six
+ * weeks" timeline and the outside facts (HIPAA and BAA, Google review rules, no care details in
+ * review replies, callers told to dial 911 in an emergency): approved by Nayab 2026-11-21.
+ * No practice management software or other product is named.
  * TODO(nayab): PROOF. No dental or medical case study, client, number or review is approved yet.
  * Replace the "Case study" note in the "proof" section with a real, approved result.
- * TODO(nayab): OUTSIDE FACTS. Check the HIPAA/BAA lines (patient-data section, FAQ) and the Google
- * review rule (patient flow, FAQ) before launch.
  * TODO(nayab): when /ai-automation-agency/ai-voice-agents goes live, point the after-hours section
  * link there instead of the AI automation hub.
  */
 export const dentalMedicalWebsiteDesign: PageContent = {
   path: "/industries/dental-medical-website-design",
   name: "Dental and medical websites",
+  parent: { name: "Industries", path: "/industries" },
   updated: "2026-11-21",
   meta: {
     title: "Medical Website Design Company for Dentists | Nayab Gull",
@@ -215,51 +215,6 @@ export const dentalMedicalWebsiteDesign: PageContent = {
       ],
     },
     {
-      kind: "compare",
-      id: "compare",
-      eyebrow: "Compare",
-      heading: "Website template, big dental website design agency or me?",
-      intro:
-        "A template, a healthcare website design agency and a developer like me each suit a different practice.",
-      rowLabel: "Question",
-      columns: ["Website template", "Large dental marketing agency", "Working with me"],
-      rows: [
-        {
-          label: "Who builds it",
-          cells: [
-            "You or your office manager, between patients.",
-            "A team, often with a separate account manager.",
-            "I design and build it, and you talk to me the whole way.",
-          ],
-        },
-        {
-          label: "Booking and forms",
-          cells: [
-            "A contact form, with booking added through plugins.",
-            "Often part of a package or a monthly add-on.",
-            "Online booking, patient forms and reminders are planned with the site.",
-          ],
-        },
-        {
-          label: "Patient data",
-          cells: [
-            "You check the privacy terms of each plugin yourself.",
-            "Ask which of their vendors sign a BAA.",
-            "I help you pick HIPAA-ready tools, and your advisor confirms them.",
-          ],
-        },
-        {
-          label: "Best for",
-          cells: [
-            "A brand-new office on a very small budget.",
-            "Groups that want ads and a site from one company.",
-            "Practices that want a fast site and fewer calls at the front desk.",
-          ],
-        },
-      ],
-      note: "Ask any dental web design company these questions before you sign.",
-    },
-    {
       kind: "stepper",
       id: "process",
       eyebrow: "Process",
@@ -331,10 +286,10 @@ export const dentalMedicalWebsiteDesign: PageContent = {
       kind: "features",
       id: "proof",
       eyebrow: "Proof",
-      heading: "Why hire a developer for your practice website?",
+      heading: "Hiring a dental website design agency? Here is how I work",
       layout: "cards",
       paragraphs: [
-        "Most practice sites stop at the contact form. The real work starts after it: the calendar, the forms and the texts. As a full-stack developer, I build those parts too. Over more than five years, I have delivered 400+ projects.",
+        "Comparing a dental web design company or a healthcare website design agency? You work directly with me, the developer who builds and connects every part: the site, the calendar, the forms and the texts. Over more than five years, I have delivered 400+ projects.",
       ],
       example: {
         label: "Case study",
@@ -342,11 +297,6 @@ export const dentalMedicalWebsiteDesign: PageContent = {
           "I do not have an approved dental or medical case study yet, and I will not make one up. Ask for a free demo and judge the booking flow on your own practice.",
         ],
       },
-      outro: [
-        "Before you book, you can read ",
-        { text: "who I am and how I work", href: "/about" },
-        ".",
-      ],
     },
     {
       kind: "links",

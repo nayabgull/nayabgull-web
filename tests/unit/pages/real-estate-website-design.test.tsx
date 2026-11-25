@@ -3,7 +3,6 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
 import { AgentFlow } from "@/components/sections/blocks/AgentFlow.tsx";
-import { CompareSection } from "@/components/sections/blocks/CompareSection.tsx";
 import { ContentPage } from "@/components/sections/ContentPage.tsx";
 import { FOOTER_NAV, isNavGroup, PRIMARY_NAV } from "@/content/navigation.ts";
 import { realEstateWebsiteDesign as content } from "@/content/pages/real-estate-website-design.ts";
@@ -82,8 +81,8 @@ describe("Real estate website design page", () => {
       "real estate brokerage website design",
       "real estate marketing automation",
     ]);
-    // No /industries hub yet: the breadcrumb goes Home › this page.
-    expect(content.parent).toBeUndefined();
+    // The breadcrumb goes Home › Industries › this page.
+    expect(content.parent).toEqual({ name: "Industries", path: "/industries" });
   });
 
   it("is a full industry page of 1,500 to 2,000 words", () => {
@@ -180,9 +179,8 @@ describe("Real estate website design page", () => {
     }
   });
 
-  it("shows no price and puts no Offer in the Service schema until Nayab sets one", () => {
-    expect(pagePrices(content)).toEqual([]);
-    expect(JSON.stringify(content)).not.toMatch(/\$\s?\d/);
+  it("shows the approved starting prices from /pricing, each one as an Offer", () => {
+    expect(pagePrices(content).map((price) => price.from)).toEqual([1500, 2500]);
     const graph = pageJsonLd(content)["@graph"];
     expect(graph.map((node) => node["@type"])).toEqual([
       "ProfessionalService",
@@ -197,8 +195,19 @@ describe("Real estate website design page", () => {
       areaServed: { "@type": "Country", name: "United States" },
     });
     expect(service).toHaveProperty("provider");
-    expect(service).not.toHaveProperty("offers");
-    expect(JSON.stringify(graph)).not.toMatch(/"(price|minPrice|Offer)"/);
+    expect(JSON.stringify(service)).toContain('"minPrice":1500');
+    expect(JSON.stringify(service)).toContain('"minPrice":2500');
+    expect(copy).toContain("idx provider and mls fees are separate and paid by you.");
+  });
+
+  it("gives the approved timeline and says MLS approval time varies", () => {
+    expect(copy).toContain("most websites take two to six weeks");
+    expect(copy).toContain("mls approval time depends on your mls");
+  });
+
+  it("makes no claim about other vendors, no one-tap promise and no unsourced phone statistic", () => {
+    expect(content.blocks.some((candidate) => candidate.kind === "compare")).toBe(false);
+    expect(copy).not.toMatch(/vendor|portal|one tap|most (home )?buyers/);
   });
 
   it("invents no case study, client, statistic or result", () => {
@@ -208,18 +217,17 @@ describe("Real estate website design page", () => {
     expect(JSON.stringify(content)).not.toMatch(/zillow|realtor\.com|redfin/i);
   });
 
-  it("links to the web design service, the GHL and AI hubs, the roofing page and pricing, never to /industries", () => {
+  it("links to the web design service, the GHL and AI hubs, pricing and up to /industries", () => {
     const hrefs = new Set(page.links.map((link) => link.href));
     for (const href of [
       "/services/web-design-development",
       "/gohighlevel-agency",
       "/ai-automation-agency",
-      "/industries/roofing-hvac-website-design",
       "/pricing",
+      "/industries",
     ]) {
       expect(hrefs, href).toContain(href);
     }
-    expect(hrefs).not.toContain("/industries");
   });
 
   it("is in the header Industries menu and the footer", () => {
@@ -267,28 +275,5 @@ describe("Lead follow-up flow", () => {
     expect(within(group).getAllByRole("radio")).toHaveLength(5);
     expect(container.querySelectorAll(".agent-node svg")).toHaveLength(5);
     expect(container.querySelector("script")).toBeNull();
-  });
-});
-
-describe("Template vs large company vs me table", () => {
-  const compare = block("compare");
-
-  it("compares the three options in a real table, one sentence per cell", () => {
-    render(<CompareSection block={compare} />);
-    const table = screen.getByRole("table", { name: compare.heading });
-    expect(
-      within(table)
-        .getAllByRole("columnheader")
-        .map((cell) => cell.textContent),
-    ).toEqual([
-      "Question",
-      "Template site from a vendor",
-      "Large real estate web company",
-      "Working with me",
-    ]);
-    for (const row of compare.rows) {
-      expect(row.cells).toHaveLength(3);
-      for (const cell of row.cells) expect(cell).toMatch(/\.$/);
-    }
   });
 });

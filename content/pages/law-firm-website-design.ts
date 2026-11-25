@@ -5,8 +5,7 @@ import type { PageContent } from "./types.ts";
 /**
  * /industries/law-firm-website-design (industry page). Primary keyword: "law firm website design".
  * Brief: content/briefs/law-firm-website-design.md. Keywords: docs/seo/keyword-map.md (Industries).
- * The /industries hub does not exist yet, so the breadcrumb goes Home › this page and nothing links
- * to /industries.
+ * Breadcrumb: Home › Industries › this page.
  *
  * TODO(nayab): TIMELINE. The process shows no week counts on purpose. Add the real timeline for each
  * step (and to the "How long does it take?" answer) once you confirm it.
@@ -21,6 +20,7 @@ import type { PageContent } from "./types.ts";
 export const lawFirmWebsiteDesign: PageContent = {
   path: "/industries/law-firm-website-design",
   name: "Law firm websites",
+  parent: { name: "Industries", path: "/industries" },
   updated: "2026-11-19",
   meta: {
     title: "Law Firm Website Design for Attorneys | Nayab Gull",
@@ -198,51 +198,6 @@ export const lawFirmWebsiteDesign: PageContent = {
       ],
     },
     {
-      kind: "compare",
-      id: "compare",
-      eyebrow: "Compare",
-      heading: "DIY builder, big agency or me: an honest comparison",
-      intro:
-        "Each path fits a different firm. Before you sign with a law firm website design agency, look at what each one really gives you.",
-      rowLabel: "Question",
-      columns: ["DIY website builder", "Big legal marketing agency", "Working with me"],
-      rows: [
-        {
-          label: "Who does the work",
-          cells: [
-            "You do, at night and on weekends.",
-            "A team of designers, writers and account staff.",
-            "I build it myself and stay your contact from start to end.",
-          ],
-        },
-        {
-          label: "Intake and follow-up",
-          cells: [
-            "You get a basic form and have to add the rest yourself.",
-            "Most offer it, often as an extra monthly service.",
-            "Intake questions, booking and follow-up texts come as part of the build.",
-          ],
-        },
-        {
-          label: "Who owns the site",
-          cells: [
-            "The builder hosts it, so moving away can be hard.",
-            "It depends on the contract, so ask before you sign.",
-            "Your accounts hold the domain, the site and the data.",
-          ],
-        },
-        {
-          label: "Best for",
-          cells: [
-            "A brand-new practice on a tight budget.",
-            "Large firms that want ads and content from one vendor.",
-            "Small firms that want a fast site that books consults.",
-          ],
-        },
-      ],
-      note: "All three can work. Pick the one that fits your firm's size and budget.",
-    },
-    {
       kind: "stepper",
       id: "process",
       eyebrow: "Process",
@@ -295,7 +250,7 @@ export const lawFirmWebsiteDesign: PageContent = {
       heading: "Why hire a developer who builds the whole system?",
       layout: "cards",
       paragraphs: [
-        "Most firm websites break where the form meets the inbox and the calendar. I am a full-stack developer, so I build those parts too. Over five years, I have delivered 400+ projects.",
+        "Looking for a law firm website design agency? You work directly with me, the developer who builds and connects every part: the form, the inbox rules and the calendar link. Over five years, I have delivered 400+ projects.",
       ],
       example: {
         label: "Case study",

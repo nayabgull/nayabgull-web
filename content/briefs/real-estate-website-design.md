@@ -1,6 +1,6 @@
 # Content brief: real estate website design
 
-Page: `/industries/real-estate-website-design` (industry page). No `/industries` hub yet, so the breadcrumb is Home › Real estate websites.
+Page: `/industries/real-estate-website-design` (industry page). Breadcrumb: Home › Industries › Real estate websites.
 Keywords: the "Real estate" row of `docs/seo/keyword-map.md`. Research: `docs/seo/research/keywords-all.csv` (cluster "Niche: Real Estate Websites") and `docs/seo/research/clusters/keywords-web-dev.csv`.
 
 ## 1. Primary keyword and intent

@@ -118,17 +118,18 @@ describe("contractor website design page", () => {
     expect(graph).toMatch(/"areaServed":\{[^}]*"United States"|"areaServed":"US"/);
   });
 
-  it("links to its sibling, the web design service, the AI hub and pricing, never /industries", () => {
+  it("links to its sibling, the web design service, the AI hub, pricing and up to /industries", () => {
     const hrefs = page.links.map((link) => link.href);
     for (const href of [
       "/industries/roofing-hvac-website-design",
       "/services/web-design-development",
       "/ai-automation-agency",
       "/pricing",
+      "/industries",
     ]) {
       expect(hrefs).toContain(href);
     }
-    expect(hrefs).not.toContain("/industries");
+    expect(content.parent).toEqual({ name: "Industries", path: "/industries" });
   });
 
   it("is in the header Industries menu and the footer", () => {
