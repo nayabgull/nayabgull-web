@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import type { LeadRequest } from "@/components/forms/LeadForm.tsx";
 import { ButtonLink } from "@/components/ui/ButtonLink.tsx";
 import { Section } from "@/components/ui/Section.tsx";
 import { SectionHeader } from "@/components/ui/SectionHeader.tsx";
@@ -9,9 +10,20 @@ import { DIRECT_BENEFIT } from "@/content/home.ts";
 import { QuoteCard } from "./QuoteCard.tsx";
 
 /** Every page ends here: the quote form, plus the primary CTA for people who would rather talk. */
-export function QuoteSection({ quote, source }: { quote: Quote; source: string }) {
+export function QuoteSection({
+  quote,
+  source,
+  request,
+  band = false,
+}: {
+  quote: Quote;
+  source: string;
+  request?: LeadRequest;
+  /** Full-width call-to-action band (glow background) instead of a plain section. */
+  band?: boolean;
+}) {
   return (
-    <Section id="quote" labelledBy="quote-heading">
+    <Section id="quote" labelledBy="quote-heading" className={band ? "cta-band" : ""}>
       <SectionHeader
         id="quote-heading"
         eyebrow={quote.eyebrow}
@@ -26,6 +38,7 @@ export function QuoteSection({ quote, source }: { quote: Quote; source: string }
           heading={quote.form.heading}
           text={quote.form.text}
           source={source}
+          request={request}
         />
       </div>
       <div className="mt-8 flex flex-col items-center gap-3 text-center">

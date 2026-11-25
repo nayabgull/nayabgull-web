@@ -1,0 +1,46 @@
+import type { IconName } from "@/content/pages/types.ts";
+
+import {
+  CalendarIcon,
+  ChatIcon,
+  CheckIcon,
+  ChipIcon,
+  CodeIcon,
+  DatabaseIcon,
+  FlowIcon,
+  GlobeIcon,
+  MailIcon,
+  PersonIcon,
+  PhoneIcon,
+  PlugIcon,
+  RulesIcon,
+  ShieldIcon,
+  SparkIcon,
+  TargetIcon,
+  TestIcon,
+  UsersIcon,
+  WrenchIcon,
+} from "./icons.tsx";
+
+/** Icon names that content files may use, mapped to the decorative icons. */
+export const ICONS: Record<IconName, typeof CheckIcon> = {
+  calendar: CalendarIcon,
+  chat: ChatIcon,
+  check: CheckIcon,
+  chip: ChipIcon,
+  code: CodeIcon,
+  crm: UsersIcon,
+  database: DatabaseIcon,
+  flow: FlowIcon,
+  globe: GlobeIcon,
+  mail: MailIcon,
+  person: PersonIcon,
+  phone: PhoneIcon,
+  plug: PlugIcon,
+  rules: RulesIcon,
+  shield: ShieldIcon,
+  spark: SparkIcon,
+  target: TargetIcon,
+  test: TestIcon,
+  wrench: WrenchIcon,
+};

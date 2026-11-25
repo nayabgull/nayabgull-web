@@ -71,9 +71,30 @@ describe("LeadForm", () => {
       "submit",
     );
     expect(form.querySelector('input[name="source"]')).toHaveValue("/contact");
+    expect(form.querySelector('input[name="type"]')).toHaveValue("quote");
+    expect(screen.getByLabelText("What you need")).toHaveValue("");
     expect(form.querySelector('input[name="company_website"]')).toHaveAttribute("tabindex", "-1");
     expect(form.querySelector("[data-turnstile]")).toBeNull();
     expect(form.querySelector("noscript")).toBeNull();
+  });
+
+  it("as a demo request, preselects the service and changes only the button and the hidden type", () => {
+    render(
+      <>
+        <h2 id="demo-title">Get a free demo</h2>
+        <LeadForm
+          source="/ai-automation-agency/ai-agent-development"
+          labelledBy="demo-title"
+          request={{ type: "demo", service: "ai-agent" }}
+        />
+      </>,
+    );
+    const form = screen.getByRole("form", { name: "Get a free demo" });
+    expect(form.querySelector('input[name="type"]')).toHaveValue("demo");
+    expect(screen.getByLabelText("What you need")).toHaveValue("ai-agent");
+    expect(screen.getByRole("button", { name: "Get my free demo" })).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Get my free quote" })).toBeNull();
+    expect(screen.getByLabelText("Name")).toBeRequired();
   });
 
   it("with Turnstile on and JavaScript off, says why the form cannot send and links the call", () => {

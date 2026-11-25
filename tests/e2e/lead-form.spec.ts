@@ -35,6 +35,7 @@ test.describe("homepage quote forms", () => {
       "Website",
       "GoHighLevel",
       "AI automation",
+      "AI agent",
       "Full system",
     ]);
   });

@@ -1,7 +1,7 @@
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs.tsx";
 import { ButtonLink } from "@/components/ui/ButtonLink.tsx";
 import { Container } from "@/components/ui/Container.tsx";
-import { ArrowDownIcon } from "@/components/ui/icons.tsx";
+import { ArrowDownIcon, ArrowRightIcon } from "@/components/ui/icons.tsx";
 import { IDENTITY_LINE } from "@/content/home.ts";
 import type { PageContent, PageHero as PageHeroContent } from "@/content/pages/types.ts";
 
@@ -24,18 +24,28 @@ function Proof({ facts, centered }: { facts: readonly string[]; centered: boolea
   );
 }
 
+/** A link to a section of the same page points down; every other link points right. */
+const ctaIcon = (href: string) =>
+  href.startsWith("#") ? (
+    <ArrowDownIcon className="size-5" />
+  ) : (
+    <ArrowRightIcon className="size-5" />
+  );
+
 function Ctas({ hero, centered }: { hero: PageHeroContent; centered: boolean }) {
   if (!hero.primaryCta) return null;
   return (
     <div
       className={`mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap ${centered ? "sm:justify-center" : ""}`}
     >
-      <ButtonLink href={hero.primaryCta.href}>{hero.primaryCta.label}</ButtonLink>
+      <ButtonLink href={hero.primaryCta.href} icon={ctaIcon(hero.primaryCta.href)}>
+        {hero.primaryCta.label}
+      </ButtonLink>
       {hero.secondaryCta ? (
         <ButtonLink
           href={hero.secondaryCta.href}
           variant="secondary"
-          icon={<ArrowDownIcon className="size-5" />}
+          icon={ctaIcon(hero.secondaryCta.href)}
         >
           {hero.secondaryCta.label}
         </ButtonLink>
@@ -49,7 +59,11 @@ function Ctas({ hero, centered }: { hero: PageHeroContent; centered: boolean }) 
  * and "Book a free call" on the left, the quote form card on the right. Other pages get centered
  * text. The H1 is plain text (the LCP element), never animated.
  */
-export function PageHero({ content }: { content: Pick<PageContent, "hero" | "name" | "path"> }) {
+export function PageHero({
+  content,
+}: {
+  content: Pick<PageContent, "hero" | "name" | "path" | "parent" | "request">;
+}) {
   const { hero } = content;
   const centered = !hero.form;
   const copy = (
@@ -72,7 +86,18 @@ export function PageHero({ content }: { content: Pick<PageContent, "hero" | "nam
         {IDENTITY_LINE} {hero.lede}
       </p>
       <Proof facts={hero.proof} centered={centered} />
+      {hero.callout ? <p className="mt-5 font-semibold">{hero.callout}</p> : null}
       <Ctas hero={hero} centered={centered} />
+      {/* Extra intro paragraphs sit under the CTAs, so the primary CTA stays above the fold. */}
+      {hero.body ? (
+        <div
+          className={`mt-6 space-y-3 border-l-2 border-border-strong pl-4 text-text-muted ${centered ? "mx-auto max-w-[60ch] text-left" : "max-w-[56ch]"}`}
+        >
+          {hero.body.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
+        </div>
+      ) : null}
     </div>
   );
   return (
@@ -83,15 +108,19 @@ export function PageHero({ content }: { content: Pick<PageContent, "hero" | "nam
       className="hero-bg pt-2 pb-16 sm:pt-4 lg:pb-20"
     >
       <Container>
-        <Breadcrumbs current={content.name} centered={centered} />
+        <Breadcrumbs current={content.name} parent={content.parent} centered={centered} />
         {hero.form ? (
-          <div className="mt-2 grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+          <div
+            // A hero with extra intro text starts at the top, so its CTAs stay above the fold.
+            className={`mt-2 grid gap-12 lg:grid-cols-[1.1fr_0.9fr] ${hero.body ? "items-start lg:pt-6" : "items-center"}`}
+          >
             {copy}
             <QuoteCard
               id="hero-quote"
               heading={hero.form.heading}
               text={hero.form.text}
               source={content.path}
+              request={content.request}
             />
           </div>
         ) : (

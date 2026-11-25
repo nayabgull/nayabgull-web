@@ -58,6 +58,17 @@ export function splitRoute(
 
 export const kb = (bytes: number): string => `${(bytes / 1024).toFixed(1)} KB`;
 
+/**
+ * True when a route answered on the base branch, so its size there is a fair baseline. A route
+ * that answers 404 or 410 on the base is new in this PR: it gets no baseline, so "growth vs main"
+ * does not apply to it, while the per-route framework, app and total budgets still do (approved by
+ * Nayab 2026-11-17, docs/rules/quality-gates.md). Any other status, or no response at all, still
+ * counts as existing, so a broken base page never hides growth.
+ */
+export function existsOnBase(status: number | undefined): boolean {
+  return status !== 404 && status !== 410;
+}
+
 /** Every budget the route misses; `baseline` is the same route measured on main. */
 export function checkRoute(current: RouteBundle, baseline?: RouteBundle): Issue[] {
   const issues: Issue[] = [];

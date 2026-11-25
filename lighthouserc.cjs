@@ -6,6 +6,7 @@ const indexableRoutes = [
   "/",
   "/gohighlevel-agency",
   "/ai-automation-agency",
+  "/ai-automation-agency/ai-agent-development",
   "/industries/roofing-hvac-website-design",
   "/services/web-design-development",
   "/hire-full-stack-developer",

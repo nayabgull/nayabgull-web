@@ -345,6 +345,393 @@
     opacity: 0;
   }
 
+  /*
+   * "How an agent works" (components/sections/blocks/AgentFlow.tsx). Each step is a radio button
+   * inside its label; the checked step shows its panel. A list on small screens, a row of five
+   * steps above one shared panel from 64rem. No JavaScript.
+   */
+  .agent-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .agent-tab {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    min-height: 4rem;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+  }
+
+  /* The real radio covers its label, so the whole row is the tap target. */
+  .agent-input {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .agent-node {
+    display: grid;
+    flex-shrink: 0;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-pill);
+    background: var(--color-bg-raised);
+    color: var(--color-accent);
+  }
+
+  .agent-step:has(~ .agent-step .agent-input:checked) .agent-node {
+    border-color: var(--color-accent);
+  }
+
+  .agent-input:checked + .agent-node {
+    border-color: transparent;
+    background: linear-gradient(100deg, var(--color-accent-from), var(--color-accent-to));
+    color: var(--color-on-accent);
+  }
+
+  .agent-input:focus-visible + .agent-node {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 3px;
+  }
+
+  .agent-step:has(.agent-input:checked) .agent-tab {
+    border-color: var(--color-border-strong);
+    background: var(--color-surface-strong);
+  }
+
+  .agent-line {
+    display: none;
+  }
+
+  .agent-panel {
+    display: none;
+    padding: 1rem 0.25rem 0.75rem;
+  }
+
+  .agent-step:has(.agent-input:checked) .agent-panel {
+    display: block;
+  }
+
+  @media (min-width: 64rem) {
+    .agent-steps {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 0;
+    }
+
+    .agent-step {
+      display: contents;
+    }
+
+    .agent-tab {
+      grid-row: 1;
+      flex-direction: column;
+      gap: 0.75rem;
+      padding: 0.5rem;
+      border: 0;
+      text-align: center;
+    }
+
+    .agent-step:has(.agent-input:checked) .agent-tab {
+      background: none;
+    }
+
+    .agent-node {
+      width: 3.5rem;
+      height: 3.5rem;
+    }
+
+    /* Connector from this step's icon to the next one. Its fill scales in for finished steps. */
+    .agent-line {
+      position: absolute;
+      top: calc(2.25rem - 1px);
+      left: calc(50% + 2.25rem);
+      display: block;
+      width: calc(100% - 4.5rem);
+      height: 2px;
+      background: var(--color-border);
+      pointer-events: none;
+    }
+
+    .agent-line-fill {
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--color-accent-from), var(--color-accent-to));
+      transform: scaleX(0);
+      transform-origin: left;
+    }
+
+    .agent-step:has(~ .agent-step .agent-input:checked) .agent-line-fill {
+      transform: scaleX(1);
+    }
+
+    .agent-panel {
+      grid-row: 2;
+      grid-column: 1 / -1;
+      margin-top: 1.5rem;
+      padding: 1.5rem 2rem;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      background: var(--color-surface);
+    }
+  }
+
+  /* "Request → AI model → tools → action" picture (ExplainerSection). The line sits behind the icons. */
+  .agent-map-line {
+    position: absolute;
+    top: 1.5rem;
+    bottom: 1.5rem;
+    left: calc(1.5rem - 1px);
+    width: 2px;
+    background: linear-gradient(var(--color-accent-from), var(--color-lime));
+    opacity: 0.6;
+  }
+
+  /* Use-case rows: a dot per line and a thin rail between them (UseCasesSection). */
+  .usecase-row::before {
+    content: "";
+    position: absolute;
+    top: 0.45rem;
+    left: 0.25rem;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: var(--radius-pill);
+    background: var(--color-accent);
+  }
+
+  .usecase-row:last-child::before {
+    background: var(--color-lime);
+  }
+
+  .usecase-row:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 1.15rem;
+    bottom: -0.85rem;
+    left: calc(0.5rem - 1px);
+    width: 2px;
+    background: var(--color-border-strong);
+  }
+
+  /* Process stepper (StepperSection): vertical below 64rem, horizontal from 64rem. */
+  .stepper {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .stepper-step {
+    position: relative;
+    display: flex;
+    gap: 1rem;
+  }
+
+  .stepper-number {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    flex-shrink: 0;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: var(--radius-pill);
+    background: linear-gradient(100deg, var(--color-accent-from), var(--color-accent-to));
+    color: var(--color-on-accent);
+    font-family: var(--font-display);
+    font-weight: 700;
+  }
+
+  .stepper-step:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    top: 3rem;
+    bottom: -1.5rem;
+    left: calc(1.5rem - 1px);
+    width: 2px;
+    background: var(--color-border-strong);
+  }
+
+  .stepper-body {
+    padding-top: 0.6rem;
+  }
+
+  @media (min-width: 64rem) {
+    .stepper {
+      grid-template-columns: repeat(var(--stepper-count, 5), minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+
+    .stepper-step {
+      flex-direction: column;
+    }
+
+    .stepper-step:not(:last-child)::before {
+      top: calc(1.5rem - 1px);
+      bottom: auto;
+      left: 3.75rem;
+      width: calc(100% - 3rem);
+      height: 2px;
+    }
+
+    .stepper-body {
+      padding-top: 0;
+    }
+  }
+
+  /* Closing call-to-action band: the hero glow, full-bleed. */
+  .cta-band {
+    position: relative;
+    isolation: isolate;
+    border-block: 1px solid var(--color-border);
+  }
+
+  .cta-band::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(50rem 30rem at 15% 0%, var(--color-glow-1), transparent 60%),
+      radial-gradient(45rem 30rem at 90% 100%, var(--color-glow-3), transparent 60%);
+  }
+
+  /*
+   * Comparison table (components/sections/blocks/CompareSection.tsx). A real table from 48rem.
+   * Below that each row is a card and every cell names its column, so it never scrolls sideways.
+   */
+  .compare {
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+
+  .compare thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .compare tbody,
+  .compare tr,
+  .compare th,
+  .compare td {
+    display: block;
+  }
+
+  .compare tbody tr {
+    padding: 1.25rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+  }
+
+  .compare tbody tr + tr {
+    margin-top: 1rem;
+  }
+
+  .compare tbody th {
+    font-family: var(--font-display);
+    font-size: var(--text-h3);
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .compare td {
+    margin-top: 0.75rem;
+    color: var(--color-text-muted);
+  }
+
+  .compare td::before {
+    content: attr(data-label);
+    display: block;
+    font-size: var(--text-small);
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .compare td.compare-best::before {
+    color: var(--color-accent);
+  }
+
+  @media (min-width: 48rem) {
+    .compare {
+      table-layout: fixed;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      background: var(--color-surface);
+    }
+
+    .compare thead {
+      position: static;
+      display: table-header-group;
+      width: auto;
+      height: auto;
+      overflow: visible;
+      clip-path: none;
+      white-space: normal;
+    }
+
+    .compare tbody {
+      display: table-row-group;
+    }
+
+    .compare tr,
+    .compare tbody tr {
+      display: table-row;
+      padding: 0;
+      border: 0;
+      background: none;
+    }
+
+    .compare th,
+    .compare td {
+      display: table-cell;
+      margin: 0;
+      padding: 1rem 1.25rem;
+      vertical-align: top;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .compare thead th {
+      border-top: 0;
+      font-family: var(--font-display);
+      font-size: var(--text-h3);
+      font-weight: 600;
+    }
+
+    .compare tbody th {
+      font-family: inherit;
+      font-size: inherit;
+      color: var(--color-text);
+    }
+
+    .compare td::before {
+      content: none;
+    }
+
+    .compare thead th.compare-best {
+      color: var(--color-accent);
+    }
+
+    .compare .compare-best {
+      background: var(--color-surface-strong);
+    }
+  }
+
   .theme-icon-sun {
     display: none;
   }
@@ -396,6 +783,10 @@
     border-color: var(--color-border-strong);
     transform: translateY(-2px);
   }
+
+  .agent-tab:hover .agent-node {
+    border-color: var(--color-accent);
+  }
 }
 
 /*
@@ -423,6 +814,40 @@
 
   .dot-live::after {
     animation: pulse-live 2s ease-out infinite;
+  }
+
+  /* Request picture: the icons light up one after another (opacity and transform only). */
+  .agent-map-node:nth-child(1) .agent-map-icon {
+    animation: agent-map-pulse 6s ease-in-out infinite;
+  }
+
+  .agent-map-node:nth-child(2) .agent-map-icon {
+    animation: agent-map-pulse 6s ease-in-out 1.5s infinite;
+  }
+
+  .agent-map-node:nth-child(3) .agent-map-icon {
+    animation: agent-map-pulse 6s ease-in-out 3s infinite;
+  }
+
+  .agent-map-node:nth-child(4) .agent-map-icon {
+    animation: agent-map-pulse 6s ease-in-out 4.5s infinite;
+  }
+
+  /* Agent flow: the connector fills and the open panel fades up (transform and opacity only). */
+  .agent-line-fill {
+    transition: transform 0.35s ease-out;
+  }
+
+  .agent-node {
+    transition: transform 0.2s ease-out;
+  }
+
+  .agent-input:checked + .agent-node {
+    transform: scale(1.08);
+  }
+
+  .agent-step:has(.agent-input:checked) .agent-panel {
+    animation: agent-panel-in 0.35s ease-out;
   }
 
   /* Lead flow: one 10 s loop, started by InView (data-inview) when the section is on screen. */
@@ -785,5 +1210,29 @@
   100% {
     opacity: 0;
     transform: translateY(6px) scale(0.9);
+  }
+}
+
+@keyframes agent-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes agent-map-pulse {
+  0%,
+  30%,
+  100% {
+    transform: none;
+  }
+
+  12% {
+    transform: scale(1.12);
   }
 }
