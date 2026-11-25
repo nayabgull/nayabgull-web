@@ -5,17 +5,22 @@
  * local(Arial), which Linux and Android do not have, so headings fell back to an unadjusted system
  * font and shifted when Sora loaded (mobile CLS, quality-gates.md). Same metrics as next/font's
  * Arial-based fallback; Liberation Sans and Helvetica are metric-compatible with Arial, Roboto is
- * close.
+ * close. Headings are bold (600/700), and bold Sora is 2 to 3% wider than the bold fallback, so a
+ * headline could wrap onto one line less before Sora loaded and shift the hero (mobile CLS 0.13 on
+ * /industries/dental-medical-website-design, launch release). 117.25% gave the fewest H1 line-count
+ * differences between Sora and the fallback over every page at 320 to 430 px (3 of 156, none at
+ * Lighthouse's 412 px), searched from 110% to 122% in 0.25% steps. The ascent and descent overrides
+ * are next/font's values times 113.73 / 117.25, so the line box does not change.
  */
 @font-face {
   font-family: "Sora Fallback Local";
   src:
     local("Arial"), local("ArialMT"), local("Liberation Sans"), local("LiberationSans"),
     local("Helvetica Neue"), local("Helvetica"), local("Roboto"), local("Roboto-Regular");
-  ascent-override: 85.29%;
-  descent-override: 25.5%;
+  ascent-override: 82.73%;
+  descent-override: 24.73%;
   line-gap-override: 0%;
-  size-adjust: 113.73%;
+  size-adjust: 117.25%;
 }
 
 /*

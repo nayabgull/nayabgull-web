@@ -24,7 +24,7 @@ export const gohighlevelAgency: PageContent = {
     headline: {
       before: "A ",
       highlight: "GoHighLevel agency",
-      after: " that sets up your CRM and answers every lead",
+      after: " that sets up your CRM and replies to every lead",
     },
     lede: "I build your pipelines, texts, emails, calendars and AI follow-up inside your own account. You work with the person who knows the platform, not a ticket queue.",
     proof: ["5+ years", "400+ projects delivered", "Setup starts at $750"],
