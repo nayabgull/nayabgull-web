@@ -10,6 +10,7 @@ import { gohighlevelAgency } from "./gohighlevel-agency.ts";
 import { gohighlevelWorkflows } from "./gohighlevel-workflows.ts";
 import { hireFullStackDeveloper } from "./hire-full-stack-developer.ts";
 import { hireSaasDeveloper } from "./hire-saas-developer.ts";
+import { lawFirmWebsiteDesign } from "./law-firm-website-design.ts";
 import { privacyPolicy, terms } from "./legal.ts";
 import { n8nAutomationAgency } from "./n8n-automation-agency.ts";
 import { nextjsReactDevelopment } from "./nextjs-react-development.ts";
@@ -31,6 +32,7 @@ export const PAGES: readonly PageContent[] = [
   aiChatbotDevelopment,
   roofingHvacWebsiteDesign,
   contractorWebsiteDesign,
+  lawFirmWebsiteDesign,
   webDesignDevelopment,
   nextjsReactDevelopment,
   hireFullStackDeveloper,
