@@ -43,6 +43,7 @@ describe("navigation data", () => {
         label: "Business process automation",
         href: "/ai-automation-agency/business-process-automation-services",
       },
+      { label: "GoHighLevel workflows", href: "/gohighlevel-agency/workflows-automation" },
       { label: "Web design and development", href: "/services/web-design-development" },
       { label: "Hire a full stack developer", href: "/hire-full-stack-developer" },
       { label: "Hire a SaaS developer", href: "/hire-saas-developer" },

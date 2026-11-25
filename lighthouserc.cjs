@@ -5,6 +5,7 @@ const base = (process.env.AUDIT_BASE_URL ?? "http://localhost:3000").replace(/\/
 const indexableRoutes = [
   "/",
   "/gohighlevel-agency",
+  "/gohighlevel-agency/workflows-automation",
   "/ai-automation-agency",
   "/ai-automation-agency/ai-agent-development",
   "/ai-automation-agency/n8n-automation-agency",
