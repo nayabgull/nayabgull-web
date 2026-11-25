@@ -50,6 +50,7 @@ describe("navigation data", () => {
       { label: "Web design and development", href: "/services/web-design-development" },
       { label: "Next.js and React development", href: "/services/nextjs-react-development" },
       { label: "WordPress development", href: "/services/wordpress-development" },
+      { label: "Shopify development", href: "/services/shopify-development" },
       { label: "Hire a full stack developer", href: "/hire-full-stack-developer" },
       { label: "Hire a SaaS developer", href: "/hire-saas-developer" },
       { label: "Pricing", href: "/pricing" },

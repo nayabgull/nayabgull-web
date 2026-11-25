@@ -23,6 +23,7 @@ const indexableRoutes = [
   "/services/web-design-development",
   "/services/nextjs-react-development",
   "/services/wordpress-development",
+  "/services/shopify-development",
   "/hire-full-stack-developer",
   "/pricing",
   "/about",

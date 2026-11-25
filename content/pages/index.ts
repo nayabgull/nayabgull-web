@@ -20,6 +20,7 @@ import { nextjsReactDevelopment } from "./nextjs-react-development.ts";
 import { pricing } from "./pricing.ts";
 import { realEstateWebsiteDesign } from "./real-estate-website-design.ts";
 import { roofingHvacWebsiteDesign } from "./roofing-hvac-website-design.ts";
+import { shopifyDevelopment } from "./shopify-development.ts";
 import type { PageContent } from "./types.ts";
 import { webDesignDevelopment } from "./web-design-development.ts";
 import { wordpressDevelopment } from "./wordpress-development.ts";
@@ -45,6 +46,7 @@ export const PAGES: readonly PageContent[] = [
   webDesignDevelopment,
   nextjsReactDevelopment,
   wordpressDevelopment,
+  shopifyDevelopment,
   hireFullStackDeveloper,
   hireSaasDeveloper,
   pricing,
