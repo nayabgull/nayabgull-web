@@ -35,6 +35,7 @@ export const PRIMARY_NAV: readonly NavItem[] = [
       { label: "GoHighLevel API integrations", href: "/gohighlevel-agency/api-integrations" },
       { label: "Web design and development", href: "/services/web-design-development" },
       { label: "Next.js and React development", href: "/services/nextjs-react-development" },
+      { label: "WordPress development", href: "/services/wordpress-development" },
       { label: "Hire a full stack developer", href: "/hire-full-stack-developer" },
       { label: "Hire a SaaS developer", href: "/hire-saas-developer" },
       { label: "Pricing", href: "/pricing" },
@@ -73,6 +74,7 @@ export const FOOTER_NAV: readonly FooterGroup[] = [
     title: "Services",
     links: [
       { label: "Web design and development", href: "/services/web-design-development" },
+      { label: "WordPress development", href: "/services/wordpress-development" },
       { label: "GoHighLevel agency", href: "/gohighlevel-agency" },
       { label: "GoHighLevel workflows", href: "/gohighlevel-agency/workflows-automation" },
       { label: "Custom CRM development", href: "/gohighlevel-agency/custom-crm-development" },

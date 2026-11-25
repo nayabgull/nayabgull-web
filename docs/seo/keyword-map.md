@@ -55,7 +55,7 @@ Rules: one primary keyword per page; a keyword appears as a target on one page o
 | 1 | /services/nextjs-react-development | react development company | 100–1K · Low · $88 | react development agency ($458), react development services, hire react developers, hire next js developer, hire node js developer, nextjs development company |
 | 1 | /services/saas-mvp-development | mvp development company | 100–1K · Low · $100 | mvp development agency ($121), mvp development services for startups, saas development company, saas application development services |
 | 1 | /services/shopify-development | shopify agency | 1K–10K · Low · $35 | shopify seo services, expert shopify developers, hire shopify developer, shopify website development company, shopify store design services, headless shopify |
-| 1 | /services/wordpress-development | wordpress agency | 1K–10K · Low · $40 | wordpress experts for hire ($86), hire wordpress developer, wordpress web design company, wordpress development agency |
+| 1 | /services/wordpress-development | wordpress development agency | 100–1K · Low · $43 | wordpress agency (1K–10K), wordpress website design agency (1K–10K), wordpress design company (1K–10K), wordpress website development company ($73), custom wordpress development, wordpress experts for hire ($86), hire wordpress developer, wordpress web design company |
 | 2 | /services/custom-web-app-development | custom web development services | 100–1K · Low · $31 | web app development agency, web application development services, full stack development company, mern stack developer |
 | 2 | /services/laravel-development | laravel development company | 100–1K · Low · $82 | laravel development services, php development company, hire dedicated php developer |
 | 2 | /services/ecommerce-development | ecommerce development company | 100–1K · Low · $71 | hire woocommerce developers ($88), woocommerce development services, ecommerce website development services |
@@ -66,12 +66,12 @@ Rules: one primary keyword per page; a keyword appears as a target on one page o
 
 ## Packages (phase 2)
 
-| URL | Primary | Volume · Comp · Bid |
-| --- | --- | --- |
-| /packages/website-speed-optimization | website speed optimization service | 100–1K · Low · $25 |
-| /packages/wordpress-care-plan | wordpress maintenance plans | 100–1K · Low · $25 |
-| /packages/gohighlevel-setup | gohighlevel setup service | volume to verify |
-| /packages/ai-chatbot | ai chatbot package | volume to verify |
+| URL | Primary | Volume · Comp · Bid | Secondary |
+| --- | --- | --- | --- |
+| /packages/website-speed-optimization | website speed optimization service | 100–1K · Low · $25 | — |
+| /packages/wordpress-care-plan | wordpress maintenance plans | 100–1K · Low · $25 | wordpress care plans, wordpress maintenance packages, wordpress maintenance company |
+| /packages/gohighlevel-setup | gohighlevel setup service | volume to verify | — |
+| /packages/ai-chatbot | ai chatbot package | volume to verify | — |
 
 ## Blog clusters (each post gets its own primary when written)
 
@@ -87,3 +87,7 @@ Rules: one primary keyword per page; a keyword appears as a target on one page o
 
 - Any "near me" keyword (no US office) — secondary mention only where natural.
 - Jobs, salary, courses, tutorials, free templates, platform login or pricing keywords on service pages.
+
+## Notes
+
+- WordPress primary changed from wordpress agency (KD 43) to wordpress development agency (KD 5); care plan secondaries added; approved by Nayab 2026-11-22, source PR #49.

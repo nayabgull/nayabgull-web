@@ -306,12 +306,16 @@ export const KEYWORDS: readonly KeywordEntry[] = [
   {
     url: "/services/wordpress-development",
     pageType: "service",
-    primary: "wordpress agency",
+    primary: "wordpress development agency",
     secondary: [
+      "wordpress agency",
+      "wordpress website design agency",
+      "wordpress design company",
+      "wordpress website development company",
+      "custom wordpress development",
       "wordpress experts for hire",
       "hire wordpress developer",
       "wordpress web design company",
-      "wordpress development agency",
     ],
   },
   {
@@ -392,7 +396,11 @@ export const KEYWORDS: readonly KeywordEntry[] = [
     url: "/packages/wordpress-care-plan",
     pageType: "package",
     primary: "wordpress maintenance plans",
-    secondary: [],
+    secondary: [
+      "wordpress care plans",
+      "wordpress maintenance packages",
+      "wordpress maintenance company",
+    ],
   },
   {
     url: "/packages/gohighlevel-setup",
