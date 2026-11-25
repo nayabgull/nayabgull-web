@@ -46,6 +46,7 @@ describe("navigation data", () => {
       { label: "GoHighLevel workflows", href: "/gohighlevel-agency/workflows-automation" },
       { label: "Custom CRM development", href: "/gohighlevel-agency/custom-crm-development" },
       { label: "AI chatbot development", href: "/ai-automation-agency/ai-chatbot-development" },
+      { label: "GoHighLevel API integrations", href: "/gohighlevel-agency/api-integrations" },
       { label: "Web design and development", href: "/services/web-design-development" },
       { label: "Next.js and React development", href: "/services/nextjs-react-development" },
       { label: "Hire a full stack developer", href: "/hire-full-stack-developer" },

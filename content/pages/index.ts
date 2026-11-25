@@ -7,6 +7,7 @@ import { businessProcessAutomationServices } from "./business-process-automation
 import { contractorWebsiteDesign } from "./contractor-website-design.ts";
 import { customCrmDevelopment } from "./custom-crm-development.ts";
 import { gohighlevelAgency } from "./gohighlevel-agency.ts";
+import { gohighlevelApiIntegrations } from "./gohighlevel-api-integrations.ts";
 import { gohighlevelWorkflows } from "./gohighlevel-workflows.ts";
 import { hireFullStackDeveloper } from "./hire-full-stack-developer.ts";
 import { hireSaasDeveloper } from "./hire-saas-developer.ts";
@@ -24,6 +25,7 @@ export const PAGES: readonly PageContent[] = [
   gohighlevelAgency,
   gohighlevelWorkflows,
   customCrmDevelopment,
+  gohighlevelApiIntegrations,
   aiAutomationAgency,
   aiAgentDevelopment,
   n8nAutomationAgency,

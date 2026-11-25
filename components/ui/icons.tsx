@@ -199,3 +199,40 @@ export const WrenchIcon = (p: IconProps) => (
     <path d="M14.5 6.5a4 4 0 0 0 5 5L21 13l-8 8-3-3 8-8M14.5 6.5L13 5a4 4 0 0 0-5.5 5.5L3 15l3 3 4.5-4.5" />
   </Icon>
 );
+export const BellIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M6 16V11a6 6 0 0112 0v5l1.5 2h-15L6 16z" />
+    <path d="M10 20.5a2 2 0 004 0" />
+  </Icon>
+);
+export const CardIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <rect x="3" y="5.5" width="18" height="13" rx="2" />
+    <path d="M3 10h18M7 15h4" />
+  </Icon>
+);
+export const GaugeIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M4.5 17a8 8 0 1115 0" />
+    <path d="M12 14l3.5-4.5" />
+    <circle cx="12" cy="14.5" r="1" />
+  </Icon>
+);
+export const KeyIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <circle cx="8" cy="15" r="4" />
+    <path d="M11 12l8-8M16 7l2.5 2.5M14 9l2 2" />
+  </Icon>
+);
+export const ReceiptIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M6 3h12v18l-3-2-3 2-3-2-3 2V3z" />
+    <path d="M9 8h6M9 12h6M9 16h3" />
+  </Icon>
+);
+export const SheetIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <rect x="4" y="4" width="16" height="16" rx="2" />
+    <path d="M4 9.5h16M4 15h16M10 4v16" />
+  </Icon>
+);

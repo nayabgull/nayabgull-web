@@ -252,6 +252,11 @@ export const gohighlevelAgency: PageContent = {
           text: "A CRM built around your sales steps, inside GoHighLevel or as a custom web app.",
         },
         {
+          label: "GoHighLevel API integrations",
+          href: "/gohighlevel-agency/api-integrations",
+          text: "Your website, Stripe, Sheets, QuickBooks and Vapi, linked to your CRM.",
+        },
+        {
           label: "AI receptionists and chatbots",
           href: "/ai-automation-agency",
           text: "AI that answers calls and chats, then saves the notes to your CRM.",

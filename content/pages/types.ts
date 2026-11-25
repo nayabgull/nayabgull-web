@@ -155,8 +155,10 @@ export interface AgentFlowBlock extends BlockBase {
 
 /** Icons that content may name (components/ui/icon-map.tsx). */
 export type IconName =
+  | "bell"
   | "calendar"
   | "cart"
+  | "card"
   | "chat"
   | "check"
   | "chip"
@@ -164,13 +166,17 @@ export type IconName =
   | "crm"
   | "database"
   | "flow"
+  | "gauge"
   | "globe"
   | "layout"
+  | "key"
   | "mail"
   | "person"
   | "phone"
   | "plug"
+  | "receipt"
   | "rules"
+  | "sheet"
   | "shield"
   | "spark"
   | "target"
@@ -234,6 +240,32 @@ export interface UseCasesBlock extends BlockBase {
   labels?: { problem: string; agent: string; result: string };
 }
 
+export interface TwoWayEnd {
+  label: string;
+  caption: string;
+  icon: IconName;
+}
+
+/**
+ * Two systems and the two ways data moves between them: a request from the left one (for example
+ * an API call) and an event back from the right one (for example a webhook). Short text on the
+ * left, the picture on the right, then small note cards and one closing line.
+ */
+export interface TwoWayBlock extends BlockBase {
+  kind: "two-way";
+  paragraphs: readonly Rich[];
+  /** Spoken name of the picture (its labels are decorative). */
+  diagramLabel: string;
+  left: TwoWayEnd;
+  right: TwoWayEnd;
+  /** Top lane: left → right. */
+  request: { tag: string; text: string };
+  /** Bottom lane: right → left. */
+  event: { tag: string; text: string };
+  notes: readonly { text: Rich; icon: IconName }[];
+  callout: string;
+}
+
 /** Numbered steps: a horizontal stepper on wide screens, a vertical one on small screens. */
 export interface StepperBlock extends BlockBase {
   kind: "stepper";
@@ -274,7 +306,8 @@ export type Block =
   | FeaturesBlock
   | UseCasesBlock
   | StepperBlock
-  | TableBlock;
+  | TableBlock
+  | TwoWayBlock;
 
 export interface ServiceSchema {
   name: string;
