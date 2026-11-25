@@ -220,8 +220,8 @@ describe("GoHighLevel workflows page", () => {
     expect(checkInternalLinks(hub, gohighlevelAgency.path)).toEqual([]);
   });
 
-  it("is in the header Services menu and in the footer", () => {
-    const services = PRIMARY_NAV.find((item) => isNavGroup(item) && item.label === "Services");
+  it("is in the header GoHighLevel menu and in the footer", () => {
+    const services = PRIMARY_NAV.find((item) => isNavGroup(item) && item.label === "GoHighLevel");
     expect(services && isNavGroup(services) ? services.links : []).toContainEqual({
       label: "GoHighLevel workflows",
       href: PATH,

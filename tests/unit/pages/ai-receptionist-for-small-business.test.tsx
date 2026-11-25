@@ -188,11 +188,11 @@ describe("AI receptionist for small business page", () => {
     );
   });
 
-  it("is in the header Services menu and the footer", () => {
-    const services = PRIMARY_NAV.find((item) => isNavGroup(item) && item.label === "Services");
-    const header = services && isNavGroup(services) ? services.links : [];
+  it("is in the header AI Automation menu and the footer", () => {
+    const menu = PRIMARY_NAV.find((item) => isNavGroup(item) && item.label === "AI Automation");
+    const header = menu && isNavGroup(menu) ? menu.links : [];
     expect(header.map((link) => link.href)).toContain(PATH);
-    const footer = FOOTER_NAV.find((group) => group.title === "Services")?.links ?? [];
+    const footer = FOOTER_NAV.find((group) => group.title === "AI automation")?.links ?? [];
     expect(footer.map((link) => link.href)).toContain(PATH);
   });
 });

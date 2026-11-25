@@ -19,7 +19,7 @@ export function SiteFooter({ showBlog = false }: { showBlog?: boolean }) {
               Full-stack development, GoHighLevel and AI automation for US businesses.
             </p>
           </div>
-          <nav aria-label="Footer" className="grid grid-cols-2 gap-x-10 gap-y-8 sm:grid-cols-4">
+          <nav aria-label="Footer" className="grid grid-cols-2 gap-x-10 gap-y-8 sm:grid-cols-3">
             {footerNav(showBlog).map((group) => (
               <div key={group.title}>
                 <p className="font-display text-small font-semibold">{group.title}</p>

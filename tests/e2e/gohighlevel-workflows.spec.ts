@@ -127,11 +127,11 @@ test.describe("GoHighLevel workflows page", () => {
     await expect(page).toHaveURL(/\/ai-automation-agency\/ai-agent-development$/);
   });
 
-  test("the header Services menu and the footer open the page", async ({ page }) => {
+  test("the header GoHighLevel menu and the footer open the page", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto("/");
     const nav = page.getByRole("navigation", { name: "Primary" });
-    await nav.locator("summary", { hasText: "Services" }).click();
+    await nav.locator("summary", { hasText: "GoHighLevel" }).click();
     await nav.getByRole("link", { name: "GoHighLevel workflows" }).click();
     await expect(page).toHaveURL(new RegExp(`${PATH}$`));
 

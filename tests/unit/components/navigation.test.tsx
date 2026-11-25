@@ -30,7 +30,7 @@ describe("navigation data", () => {
     expect(ALL_ROUTES.filter((route) => !footer.includes(route))).toEqual([]);
   });
 
-  it("has the agreed header items, with Services as a dropdown", () => {
+  it("has the agreed header items: four dropdowns, About and Contact", () => {
     expect(PRIMARY_NAV.map((item) => item.label)).toEqual([
       "Services",
       "AI Automation",
@@ -39,30 +39,39 @@ describe("navigation data", () => {
       "About",
       "Contact",
     ]);
-    const services = PRIMARY_NAV[0];
-    expect(services && isNavGroup(services) ? services.links : []).toEqual([
-      { label: "AI agent development", href: "/ai-automation-agency/ai-agent-development" },
-      { label: "n8n automation agency", href: "/ai-automation-agency/n8n-automation-agency" },
-      {
-        label: "AI receptionist",
-        href: "/ai-automation-agency/ai-receptionist-for-small-business",
-      },
-      {
-        label: "Business process automation",
-        href: "/ai-automation-agency/business-process-automation-services",
-      },
-      { label: "GoHighLevel workflows", href: "/gohighlevel-agency/workflows-automation" },
-      { label: "Custom CRM development", href: "/gohighlevel-agency/custom-crm-development" },
-      { label: "AI chatbot development", href: "/ai-automation-agency/ai-chatbot-development" },
-      { label: "GoHighLevel API integrations", href: "/gohighlevel-agency/api-integrations" },
-      { label: "Web design and development", href: "/services/web-design-development" },
-      { label: "Next.js and React development", href: "/services/nextjs-react-development" },
-      { label: "WordPress development", href: "/services/wordpress-development" },
-      { label: "Shopify development", href: "/services/shopify-development" },
-      { label: "Hire a full stack developer", href: "/hire-full-stack-developer" },
-      { label: "Hire a SaaS developer", href: "/hire-saas-developer" },
-      { label: "Pricing", href: "/pricing" },
+    const groups = PRIMARY_NAV.filter(isNavGroup);
+    expect(groups.map((group) => group.label)).toEqual([
+      "Services",
+      "AI Automation",
+      "GoHighLevel",
+      "Industries",
     ]);
+  });
+
+  it("puts each hub first in its dropdown, followed by every child page of that hub", () => {
+    const group = (label: string) =>
+      PRIMARY_NAV.filter(isNavGroup).find((item) => item.label === label)?.links ?? [];
+    for (const [label, hub] of [
+      ["AI Automation", "/ai-automation-agency"],
+      ["GoHighLevel", "/gohighlevel-agency"],
+      ["Industries", "/industries"],
+    ] as const) {
+      const hrefs = group(label).map((link) => link.href);
+      expect(hrefs[0]).toBe(hub);
+      const children = ALL_ROUTES.filter((route) => route.startsWith(`${hub}/`));
+      expect(children.filter((child) => !hrefs.includes(child))).toEqual([]);
+    }
+  });
+
+  it("lists every page at most once per menu", () => {
+    for (const item of PRIMARY_NAV.filter(isNavGroup)) {
+      const hrefs = item.links.map((link) => link.href);
+      expect(new Set(hrefs).size).toBe(hrefs.length);
+    }
+    const header = PRIMARY_NAV.flatMap((item) =>
+      isNavGroup(item) ? item.links.map((link) => link.href) : [item.href],
+    );
+    expect(new Set(header).size).toBe(header.length);
   });
 });
 

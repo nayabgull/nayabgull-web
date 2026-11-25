@@ -103,7 +103,7 @@ test.describe("GoHighLevel API integrations page", () => {
     await expect(page).toHaveURL(new RegExp(`${PATH}$`));
   });
 
-  test("header Services menu and footer link to the page", async ({ page }) => {
+  test("header GoHighLevel menu and footer link to the page", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto("/");
     const footer = page.getByRole("navigation", { name: "Footer" });
@@ -111,7 +111,7 @@ test.describe("GoHighLevel API integrations page", () => {
       footer.getByRole("link", { name: "GoHighLevel API integrations" }),
     ).toHaveAttribute("href", PATH);
     const nav = page.getByRole("navigation", { name: "Primary" });
-    await nav.locator("summary", { hasText: "Services" }).click();
+    await nav.locator("summary", { hasText: "GoHighLevel" }).click();
     await nav.getByRole("link", { name: "GoHighLevel API integrations" }).click();
     await expect(page).toHaveURL(new RegExp(`${PATH}$`));
   });

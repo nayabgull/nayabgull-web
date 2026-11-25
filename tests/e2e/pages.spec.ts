@@ -166,10 +166,8 @@ test.describe("site navigation", () => {
     await services.focus();
     await page.keyboard.press("Enter");
     await expect(pricing).toBeVisible();
-    await expect(nav.getByRole("link", { name: "AI agent development" })).toBeVisible();
-    await expect(nav.getByRole("link", { name: "n8n automation agency" })).toBeVisible();
-    await expect(nav.getByRole("link", { name: "Custom CRM development" })).toBeVisible();
     await expect(nav.getByRole("link", { name: "Web design and development" })).toBeVisible();
+    await expect(nav.getByRole("link", { name: "Shopify development" })).toBeVisible();
     await expect(nav.getByRole("link", { name: "Hire a full stack developer" })).toBeVisible();
     await page.keyboard.press("Escape");
     await expect(pricing).toBeHidden();
@@ -181,11 +179,41 @@ test.describe("site navigation", () => {
     await expect(pricing).toBeHidden();
   });
 
+  test("desktop: each hub opens from the first link of its dropdown", async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    const hubs = [
+      ["AI Automation", "AI automation agency", "/ai-automation-agency"],
+      ["GoHighLevel", "GoHighLevel agency", "/gohighlevel-agency"],
+      ["Industries", "All industries", "/industries"],
+    ] as const;
+    for (const [menu, name, path] of hubs) {
+      await page.goto("/");
+      const nav = page.getByRole("navigation", { name: "Primary" });
+      await nav.locator("summary", { hasText: menu }).click();
+      await nav.getByRole("link", { name, exact: true }).click();
+      await expect(page).toHaveURL(new RegExp(`${path}$`));
+      await expect(page.locator("h1")).toHaveCount(1);
+    }
+  });
+
+  test("desktop: every dropdown fits on a 1280 x 720 laptop screen", async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 720 });
+    await page.goto("/");
+    const nav = page.getByRole("navigation", { name: "Primary" });
+    for (const menu of ["Services", "AI Automation", "GoHighLevel", "Industries"]) {
+      const summary = nav.locator("summary", { hasText: menu });
+      await summary.click();
+      const list = summary.locator("xpath=..").locator("ul");
+      const box = await list.boundingBox();
+      expect(box, menu).not.toBeNull();
+      expect((box?.y ?? 0) + (box?.height ?? 0), menu).toBeLessThanOrEqual(720);
+      await page.keyboard.press("Escape");
+    }
+  });
+
   test("desktop: every top-level header link opens its page", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     const links = [
-      ["AI Automation", "/ai-automation-agency"],
-      ["GoHighLevel", "/gohighlevel-agency"],
       ["About", "/about"],
       ["Contact", "/contact"],
     ] as const;
@@ -207,7 +235,14 @@ test.describe("site navigation", () => {
 
     await button.click();
     await expect(menu).toBeVisible();
-    for (const name of ["Pricing", "AI Automation", "GoHighLevel", "About", "Contact"]) {
+    for (const name of [
+      "Pricing",
+      "AI automation agency",
+      "GoHighLevel agency",
+      "All industries",
+      "About",
+      "Contact",
+    ]) {
       await expect(menu.getByRole("link", { name, exact: true })).toBeVisible();
     }
     await expect(menu.getByRole("link", { name: "Book a free call" })).toBeVisible();

@@ -115,11 +115,11 @@ test.describe("AI receptionist for small business page", () => {
     expect(text).not.toMatch(/\(?\b\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}\b/);
   });
 
-  test("the Services menu in the header links to the page", async ({ page }) => {
+  test("the AI Automation menu in the header links to the page", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto("/");
     const header = page.locator("header");
-    await header.getByText("Services", { exact: true }).first().click();
+    await header.getByText("AI Automation", { exact: true }).first().click();
     await header.getByRole("link", { name: "AI receptionist" }).click();
     await expect(page).toHaveURL(new RegExp(`${PATH}$`));
   });
