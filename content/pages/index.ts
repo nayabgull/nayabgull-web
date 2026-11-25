@@ -3,6 +3,7 @@ import { aiAgentDevelopment } from "./ai-agent-development.ts";
 import { aiAutomationAgency } from "./ai-automation-agency.ts";
 import { aiReceptionistForSmallBusiness } from "./ai-receptionist-for-small-business.ts";
 import { businessProcessAutomationServices } from "./business-process-automation-services.ts";
+import { customCrmDevelopment } from "./custom-crm-development.ts";
 import { gohighlevelAgency } from "./gohighlevel-agency.ts";
 import { gohighlevelWorkflows } from "./gohighlevel-workflows.ts";
 import { hireFullStackDeveloper } from "./hire-full-stack-developer.ts";
@@ -19,6 +20,7 @@ import { webDesignDevelopment } from "./web-design-development.ts";
 export const PAGES: readonly PageContent[] = [
   gohighlevelAgency,
   gohighlevelWorkflows,
+  customCrmDevelopment,
   aiAutomationAgency,
   aiAgentDevelopment,
   n8nAutomationAgency,

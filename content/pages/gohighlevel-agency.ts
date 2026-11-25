@@ -247,6 +247,11 @@ export const gohighlevelAgency: PageContent = {
       heading: "Where this setup fits",
       items: [
         {
+          label: "Custom CRM development services",
+          href: "/gohighlevel-agency/custom-crm-development",
+          text: "A CRM built around your sales steps, inside GoHighLevel or as a custom web app.",
+        },
+        {
           label: "AI receptionists and chatbots",
           href: "/ai-automation-agency",
           text: "AI that answers calls and chats, then saves the notes to your CRM.",

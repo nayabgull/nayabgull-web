@@ -44,6 +44,7 @@ describe("navigation data", () => {
         href: "/ai-automation-agency/business-process-automation-services",
       },
       { label: "GoHighLevel workflows", href: "/gohighlevel-agency/workflows-automation" },
+      { label: "Custom CRM development", href: "/gohighlevel-agency/custom-crm-development" },
       { label: "Web design and development", href: "/services/web-design-development" },
       { label: "Next.js and React development", href: "/services/nextjs-react-development" },
       { label: "Hire a full stack developer", href: "/hire-full-stack-developer" },

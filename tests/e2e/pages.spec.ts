@@ -168,6 +168,7 @@ test.describe("site navigation", () => {
     await expect(pricing).toBeVisible();
     await expect(nav.getByRole("link", { name: "AI agent development" })).toBeVisible();
     await expect(nav.getByRole("link", { name: "n8n automation agency" })).toBeVisible();
+    await expect(nav.getByRole("link", { name: "Custom CRM development" })).toBeVisible();
     await expect(nav.getByRole("link", { name: "Web design and development" })).toBeVisible();
     await expect(nav.getByRole("link", { name: "Hire a full stack developer" })).toBeVisible();
     await page.keyboard.press("Escape");
