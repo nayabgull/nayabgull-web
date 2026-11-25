@@ -34,7 +34,7 @@ Rules: one primary keyword per page; a keyword appears as a target on one page o
 | n8n automation agency | /ai-automation-agency/n8n-automation-agency | n8n automation agency (approved by Nayab 2026-11-17) | 100–1K · Low · $17 · KD 3 | n8n agency, n8n automation services, n8n automation, n8n expert, hire n8n expert, n8n developer, n8n consultant, make com automation, make com expert, zapier workflow automation, hire zapier expert, zapier automation agency |
 | AI chatbots | /ai-automation-agency/ai-chatbot-development | ai chatbot development services | 100–1K · Low · $38 | chatbot development services, chat bot development, whatsapp business api integration, chatgpt api integration |
 | AI receptionist | /ai-automation-agency/ai-receptionist-for-small-business | ai receptionist for small business | 1K–10K · Low · $66 | ai voice agent, ai phone answering service, ai virtual receptionist, ai receptionist service, ai voice agent for small business, ai answering service for small business, ai call answering, ai phone receptionist, voice ai receptionist, ai voice agent services |
-| Process automation | /ai-automation-agency/business-process-automation | business process automation | 1K–10K · Low · $48 | workflow automation, workflow automation solutions, business process automation services, workflow automation services, workflow automation for small business |
+| Process automation | /ai-automation-agency/business-process-automation-services | business process automation services | 100–1K · Low · $38 · KD 3 | business process automation (1K–10K), workflow automation, workflow automation solutions, workflow automation services, workflow automation for small business, business process automation companies |
 
 ## Industries (priority 3)
 

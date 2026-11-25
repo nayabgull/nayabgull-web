@@ -25,6 +25,10 @@ export const PRIMARY_NAV: readonly NavItem[] = [
         label: "AI receptionist",
         href: "/ai-automation-agency/ai-receptionist-for-small-business",
       },
+      {
+        label: "Business process automation",
+        href: "/ai-automation-agency/business-process-automation-services",
+      },
       { label: "Web design and development", href: "/services/web-design-development" },
       { label: "Hire a full stack developer", href: "/hire-full-stack-developer" },
       { label: "Hire a SaaS developer", href: "/hire-saas-developer" },
@@ -62,6 +66,10 @@ export const FOOTER_NAV: readonly FooterGroup[] = [
       {
         label: "AI receptionist",
         href: "/ai-automation-agency/ai-receptionist-for-small-business",
+      },
+      {
+        label: "Business process automation",
+        href: "/ai-automation-agency/business-process-automation-services",
       },
       { label: "Hire a full stack developer", href: "/hire-full-stack-developer" },
       { label: "Hire a SaaS developer", href: "/hire-saas-developer" },

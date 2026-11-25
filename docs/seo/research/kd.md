@@ -25,7 +25,7 @@ Checked on: (date)
 | 11 | n8n automation agency | /ai-automation-agency/n8n-automation-agency | 100 – 1K | 3 |  |  |
 | 12 | ai chatbot development services | /ai-automation-agency/ai-chatbot-development | 100 – 1K |  |  |  |
 | 13 | ai receptionist for small business | /ai-automation-agency/ai-voice-agents | not in research |  |  |  |
-| 14 | business process automation | /ai-automation-agency/business-process-automation | 1K – 10K |  |  |  |
+| 14 | business process automation services | /ai-automation-agency/business-process-automation-services | 100 – 1K | 3 |  |  |
 | 15 | industry website design | /industries | not in research |  |  |  |
 | 16 | law firm website design | /industries/law-firm-website-design | 1K – 10K |  |  |  |
 | 17 | medical website design company | /industries/dental-medical-website-design | 100 – 1K |  |  |  |
