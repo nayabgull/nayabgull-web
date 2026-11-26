@@ -18,7 +18,7 @@ export const gohighlevelWorkflows: PageContent = {
   path: "/gohighlevel-agency/workflows-automation",
   name: "GoHighLevel workflows",
   parent: { name: "GoHighLevel agency", path: "/gohighlevel-agency" },
-  updated: "2026-11-19",
+  updated: "2026-11-26",
   meta: {
     title: "GoHighLevel Workflows Built for Your Business | Nayab Gull",
     description:
@@ -237,6 +237,11 @@ export const gohighlevelWorkflows: PageContent = {
       layout: "cards",
       paragraphs: [
         "I have built websites, CRMs and automations for more than five years, across 400+ projects. My clients are in the US, the UK and beyond.",
+        [
+          "See everything else I set up on my ",
+          { text: "GoHighLevel agency page", href: "/gohighlevel-agency" },
+          ".",
+        ],
       ],
       example: {
         label: "Case study",
@@ -244,13 +249,7 @@ export const gohighlevelWorkflows: PageContent = {
           "I have no approved GoHighLevel workflow case study to show here yet, and I will not invent one. Ask for a free demo instead, and watch a workflow run on your own use case.",
         ],
       },
-      outro: [
-        "See everything else I set up on my ",
-        { text: "GoHighLevel agency page", href: "/gohighlevel-agency" },
-        ", or read ",
-        { text: "more about me and how I work", href: "/about" },
-        ".",
-      ],
+      outro: ["You can also read ", { text: "more about me and how I work", href: "/about" }, "."],
     },
   ],
 
