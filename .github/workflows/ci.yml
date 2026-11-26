@@ -343,7 +343,11 @@ jobs:
       - name: Post-deploy smoke test
         id: smoke
         if: steps.secrets.outputs.ready == 'true'
-        run: BASE_URL=https://nayabgull.com pnpm test:e2e --project=chromium
+        # SMOKE_TEST_URL (repository variable) points the smoke test at the project's *.vercel.app
+        # production domain until nayabgull.com moves to this project (docs/LAUNCH.md step 4).
+        env:
+          BASE_URL: ${{ vars.SMOKE_TEST_URL || 'https://nayabgull.com' }}
+        run: pnpm test:e2e --project=chromium
       - name: Roll back on smoke-test failure
         if: failure() && steps.smoke.conclusion == 'failure'
         run: $VERCEL rollback --yes --token="$VERCEL_TOKEN"
