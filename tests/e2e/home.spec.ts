@@ -32,10 +32,10 @@ test.describe("homepage smoke", () => {
 });
 
 test.describe("hero calls to action", () => {
-  test("primary CTA books a strategy call and is visible above the fold", async ({ page }) => {
+  test("primary CTA books a free call and is visible above the fold", async ({ page }) => {
     await page.goto("/");
     const hero = page.locator("section", { has: page.locator("h1") });
-    const cta = hero.getByRole("link", { name: "Book a free strategy call" });
+    const cta = hero.getByRole("link", { name: "Book a free call" });
     await expect(cta).toBeInViewport();
     await expect(cta).toHaveAttribute("href", STRATEGY_CALL_URL);
     await expect(cta).toHaveAttribute("rel", /noopener/);
@@ -43,8 +43,27 @@ test.describe("hero calls to action", () => {
 
   test("the same primary CTA closes the page", async ({ page }) => {
     await page.goto("/");
-    const final = page.locator("#book").getByRole("link", { name: "Book a free strategy call" });
+    const final = page.locator("#quote").getByRole("link", { name: "Book a free call" });
     await expect(final).toHaveAttribute("href", STRATEGY_CALL_URL);
+  });
+
+  test("hero subline is the agreed text", async ({ page }) => {
+    await page.goto("/");
+    await expect(page.locator("section", { has: page.locator("h1") })).toContainText(
+      "I run a small web development agency for US businesses. I build fast websites, set up lead systems, and add AI that calls every new lead within 60 seconds.",
+    );
+  });
+
+  test("service cards link to their pages", async ({ page }) => {
+    await page.goto("/");
+    const hrefs = await page
+      .locator("#services ul a")
+      .evaluateAll((links) => links.map((link) => link.getAttribute("href")));
+    expect(hrefs).toEqual([
+      "/services/web-design-development",
+      "/gohighlevel-agency",
+      "/ai-automation-agency",
+    ]);
   });
 
   test("secondary CTA scrolls to the services section", async ({ page }) => {
@@ -130,7 +149,7 @@ test.describe("page structure", () => {
       "work",
       "about",
       "faq",
-      "book",
+      "quote",
     ]);
   });
 

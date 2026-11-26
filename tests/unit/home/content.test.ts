@@ -32,7 +32,8 @@ describe("homepage content (content/home.ts)", () => {
 
   it("uses one primary CTA, the same at the top and the end", () => {
     expect(home.hero.primaryCta.href).toBe(STRATEGY_CALL_URL);
-    expect(home.finalCta.cta).toEqual(home.hero.primaryCta);
+    expect(home.quote.cta).toEqual(home.hero.primaryCta);
+    expect(home.hero.primaryCta.label).toBe("Book a free call");
     expect(STRATEGY_CALL_URL).toBe("https://cal.com/nayab-gull/strategy-call");
     expect(home.hero.secondaryCta.href).toBe("#services");
   });
@@ -40,7 +41,7 @@ describe("homepage content (content/home.ts)", () => {
   it("uses the agreed hero copy", () => {
     expect(headline).toBe("The web development agency that turns your leads into booked calls");
     expect(home.hero.lede).toBe(
-      "I build fast websites, set up GoHighLevel, and add AI that calls every new lead within 60 seconds.",
+      "I run a small web development agency for US businesses. I build fast websites, set up lead systems, and add AI that calls every new lead within 60 seconds.",
     );
     expect(home.hero.secondaryCta).toEqual({ label: "See services", href: "#services" });
   });
@@ -51,12 +52,7 @@ describe("homepage content (content/home.ts)", () => {
       "GoHighLevel",
       "AI Automation",
     ]);
-    expect(home.howItWorks.steps.map((s) => s.title)).toEqual([
-      "Website",
-      "GoHighLevel",
-      "AI call",
-      "Booked call",
-    ]);
+    expect(home.flow.heading).toBe("What happens when a new lead comes in");
     expect(home.industries.heading).toBe("Websites and automation for these businesses");
     expect(home.industries.items.map((i) => i.id)).toEqual([
       "law",
@@ -106,8 +102,14 @@ describe("homepage content (content/home.ts)", () => {
     expect(text).not.toContain("—");
   });
 
-  it("uses the initials avatar until a photo is added", () => {
-    expect(home.about.photo).toBeNull();
-    expect(home.about.initials).toBe("NG");
+  it("keeps the about section text only: no photo and no avatar", () => {
+    expect(Object.keys(home.about).sort()).toEqual(
+      ["eyebrow", "heading", "link", "location", "name", "role", "text"].sort(),
+    );
+  });
+
+  it("labels both quote forms and promises nothing but a reply", () => {
+    expect(home.hero.form.heading).toBe("Get a free quote");
+    expect(home.quote.form.heading).not.toBe(home.hero.form.heading);
   });
 });

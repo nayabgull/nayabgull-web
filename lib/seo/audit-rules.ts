@@ -190,3 +190,33 @@ export function auditSeoPage(page: PageSnapshot, path: string, entry?: KeywordEn
     });
   return issues;
 }
+
+/**
+ * Rules for a legal page that is `noindex, follow` on purpose (seo.md §7): it must really carry the
+ * robots tag, stay out of the sitemap and still have a sound title, canonical, language and headings.
+ * Keyword rules do not apply, because the page targets no keyword.
+ */
+export function auditNoindexPage(
+  page: PageSnapshot,
+  path: string,
+  sitemapPaths: readonly string[],
+): Issue[] {
+  const issues = [
+    ...checkTitle(page),
+    ...checkCanonical(page, path),
+    ...checkHeadings(page),
+    ...checkLang(page),
+    ...checkImages(page),
+  ];
+  const robots = page.robots ?? "";
+  if (!robots.includes("noindex") || robots.includes("nofollow")) {
+    issues.push({
+      rule: "noindex-follow",
+      message: `Robots meta is "${robots}", expected "noindex, follow".`,
+    });
+  }
+  if (sitemapPaths.includes(path)) {
+    issues.push({ rule: "sitemap", message: `Sitemap must not list the noindex page ${path}.` });
+  }
+  return issues;
+}

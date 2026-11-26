@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-import { ROUTES } from "../routes.ts";
+import { ALL_ROUTES } from "../routes.ts";
 
 import { findLayoutProblems } from "./layout-checks.ts";
 import { viewportMatrix } from "./viewports.ts";
@@ -8,7 +8,7 @@ import { viewportMatrix } from "./viewports.ts";
 const slug = (route: string): string =>
   route === "/" ? "home" : route.slice(1).replace(/\//g, "_");
 
-for (const route of ROUTES) {
+for (const route of ALL_ROUTES) {
   for (const colorScheme of ["light", "dark"] as const) {
     for (const viewport of viewportMatrix()) {
       test.describe(`${route} @ ${viewport.label} (${colorScheme})`, () => {

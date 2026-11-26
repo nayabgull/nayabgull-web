@@ -104,6 +104,102 @@ export function faqPage(items: readonly FaqInput[]): JsonLdNode {
   };
 }
 
+export interface OfferInput {
+  name: string;
+  /** Starting price in US dollars. The page shows it as "starts at", so it is a minimum, not a fixed price. */
+  from: number;
+}
+
+export interface ServiceInput {
+  name: string;
+  serviceType: string;
+  description: string;
+  /** Site-relative path of the page that sells the service. */
+  path: string;
+  /** Only prices that are visible on the page (seo.md §6). */
+  offers?: readonly OfferInput[];
+}
+
+export function service(input: ServiceInput): JsonLdNode {
+  const url = `${SITE_URL}${input.path}`;
+  const offers = (input.offers ?? []).map((offer) => ({
+    "@type": "Offer",
+    name: offer.name,
+    priceSpecification: {
+      "@type": "PriceSpecification",
+      minPrice: offer.from,
+      priceCurrency: "USD",
+    },
+  }));
+  return {
+    "@type": "Service",
+    "@id": `${url}#service`,
+    name: input.name,
+    serviceType: input.serviceType,
+    description: input.description,
+    url,
+    provider: { "@id": ORGANIZATION_ID },
+    areaServed: { "@type": "Country", name: "United States" },
+    ...(offers.length > 0 ? { offers } : {}),
+  };
+}
+
+export interface ArticleAuthorInput {
+  name: string;
+  /** Site-relative path of the author's page. */
+  path: string;
+  jobTitle?: string | undefined;
+  /** Only real profile URLs the author entered in the CMS. */
+  sameAs?: readonly string[];
+}
+
+export interface BlogPostingInput {
+  headline: string;
+  description: string;
+  /** Site-relative path of the post. */
+  path: string;
+  /** Absolute or site-relative URL of a crawlable 1200×630 image. */
+  image: string;
+  /** ISO 8601. */
+  datePublished: string;
+  dateModified: string;
+  author: ArticleAuthorInput;
+  section?: string | undefined;
+  keywords?: readonly string[];
+}
+
+const absolute = (url: string): string => (url.startsWith("/") ? `${SITE_URL}${url}` : url);
+
+/** BlogPosting (seo.md §6): author Person, datePublished, dateModified and image. */
+export function blogPosting(input: BlogPostingInput): JsonLdNode {
+  const url = `${SITE_URL}${input.path}`;
+  const authorUrl = `${SITE_URL}${input.author.path}`;
+  return {
+    "@type": "BlogPosting",
+    "@id": `${url}#article`,
+    headline: input.headline,
+    description: input.description,
+    url,
+    mainEntityOfPage: url,
+    image: absolute(input.image),
+    datePublished: input.datePublished,
+    dateModified: input.dateModified,
+    inLanguage: "en-US",
+    author: {
+      "@type": "Person",
+      "@id": `${authorUrl}#person`,
+      name: input.author.name,
+      url: authorUrl,
+      ...(input.author.jobTitle ? { jobTitle: input.author.jobTitle } : {}),
+      ...withSameAs(input.author.sameAs),
+    },
+    publisher: { "@id": ORGANIZATION_ID },
+    isPartOf: { "@id": WEBSITE_ID },
+    ...(input.section ? { articleSection: input.section } : {}),
+    ...(input.keywords && input.keywords.length > 0 ? { keywords: input.keywords.join(", ") } : {}),
+  };
+}
+
 export function graph(nodes: readonly JsonLdNode[]): JsonLdGraph {
   return { "@context": "https://schema.org", "@graph": [...nodes] };
 }

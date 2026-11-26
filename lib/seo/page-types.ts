@@ -2,6 +2,7 @@ export type PageType =
   | "home"
   | "about"
   | "pricing"
+  | "contact"
   | "hub"
   | "service"
   | "industry"
@@ -48,6 +49,7 @@ export function requiredSchemaTypes(type: PageType): string[] {
     case "tool":
       return [...base, "WebApplication"];
     case "pricing":
+    case "contact":
       return base;
   }
 }

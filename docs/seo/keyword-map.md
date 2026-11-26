@@ -11,8 +11,10 @@ Rules: one primary keyword per page; a keyword appears as a target on one page o
 | --- | --- | --- | --- | --- |
 | Home | / | web development agency | 1K–10K · Low · $41 | web development company, custom web development company |
 | About | /about | nayab gull (brand) | — | — |
+| Contact | /contact | contact nayab gull (brand, approved by Nayab 2026-11-14) | — | — |
 | Pricing | /pricing | website development cost | 100–1K · Low · $23 | cost of web design, website design pricing, web app development cost |
 | Hire | /hire-full-stack-developer | hire full stack developer | 100–1K · Low · $51 | hire web developer, hire website developer, website designers for hire (1K–10K), hire freelance web developer, freelance web developer, hire frontend developer |
+| Hire SaaS | /hire-saas-developer | hire saas developer (approved by Nayab 2026-11-17) | 100–1K · Low · KD 4 | saas developer, custom saas development, saas development agency, saas app development, saas development services, saas web development company |
 
 ## GoHighLevel hub (priority 1)
 
@@ -28,10 +30,11 @@ Rules: one primary keyword per page; a keyword appears as a target on one page o
 | Page | URL | Primary | Volume · Comp · Bid | Secondary |
 | --- | --- | --- | --- | --- |
 | Hub | /ai-automation-agency | ai automation agency | 1K–10K · Low · $20 | ai automation services, ai workflow automation, marketing automation agency, business automation consultant, ai integration services |
-| n8n / Make / Zapier | /ai-automation-agency/n8n-make-zapier | n8n automation | 1K–10K · Medium · $16 | n8n workflow, n8n expert, make com automation, make com expert, zapier workflow automation, hire zapier expert, zapier automation agency |
+| AI agents | /ai-automation-agency/ai-agent-development | ai agent development services | 100–1K · Low · $57 | ai agent development company, ai agent development, custom ai agent development, custom ai agents for business, ai agents for business (1K–10K), hire ai agent developer, ai agent developer, ai agent agency, ai agent services, ai agent for small business, agentic ai development company, ai agent integration services |
+| n8n automation agency | /ai-automation-agency/n8n-automation-agency | n8n automation agency (approved by Nayab 2026-11-17) | 100–1K · Low · $17 · KD 3 | n8n agency, n8n automation services, n8n automation, n8n expert, hire n8n expert, n8n developer, n8n consultant, make com automation, make com expert, zapier workflow automation, hire zapier expert, zapier automation agency |
 | AI chatbots | /ai-automation-agency/ai-chatbot-development | ai chatbot development services | 100–1K · Low · $38 | chatbot development services, chat bot development, whatsapp business api integration, chatgpt api integration |
-| AI voice agents | /ai-automation-agency/ai-voice-agents | ai receptionist for small business | volume to verify | ai voice agent, ai phone answering |
-| Process automation | /ai-automation-agency/business-process-automation | business process automation | 1K–10K · Low · $48 | workflow automation, workflow automation solutions, business process automation services, workflow automation services, workflow automation for small business |
+| AI receptionist | /ai-automation-agency/ai-receptionist-for-small-business | ai receptionist for small business | 1K–10K · Low · $66 | ai voice agent, ai phone answering service, ai virtual receptionist, ai receptionist service, ai voice agent for small business, ai answering service for small business, ai call answering, ai phone receptionist, voice ai receptionist, ai voice agent services |
+| Process automation | /ai-automation-agency/business-process-automation-services | business process automation services | 100–1K · Low · $38 · KD 3 | business process automation (1K–10K), workflow automation, workflow automation solutions, workflow automation services, workflow automation for small business, business process automation companies |
 
 ## Industries (priority 3)
 
@@ -51,8 +54,8 @@ Rules: one primary keyword per page; a keyword appears as a target on one page o
 | 1 | /services/web-design-development | website design company | 10K–100K · Low · $34 | web design company, web design firms, website creation company, web design agency, website design services, website development company |
 | 1 | /services/nextjs-react-development | react development company | 100–1K · Low · $88 | react development agency ($458), react development services, hire react developers, hire next js developer, hire node js developer, nextjs development company |
 | 1 | /services/saas-mvp-development | mvp development company | 100–1K · Low · $100 | mvp development agency ($121), mvp development services for startups, saas development company, saas application development services |
-| 1 | /services/shopify-development | shopify agency | 1K–10K · Low · $35 | shopify seo services, expert shopify developers, hire shopify developer, shopify website development company, shopify store design services, headless shopify |
-| 1 | /services/wordpress-development | wordpress agency | 1K–10K · Low · $40 | wordpress experts for hire ($86), hire wordpress developer, wordpress web design company, wordpress development agency |
+| 1 | /services/shopify-development | shopify development agency | 100–1K · Low · $63 | shopify agency, shopify development company, hire shopify developer, hire shopify expert, shopify plus development agency, shopify seo services, expert shopify developers, shopify website development company, shopify store design services, headless shopify |
+| 1 | /services/wordpress-development | wordpress development agency | 100–1K · Low · $43 | wordpress agency (1K–10K), wordpress website design agency (1K–10K), wordpress design company (1K–10K), wordpress website development company ($73), custom wordpress development, wordpress experts for hire ($86), hire wordpress developer, wordpress web design company |
 | 2 | /services/custom-web-app-development | custom web development services | 100–1K · Low · $31 | web app development agency, web application development services, full stack development company, mern stack developer |
 | 2 | /services/laravel-development | laravel development company | 100–1K · Low · $82 | laravel development services, php development company, hire dedicated php developer |
 | 2 | /services/ecommerce-development | ecommerce development company | 100–1K · Low · $71 | hire woocommerce developers ($88), woocommerce development services, ecommerce website development services |
@@ -63,19 +66,19 @@ Rules: one primary keyword per page; a keyword appears as a target on one page o
 
 ## Packages (phase 2)
 
-| URL | Primary | Volume · Comp · Bid |
-| --- | --- | --- |
-| /packages/website-speed-optimization | website speed optimization service | 100–1K · Low · $25 |
-| /packages/wordpress-care-plan | wordpress maintenance plans | 100–1K · Low · $25 |
-| /packages/gohighlevel-setup | gohighlevel setup service | volume to verify |
-| /packages/ai-chatbot | ai chatbot package | volume to verify |
+| URL | Primary | Volume · Comp · Bid | Secondary |
+| --- | --- | --- | --- |
+| /packages/website-speed-optimization | website speed optimization service | 100–1K · Low · $25 | — |
+| /packages/wordpress-care-plan | wordpress maintenance plans | 100–1K · Low · $25 | wordpress care plans, wordpress maintenance packages, wordpress maintenance company |
+| /packages/gohighlevel-setup | gohighlevel setup service | volume to verify | — |
+| /packages/ai-chatbot | ai chatbot package | volume to verify | — |
 
 ## Blog clusters (each post gets its own primary when written)
 
 | Cluster | Links up to | Starter topics |
 | --- | --- | --- |
 | GoHighLevel | /gohighlevel-agency | GoHighLevel review, A2P 10DLC setup, GHL workflow examples, GHL vs HubSpot, GHL API guide |
-| AI automation | /ai-automation-agency | best AI automation companies for small business, n8n vs Make vs Zapier, AI receptionist guide, workflow automation examples |
+| AI automation | /ai-automation-agency | best AI automation companies for small business, n8n vs Make vs Zapier, AI receptionist guide, workflow automation examples, AI receptionist cost and pricing, best AI receptionist, best AI answering service (reserved for blog posts, never targeted by the AI receptionist page; approved by Nayab 2026-11-19) |
 | Cost | service pages | cost to develop an app (1K–10K), small business website cost breakdown, custom software development cost, website maintenance cost, law firm website cost |
 | Industries | /industries/* | law firm website must-haves, dental website checklist, roofing lead generation website, real estate IDX guide |
 | Dev | service pages | Next.js vs WordPress, headless Shopify, MVP development process, Shopify speed optimization |
@@ -84,3 +87,8 @@ Rules: one primary keyword per page; a keyword appears as a target on one page o
 
 - Any "near me" keyword (no US office) — secondary mention only where natural.
 - Jobs, salary, courses, tutorials, free templates, platform login or pricing keywords on service pages.
+
+## Notes
+
+- Shopify primary changed from shopify agency (KD 56) to shopify development agency (KD 3), approved by Nayab 2026-11-22, source PR #49.
+- WordPress primary changed from wordpress agency (KD 43) to wordpress development agency (KD 5); care plan secondaries added; approved by Nayab 2026-11-22, source PR #49.

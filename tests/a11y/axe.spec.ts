@@ -1,11 +1,11 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
-import { ROUTES } from "../routes.ts";
+import { ALL_ROUTES } from "../routes.ts";
 
 const TAGS = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa", "best-practice"];
 
-for (const route of ROUTES) {
+for (const route of ALL_ROUTES) {
   for (const colorScheme of ["light", "dark"] as const) {
     test.describe(`${route} (${colorScheme})`, () => {
       test.use({ colorScheme });

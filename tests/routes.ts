@@ -1,5 +1,14 @@
+import { ALL_ROUTES, INDEXABLE_ROUTES, NOINDEX_ROUTES } from "../lib/seo/routes.ts";
+
 /**
- * Public routes every browser test and audit visits. The audits also add every URL from /sitemap.xml;
- * keep this list in sync with app/ until the sitemap exists.
+ * Indexable public routes: every on-page SEO and content audit visits these (plus every URL from
+ * /sitemap.xml). The list comes from lib/seo/routes.ts, so a new page joins as soon as it is
+ * registered.
  */
-export const ROUTES: readonly string[] = ["/"];
+export const ROUTES: readonly string[] = INDEXABLE_ROUTES;
+
+/** Legal pages: `noindex, follow`, never in the sitemap. `audit:seo` checks exactly that. */
+export { NOINDEX_ROUTES };
+
+/** Every public route. The browser tests (a11y, responsive) visit all of them. */
+export { ALL_ROUTES };

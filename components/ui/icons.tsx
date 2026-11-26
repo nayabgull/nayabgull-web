@@ -95,3 +95,144 @@ export const PhoneIcon = (p: IconProps) => (
     <path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" />
   </Icon>
 );
+export const ChevronDownIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M6 9l6 6 6-6" />
+  </Icon>
+);
+export const MenuIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M4 7h16M4 12h16M4 17h16" />
+  </Icon>
+);
+export const ChatIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-7l-5 4v-4H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z" />
+  </Icon>
+);
+export const RulesIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <rect x="5" y="3" width="14" height="18" rx="2" />
+    <path d="M9 8h6M9 12h6M9 16h4" />
+  </Icon>
+);
+export const ChipIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <rect x="7" y="7" width="10" height="10" rx="2" />
+    <path d="M10 3v4M14 3v4M10 17v4M14 17v4M3 10h4M3 14h4M17 10h4M17 14h4" />
+  </Icon>
+);
+export const PlugIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M9 3v5M15 3v5M6 8h12v3a6 6 0 0 1-12 0zM12 17v4" />
+  </Icon>
+);
+export const PersonIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <circle cx="12" cy="8" r="4" />
+    <path d="M4 21a8 8 0 0 1 16 0" />
+  </Icon>
+);
+export const TestIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3M7.5 15h9" />
+  </Icon>
+);
+export const UsersIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <circle cx="9" cy="8" r="3.5" />
+    <path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6.5 6.5 0 0 1 3.5 6" />
+  </Icon>
+);
+export const GlobeIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <circle cx="12" cy="12" r="9" />
+    <path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" />
+  </Icon>
+);
+export const MailIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <rect x="3" y="5" width="18" height="14" rx="2" />
+    <path d="M3.5 6.5L12 13l8.5-6.5" />
+  </Icon>
+);
+export const CalendarIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <rect x="3" y="5" width="18" height="16" rx="2" />
+    <path d="M3 10h18M8 3v4M16 3v4" />
+  </Icon>
+);
+export const CartIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M3 4h2l2.4 11h11L21 8H6.2" />
+    <circle cx="9" cy="19.5" r="1.5" />
+    <circle cx="17" cy="19.5" r="1.5" />
+  </Icon>
+);
+export const LayoutIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <rect x="3" y="4" width="18" height="16" rx="2" />
+    <path d="M3 9h18M9 9v11" />
+  </Icon>
+);
+export const DatabaseIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <ellipse cx="12" cy="6" rx="8" ry="3" />
+    <path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3" />
+  </Icon>
+);
+export const ShieldIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z" />
+    <path d="M8.5 12l2.5 2.5 4.5-5" />
+  </Icon>
+);
+export const TargetIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <circle cx="12" cy="12" r="9" />
+    <circle cx="12" cy="12" r="5" />
+    <circle cx="12" cy="12" r="1" />
+  </Icon>
+);
+export const WrenchIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M14.5 6.5a4 4 0 0 0 5 5L21 13l-8 8-3-3 8-8M14.5 6.5L13 5a4 4 0 0 0-5.5 5.5L3 15l3 3 4.5-4.5" />
+  </Icon>
+);
+export const BellIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M6 16V11a6 6 0 0112 0v5l1.5 2h-15L6 16z" />
+    <path d="M10 20.5a2 2 0 004 0" />
+  </Icon>
+);
+export const CardIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <rect x="3" y="5.5" width="18" height="13" rx="2" />
+    <path d="M3 10h18M7 15h4" />
+  </Icon>
+);
+export const GaugeIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M4.5 17a8 8 0 1115 0" />
+    <path d="M12 14l3.5-4.5" />
+    <circle cx="12" cy="14.5" r="1" />
+  </Icon>
+);
+export const KeyIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <circle cx="8" cy="15" r="4" />
+    <path d="M11 12l8-8M16 7l2.5 2.5M14 9l2 2" />
+  </Icon>
+);
+export const ReceiptIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M6 3h12v18l-3-2-3 2-3-2-3 2V3z" />
+    <path d="M9 8h6M9 12h6M9 16h3" />
+  </Icon>
+);
+export const SheetIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <rect x="4" y="4" width="16" height="16" rx="2" />
+    <path d="M4 9.5h16M4 15h16M10 4v16" />
+  </Icon>
+);

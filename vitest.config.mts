@@ -6,7 +6,10 @@ import { defineConfig } from "vitest/config";
 export default defineConfig({
   plugins: [react()],
   resolve: {
-    alias: { "@": fileURLToPath(new URL("./", import.meta.url)) },
+    alias: {
+      "@payload-config": fileURLToPath(new URL("./payload.config.ts", import.meta.url)),
+      "@": fileURLToPath(new URL("./", import.meta.url)),
+    },
   },
   test: {
     environment: "jsdom",

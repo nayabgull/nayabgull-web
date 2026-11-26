@@ -5,7 +5,12 @@ const baseURL = externalBaseUrl ?? "http://localhost:3000";
 
 export default defineConfig({
   testDir: "tests",
-  testMatch: ["e2e/**/*.spec.ts", "responsive/**/*.spec.ts", "a11y/**/*.spec.ts"],
+  testMatch: [
+    "e2e/**/*.spec.ts",
+    "cms-e2e/**/*.spec.ts",
+    "responsive/**/*.spec.ts",
+    "a11y/**/*.spec.ts",
+  ],
   snapshotPathTemplate: "{testDir}/{testFileDir}/__snapshots__/{projectName}/{arg}{ext}",
   fullyParallel: true,
   forbidOnly: true,

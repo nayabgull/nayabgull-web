@@ -1,17 +1,27 @@
 import { withPayload } from "@payloadcms/next/withPayload";
 import type { NextConfig } from "next";
 
+import { STATIC_SECURITY_HEADERS } from "./lib/security/headers.ts";
+
 /** Never let search engines index the CMS: seo.md §7. */
 const NOINDEX = [{ key: "X-Robots-Tag", value: "noindex, nofollow" }];
 
 const nextConfig: NextConfig = {
   headers() {
     return Promise.resolve([
+      // seo.md §9. The Content-Security-Policy needs a nonce per request, so proxy.ts sets it.
+      { source: "/:path*", headers: [...STATIC_SECURITY_HEADERS] },
       { source: "/admin", headers: NOINDEX },
       { source: "/admin/:path*", headers: NOINDEX },
       { source: "/api", headers: NOINDEX },
       { source: "/api/:path*", headers: NOINDEX },
     ]);
+  },
+  experimental: {
+    // Inline the site CSS (about 8.5 KB gzip) in the HTML instead of a render-blocking stylesheet
+    // request: on a throttled phone that request is a full extra round trip before the first
+    // paint (mobile FCP budget, quality-gates.md).
+    inlineCss: true,
   },
   turbopack: {
     rules: {

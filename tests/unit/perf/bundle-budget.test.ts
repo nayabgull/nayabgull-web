@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import {
   BUNDLE_BUDGET,
+  existsOnBase,
   checkRoute,
   frameworkFiles,
   kb,
@@ -62,6 +63,20 @@ describe("bundle budget", () => {
     expect(issues).toEqual([
       { rule: "bundle-growth", message: "Grew 11.0 KB vs main (max 10.0 KB)." },
     ]);
+  });
+
+  it("treats only a 404 or 410 on the base branch as a new route", () => {
+    expect(existsOnBase(404)).toBe(false);
+    expect(existsOnBase(410)).toBe(false);
+    for (const status of [200, 301, 500, undefined]) expect(existsOnBase(status)).toBe(true);
+  });
+
+  it("checks a route that is new in the PR against every budget but not against growth", () => {
+    // No baseline entry: the route did not exist on main.
+    const newRoute = { framework: 129.4 * KB, app: 10.7 * KB, total: 140.1 * KB };
+    expect(checkRoute(newRoute, undefined)).toEqual([]);
+    const tooBig = checkRoute({ framework: 136 * KB, app: 31 * KB, total: 167 * KB }, undefined);
+    expect(tooBig.map((issue) => issue.rule)).toEqual(["framework-js", "app-js", "first-load-js"]);
   });
 
   it("keeps the approved limits", () => {

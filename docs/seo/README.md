@@ -12,6 +12,13 @@ Every Claude session (any account, any agent) reads these files before it writes
 | `research/clusters/low-dr-<cluster>.csv` | Sites with Ahrefs DR 0–15 (a few older rows up to 20) in the Google US top 10 for that cluster, with the ranking page and the lesson. | 5 of 5 done |
 | `research/keyword-tracker.csv` | Generated. One row per keyword: all research merged (newest wins), the page that targets it from `lib/seo/keywords.ts`, role, page status, cannibalization flag, low-DR sites. Feeds the Keyword Tracker dashboard. Do not edit by hand; regenerate after research or keyword-map changes. | Live |
 | `research/competitors.csv` | Generated. Every low-DR site from all research files, with cluster and our page for that keyword. | Live |
+| `research/shopify-keywords.csv` | 111 Shopify keywords from Keyword Planner (US, English, November 2025 – October 2026, pulled November 21, 2026): volume range, Ads competition, bids in PKR and USD, Ahrefs KD, intent, buyer intent, quick-win and never-primary flags, keyword-map owner. | Live |
+| `research/wordpress-keywords.csv` | 106 WordPress / WooCommerce keywords, same columns and dates as the Shopify file. | Live |
+| `research/shopify-wordpress-competitors.csv` | The 10 sites with Ahrefs DR 0–15 in the Google US top 20 for Shopify / WordPress keywords: ranking page, position, KD, word count, H1/H2, pricing, FAQ, schema, backlink sources, lesson (November 21, 2026). | Live |
+| `research/shopify-wordpress-serp-notes.md` | Top 10 per keyword (23 Shopify / WordPress keywords) with DR, page-type mix, gaps and People Also Ask. | Live |
+| `research/shopify-wordpress-report.md` | Full analysis and proposals for `/services/shopify-development`, `/services/wordpress-development` and `/packages/wordpress-care-plan`: primary keyword change, secondaries, quick wins, blog ideas, DR 0 strategy, backlink chances. | Proposal |
+| `research/shopify-wordpress-report.pdf` | Readable PDF of the report: summary and action list on page 1, then tables. | Proposal |
+| `../../content/briefs/shopify-development.md`, `../../content/briefs/wordpress-development.md` | Content briefs (content.md §4) for the two service pages, based on this research. | Proposal |
 | `research/kd.md` | Keyword difficulty and top 10 sites (DR) for every primary keyword. Filled by hand with the free Ahrefs checker. | To fill |
 | `competitors.md` | Deep review of the low-DR competitors: page structure, titles, FAQs, schema, internal links, blog topics, trust signals, and the gap list for us. | Planned |
 | `offpage-plan.md` | White-hat backlinks, free directories, LinkedIn and Facebook groups, linkable assets, 12-week blog calendar, AI search (GEO). | Planned |

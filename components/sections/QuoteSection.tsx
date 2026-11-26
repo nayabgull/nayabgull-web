@@ -1,0 +1,58 @@
+import Link from "next/link";
+
+import type { LeadRequest } from "@/components/forms/LeadForm.tsx";
+import { ButtonLink } from "@/components/ui/ButtonLink.tsx";
+import { Section } from "@/components/ui/Section.tsx";
+import { SectionHeader } from "@/components/ui/SectionHeader.tsx";
+import type { Quote } from "@/content/home.ts";
+import { DIRECT_BENEFIT } from "@/content/home.ts";
+
+import { QuoteCard } from "./QuoteCard.tsx";
+
+/** Every page ends here: the quote form, plus the primary CTA for people who would rather talk. */
+export function QuoteSection({
+  quote,
+  source,
+  request,
+  band = false,
+}: {
+  quote: Quote;
+  source: string;
+  request?: LeadRequest;
+  /** Full-width call-to-action band (glow background) instead of a plain section. */
+  band?: boolean;
+}) {
+  return (
+    <Section id="quote" labelledBy="quote-heading" className={band ? "cta-band" : ""}>
+      <SectionHeader
+        id="quote-heading"
+        eyebrow={quote.eyebrow}
+        heading={quote.heading}
+        intro={quote.text}
+      />
+      <p className="mx-auto mt-4 max-w-[60ch] text-center font-semibold">{DIRECT_BENEFIT}</p>
+      <div data-cta-zone className="mt-10">
+        <QuoteCard
+          id="quote-form"
+          as="h3"
+          heading={quote.form.heading}
+          text={quote.form.text}
+          source={source}
+          request={request}
+        />
+      </div>
+      <div className="mt-8 flex flex-col items-center gap-3 text-center">
+        <p className="text-text-muted">{quote.callText}</p>
+        <ButtonLink href={quote.cta.href}>{quote.cta.label}</ButtonLink>
+        <p className="max-w-[60ch] text-small text-text-muted">{quote.note}</p>
+        <p className="text-small text-text-muted">
+          {quote.contact.before}
+          <Link prefetch={false} href={quote.contact.link.href} className="text-link">
+            {quote.contact.link.label}
+          </Link>
+          {quote.contact.after}
+        </p>
+      </div>
+    </Section>
+  );
+}
