@@ -106,9 +106,15 @@ Vercel → **Add New → Project** → import `nayabgull/nayabgull-web`.
 - `vercel.json` turns off Git deployments for `main`: production is deployed by the CI `deploy` job only after
   every CI check is green, followed by a smoke test and an automatic rollback if it fails. Pull requests still
   get preview deployments.
+- Vercel cannot build this project itself on the Hobby plan (the build runs out of its 8 GB memory). That is fine:
+  production is built on the GitHub runner by the CI `deploy` job and uploaded with `vercel deploy --prebuilt`.
+- Before the domain moves, point the smoke test at the project's own production domain: GitHub → repository →
+  **Settings → Secrets and variables → Actions → Variables → New repository variable** → name `SMOKE_TEST_URL`,
+  value `https://<project>.vercel.app` (Vercel → project → Settings → Domains shows the exact name). Without it the
+  smoke test runs against nayabgull.com, which still shows the coming-soon page, and the deploy rolls back.
 - After the GitHub secrets from step 1 exist, re-run the `deploy` job of the latest `main` run (GitHub → Actions →
   CI → the run on `main` → **Re-run jobs**), or merge the next PR. Check the deployment shows as **Production** in
-  Vercel → Deployments and opens on its `*.vercel.app` URL.
+  Vercel → Deployments and opens on its `*.vercel.app` URL. Review the whole site there before step 4.
 
 ## 4. Move the domain from the coming-soon project (no downtime)
 
@@ -121,9 +127,11 @@ changes, and Vercel switches it in seconds.
    coming-soon project and offers to move it: confirm. The domain now serves the new project.
 3. Add `www.nayabgull.com` in the same screen and set it to **Redirect to** `nayabgull.com` with **301 Moved
    Permanently**. `nayabgull.com` stays the primary domain (no `www`, seo.md §7).
-4. In the coming-soon project → Settings → Domains, check no `nayabgull.com` entries are left. Keep that project
+4. GitHub → **Settings → Secrets and variables → Actions → Variables**: delete `SMOKE_TEST_URL`, so every later
+   deploy is smoke-tested on nayabgull.com again.
+5. In the coming-soon project → Settings → Domains, check no `nayabgull.com` entries are left. Keep that project
    (do not delete it) for a week in case you need to move the domain back.
-5. Check from a terminal:
+6. Check from a terminal:
 
 ```bash
 curl -sI https://www.nayabgull.com | grep -iE "^(HTTP|location)"
