@@ -57,9 +57,38 @@ jobs:
             exit 0
           fi
           git checkout -b "$SNAPSHOT_BRANCH"
-          git commit -m "test: update responsive visual baselines (Linux, Playwright 1.64.1)"
+          # A full set (4,200 full-page PNGs) is too big for one push: GitHub answered HTTP 500
+          # twice. Commit and push it in parts of 200 files, each push retried up to 3 times.
           # Plain push (never --force): if the branch already exists, merge or delete its PR first.
-          git push origin "HEAD:refs/heads/$SNAPSHOT_BRANCH"
+          push_part() {
+            for attempt in 1 2 3; do
+              git push origin "HEAD:refs/heads/$SNAPSHOT_BRANCH" && return 0
+              echo "::warning::Push failed (attempt $attempt of 3), retrying in 30 s"
+              sleep 30
+            done
+            return 1
+          }
+          LIST="$(mktemp)"
+          git diff --cached --name-only --diff-filter=AM -- tests/responsive/__snapshots__ > "$LIST"
+          git reset -q
+          split -l 200 "$LIST" "$LIST.part-"
+          TOTAL="$(find "$(dirname "$LIST")" -name "$(basename "$LIST").part-*" | wc -l)"
+          N=0
+          for PART in "$LIST".part-*; do
+            [ -f "$PART" ] || continue
+            N=$((N + 1))
+            xargs git add -- < "$PART"
+            # The last part also stages deleted (stale) baselines.
+            if [ "$N" -eq "$TOTAL" ]; then git add -A tests/responsive/__snapshots__; fi
+            git commit -q -m "test: update responsive visual baselines (part $N of $TOTAL)"
+            push_part
+          done
+          # Only deletions: nothing was split, so commit them in one part.
+          git add -A tests/responsive/__snapshots__
+          if ! git diff --cached --quiet; then
+            git commit -q -m "test: remove stale responsive visual baselines"
+            push_part
+          fi
           echo "changed=true" >> "$GITHUB_OUTPUT"
       - name: Open the review PR
         if: steps.commit.outputs.changed == 'true'
